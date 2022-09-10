@@ -23,10 +23,10 @@ const styles = {
   card: {
     display: 'flex',
     alignItems: ['center', 'flex-start'],
-    flexDirection: 'column',
-    mb: -1,
+    // flexDirection: 'column',
+    // mb: -1,
     textAlign: ['center', null, 'left'],
-    px: [4, null, 0],
+    // px: [4, null, 0],
   },
   img: {
     mx: ['auto', null, 0],

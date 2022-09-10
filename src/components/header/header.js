@@ -11,7 +11,7 @@ import menuItems from './header.data';
 export default function Header({ className }) {
   return (
     <DrawerProvider>
-      <header sx={styles.header} className={className} id="header">
+      <header sx={styles.header} id="header">
         <Container sx={styles.container}>
           <Logo src={LogoDark} />
 
@@ -31,15 +31,7 @@ export default function Header({ className }) {
             ))}
           </Flex>
 
-          <Button
-            className="donate__btn"
-            variant="secondary"
-            aria-label="Get Started"
-          >
-            Get Started
-          </Button>
-
-          <MobileDrawer />
+          {/* <MobileDrawer /> */}
         </Container>
       </header>
     </DrawerProvider>
@@ -63,12 +55,12 @@ const styles = {
   header: {
     color: 'text',
     fontWeight: 'body',
-    py: 4,
+    py: 3,
     width: '100%',
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: 'transparent',
+    backgroundColor: 'white',
     transition: 'all 0.4s ease',
     animation: `${positionAnim} 0.4s ease`,
     '.donate__btn': {
@@ -85,12 +77,12 @@ const styles = {
       'nev > a': {
         color: 'text',
       },
-    },
+    }
   },
   container: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around'
   },
   nav: {
     mx: 'auto',

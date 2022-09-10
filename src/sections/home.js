@@ -5,11 +5,11 @@ import BannerImg from 'assets/banner-thumb.png';
 import ShapeLeft from 'assets/shape-left.png';
 import ShapeRight from 'assets/shape-right.png';
 
-export default function Banner() {
+export default function Home() {
   return (
-    <section sx={styles.banner} id="home">
-      <Container sx={styles.banner.container}>
-        <Box sx={styles.banner.contentBox}>
+    <section sx={styles.home} id="home">
+      <Container sx={styles.home.container}>
+        {/* <Box sx={styles.home.contentBox}>
           <Heading as="h1" variant="heroPrimary">
             Top Quality Digital Products To Explore
           </Heading>
@@ -19,9 +19,9 @@ export default function Banner() {
             guidelines ever.
           </Text>
           <Button variant="primary">Explore</Button>
-        </Box>
+        </Box> */}
 
-        <Box sx={styles.banner.imageBox}>
+        <Box sx={styles.home.imageBox}>
           <Image src={BannerImg} alt="banner" />
         </Box>
       </Container>
@@ -30,7 +30,7 @@ export default function Banner() {
 }
 
 const styles = {
-  banner: {
+  home: {
     pt: ['140px', '145px', '155px', '170px', null, null, '180px', '215px'],
     pb: [2, null, 0, null, 2, 0, null, 5],
     position: 'relative',

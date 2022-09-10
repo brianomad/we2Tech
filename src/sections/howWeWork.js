@@ -13,7 +13,7 @@ const data = [
     id: 1,
     imgSrc: Performance,
     altText: 'Fast Performance',
-    title: 'Fast Performance',
+    title: 'PROBLEM IDENTIFICATION ADN PRECISE SOLUTION',
     text:
       'Get your blood tests delivered at home collect a sample from the your blood tests.',
   },
@@ -21,7 +21,7 @@ const data = [
     id: 2,
     imgSrc: Partnership,
     altText: 'Partnership deal',
-    title: 'Partnership deal',
+    title: 'DESIGN UI/UX FOR THE APPLICATION',
     text:
       'Get your blood tests delivered at home collect a sample from the your blood tests.',
   },
@@ -29,7 +29,7 @@ const data = [
     id: 3,
     imgSrc: Subscription,
     altText: 'Pro Subscription',
-    title: 'Pro Subscription',
+    title: 'EFFECTIVE PROJECT MANAGEMENT AND APPLICATION DEVELOPMENT',
     text:
       'Get your blood tests delivered at home collect a sample from the your blood tests.',
   },
@@ -37,19 +37,19 @@ const data = [
     id: 4,
     imgSrc: Support,
     altText: 'Customer Support',
-    title: 'Customer Support',
+    title: 'LANUCH THE APPLIACTION',
     text:
       'Get your blood tests delivered at home collect a sample from the your blood tests.',
   },
 ];
 
-export default function KeyFeature() {
+export default function HowWeWorkSection() {
   return (
-    <section sx={{ variant: 'section.keyFeature' }} id="feature">
-      <Container>
+    <section sx={{ variant: 'section.services' }} id="howWeWork">
+      <Container sx={styles.container}>
         <SectionHeader
-          slogan="Whats the function"
-          title="Meet the feature of product"
+          title="How We Work?"
+          // slogan="Whats the function"
         />
 
         <Grid sx={styles.grid}>
@@ -69,7 +69,14 @@ export default function KeyFeature() {
 }
 
 const styles = {
+  container: {
+    justifyContent: 'center',
+    textAlign: 'center'
+  },
   grid: {
+    marginTop: 40,
+    // marginLeft: 50,
+    // margiRight: 50,
     width: ['100%', '80%', '100%'],
     mx: 'auto',
     gridGap: [

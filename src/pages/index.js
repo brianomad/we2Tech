@@ -4,9 +4,9 @@ import { StickyProvider } from '../contexts/app/app.provider';
 import theme from 'theme';
 import SEO from 'components/seo';
 import Layout from 'components/layout';
-import Banner from '../sections/banner';
-import KeyFeature from '../sections/key-feature';
-import ServiceSection from '../sections/service-section';
+import Home from '../sections/home';
+import Services from '../sections/services';
+import HowWeWork from '../sections/howWeWork';
 import Feature from '../sections/feature';
 import CoreFeature from '../sections/core-feature';
 import WorkFlow from '../sections/workflow';
@@ -22,17 +22,17 @@ export default function IndexPage() {
       <StickyProvider>
         <Layout>
           <SEO title="Startup Landing 005" />
-          <Banner />
-          <KeyFeature />
-          <ServiceSection />
-          <Feature />
+          <Home />
+          <Services />
+          <HowWeWork />
+          {/* <Feature />
           <CoreFeature />
           <WorkFlow />
           <Package />
           <TeamSection />
           <TestimonialCard />
           <BlogSection />
-          <Subscribe />
+          <Subscribe /> */}
         </Layout>
       </StickyProvider>
     </ThemeProvider>
