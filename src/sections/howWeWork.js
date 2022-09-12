@@ -74,9 +74,7 @@ const styles = {
     textAlign: 'center'
   },
   grid: {
-    marginTop: 40,
-    // marginLeft: 50,
-    // margiRight: 50,
+    marginTop: 60,
     width: ['100%', '80%', '100%'],
     mx: 'auto',
     gridGap: [

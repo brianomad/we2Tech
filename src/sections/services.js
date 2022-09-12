@@ -138,12 +138,6 @@ const details = [
 ];
 
 export default function Services() {
-  // modal popup video handler
-  // const [videoOpen, setVideoOpen] = useState(false);
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   setVideoOpen(true);
-  // };
   return (
     <section sx={{ variant: 'section.services' }} id="services">
       <Container sx={styles.containerBox}>
@@ -155,12 +149,6 @@ export default function Services() {
           )
         ))}
       </Container>
-      {/* <ModalVideo
-        channel="youtube"
-        isOpen={videoOpen}
-        videoId="ZNA9rmDsYVE"
-        onClose={() => setVideoOpen(false)}
-      /> */}
     </section>
   );
 }

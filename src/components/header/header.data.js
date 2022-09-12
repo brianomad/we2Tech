@@ -4,16 +4,16 @@ export default [
     label: 'Home',
   },
   {
+    path: 'contactUs',
+    label: 'Contact Us',
+  },
+  {
     path: 'services',
     label: 'Services',
   },
   {
     path: 'howWeWork',
     label: 'How We Work',
-  },
-  {
-    path: 'contactUs',
-    label: 'Contact Us',
   },
   {
     path: 'aboutUs',

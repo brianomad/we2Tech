@@ -5,8 +5,10 @@ import theme from 'theme';
 import SEO from 'components/seo';
 import Layout from 'components/layout';
 import Home from '../sections/home';
+import ContactUs from '../sections/contactUs.tsx';
 import Services from '../sections/services';
 import HowWeWork from '../sections/howWeWork';
+// import ContactUs from '../sections/contactUs';
 import Feature from '../sections/feature';
 import CoreFeature from '../sections/core-feature';
 import WorkFlow from '../sections/workflow';
@@ -23,6 +25,7 @@ export default function IndexPage() {
         <Layout>
           <SEO title="Startup Landing 005" />
           <Home />
+          <ContactUs />
           <Services />
           <HowWeWork />
           {/* <Feature />
