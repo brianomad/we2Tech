@@ -17,7 +17,7 @@ const data = [
     altText: 'Fast Performance',
     title: 'PROBLEM IDENTIFICATION ADN PRECISE SOLUTION',
     text:
-      'Get your blood tests delivered at home collect a sample from the your blood tests.',
+      'Helping you articulate where the problem areas are, and how tech might be able to provide the solutions you didn`t even know you needed.',
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const data = [
     altText: 'Partnership deal',
     title: 'DESIGN UI/UX FOR THE APPLICATION',
     text:
-      'Get your blood tests delivered at home collect a sample from the your blood tests.',
+      'Design awful UI/UX base on your requirement and design the UI/UX become more user-friendly and attractive for teh application`s user',
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const data = [
     altText: 'Pro Subscription',
     title: 'EFFECTIVE PROJECT MANAGEMENT AND APPLICATION DEVELOPMENT',
     text:
-      'Get your blood tests delivered at home collect a sample from the your blood tests.',
+      'Processes in place to ensure the work gets done, on time and within budget. One less thing to worry about.',
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ const data = [
     altText: 'Customer Support',
     title: 'LANUCH THE APPLIACTION',
     text:
-      'Get your blood tests delivered at home collect a sample from the your blood tests.',
+      'Lannch the application on time and without any unexpected issue.',
   },
 ];
 
