@@ -6,7 +6,7 @@ import {
 } from 'theme-ui';
 import SectionHeader from '../components/section-header';
 
-const ContactUss: NextPage = () => {
+const ContactUs: NextPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -20,8 +20,7 @@ const ContactUss: NextPage = () => {
       email,
       phone,
       message
-    }
-    console.log('form: ', form);
+    };
 
     const rawResponse = await fetch('/api/submit', {
       method: 'POST',
@@ -51,26 +50,26 @@ const ContactUss: NextPage = () => {
       <Container sx={styles.containerBox}>
         <SectionHeader
           title="Contact Us"
-          slogan="Looking for a quatation?" />
+          slogan="Looking for Mobile/Website application quatation?" />
         <Box sx={styles.container}>
           <div style={styles.innerContainer}>
             <form className="py-4 space-y-4"
               onSubmit={handleSubmit}>
               <div className="flex items-center justify-center">
-                <label htmlFor="name">Name</label>
-                <input value={name} onChange={e => setName(e.target.value)} type="text" name="name" id="name" style={styles.titleContext} placeholder="Your Name" />
+                <label htmlFor="name" style={styles.title}>Name</label>
+                <input value={name} onChange={e => setName(e.target.value)} type="text" name="name" id="name" style={styles.titleContext} />
               </div>
               <div className="flex items-center justify-center">
-                <label htmlFor="email" className="sr-only">Email</label>
-                <input value={email} onChange={e => setEmail(e.target.value)} type="email" name="email" id="email" style={styles.titleContext} placeholder="Your Email" />
+                <label htmlFor="email" className="sr-only" style={styles.title}>Email</label>
+                <input value={email} onChange={e => setEmail(e.target.value)} type="email" name="email" id="email" style={styles.titleContext} />
               </div>
               <div className="flex items-center justify-center">
-                <label htmlFor="phone" className="sr-only">Phone</label>
-                <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" name="phone" id="phone" style={styles.titleContext} placeholder="Your Phone" />
+                <label htmlFor="phone" className="sr-only" style={styles.title}>Phone</label>
+                <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" name="phone" id="phone" style={styles.titleContext} />
               </div>
               <div className="flex items-center justify-center">
-                <label htmlFor="message" className="sr-only">Project Description</label>
-                <textarea value={message} onChange={e => setMessage(e.target.value)} id="message" style={styles.messageContext} placeholder="Your Project Description" />
+                <label htmlFor="message" className="sr-only" style={styles.title}>Project Description</label>
+                <textarea value={message} onChange={e => setMessage(e.target.value)} id="message" style={styles.messageContext} />
               </div>
               <div className="flex items-center justify-center">
                 <button type="submit" style={styles.submit}>Submit</button>
@@ -83,20 +82,20 @@ const ContactUss: NextPage = () => {
   )
 }
 
-export default ContactUss
+export default ContactUs
 
 const styles = {
   containerBox: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'black',
+    width: '50%'
   },
   container: {
-    marginTop: 60,
     marginBottom: 60,
     display: 'flex',
-    backgroundColor: 'lightgreen',
     padding: 20,
     width: '80%'
   },
@@ -105,20 +104,27 @@ const styles = {
   },
   titleContext: {
     padding: 10,
-    marginLeft: 106,
     marginBottom: 20,
-    width: '80%'
+    backgroundColor: 'white',
+    width: '100%'
+  },
+  title: {
+    color: 'lightgreen',
+    fontFamily: 'Kalam'
   },
   messageContext: {
     padding: 10,
-    marginLeft: 20,
-    width: '80%'
+    width: '100%',
+    height: 200,
+    backgroundColor: 'white'
   },
   submit: {
     marginTop: 20,
     width: '100%',
     padding: 10,
-    backgroundColor: 'white'
+    backgroundColor: 'black',
+    color: 'lightgreen',
+    fontFamily: 'Kalam'
   }
 
 };

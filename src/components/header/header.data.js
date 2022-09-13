@@ -15,8 +15,8 @@ export default [
     path: 'howWeWork',
     label: 'How We Work',
   },
-  {
-    path: 'aboutUs',
-    label: 'About Us',
-  },
+  // {
+  //   path: 'aboutUs',
+  //   label: 'About Us',
+  // },
 ];

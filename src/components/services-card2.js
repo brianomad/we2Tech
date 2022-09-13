@@ -33,7 +33,11 @@ export default function ServicesCard2(props) {
         })}
       </Box>
       <Box sx={styles.thumbnail}>
-        <Image src={ServiceThumb} alt="Thumbnail" />
+        <Image
+          src={details.features[0].imgSrc}
+          alt="Thumbnail"
+          style={{ width: 600, height: 600 }}
+        />
       </Box>
     </Box>
   );
@@ -41,7 +45,8 @@ export default function ServicesCard2(props) {
 
 const styles = {
   container: {
-    display: 'flex'
+    display: 'flex',
+    alignItems: 'center',
   },
   thumbnail: {
     // mr: ['auto', null, null, 6, 60, 85],
@@ -88,11 +93,15 @@ const styles = {
       lineHeight: 1.4,
       fontWeight: 700,
       mb: [2, null, 3, 2, 3],
+      color: 'lightgreen',
+      fontFamily: 'Kalam'
     },
     subTitle: {
       fontSize: [1, null, null, '14px', 1],
       fontWeight: 400,
       lineHeight: 1.9,
+      color: 'white',
+      fontFamily: 'Kalam'
     },
   },
 }

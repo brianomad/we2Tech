@@ -9,18 +9,6 @@ export default function Home() {
   return (
     <section sx={styles.home} id="home">
       <Container sx={styles.home.container}>
-        {/* <Box sx={styles.home.contentBox}>
-          <Heading as="h1" variant="heroPrimary">
-            Top Quality Digital Products To Explore
-          </Heading>
-          <Text as="p" variant="heroSecondary">
-            Get your blood tests delivered at let home collect sample from the
-            victory of the managements that supplies best design system
-            guidelines ever.
-          </Text>
-          <Button variant="primary">Explore</Button>
-        </Box> */}
-
         <Box sx={styles.home.imageBox}>
           <Image src={BannerImg} alt="banner" />
         </Box>
@@ -65,7 +53,7 @@ const styles = {
       minHeight: 'inherit',
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
+      justifyContent: 'center'
     },
     contentBox: {
       width: ['100%', '90%', '535px', null, '57%', '60%', '68%', '60%'],

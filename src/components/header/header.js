@@ -1,19 +1,19 @@
 /** @jsx jsx */
-import { jsx, Container, Flex, Button } from 'theme-ui';
+import { jsx, Container, Flex, Text } from 'theme-ui';
 import { keyframes } from '@emotion/react';
 import { Link } from 'react-scroll';
 import Logo from 'components/logo';
 import LogoDark from 'assets/logo.svg';
 import { DrawerProvider } from '../../contexts/drawer/drawer.provider';
-import MobileDrawer from './mobile-drawer';
 import menuItems from './header.data';
 
-export default function Header({ className }) {
+export default function Header() {
   return (
     <DrawerProvider>
       <header sx={styles.header} id="header">
         <Container sx={styles.container}>
-          <Logo src={LogoDark} />
+
+          <Text sx={styles.title}>[ we2Tech Ltd ]</Text>
 
           <Flex as="nav" sx={styles.nav}>
             {menuItems.map(({ path, label }, i) => (
@@ -24,14 +24,11 @@ export default function Header({ className }) {
                 smooth={true}
                 offset={-70}
                 duration={500}
-                key={i}
-              >
+                key={i}>
                 {label}
               </Link>
             ))}
           </Flex>
-
-          {/* <MobileDrawer /> */}
         </Container>
       </header>
     </DrawerProvider>
@@ -52,6 +49,10 @@ const positionAnim = keyframes`
 `;
 
 const styles = {
+  title: {
+    color: 'lightgreen',
+    fontFamily: 'Kalam'
+  },
   header: {
     color: 'text',
     fontWeight: 'body',
@@ -60,7 +61,8 @@ const styles = {
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
+    backgroundColor: 'black',
     transition: 'all 0.4s ease',
     animation: `${positionAnim} 0.4s ease`,
     '.donate__btn': {
@@ -85,23 +87,30 @@ const styles = {
     justifyContent: 'space-around'
   },
   nav: {
-    mx: 'auto',
-    display: 'none',
-    '@media screen and (min-width: 1024px)': {
-      display: 'block',
-    },
+    // mx: 'auto',
+    // display: 'none',
+    // '@media screen and (min-width: 1024px)': {
+    //   display: 'block',
+    // },
+    //  textAlign: 'center',
+    //   alignItems: 'center',
+    //   justifyContent: 'center',
     a: {
       fontSize: 2,
       fontWeight: 'body',
+      color: 'white',
       px: 5,
       cursor: 'pointer',
       lineHeight: '1.2',
       transition: 'all 0.15s',
+      fontFamily: 'Kalam',
       '&:hover': {
-        color: 'primary',
+        // color: 'primary',
+        color: 'white'
       },
       '&.active': {
-        color: 'primary',
+        // color: 'primary',
+        color: 'lightgreen',
       },
     },
   },

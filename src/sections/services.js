@@ -15,10 +15,10 @@ import TextFeature from 'components/text-feature';
 import ModalVideo from 'react-modal-video';
 import { IoIosPlay } from 'react-icons/io';
 
-import ServiceThumb from 'assets/service-thumb.png';
-import shapePattern from 'assets/shape-pattern1.png';
+import ServicesCardRow from '../components/services-card-row';
 
-import Smart from 'assets/services/smart.svg';
+import mobileAppDevelopment from 'assets/we2Tech/mobileAppDevelopment.png';
+import UIUX from 'assets/we2Tech/UIUX.png';
 import Secure from 'assets/services/secure.svg';
 
 import ServicesCard from '../components/services-card';
@@ -31,7 +31,8 @@ const details = [
     features: [
       {
         id: 1,
-        imgSrc: Smart,
+        // imgSrc: Smart,
+        imgSrc: mobileAppDevelopment,
         altText: 'Features',
         title: 'Features',
         text:
@@ -39,7 +40,8 @@ const details = [
       },
       {
         id: 2,
-        imgSrc: Secure,
+        // imgSrc: Secure,
+        // imgSrc: mobileAppDevelopment,
         altText: 'Technology provided',
         title: 'Technology provided',
         text:
@@ -53,7 +55,7 @@ const details = [
     features: [
       {
         id: 1,
-        imgSrc: Smart,
+        imgSrc: UIUX,
         altText: 'Features',
         title: 'Features',
         text:
@@ -61,7 +63,7 @@ const details = [
       },
       {
         id: 2,
-        imgSrc: Secure,
+        // imgSrc: Secure,
         altText: 'Technology provided',
         title: 'Technology provided',
         text:
@@ -75,7 +77,7 @@ const details = [
     features: [
       {
         id: 1,
-        imgSrc: Smart,
+        imgSrc: UIUX,
         altText: 'Features',
         title: 'Features',
         text:
@@ -83,58 +85,14 @@ const details = [
       },
       {
         id: 2,
-        imgSrc: Secure,
+        // imgSrc: Secure,
         altText: 'Technology provided',
         title: 'Technology provided',
         text:
           'IOS APP DEVELOPMENT\nsubContext',
       },
     ]
-  },
-  {
-    subTitle: 'our services',
-    title: 'SERVER DEPLOYMENT',
-    features: [
-      {
-        id: 1,
-        imgSrc: Smart,
-        altText: 'Features',
-        title: 'Features',
-        text:
-          'Application shoule enjoy long-term profits and business success. Our dependable, scalable services cover the entire spectrum of app development including design, development and testing. We focus on designing applications that will help you grow your business and help you stay ahead of the competition. Waste no time, Contact us today!',
-      },
-      {
-        id: 2,
-        imgSrc: Secure,
-        altText: 'Technology provided',
-        title: 'Technology provided',
-        text:
-          'IOS APP DEVELOPMENT\nsubContext',
-      },
-    ]
-  },
-  {
-    subTitle: 'our services',
-    title: 'MAINTAINENCE',
-    features: [
-      {
-        id: 1,
-        imgSrc: Smart,
-        altText: 'Features',
-        title: 'Features',
-        text:
-          'Application shoule enjoy long-term profits and business success. Our dependable, scalable services cover the entire spectrum of app development including design, development and testing. We focus on designing applications that will help you grow your business and help you stay ahead of the competition. Waste no time, Contact us today!',
-      },
-      {
-        id: 2,
-        imgSrc: Secure,
-        altText: 'Technology provided',
-        title: 'Technology provided',
-        text:
-          'IOS APP DEVELOPMENT\nsubContext',
-      },
-    ]
-  },
+  }
 ];
 
 export default function Services() {
@@ -148,6 +106,7 @@ export default function Services() {
             <ServicesCard details={Details} />
           )
         ))}
+        <ServicesCardRow />
       </Container>
     </section>
   );
@@ -180,7 +139,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'black'
   },
   // container: {
   //   display: 'flex',

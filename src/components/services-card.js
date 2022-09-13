@@ -18,7 +18,13 @@ export default function ServicesCard(props) {
   return (
     <Box sx={styles.container} key={details.id}>
       <Box sx={styles.thumbnail}>
-        <Image src={ServiceThumb} alt="Thumbnail" />
+        <Image
+          src={details.features[0].imgSrc}
+          alt="Thumbnail"
+          style={{ width: 600, height: 600 }}
+        />
+
+
         {/* <Button
           sx={styles.videoBtn}
           onClick={handleClick}
@@ -58,8 +64,7 @@ export default function ServicesCard(props) {
 const styles = {
   container: {
     display: 'flex',
-    // flexDirection: 'row',
-    // position: 'relative'
+    alignItems: 'center'
   },
   thumbnail: {
     // display: 'flex',
@@ -106,11 +111,15 @@ const styles = {
       lineHeight: 1.4,
       fontWeight: 700,
       mb: [2, null, 3, 2, 3],
+      color: 'lightgreen',
+      fontFamily: 'Kalam'
     },
     subTitle: {
       fontSize: [1, null, null, '14px', 1],
       fontWeight: 400,
       lineHeight: 1.9,
+      color: 'white',
+      fontFamily: 'Kalam'
     },
   },
 }

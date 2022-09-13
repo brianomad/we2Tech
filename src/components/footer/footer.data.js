@@ -31,24 +31,24 @@ export default {
   ],
   menuItem: [
     {
-      path: '/',
+      path: 'home',
       label: 'Home',
     },
     {
-      path: '/',
-      label: 'Adversite',
+      path: 'contactUs',
+      label: 'Contact Us',
     },
     {
-      path: '/',
-      label: 'Supports',
+      path: 'services',
+      label: 'Services',
     },
     {
-      path: '/',
-      label: 'Marketing',
+      path: 'howWeWork',
+      label: 'How We Work',
     },
-    {
-      path: '/',
-      label: 'Contact',
-    },
+    // {
+    //   path: 'aboutUs',
+    //   label: 'About Us',
+    // },
   ],
 };

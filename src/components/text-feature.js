@@ -14,9 +14,9 @@ export default function TextFeature({
         <Text as="p" sx={styles.wrapper.subTitle}>
           {subTitle}
         </Text>
-        <Heading as="h2" sx={styles.wrapper.title}>
+        <Text sx={styles.wrapper.title}>
           {title}
-        </Heading>
+        </Text>
       </Box>
 
       {description && (
@@ -59,14 +59,17 @@ const styles = {
       mb: [2, 3],
       lineHeight: 1.5,
       letterSpacing: ['1.5px', null, '2px'],
+      fontFamily: 'Kalam'
     },
     title: {
       fontSize: ['24px', null, '28px', '30px', '36px', '42px', null, '48px'],
-      color: 'heading_secondary',
+      // color: 'heading_secondary',
+      color: 'lightgreen',
       lineHeight: [1.3, null, null, null, 1.2],
       fontWeight: '700',
       letterSpacing: '-.5px',
       mb: 5,
+      fontFamily: 'Kalam'
     },
   },
   description: {
