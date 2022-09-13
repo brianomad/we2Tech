@@ -23,7 +23,7 @@ export default function IndexPage() {
     <ThemeProvider theme={theme}>
       <StickyProvider>
         <Layout>
-          <SEO title="Startup Landing 005" />
+          <SEO title="we2Tech" />
           <Home />
           <ContactUs />
           <Services />

@@ -50,7 +50,7 @@ const ContactUs: NextPage = () => {
       <Container sx={styles.containerBox}>
         <SectionHeader
           title="Contact Us"
-          slogan="Looking for Mobile/Website application quatation?" />
+          slogan="Looking for Mobile / Website application quatation?" />
         <Box sx={styles.container}>
           <div style={styles.innerContainer}>
             <form className="py-4 space-y-4"
@@ -122,8 +122,10 @@ const styles = {
     marginTop: 20,
     width: '100%',
     padding: 10,
-    backgroundColor: 'black',
-    color: 'lightgreen',
+    backgroundColor: 'lightgreen',
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 16,
     fontFamily: 'Kalam'
   }
 

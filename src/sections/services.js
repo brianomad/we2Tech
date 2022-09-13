@@ -1,25 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 /** @jsx jsx */
 import {
   jsx,
   Container,
-  Box,
-  Grid,
-  Text,
-  Heading,
-  Button,
-  Image,
 } from 'theme-ui';
 import { keyframes } from '@emotion/react';
-import TextFeature from 'components/text-feature';
-import ModalVideo from 'react-modal-video';
-import { IoIosPlay } from 'react-icons/io';
 
 import ServicesCardRow from '../components/services-card-row';
 
 import mobileAppDevelopment from 'assets/we2Tech/mobileAppDevelopment.png';
 import UIUX from 'assets/we2Tech/UIUX.png';
-import Secure from 'assets/services/secure.svg';
+import website from 'assets/we2Tech/website.png';
 
 import ServicesCard from '../components/services-card';
 import ServicesCard2 from '../components/services-card2';
@@ -40,12 +31,10 @@ const details = [
       },
       {
         id: 2,
-        // imgSrc: Secure,
-        // imgSrc: mobileAppDevelopment,
         altText: 'Technology provided',
         title: 'Technology provided',
         text:
-          'IOS APP DEVELOPMENT\nsubContext',
+          'All the technology inculded React Native, Flutter, swift, Kotlin etc. will be provide to the client.',
       },
     ],
   },
@@ -55,19 +44,17 @@ const details = [
     features: [
       {
         id: 1,
-        imgSrc: UIUX,
+        imgSrc: website,
         altText: 'Features',
         title: 'Features',
         text:
-          'Our mobile app developers take the guesswork out of the equation by implementing proven strategies that optimize your app.',
+          'We develop most kinds of website applications – for staff use to smoothen internal operations or for customers & end-users to purchase goods, collect points & more. This is an effective way to enhance brand image & customer stickiness. ',
       },
       {
         id: 2,
-        // imgSrc: Secure,
-        altText: 'Technology provided',
         title: 'Technology provided',
         text:
-          'IOS APP DEVELOPMENT\nsubContext',
+          'All the technology inculded React, Next, Wordpress, Angular etc. will be provide to the client.',
       },
     ]
   },
@@ -81,16 +68,16 @@ const details = [
         altText: 'Features',
         title: 'Features',
         text:
-          'Application shoule enjoy long-term profits and business success. Our dependable, scalable services cover the entire spectrum of app development including design, development and testing. We focus on designing applications that will help you grow your business and help you stay ahead of the competition. Waste no time, Contact us today!',
+          'UI/UX is one of the important part when developing your own website or mobile application. The layout design which is user-friendly can more easy to attract people to use your application and even its simple to convert them into loyal customers. Our design teams will design the most suitable UI UX according to the customer requirements. ',
       },
-      {
-        id: 2,
-        // imgSrc: Secure,
-        altText: 'Technology provided',
-        title: 'Technology provided',
-        text:
-          'IOS APP DEVELOPMENT\nsubContext',
-      },
+      // {
+      //   id: 2,
+      //   // imgSrc: Secure,
+      //   altText: 'Technology provided',
+      //   title: 'Technology provided',
+      //   text:
+      //     'IOS APP DEVELOPMENT\nsubContext',
+      // },
     ]
   }
 ];

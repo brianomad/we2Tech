@@ -16,20 +16,20 @@ export default function ServicesCardRow() {
       title: 'SERVER DEPLOYMENT',
       featuresTitle: 'Features',
       featuresText:
-        'Application shoule enjoy long-term profits and business success. Our dependable, scalable services cover the entire spectrum of app development including design, development and testing. We focus on designing applications that will help you grow your business and help you stay ahead of the competition. Waste no time, Contact us today!',
-      subTitle: 'Technology provided',
-      subText:
-        'IOS APP DEVELOPMENT\nsubContext',
+        'Develop cloud-based systems & implement cloud server based on your needs. Adopt worldwide trend of remote working & infuse digital culture into your work environment. ',
+      // technologyTitle: 'Technology provided',
+      // technologyText:
+      //   'IOS APP DEVELOPMENT\nsubContext',
     },
     {
       subTitle: 'our services',
       title: 'MAINTAINENCE',
       featuresTitle: 'Features',
       featuresText:
-        'Application shoule enjoy long-term profits and business success. Our dependable, scalable services cover the entire spectrum of app development including design, development and testing. We focus on designing applications that will help you grow your business and help you stay ahead of the competition. Waste no time, Contact us today!',
-      subTitle: 'Technology provided',
-      subText:
-        'IOS APP DEVELOPMENT\nsubContext',
+        'We will host the site and maintain your application , and will also troubleshoot the unexpected issue. And even if things are going smoothly, we can upgrade the application according to the your requirement',
+      // technologyTitle: 'Technology provided',
+      // technologyText:
+      //   'IOS APP DEVELOPMENT\nsubContext',
     },
   ]
 
@@ -51,8 +51,8 @@ export default function ServicesCardRow() {
               <Grid sx={styles.grid}>
                 <Box sx={styles.card} key={Details.id}>
                   <Box sx={styles.wrapper}>
-                    <Heading sx={styles.wrapper.title}>{Details.subTitle}</Heading>
-                    <Text sx={styles.wrapper.subTitle}>{Details.subText}</Text>
+                    <Heading sx={styles.wrapper.title}>{Details.technologyTitle}</Heading>
+                    <Text sx={styles.wrapper.subTitle}>{Details.technologyText}</Text>
                   </Box>
                 </Box>
               </Grid>
