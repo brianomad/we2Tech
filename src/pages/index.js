@@ -23,7 +23,7 @@ export default function IndexPage() {
     <ThemeProvider theme={theme}>
       <StickyProvider>
         <Layout>
-          <SEO title="we2Tech" />
+          <SEO title="we2Tech [Mobail / Website application develop]" />
           <Home />
           <ContactUs />
           <Services />

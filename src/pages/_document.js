@@ -9,6 +9,7 @@ class CustomDocument extends Document {
   render() {
     return (
       <Html lang="en-US">
+        {/* <link rel="icon" href="/2.ico" /> */}
         <Head />
         <body>
           <Main />
