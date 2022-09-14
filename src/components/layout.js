@@ -24,7 +24,7 @@ export default function Layout({ children }) {
       <main
         id="content"
         sx={{
-          variant: 'layout.main',
+          // variant: 'layout.main',
           backgroundColor: 'black'
         }}
       >
