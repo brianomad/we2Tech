@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import Sticky from 'react-stickynode';
 import Header from './header/header';
 import Footer from './footer/footer';
+import { WhatsAppWidget } from 'react-whatsapp-widget';
+
 export default function Layout({ children }) {
   const [isSticky, setIsSticky] = useState(false);
   const handleStateChange = (status) => {
@@ -31,6 +33,11 @@ export default function Layout({ children }) {
       >
         {children}
       </main>
+      <WhatsAppWidget
+        phoneNumber="+85253968435"
+        companyName={"we2Tech"}
+        replyTimeText={""}
+        message={"Hi, Thanks for your enquiry"} />
       <Footer />
     </React.Fragment>
   );

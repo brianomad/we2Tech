@@ -1,11 +1,9 @@
 /** @jsx jsx */
 import { jsx, Container, Flex, Text } from 'theme-ui';
-import { keyframes } from '@emotion/react';
 import { Link } from 'react-scroll';
-import Logo from 'components/logo';
-import LogoDark from 'assets/logo.svg';
 import { DrawerProvider } from '../../contexts/drawer/drawer.provider';
 import menuItems from './header.data';
+
 import MobileDrawer from './mobile-drawer';
 
 export default function Header() {
