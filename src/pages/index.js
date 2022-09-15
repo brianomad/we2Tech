@@ -16,6 +16,10 @@ export default function IndexPage() {
       <Head>
         <title>we2Tech</title>
         <meta name="description" content="we2Tech [Mobile / Website application development]" />
+        <meta property="og:title" content="we2Tech" />
+        <meta property="og:description" content="we2Tech [Mobile / Website application development]" />
+        <meta property="og:url" content="https://we2Tech.vercel.app/" />
+        <meta property="og:type" content="website" />
       </Head>
       <StickyProvider>
         <Layout>
