@@ -12,19 +12,20 @@ import HowWeWork from '../sections/howWeWork';
 
 export default function IndexPage() {
   return (
-    <Head>
-      <meta name="description" content="we2Tech [Mobile / Website application develop]" />
-      <ThemeProvider theme={theme}>
-        <StickyProvider>
-          <Layout>
-            <SEO title="we2Tech [Mobile / Website application develop]" />
-            <Home />
-            <Services />
-            <HowWeWork />
-            <ContactUs />
-          </Layout>
-        </StickyProvider>
-      </ThemeProvider>
-    </Head>
+    <ThemeProvider theme={theme}>
+      <Head>
+        <title>we2Tech</title>
+        <meta name="description" content="we2Tech [Mobile / Website application development]" />
+      </Head>
+      <StickyProvider>
+        <Layout>
+          <SEO title="we2Tech [Mobile / Website application development]" />
+          <Home />
+          <Services />
+          <HowWeWork />
+          <ContactUs />
+        </Layout>
+      </StickyProvider>
+    </ThemeProvider>
   );
 }
