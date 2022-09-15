@@ -49,8 +49,9 @@ const ContactUs: NextPage = () => {
     <section id="contactUs">
       <Container sx={styles.containerBox}>
         <SectionHeader
-          title="Contact Us"
-          slogan="Looking for Mobile / Website application quatation?" />
+          title="Looking for Mobile / Website application quatation?"
+          slogan="we2Tech can help you to develop a suitable, user-friendly and attractive application"
+          isBlack={true} />
         <Box sx={styles.container}>
           <div style={styles.innerContainer}>
             <form className="py-4 space-y-4"
@@ -68,7 +69,7 @@ const ContactUs: NextPage = () => {
                 <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" name="phone" id="phone" style={styles.titleContext} />
               </div>
               <div className="flex items-center justify-center">
-                <label htmlFor="message" className="sr-only" style={styles.title}>Project Description</label>
+                <label htmlFor="message" className="sr-only" style={styles.title}>Application Description</label>
                 <textarea value={message} onChange={e => setMessage(e.target.value)} id="message" style={styles.messageContext} />
               </div>
               <div className="flex items-center justify-center">
@@ -90,14 +91,17 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
-    width: '50%'
+    backgroundColor: 'lightgreen',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    width: '100%',
+    paddingTop: 30
   },
   container: {
     marginBottom: 60,
     display: 'flex',
     padding: 20,
-    width: '80%'
+    width: '80%',
   },
   innerContainer: {
     width: '100%'
@@ -109,8 +113,8 @@ const styles = {
     width: '100%'
   },
   title: {
-    color: 'lightgreen',
-    fontFamily: 'Kalam'
+    color: 'black',
+    fontFamily: 'Ubuntu'
   },
   messageContext: {
     padding: 10,
@@ -122,11 +126,11 @@ const styles = {
     marginTop: 20,
     width: '100%',
     padding: 10,
-    backgroundColor: 'lightgreen',
-    color: 'black',
+    backgroundColor: 'black',
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
-    fontFamily: 'Kalam'
+    fontFamily: 'Ubuntu'
   }
 
 };

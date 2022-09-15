@@ -59,7 +59,7 @@ const styles = {
       mb: [2, 3],
       lineHeight: 1.5,
       letterSpacing: ['1.5px', null, '2px'],
-      fontFamily: 'Kalam'
+      fontFamily: 'Ubuntu'
     },
     title: {
       fontSize: ['24px', null, '28px', '30px', '36px', '42px', null, '48px'],
@@ -69,7 +69,7 @@ const styles = {
       fontWeight: '700',
       letterSpacing: '-.5px',
       mb: 5,
-      fontFamily: 'Kalam'
+      fontFamily: 'Ubuntu'
     },
   },
   description: {

@@ -15,7 +15,7 @@ export default function ServicesCard2(props) {
   const { details } = props;
 
   return (
-    <Box sx={styles.container} k ey={details.id}>
+    <Box sx={styles.container} key={details.id}>
       <Box sx={styles.contentBox}>
         <TextFeature subTitle={details.subTitle} title={details.title} />
 
@@ -32,11 +32,11 @@ export default function ServicesCard2(props) {
           )
         })}
       </Box>
-      <Box sx={styles.thumbnail}>
+      <Box style={styles.imageContainer}>
         <Image
           src={details.features[0].imgSrc}
           alt="Thumbnail"
-          style={{ width: 600, height: 600 }}
+        // style={{ width: 600, height: 600 }}
         />
       </Box>
     </Box>
@@ -47,32 +47,22 @@ const styles = {
   container: {
     display: 'flex',
     alignItems: 'center',
-  },
-  thumbnail: {
-    // mr: ['auto', null, null, 6, 60, 85],
-    // order: [2, null, null, 0],
-    // ml: ['auto', null, null, 0],
-    // display: 'inline-flex',
-    // position: 'relative',
-    // '> img': {
-    //   position: 'relative',
-    //   zIndex: 1,
-    //   height: [310, 'auto'],
-    // },
-    paddingLeft: 100
+    marginLeft: 60,
+    marginRight: 60
   },
   contentBox: {
-    width: ['100%', null, null, 315, 390, 450, null, 500],
-    flexShrink: 0,
-    mb: [7, null, 60, 0],
-    textAlign: ['center', null, null, 'left']
+    width: '50%',
+    padding: 20,
+    textAlign: 'center',
+  },
+  imageContainer: {
+    width: '50%'
   },
   grid: {
     pr: [2, 0, null, null, 6, '70px'],
     pl: [2, 0],
     pt: [2, null, null, null, 3],
     mx: 'auto',
-    width: ['100%', 370, 420, '100%'],
     gridGap: ['35px 0', null, null, null, '50px 0'],
     gridTemplateColumns: ['repeat(1,1fr)'],
   },
@@ -94,14 +84,14 @@ const styles = {
       fontWeight: 700,
       mb: [2, null, 3, 2, 3],
       color: 'lightgreen',
-      fontFamily: 'Kalam'
+      fontFamily: 'Ubuntu'
     },
     subTitle: {
       fontSize: [1, null, null, '14px', 1],
       fontWeight: 400,
       lineHeight: 1.9,
       color: 'white',
-      fontFamily: 'Kalam'
+      fontFamily: 'Ubuntu'
     },
   },
 }

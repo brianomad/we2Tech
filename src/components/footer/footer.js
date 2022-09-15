@@ -76,7 +76,7 @@ const styles = {
 
   title: {
     color: 'lightgreen',
-    fontFamily: 'Kalam'
+    fontFamily: 'Ubuntu'
   },
   footer: {
     backgroundColor: 'black',
@@ -90,7 +90,7 @@ const styles = {
       fontSize: [1, '15px'],
       width: '100%',
       color: 'lightgreen',
-      fontFamily: 'Kalam'
+      fontFamily: 'Ubuntu'
     },
   },
   wrapper: {
@@ -106,14 +106,14 @@ const styles = {
       fontWeight: 700,
       mb: [2, null, 3],
       color: 'lightgreen',
-      fontFamily: 'Kalam'
+      fontFamily: 'Ubuntu'
     },
     subTitle: {
       fontSize: 1,
       fontWeight: 400,
       lineHeight: '1.9',
       color: 'white',
-      fontFamily: 'Kalam'
+      fontFamily: 'Ubuntu'
     },
   },
 };

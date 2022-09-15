@@ -25,7 +25,7 @@ const data = [
     altText: 'Partnership deal',
     title: 'DESIGN UI/UX FOR THE APPLICATION',
     text:
-      'Design awful UI/UX base on your requirement and design the UI/UX become more user-friendly and attractive for teh application`s user',
+      'Design awesome UI/UX base on your requirement and design the UI/UX become more user-friendly and attractive for teh application`s user',
   },
   {
     id: 3,

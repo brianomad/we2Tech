@@ -17,36 +17,17 @@ export default function ServicesCard(props) {
 
   return (
     <Box sx={styles.container} key={details.id}>
-      <Box sx={styles.thumbnail}>
+      <Box sx={styles.imageContainer}>
         <Image
           src={details.features[0].imgSrc}
-          alt="Thumbnail"
-          style={{ width: 600, height: 600 }}
-        />
-
-
-        {/* <Button
-          sx={styles.videoBtn}
-          onClick={handleClick}
-          aria-label="Play Button"
-        >
-          <span>
-            <IoIosPlay />
-          </span>
-        </Button> */}
-
-        {/* <Box sx={styles.shapeBox}>
-          <Image src={shapePattern} alt="Shape" />
-        </Box> */}
+          alt="Thumbnail" />
       </Box>
       <Box sx={styles.contentBox}>
         <TextFeature subTitle={details.subTitle} title={details.title} />
-
         {details.features.map((Details) => {
           return (
             <Grid sx={styles.grid}>
               <Box sx={styles.card} key={Details.id}>
-                {/* <Image src={item.imgSrc} alt={item.altText} sx={styles.icon} /> */}
                 <Box sx={styles.wrapper}>
                   <Heading sx={styles.wrapper.title}>{Details.title}</Heading>
                   <Text sx={styles.wrapper.subTitle}>{Details.text}</Text>
@@ -55,7 +36,6 @@ export default function ServicesCard(props) {
             </Grid>
           )
         })}
-
       </Box>
     </Box>
   );
@@ -64,25 +44,18 @@ export default function ServicesCard(props) {
 const styles = {
   container: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginLeft: 60,
+    marginRight: 60
   },
-  thumbnail: {
-    // display: 'flex',
-    mr: ['auto', null, null, 6, 60, 85],
-    order: [2, null, null, 0],
-    ml: ['auto', null, null, 0],
-    display: 'inline-flex',
-    position: 'relative',
-    '> img': {
-      position: 'relative',
-      zIndex: 1,
-      height: [310, 'auto'],
-    },
+  imageContainer: {
+    width: '50%',
   },
   contentBox: {
-    width: ['100%', null, null, 315, 390, 450, null, 500],
-    flexShrink: 0,
-    mb: [7, null, 60, 0],
+    width: '50%',
+    padding: 20,
+    // flexShrink: 0,
+    // mb: [7, null, 60, 0],
     textAlign: ['center', null, null, 'left']
   },
   grid: {
@@ -90,7 +63,7 @@ const styles = {
     pl: [2, 0],
     pt: [2, null, null, null, 3],
     mx: 'auto',
-    width: ['100%', 370, 420, '100%'],
+    // width: ['100%', 370, 420, '100%'],
     gridGap: ['35px 0', null, null, null, '50px 0'],
     gridTemplateColumns: ['repeat(1,1fr)'],
   },
@@ -112,14 +85,14 @@ const styles = {
       fontWeight: 700,
       mb: [2, null, 3, 2, 3],
       color: 'lightgreen',
-      fontFamily: 'Kalam'
+      fontFamily: 'Ubuntu'
     },
     subTitle: {
       fontSize: [1, null, null, '14px', 1],
       fontWeight: 400,
       lineHeight: 1.9,
       color: 'white',
-      fontFamily: 'Kalam'
+      fontFamily: 'Ubuntu'
     },
   },
 }

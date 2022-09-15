@@ -17,15 +17,16 @@ export default function Layout({ children }) {
     <React.Fragment>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet" />
       <Sticky innerZ={1001} top={0} onStateChange={handleStateChange}>
         <Header className={`${isSticky ? 'sticky' : 'unSticky'}`} />
       </Sticky>
       <main
         id="content"
         sx={{
-          // variant: 'layout.main',
-          backgroundColor: 'black'
+          variant: 'layout.main',
+          backgroundColor: 'black',
+          position: 'relative'
         }}
       >
         {children}

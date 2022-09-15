@@ -31,72 +31,29 @@ export default function Header() {
             ))}
           </Flex>
         </Container>
-        <MobileDrawer />
+        {/* <MobileDrawer /> */}
       </header>
     </DrawerProvider>
   );
 }
 
-const positionAnim = keyframes`
-  from {
-    position: fixed;
-    opacity: 1;
-  }
-
-  to {
-    position: absolute;
-    opacity: 1;
-    transition: all 0.4s ease;
-  }
-`;
-
 const styles = {
   title: {
     color: 'lightgreen',
-    fontFamily: 'Kalam'
+    fontFamily: 'Ubuntu',
+    paddingLeft: 20,
+    paddingTop: 16
   },
   header: {
-    color: 'text',
-    fontWeight: 'body',
-    py: 3,
-    width: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    // backgroundColor: 'white',
     backgroundColor: 'black',
-    transition: 'all 0.4s ease',
-    animation: `${positionAnim} 0.4s ease`,
-    '.donate__btn': {
-      flexShrink: 0,
-      mr: [15, 20, null, null, 0],
-      ml: ['auto', null, null, null, 0],
-    },
-    '&.sticky': {
-      position: 'fixed',
-      backgroundColor: 'background',
-      color: '#000000',
-      boxShadow: '0 1px 2px rgba(0, 0, 0, 0.06)',
-      py: 3,
-      'nev > a': {
-        color: 'text',
-      },
-    }
+    paddingBottom: 20
   },
   container: {
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around'
   },
   nav: {
-    // mx: 'auto',
-    // display: 'none',
-    // '@media screen and (min-width: 1024px)': {
-    //   display: 'block',
-    // },
-    //  textAlign: 'center',
-    //   alignItems: 'center',
-    //   justifyContent: 'center',
+    justifyContent: 'flex-end',
     a: {
       fontSize: 2,
       fontWeight: 'body',
@@ -105,13 +62,11 @@ const styles = {
       cursor: 'pointer',
       lineHeight: '1.2',
       transition: 'all 0.15s',
-      fontFamily: 'Kalam',
+      fontFamily: 'Ubuntu',
       '&:hover': {
-        // color: 'primary',
         color: 'white'
       },
       '&.active': {
-        // color: 'primary',
         color: 'lightgreen',
       },
     },

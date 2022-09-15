@@ -23,19 +23,11 @@ export default function IndexPage() {
     <ThemeProvider theme={theme}>
       <StickyProvider>
         <Layout>
-          <SEO title="we2Tech [Mobail / Website application develop]" />
+          <SEO title="we2Tech [Mobile / Website application develop]" />
           <Home />
-          <ContactUs />
           <Services />
           <HowWeWork />
-          {/* <Feature />
-          <CoreFeature />
-          <WorkFlow />
-          <Package />
-          <TeamSection />
-          <TestimonialCard />
-          <BlogSection />
-          <Subscribe /> */}
+          <ContactUs />
         </Layout>
       </StickyProvider>
     </ThemeProvider>

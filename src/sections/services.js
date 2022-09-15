@@ -117,12 +117,6 @@ const styles = {
     position: 'relative',
   },
   containerBox: {
-    // display: 'flex',
-    // alignItems: ['flex-start', null, null, 'center'],
-    // justifyContent: ['flex-start', null, null, 'space-between'],
-    // flexDirection: ['column', null, null, 'row'],
-    // pb: [0, null, null, null, null, 7],
-    // minHeight: 'inherit',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
