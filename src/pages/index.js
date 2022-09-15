@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head'
 import { ThemeProvider } from 'theme-ui';
 import { StickyProvider } from '../contexts/app/app.provider';
 import theme from 'theme';
@@ -11,16 +12,19 @@ import HowWeWork from '../sections/howWeWork';
 
 export default function IndexPage() {
   return (
-    <ThemeProvider theme={theme}>
-      <StickyProvider>
-        <Layout>
-          <SEO title="we2Tech [Mobile / Website application develop]" />
-          <Home />
-          <Services />
-          <HowWeWork />
-          <ContactUs />
-        </Layout>
-      </StickyProvider>
-    </ThemeProvider>
+    <Head>
+      <meta name="description" content="we2Tech [Mobile / Website application develop]" />
+      <ThemeProvider theme={theme}>
+        <StickyProvider>
+          <Layout>
+            <SEO title="we2Tech [Mobile / Website application develop]" />
+            <Home />
+            <Services />
+            <HowWeWork />
+            <ContactUs />
+          </Layout>
+        </StickyProvider>
+      </ThemeProvider>
+    </Head>
   );
 }
