@@ -2,23 +2,23 @@ import React from 'react';
 import Head from 'next/head';
 
 export default function SEO({
-  description = 'startup product landing page',
-  author = 'RedQ, Inc',
+  description = 'we2Tech [Mobile / Website application development]',
+  author = 'we2Tech',
   meta,
-  title = 'startup landing title',
+  title = 'we2Tech [Mobile / Website application development]',
 }) {
   const metaData = [
     {
       name: `description`,
-      content: "we2Tech [Mobile / Website application development]",
+      content: description,
     },
     {
       property: `og:title`,
-      content: "we2Tech",
+      content: title,
     },
     {
       property: `og:description`,
-      content: "we2Tech [Mobile / Website application development]",
+      content: description,
     },
     {
       property: `og:type`,
@@ -30,15 +30,15 @@ export default function SEO({
     },
     {
       name: `twitter:creator`,
-      content: "we2Tech",
+      content: author,
     },
     {
       name: `twitter:title`,
-      content: "we2Tech",
+      content: title,
     },
     {
       name: `twitter:description`,
-      content: "we2Tech [Mobile / Website application development]",
+      content: description,
     },
   ].concat(meta);
   return (

@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head'
 import { ThemeProvider } from 'theme-ui';
 import { StickyProvider } from '../contexts/app/app.provider';
 import theme from 'theme';
