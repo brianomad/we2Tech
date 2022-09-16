@@ -10,15 +10,15 @@ export default function SEO({
   const metaData = [
     {
       name: `description`,
-      content: description,
+      content: "we2Tech [Mobile / Website application development]",
     },
     {
       property: `og:title`,
-      content: title,
+      content: "we2Tech",
     },
     {
       property: `og:description`,
-      content: description,
+      content: "we2Tech [Mobile / Website application development]",
     },
     {
       property: `og:type`,
@@ -30,15 +30,15 @@ export default function SEO({
     },
     {
       name: `twitter:creator`,
-      content: author,
+      content: "we2Tech",
     },
     {
       name: `twitter:title`,
-      content: title,
+      content: "we2Tech",
     },
     {
       name: `twitter:description`,
-      content: description,
+      content: "we2Tech [Mobile / Website application development]",
     },
   ].concat(meta);
   return (
