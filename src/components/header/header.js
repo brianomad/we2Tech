@@ -13,13 +13,7 @@ export default function Header() {
       <header sx={styles.header} id="header">
         <Container sx={styles.container}>
 
-          <Box sx={styles.topicContainer}>
             <Text sx={styles.title}>[ we2Tech Ltd ]</Text>
-              <Link href="https://www.instagram.com/we2tech/" sx={styles.topic}>
-                <AiFillInstagram size="40px" color="white" />
-              </Link>
-          </Box>
-
           <Flex as="nav" sx={styles.nav}>
             {menuItems.map(({ path, label }, i) => (
               <Link
@@ -33,6 +27,9 @@ export default function Header() {
                 {label}
               </Link>
             ))}
+            <a href="https://www.instagram.com/we2tech/">
+              <AiFillInstagram size="40px" color="white" />
+            </a>
           </Flex>
         </Container>
         {/* <MobileDrawer /> */}
@@ -51,9 +48,6 @@ const styles = {
     paddingLeft: 20,
     paddingTop: 16
   },
-  topic: {
-    marginLeft: 20
-  },
   header: {
     backgroundColor: 'black',
     paddingBottom: 20
@@ -64,6 +58,7 @@ const styles = {
   },
   nav: {
     justifyContent: 'flex-end',
+    alignItems: 'center',
     a: {
       fontSize: 2,
       fontWeight: 'body',
