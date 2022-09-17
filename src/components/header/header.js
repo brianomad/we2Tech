@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import { jsx, Container, Flex, Text } from 'theme-ui';
+import { jsx, Container, Flex, Text, Box } from 'theme-ui';
 import { Link } from 'react-scroll';
 import { DrawerProvider } from '../../contexts/drawer/drawer.provider';
 import menuItems from './header.data';
+import { AiFillInstagram } from "react-icons/ai";
 
 import MobileDrawer from './mobile-drawer';
 
@@ -12,7 +13,12 @@ export default function Header() {
       <header sx={styles.header} id="header">
         <Container sx={styles.container}>
 
-          <Text sx={styles.title}>[ we2Tech Ltd ]</Text>
+          <Box sx={styles.topicContainer}>
+            <Text sx={styles.title}>[ we2Tech Ltd ]</Text>
+              <Link href="https://www.instagram.com/we2tech/" sx={styles.topic}>
+                <AiFillInstagram size="40px" color="white" />
+              </Link>
+          </Box>
 
           <Flex as="nav" sx={styles.nav}>
             {menuItems.map(({ path, label }, i) => (
@@ -36,11 +42,17 @@ export default function Header() {
 }
 
 const styles = {
+  topicContainer: {
+    display: 'flex'
+  },
   title: {
     color: 'lightgreen',
     fontFamily: 'Ubuntu',
     paddingLeft: 20,
     paddingTop: 16
+  },
+  topic: {
+    marginLeft: 20
   },
   header: {
     backgroundColor: 'black',
