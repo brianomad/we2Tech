@@ -6,6 +6,7 @@ import {
   Heading,
   Image,
 } from 'theme-ui';
+import { motion, useAnimation } from "framer-motion";
 
 import ServiceThumb from 'assets/service-thumb.png';
 import shapePattern from 'assets/shape-pattern1.png';
@@ -17,27 +18,27 @@ export default function ServicesCard(props) {
 
   return (
     <Box sx={styles.container} key={details.id}>
-      <Box sx={styles.imageContainer}>
-        <Image
-          src={details.features[0].imgSrc}
-          alt="Thumbnail" />
-      </Box>
-      <Box sx={styles.contentBox}>
-        <TextFeature subTitle={details.subTitle} title={details.title} />
-        {details.features.map((Details) => {
-          return (
-            <Grid sx={styles.grid}>
-              <Box sx={styles.card} key={Details.id}>
-                <Box sx={styles.wrapper}>
-                  <Heading sx={styles.wrapper.title}>{Details.title}</Heading>
-                  <Text sx={styles.wrapper.subTitle}>{Details.text}</Text>
+        <Box sx={styles.imageContainer}>
+          <Image
+            src={details.features[0].imgSrc}
+            alt="Thumbnail" />
+        </Box>
+        <Box sx={styles.contentBox}>
+          <TextFeature subTitle={details.subTitle} title={details.title} />
+          {details.features.map((Details) => {
+            return (
+              <Grid sx={styles.grid}>
+                <Box sx={styles.card} key={Details.id}>
+                  <Box sx={styles.wrapper}>
+                    <Heading sx={styles.wrapper.title}>{Details.title}</Heading>
+                    <Text sx={styles.wrapper.subTitle}>{Details.text}</Text>
+                  </Box>
                 </Box>
-              </Box>
-            </Grid>
-          )
-        })}
-      </Box>
-    </Box>
+              </Grid>
+            )
+          })}
+        </Box>
+    </Box >
   );
 }
 
@@ -45,8 +46,16 @@ const styles = {
   container: {
     display: 'flex',
     alignItems: 'center',
-    marginLeft: 60,
-    marginRight: 60
+    m: 20,
+    ml: 60,
+    mr: 60,
+    border: '0.2px solid',
+    borderRadius: 20,
+    padding: 20,
+    margin: 20,
+    boxShadow: '0 10px 30px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+    borderColor: 'lightgrey',
+    backgroundColor: '#FAF0E6',
   },
   imageContainer: {
     width: '50%',
@@ -80,18 +89,17 @@ const styles = {
     mt: '-5px',
     title: {
       fontSize: 3,
-      color: 'heading_secondary',
       lineHeight: 1.4,
       fontWeight: 700,
       mb: [2, null, 3, 2, 3],
-      color: 'lightgreen',
+      color: '#000080',
       fontFamily: 'Ubuntu'
     },
     subTitle: {
       fontSize: [1, null, null, '14px', 1],
       fontWeight: 400,
       lineHeight: 1.9,
-      color: 'white',
+      color: 'black',
       fontFamily: 'Ubuntu'
     },
   },

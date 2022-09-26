@@ -22,7 +22,6 @@ const details = [
     features: [
       {
         id: 1,
-        // imgSrc: Smart,
         imgSrc: mobileAppDevelopment,
         altText: 'Features',
         title: 'Features',
@@ -69,32 +68,25 @@ const details = [
         title: 'Features',
         text:
           'UI/UX is one of the important part when developing your own website or mobile application. The layout design which is user-friendly can more easy to attract people to use your application and even its simple to convert them into loyal customers. Our design teams will design the most suitable UI UX according to the customer requirements. ',
-      },
-      // {
-      //   id: 2,
-      //   // imgSrc: Secure,
-      //   altText: 'Technology provided',
-      //   title: 'Technology provided',
-      //   text:
-      //     'IOS APP DEVELOPMENT\nsubContext',
-      // },
+      }
     ]
   }
 ];
 
 export default function Services() {
+
   return (
     <section sx={{ variant: 'section.services' }} id="services">
-      <Container sx={styles.containerBox}>
-        {details.map((Details, index) => (
-          index % 2 === 1 ? (
-            <ServicesCard2 details={Details} />
-          ) : (
-            <ServicesCard details={Details} />
-          )
-        ))}
-        <ServicesCardRow />
-      </Container>
+        <Container sx={styles.containerBox}>
+          {details.map((Details, index) => (
+            index % 2 === 1 ? (
+              <ServicesCard2 details={Details} />
+            ) : (
+              <ServicesCard details={Details} />
+            )
+          ))}
+          <ServicesCardRow />
+        </Container>
     </section>
   );
 }
@@ -112,33 +104,13 @@ const playPluse = keyframes`
 `;
 
 const styles = {
-  coreFeature: {
-    py: [0, null, null, 2, null, 7],
-    position: 'relative',
-  },
   containerBox: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black'
+    backgroundColor: 'white'
   },
-  // container: {
-  //   display: 'flex',
-  // },
-  // thumbnail: {
-  //   // display: 'flex',
-  //   mr: ['auto', null, null, 6, 60, 85],
-  //   order: [2, null, null, 0],
-  //   ml: ['auto', null, null, 0],
-  //   display: 'inline-flex',
-  //   position: 'relative',
-  //   '> img': {
-  //     position: 'relative',
-  //     zIndex: 1,
-  //     height: [310, 'auto'],
-  //   },
-  // },
   shapeBox: {
     position: 'absolute',
     bottom: -68,
@@ -188,28 +160,6 @@ const styles = {
       fontSize: [40, null, 48, null, 62],
     },
   },
-  // contentBox: {
-  //   width: ['100%', null, null, 315, 390, 450, null, 500],
-  //   flexShrink: 0,
-  //   mb: [7, null, 60, 0],
-  //   textAlign: ['center', null, null, 'left'],
-  //   paddingLeft: 50
-  // },
-  // grid: {
-  //   pr: [2, 0, null, null, 6, '70px'],
-  //   pl: [2, 0],
-  //   pt: [2, null, null, null, 3],
-  //   mx: 'auto',
-  //   width: ['100%', 370, 420, '100%'],
-  //   gridGap: ['35px 0', null, null, null, '50px 0'],
-  //   gridTemplateColumns: ['repeat(1,1fr)'],
-  // },
-  // card: {
-  //   display: 'flex',
-  //   alignItems: 'flex-start',
-  //   transition: 'all 0.3s',
-  // },
-
   icon: {
     width: ['45px', null, null, null, '55px'],
     height: 'auto',

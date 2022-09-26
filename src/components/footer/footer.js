@@ -1,20 +1,27 @@
 /** @jsx jsx */
 import { jsx, Box, Grid, Container, Image, Heading, Text, Flex } from 'theme-ui';
 import FeatureCardColumn from 'components/feature-card-column.js';
+import { BiPhoneCall, BiMailSend } from "react-icons/bi";
+import { GrLocation } from "react-icons/gr";
+import { GoLocation } from "react-icons/go";
 
 const data = [
   {
     id: 1,
+    icon: <GoLocation size="40px" sx={{ width: '100%', color: 'white' }} />,
     title: 'Address',
     text: 'WEST WING 2/F, 822 LAI CHI KO ROAD, CHEUNG SHA WAN, KOWLOON, HONG KONG'
   },
   {
     id: 2,
+    // icon: <BiMailSend size="40px" />,
+    icon: <BiMailSend size="40px" sx={{ width: '100%', color: 'white' }} />,
     title: 'Email',
     text: 'enquiry@we-2-tech.com'
   },
   {
     id: 3,
+    icon: <BiPhoneCall size="40px" sx={{ width: '100%', color: 'white' }} />,
     title: 'Telephone Number',
     text: '+852 53968435'
   }
@@ -28,6 +35,7 @@ export default function Footer() {
         <Grid sx={styles.grid}>
           {data.map((item) => (
             <Box sx={styles.wrapper}>
+              {item.icon}
               <Text sx={styles.wrapper.title}>{item.title}</Text>
               <Text sx={styles.wrapper.subTitle}>{item.text}</Text>
             </Box>
@@ -79,7 +87,7 @@ const styles = {
     fontFamily: 'Ubuntu'
   },
   footer: {
-    backgroundColor: 'black',
+    backgroundColor: '#008B8B',
     footerBottomArea: {
       pt: [7, null, 6],
       pb: ['40px', null, '100px'],
@@ -89,7 +97,7 @@ const styles = {
     copyright: {
       fontSize: [1, '15px'],
       width: '100%',
-      color: 'lightgreen',
+      color: 'white',
       fontFamily: 'Ubuntu'
     },
   },
@@ -97,19 +105,17 @@ const styles = {
     textAlign: 'center',
     display: 'flex',
     width: '100%',
-    display: 'flex',
     flexDirection: 'column',
     title: {
       fontSize: 3,
-      color: 'heading_secondary',
       lineHeight: 1.4,
       fontWeight: 700,
       mb: [2, null, 3],
-      color: 'lightgreen',
+      color: 'white',
       fontFamily: 'Ubuntu'
     },
     subTitle: {
-      fontSize: 1,
+      fontSize: 2,
       fontWeight: 400,
       lineHeight: '1.9',
       color: 'white',

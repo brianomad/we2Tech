@@ -63,8 +63,7 @@ const styles = {
     },
     title: {
       fontSize: ['24px', null, '28px', '30px', '36px', '42px', null, '48px'],
-      // color: 'heading_secondary',
-      color: 'lightgreen',
+      color: '#008B8B',
       lineHeight: [1.3, null, null, null, 1.2],
       fontWeight: '700',
       letterSpacing: '-.5px',

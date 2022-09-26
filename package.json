@@ -28,10 +28,12 @@
     "react-dom": "16.13.0",
     "react-ga": "^3.1.2",
     "react-icons": "^3.10.0",
+    "react-intersection-observer": "^9.4.0",
     "react-modal-video": "1.2.6",
     "react-multi-carousel": "^2.5.5",
     "react-scroll": "^1.8.0",
     "react-stickynode": "^3.0.3",
+    "react-waypoint": "^10.3.0",
     "react-whatsapp-widget": "^2.1.0",
     "theme-ui": "^0.3.1",
     "typeface-dm-sans": "^1.1.3"

@@ -1,18 +1,18 @@
 export default [
   {
     path: 'home',
-    label: 'Home',
+    label: 'HOME',
   },
   {
     path: 'services',
-    label: 'Services',
+    label: 'SERVICES',
   },
   {
     path: 'howWeWork',
-    label: 'How We Work',
+    label: 'PROCESS',
   },
   {
     path: 'contactUs',
-    label: 'Contact Us',
+    label: 'CONTACT',
   }
 ];

@@ -14,6 +14,7 @@ const data = [
   {
     id: 1,
     imgSrc: stepOne,
+    step: 'STEP 1',
     altText: 'Fast Performance',
     title: 'PROBLEM IDENTIFICATION ADN PRECISE SOLUTION',
     text:
@@ -22,6 +23,7 @@ const data = [
   {
     id: 2,
     imgSrc: stepTwo,
+    step: 'STEP 2',
     altText: 'Partnership deal',
     title: 'DESIGN UI/UX FOR THE APPLICATION',
     text:
@@ -30,6 +32,7 @@ const data = [
   {
     id: 3,
     imgSrc: stepThree,
+    step: 'STEP 3',
     altText: 'Pro Subscription',
     title: 'EFFECTIVE PROJECT MANAGEMENT AND APPLICATION DEVELOPMENT',
     text:
@@ -38,6 +41,7 @@ const data = [
   {
     id: 4,
     imgSrc: stepFour,
+    step: 'STEP 4',
     altText: 'Customer Support',
     title: 'LANUCH THE APPLIACTION',
     text:
@@ -56,6 +60,7 @@ export default function HowWeWorkSection() {
               <FeatureCardColumn
                 key={item.id}
                 src={item.imgSrc}
+                step={item.step}
                 alt={item.altText}
                 title={item.title}
                 text={item.text} />
@@ -69,14 +74,14 @@ export default function HowWeWorkSection() {
 
 const styles = {
   container: {
-    marginTop: 60,
     textAlign: 'center',
     width: '100%',
-    backgroundColor: 'black'
+    backgroundColor: '#008B8B',
+    p: 20
   },
   grid: {
     width: ['100%', '80%', '100%'],
-    mx: 'auto',
+    // mx: 'auto',
     gridGap: [
       '35px 0',
       null,

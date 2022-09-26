@@ -1,20 +1,30 @@
 /** @jsx jsx */
 import { jsx, Image, Box, Heading, Text } from 'theme-ui';
+import { motion, useAnimation } from "framer-motion";
 
 export default function FeatureCardColumn({
   src,
+  step,
   altText = 'default alt text',
   title,
   text,
 }) {
   return (
+    <motion.div className="card" whileHover={{
+      scale: 1.2,
+      transition: {
+        duration: .2
+      }
+    }}>
     <Box sx={styles.card}>
-      <Image src={src} alt={altText} sx={styles.img} />
+      {/* <Image src={src} alt={altText} sx={styles.img} /> */}
+      {/* <Text style={styles.title}>{step}</Text> */}
       <Box sx={styles.wrapper}>
         <Text sx={styles.wrapper.title}>{title}</Text>
         <Text sx={styles.wrapper.subTitle}>{text}</Text>
       </Box>
     </Box>
+    </motion.div>
   );
 }
 
@@ -24,8 +34,11 @@ const styles = {
     alignItems: ['center', 'flex-start'],
     // flexDirection: 'column',
     // mb: -1,
-    textAlign: ['center', null, 'left'],
+    // textAlign: ['center', null, 'left'],
     // px: [4, null, 0],
+  },
+  title: {
+    color: '#00FFFF'
   },
   img: {
     mx: ['auto', null, 0],
@@ -39,11 +52,10 @@ const styles = {
     flexDirection: 'column',
     title: {
       fontSize: 3,
-      color: 'heading_secondary',
       lineHeight: 1.4,
       fontWeight: 700,
       mb: [2, null, 3],
-      color: 'lightgreen',
+      color: '#00FFFF',
       fontFamily: 'Ubuntu'
     },
     subTitle: {

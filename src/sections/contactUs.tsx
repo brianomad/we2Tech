@@ -2,7 +2,8 @@ import type { NextPage } from 'next'
 import { FormEvent, useState } from "react";
 import {
   Box,
-  Container
+  Container,
+  Button
 } from 'theme-ui';
 import SectionHeader from '../components/section-header';
 
@@ -49,32 +50,33 @@ const ContactUs: NextPage = () => {
     <section id="contactUs">
       <Container sx={styles.containerBox}>
         <SectionHeader
-          title="Looking for Mobile / Website application quatation?"
+          title="Looking for Digital Development Services?"
           slogan="we2Tech can help you to develop a suitable, user-friendly and attractive application"
-          isBlack={true} />
+          icColor={true} />
         <Box sx={styles.container}>
           <div style={styles.innerContainer}>
             <form className="py-4 space-y-4"
               onSubmit={handleSubmit}>
               <div className="flex items-center justify-center">
-                <label htmlFor="name" style={styles.title}>Name</label>
-                <input value={name} onChange={e => setName(e.target.value)} type="text" name="name" id="name" style={styles.titleContext} />
+                {/* <label htmlFor="name" style={styles.title}>Name</label> */}
+                <input value={name} onChange={e => setName(e.target.value)} type="text" name="name" id="name" style={styles.titleContext} placeholder={'Name'} />
               </div>
               <div className="flex items-center justify-center">
-                <label htmlFor="email" className="sr-only" style={styles.title}>Email</label>
-                <input value={email} onChange={e => setEmail(e.target.value)} type="email" name="email" id="email" style={styles.titleContext} />
+                {/* <label htmlFor="email" className="sr-only" style={styles.title}>Email</label> */}
+                <input value={email} onChange={e => setEmail(e.target.value)} type="email" name="email" id="email" style={styles.titleContext} placeholder={'Email'} />
               </div>
               <div className="flex items-center justify-center">
-                <label htmlFor="phone" className="sr-only" style={styles.title}>Phone</label>
-                <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" name="phone" id="phone" style={styles.titleContext} />
+                {/* <label htmlFor="phone" className="sr-only" style={styles.title}>Phone</label> */}
+                <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" name="phone" id="phone" style={styles.titleContext} placeholder={'Phone'} />
               </div>
               <div className="flex items-center justify-center">
-                <label htmlFor="message" className="sr-only" style={styles.title}>Application Description</label>
-                <textarea value={message} onChange={e => setMessage(e.target.value)} id="message" style={styles.messageContext} />
+                {/* <label htmlFor="message" className="sr-only" style={styles.title}>Application Description</label> */}
+                <textarea value={message} onChange={e => setMessage(e.target.value)} id="message" style={styles.messageContext} placeholder={'Application Description'} />
               </div>
-              <div className="flex items-center justify-center">
+              {/* <div className="flex items-center justify-center">
                 <button type="submit" style={styles.submit}>Submit</button>
-              </div>
+              </div> */}
+              <Button sx={styles.submit}>Submit</Button>
             </form>
           </div>
         </Box>
@@ -91,17 +93,13 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'lightgreen',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
     width: '100%',
-    paddingTop: 30
   },
   container: {
     marginBottom: 60,
     display: 'flex',
     padding: 20,
-    width: '80%',
+    width: '50%',
   },
   innerContainer: {
     width: '100%'
@@ -109,7 +107,6 @@ const styles = {
   titleContext: {
     padding: 10,
     marginBottom: 20,
-    backgroundColor: 'white',
     width: '100%'
   },
   title: {
@@ -126,11 +123,14 @@ const styles = {
     marginTop: 20,
     width: '100%',
     padding: 10,
-    backgroundColor: 'black',
+    backgroundColor: '#008B8B',
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
-    fontFamily: 'Ubuntu'
+    fontFamily: 'Ubuntu',
+    '&:hover, &.active': {
+      backgroundColor: '#00FFFF',
+      color: '#008B8B'
+    }
   }
-
 };

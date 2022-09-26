@@ -1,14 +1,14 @@
 import React from 'react';
 import { Box, Text, Heading } from 'theme-ui';
 
-export default function SectionHeader({ title, slogan, isBlack }) {
+export default function SectionHeader({ title, slogan, icColor }) {
   return (
     <Box sx={{ variant: 'sectionHeader', textAlign: 'center' }}>
       <Heading
         as="h2"
         sx={{
           variant: 'sectionHeader.title',
-          color: isBlack ? 'black' : 'white',
+          color: icColor ? '#008B8B' : 'white',
           textAlign: 'center',
           fontFamily: 'Ubuntu'
         }}>
@@ -18,8 +18,9 @@ export default function SectionHeader({ title, slogan, isBlack }) {
         as="p"
         sx={{
           variant: 'sectionHeader.subTitle',
-          color: isBlack ? 'black' : 'white',
-          fontFamily: 'Ubuntu'
+          color: icColor ? 'black' : 'white',
+          fontFamily: 'Ubuntu',
+          mt: 18
         }}>
         {slogan}
       </Text>
