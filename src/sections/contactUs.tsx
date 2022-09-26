@@ -99,7 +99,7 @@ const styles = {
     marginBottom: 60,
     display: 'flex',
     padding: 20,
-    width: '50%',
+    width: '100%',
   },
   innerContainer: {
     width: '100%'

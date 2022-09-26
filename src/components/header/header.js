@@ -58,7 +58,7 @@ export default function Header({ className }) {
             </a>
           </Flex>
         </Box>
-        {/* <MobileDrawer /> */}
+        <MobileDrawer />
       </header>
     </DrawerProvider>
   );
@@ -78,6 +78,9 @@ const styles = {
     backgroundColor: 'transparent',
     transition: 'all 0.4s ease',
     '&.sticky': {
+      '@media screen and (max-width: 1024px)': {
+        display: 'none',
+      },
       backgroundColor: '#008B8B',
       py: '15px',
       boxShadow: '0 1px 2px rgba(0, 0, 0, 0.06)',
@@ -88,7 +91,10 @@ const styles = {
     fontFamily: 'Ubuntu'
   },
   contextContainer: {
-    display: 'flex'
+    display: 'flex',
+    '@media screen and (max-width: 1024px)': {
+      display: 'none',
+    },
   },
   context: {
     paddingLeft: 30,

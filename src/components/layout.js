@@ -35,7 +35,6 @@ export default function Layout({ children }) {
   };
 
   useEffect(() => {
-    console.log('inView: ', inView)
     if (inView) {
       control.start("visible");
     } else {
@@ -57,6 +56,7 @@ export default function Layout({ children }) {
         onPositionChange={onWaypointPositionChange} />
       <motion.main
         id="content"
+        overflow={'hidden'} 
         sx={{
           variant: 'layout.main',
           position: 'relative'
