@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import { jsx, Box, Grid, Container, Image, Heading, Text, Flex } from 'theme-ui';
-import FeatureCardColumn from 'components/feature-card-column.js';
 import { BiPhoneCall, BiMailSend } from "react-icons/bi";
-import { GrLocation } from "react-icons/gr";
 import { GoLocation } from "react-icons/go";
+import { motion } from "framer-motion";
 
 const data = [
   {
@@ -34,11 +33,18 @@ export default function Footer() {
       <Box sx={styles.container}>
         <Grid sx={styles.grid}>
           {data.map((item) => (
-            <Box sx={styles.wrapper}>
-              {item.icon}
-              <Text sx={styles.wrapper.title}>{item.title}</Text>
-              <Text sx={styles.wrapper.subTitle}>{item.text}</Text>
-            </Box>
+            <motion.div className="card" whileHover={{
+              scale: 1.1,
+              transition: {
+                duration: .2
+              }
+            }}>
+              <Box sx={styles.wrapper}>
+                {item.icon}
+                <Text sx={styles.wrapper.title}>{item.title}</Text>
+                <Text sx={styles.wrapper.subTitle}>{item.text}</Text>
+              </Box>
+            </motion.div>
           ))}
         </Grid>
       </Box>
@@ -59,7 +65,7 @@ const styles = {
   container: {
     borderTop: '1px solid',
     borderTopColor: 'border_color',
-    pt: [7, null, 6],
+    p: [7, null, 6],
   },
   grid: {
     // width: ['100%', '80%', '100%'],
