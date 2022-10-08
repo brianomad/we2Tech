@@ -193,7 +193,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    py: '0',
+    py: '0'
   },
 };
 
