@@ -54,8 +54,7 @@ const MobileDrawer = () => {
       toggleHandler={toggleHandler}
       closeButton={<IoMdClose size="24px" color="#000000" />}
       drawerStyle={styles.drawer}
-      closeBtnStyle={styles.close}
-    >
+      closeBtnStyle={styles.close}>
       <Scrollbars autoHide>
         <Box sx={styles.content}>
           <Box sx={styles.menu}>
@@ -67,8 +66,7 @@ const MobileDrawer = () => {
                 smooth={true}
                 offset={-70}
                 duration={500}
-                key={i}
-              >
+                key={i}>
                 {label}
               </Link>
             ))}

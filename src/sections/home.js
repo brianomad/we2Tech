@@ -20,7 +20,11 @@ export default function Home() {
 
 const styles = {
   container: {
-    height: '100%',
+    height: '100%'
+  },
+  banner: {
+    width: '100%',
+    borderWidth: 10
   },
   home: {
     // pt: ['140px', '145px', '155px', '170px', null, null, '180px', '215px'],

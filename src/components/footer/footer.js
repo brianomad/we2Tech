@@ -16,7 +16,7 @@ const data = [
     // icon: <BiMailSend size="40px" />,
     icon: <BiMailSend size="40px" sx={{ width: '100%', color: 'white' }} />,
     title: 'Email',
-    text: 'enquiry@we-2-tech.com'
+    text: 'enquiry@we2tech.pro'
   },
   {
     id: 3,
@@ -68,17 +68,17 @@ const styles = {
     p: [7, null, 6],
   },
   grid: {
-    // width: ['100%', '80%', '100%'],
-    // mx: 'auto',
-    // gridGap: [
-    //   '35px 0',
-    //   null,
-    //   '40px 40px',
-    //   '50px 60px',
-    //   '30px',
-    //   '50px 40px',
-    //   '55px 90px',
-    // ],
+    width: ['100%', '80%', '100%'],
+    mx: 'auto',
+    gridGap: [
+      '35px 0',
+      null,
+      '40px 40px',
+      '50px 60px',
+      '30px',
+      '50px 40px',
+      '55px 90px',
+    ],
     gridTemplateColumns: [
       'repeat(1,1fr)',
       null,
