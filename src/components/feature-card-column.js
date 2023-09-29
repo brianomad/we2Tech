@@ -3,7 +3,6 @@ import { jsx, Image, Box } from 'theme-ui';
 import { motion } from "framer-motion";
 
 export default function FeatureCardColumn({
-  src,
   step,
   altText = 'default alt text',
   title,
