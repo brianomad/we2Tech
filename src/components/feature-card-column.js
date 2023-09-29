@@ -8,6 +8,7 @@ export default function FeatureCardColumn({
   altText = 'default alt text',
   title,
   text,
+  imgSrc
 }) {
   return (
     <motion.div className="card" whileHover={{
@@ -16,14 +17,17 @@ export default function FeatureCardColumn({
         duration: .2
       }
     }}>
-    <Box sx={styles.card}>
-      {/* <Image src={src} alt={altText} sx={styles.img} /> */}
-      {/* <Text style={styles.title}>{step}</Text> */}
-      <Box sx={styles.wrapper}>
-        <Text sx={styles.wrapper.title}>{title}</Text>
-        <Text sx={styles.wrapper.subTitle}>{text}</Text>
+      <Box sx={styles.card}>
+        {/* <Image src={src} alt={altText} sx={styles.img} /> */}
+        {/* <Text style={styles.title}>{step}</Text> */}
+        <Box sx={styles.wrapper}>
+          {/* <Text sx={styles.wrapper.title}>{title}</Text>
+        <Text sx={styles.wrapper.subTitle}>{text}</Text> */}
+          <Image
+            src={imgSrc}
+            alt="Thumbnail" />
+        </Box>
       </Box>
-    </Box>
     </motion.div>
   );
 }

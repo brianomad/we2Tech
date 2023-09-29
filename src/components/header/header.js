@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Box, Flex, Text, Image } from 'theme-ui';
+import { jsx, Box, Flex, Text, Image, Button } from 'theme-ui';
 // import { Link } from 'react-scroll';
 import { Link as ScrollLink } from 'react-scroll';
 import { DrawerProvider } from '../../contexts/drawer/drawer.provider';
@@ -35,7 +35,7 @@ export default function Header({ className }) {
         </Box> */}
         <Image
           src={Logo}
-          width={'80'} />
+          width={'100'} />
         {/* width={'80'} /> */}
         <Box sx={styles.contextContainer}>
           <Flex as="nav" sx={styles.nav}>
@@ -66,7 +66,7 @@ export default function Header({ className }) {
 
 const styles = {
   header: {
-    py: '25px',
+    // py: '25px',
     width: '100%',
     position: 'fixed',
     top: 0,

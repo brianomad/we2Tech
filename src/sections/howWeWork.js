@@ -4,10 +4,12 @@ import { Container, Grid, Box } from 'theme-ui';
 import SectionHeader from '../components/section-header';
 import FeatureCardColumn from 'components/feature-card-column.js';
 
-import stepOne from 'assets/we2Tech/stepOne.png';
+// import stepOne from 'assets/we2Tech/stepOne.png';
 import stepTwo from 'assets/we2Tech/stepTwo.png';
 import stepThree from 'assets/we2Tech/stepThree.png';
 import stepFour from 'assets/we2Tech/stepFour.png';
+
+import stepOne from 'assets/we2Tech/stepOne.png';
 
 
 const data = [
@@ -19,6 +21,7 @@ const data = [
     title: 'PROBLEM IDENTIFICATION ADN PRECISE SOLUTION',
     text:
       'Helping you articulate where the problem areas are, and how tech might be able to provide the solutions you didn`t even know you needed.',
+      imgSrc: stepOne,
   },
   {
     id: 2,
@@ -63,7 +66,8 @@ export default function HowWeWorkSection() {
                 step={item.step}
                 alt={item.altText}
                 title={item.title}
-                text={item.text} />
+                text={item.text}
+                imgSrc={item.imgSrc} />
             ))}
           </Grid>
         </Box>

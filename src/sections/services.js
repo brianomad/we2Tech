@@ -11,6 +11,8 @@ import ServicesCardRow from '../components/services-card-row';
 import mobileAppDevelopment from 'assets/we2Tech/mobileAppDevelopment.png';
 import UIUX from 'assets/we2Tech/UIUX.png';
 import website from 'assets/we2Tech/website.png';
+import serverDeployment from 'assets/we2Tech/serverDeployment.png';
+import maintenance from 'assets/we2Tech/Maintenance.png';
 
 import ServicesCard from '../components/services-card';
 import ServicesCard2 from '../components/services-card2';
@@ -24,9 +26,9 @@ const details = [
         id: 1,
         imgSrc: mobileAppDevelopment,
         altText: 'Features',
-        title: 'Features',
+        // title: 'Features',
         text:
-          'Our mobile app developers take the guesswork out of the equation by implementing proven strategies that optimize your app.',
+          'Our mobile app developers take the guesswork out of the equation by implementing proven strategies that optimize your app. We develop various kinds of customized mobile apps (iOS, Android, HarmonyOS) or web app – for staff use to smoothen internal operations or for customers & end-users to purchase goods, collect rewards points & more. This is an effective way to enhance brand image & customer stickiness.',
       },
       {
         id: 2,
@@ -45,7 +47,7 @@ const details = [
         id: 1,
         imgSrc: website,
         altText: 'Features',
-        title: 'Features',
+        // title: 'Features',
         text:
           'We develop most kinds of website applications – for staff use to smoothen internal operations or for customers & end-users to purchase goods, collect points & more. This is an effective way to enhance brand image & customer stickiness. ',
       },
@@ -65,9 +67,37 @@ const details = [
         id: 1,
         imgSrc: UIUX,
         altText: 'Features',
-        title: 'Features',
+        // title: 'Features',
         text:
           'UI/UX is one of the important part when developing your own website or mobile application. The layout design which is user-friendly can more easy to attract people to use your application and even its simple to convert them into loyal customers. Our design teams will design the most suitable UI UX according to the customer requirements. ',
+      }
+    ]
+  },
+   {
+    subTitle: 'our services',
+    title: 'SERVER DEPLOYMENT',
+    features: [
+      {
+        id: 1,
+        imgSrc: serverDeployment,
+        altText: 'Features',
+        // title: 'Features',
+        text:
+        'Develop cloud-based systems & implement cloud server based on your needs. Adopt worldwide trend of remote working & infuse digital culture into your work environment. ',
+      }
+    ]
+  },
+  {
+    subTitle: 'our services',
+    title: 'MAINTAINENCE',
+    features: [
+      {
+        id: 1,
+        imgSrc: maintenance,
+        altText: 'Features',
+        // title: 'Features',
+        text:
+        'We will host the site and maintain your application , and will also troubleshoot the unexpected issue. And even if things are going smoothly, we can upgrade the application according to the your requirement',
       }
     ]
   }
@@ -77,16 +107,16 @@ export default function Services() {
 
   return (
     <section sx={{ variant: 'section.services' }} id="services">
-        <Container sx={styles.containerBox}>
-          {details.map((Details, index) => (
-            index % 2 === 1 ? (
-              <ServicesCard2 details={Details} />
-            ) : (
-              <ServicesCard details={Details} />
-            )
-          ))}
-          <ServicesCardRow />
-        </Container>
+      <Container sx={styles.containerBox}>
+        {details.map((Details, index) => (
+          index % 2 === 1 ? (
+            <ServicesCard2 details={Details} />
+          ) : (
+            <ServicesCard details={Details} />
+          )
+        ))}
+        {/* <ServicesCardRow /> */}
+      </Container>
     </section>
   );
 }
