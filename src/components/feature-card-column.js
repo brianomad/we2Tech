@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Image, Box, Heading, Text } from 'theme-ui';
+import { jsx, Image, Box } from 'theme-ui';
 import { motion } from "framer-motion";
 
 export default function FeatureCardColumn({
