@@ -12,7 +12,7 @@ import mobileAppDevelopment from 'assets/we2Tech/mobileAppDevelopment.png';
 import UIUX from 'assets/we2Tech/UIUX.png';
 import website from 'assets/we2Tech/website.png';
 import serverDeployment from 'assets/we2Tech/serverDeployment.png';
-import maintenance from 'assets/we2Tech/Maintenance.png';
+import maintenance from 'assets/we2Tech/maintenance.png';
 
 import ServicesCard from '../components/services-card';
 import ServicesCard2 from '../components/services-card2';
