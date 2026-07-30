@@ -8,7 +8,7 @@ export default function SectionHeader({ title, slogan, icColor }) {
         as="h2"
         sx={{
           variant: 'sectionHeader.title',
-          color: icColor ? '#008B8B' : 'white',
+          color: icColor ? 'teal' : 'white',
           textAlign: 'center',
           fontFamily: 'Ubuntu'
         }}>

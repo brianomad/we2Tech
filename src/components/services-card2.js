@@ -93,7 +93,7 @@ const styles = {
       fontSize: 3,
       lineHeight: 1.4,
       fontWeight: 700,
-      color: '#028b8b',
+      color: 'teal',
       fontFamily: 'Ubuntu'
     },
     subTitle: {

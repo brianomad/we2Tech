@@ -81,7 +81,7 @@ const styles = {
       '@media screen and (max-width: 1024px)': {
         display: 'none',
       },
-      backgroundColor: '#008B8B',
+      backgroundColor: 'teal',
       py: '15px',
       boxShadow: '0 1px 2px rgba(0, 0, 0, 0.06)',
     },
@@ -115,14 +115,14 @@ const styles = {
       transition: 'all 0.15s',
       fontFamily: 'Ubuntu',
       '&:hover, &.active': {
-        color: '#00FFFF',
+        color: 'cyan',
       }
     },
   },
   instagram: {
     alignItems: 'center',
     a: {
-      color: '#00FFFF',
+      color: 'cyan',
       px: 5,
       cursor: 'pointer',
       lineHeight: '1.2',

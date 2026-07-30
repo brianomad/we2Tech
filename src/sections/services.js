@@ -6,8 +6,6 @@ import {
 } from 'theme-ui';
 import { keyframes } from '@emotion/react';
 
-import ServicesCardRow from '../components/services-card-row';
-
 import mobileAppDevelopment from 'assets/we2Tech/mobileAppDevelopment.png';
 import UIUX from 'assets/we2Tech/UIUX.png';
 import website from 'assets/we2Tech/website.png';
@@ -35,7 +33,7 @@ const details = [
         altText: 'Technology provided',
         title: 'Technology provided',
         text:
-          'All the technology inculded React Native, Flutter, swift, Kotlin etc. will be provide to the client.',
+          'All the technology included: React Native, Flutter, Swift, Kotlin, etc.',
       },
     ],
   },
@@ -55,7 +53,7 @@ const details = [
         id: 2,
         title: 'Technology provided',
         text:
-          'All the technology inculded React, Next, Wordpress, Angular etc. will be provide to the client.',
+          'All the technology included: React, Next.js, WordPress, Angular, etc.',
       },
     ]
   },
@@ -89,7 +87,7 @@ const details = [
   },
   {
     subTitle: 'our services',
-    title: 'MAINTAINENCE',
+    title: 'MAINTENANCE',
     features: [
       {
         id: 1,

@@ -41,7 +41,7 @@ const styles = {
     // px: [4, null, 0],
   },
   title: {
-    color: '#00FFFF'
+    color: 'cyan'
   },
   img: {
     mx: ['auto', null, 0],
@@ -58,7 +58,7 @@ const styles = {
       lineHeight: 1.4,
       fontWeight: 700,
       mb: [2, null, 3],
-      color: '#00FFFF',
+      color: 'cyan',
       fontFamily: 'Ubuntu'
     },
     subTitle: {

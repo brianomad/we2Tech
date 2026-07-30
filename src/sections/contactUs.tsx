@@ -3,7 +3,8 @@ import { FormEvent, useState } from "react";
 import {
   Box,
   Container,
-  Button
+  Button,
+  Text
 } from 'theme-ui';
 import SectionHeader from '../components/section-header';
 
@@ -12,38 +13,52 @@ const ContactUs: NextPage = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validate = () => {
+    const errs: Record<string, string> = {};
+    if (!name.trim()) errs.name = 'Name is required';
+    if (!email.trim()) {
+      errs.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errs.email = 'Invalid email format';
+    }
+    if (!message.trim()) errs.message = 'Message is required';
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!validate()) return;
 
-    let form = {
-      name,
-      email,
-      phone,
-      message
-    };
+    setStatus('submitting');
 
-    const rawResponse = await fetch('/api/submit', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(form)
-    });
+    const form = { name, email, phone, message };
 
-    const content = await rawResponse.json();
-    // console.log('content: ', content);
-    // print to screen
-    // alert(content.data.tableRange)
-    alert('SUBMITTED')
+    try {
+      const rawResponse = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(form)
+      });
 
-    // Reset the form fields
-    setMessage('')
-    setPhone('')
-    setName('')
-    setEmail('')
+      if (!rawResponse.ok) throw new Error('Server error');
 
+      setStatus('success');
+      setName('');
+      setEmail('');
+      setPhone('');
+      setMessage('');
+    } catch {
+      setStatus('error');
+      setErrorMsg('Submission failed. Please try again or email us directly.');
+    }
   };
 
   return (
@@ -55,28 +70,51 @@ const ContactUs: NextPage = () => {
           icColor={true} />
         <Box sx={styles.container}>
           <div style={styles.innerContainer}>
-            <form className="py-4 space-y-4"
-              onSubmit={handleSubmit}>
-              <div className="flex items-center justify-center">
-                {/* <label htmlFor="name" style={styles.title}>Name</label> */}
-                <input value={name} onChange={e => setName(e.target.value)} type="text" name="name" id="name" style={styles.titleContext} placeholder={'Name'} />
+            <form onSubmit={handleSubmit}>
+              <div>
+                <input
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  type="text" name="name" id="name"
+                  style={{...styles.titleContext, borderColor: errors.name ? 'red' : undefined}}
+                  placeholder={'Name'} />
+                {errors.name && <Text sx={styles.error}>{errors.name}</Text>}
               </div>
-              <div className="flex items-center justify-center">
-                {/* <label htmlFor="email" className="sr-only" style={styles.title}>Email</label> */}
-                <input value={email} onChange={e => setEmail(e.target.value)} type="email" name="email" id="email" style={styles.titleContext} placeholder={'Email'} />
+              <div>
+                <input
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  type="email" name="email" id="email"
+                  style={{...styles.titleContext, borderColor: errors.email ? 'red' : undefined}}
+                  placeholder={'Email'} />
+                {errors.email && <Text sx={styles.error}>{errors.email}</Text>}
               </div>
-              <div className="flex items-center justify-center">
-                {/* <label htmlFor="phone" className="sr-only" style={styles.title}>Phone</label> */}
-                <input value={phone} onChange={e => setPhone(e.target.value)} type="tel" name="phone" id="phone" style={styles.titleContext} placeholder={'Phone'} />
+              <div>
+                <input
+                  value={phone}
+                  onChange={e => setPhone(e.target.value)}
+                  type="tel" name="phone" id="phone"
+                  style={styles.titleContext}
+                  placeholder={'Phone (optional)'} />
               </div>
-              <div className="flex items-center justify-center">
-                {/* <label htmlFor="message" className="sr-only" style={styles.title}>Application Description</label> */}
-                <textarea value={message} onChange={e => setMessage(e.target.value)} id="message" style={styles.messageContext} placeholder={'Application Description'} />
+              <div>
+                <textarea
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
+                  id="message"
+                  style={{...styles.messageContext, borderColor: errors.message ? 'red' : undefined}}
+                  placeholder={'Application Description'} />
+                {errors.message && <Text sx={styles.error}>{errors.message}</Text>}
               </div>
-              {/* <div className="flex items-center justify-center">
-                <button type="submit" style={styles.submit}>Submit</button>
-              </div> */}
-              <Button sx={styles.submit}>Submit</Button>
+              {status === 'success' && (
+                <Text sx={styles.successMsg}>Thank you! We'll get back to you soon.</Text>
+              )}
+              {status === 'error' && (
+                <Text sx={styles.errorMsg}>{errorMsg}</Text>
+              )}
+              <Button sx={styles.submit} disabled={status === 'submitting'}>
+                {status === 'submitting' ? 'Submitting...' : 'Submit'}
+              </Button>
             </form>
           </div>
         </Box>
@@ -119,18 +157,42 @@ const styles = {
     height: 200,
     backgroundColor: 'white'
   },
+  error: {
+    color: 'red',
+    fontSize: 12,
+    marginBottom: 10,
+    fontFamily: 'Ubuntu'
+  },
+  successMsg: {
+    color: 'green',
+    fontSize: 14,
+    marginTop: 10,
+    textAlign: 'center' as const,
+    fontFamily: 'Ubuntu'
+  },
+  errorMsg: {
+    color: 'red',
+    fontSize: 14,
+    marginTop: 10,
+    textAlign: 'center' as const,
+    fontFamily: 'Ubuntu'
+  },
   submit: {
     marginTop: 20,
     width: '100%',
     padding: 10,
-    backgroundColor: '#008B8B',
+    backgroundColor: 'teal',
     color: 'white',
     fontWeight: 'bold',
     fontSize: 16,
     fontFamily: 'Ubuntu',
     '&:hover, &.active': {
-      backgroundColor: '#00FFFF',
-      color: '#008B8B'
+      backgroundColor: 'cyan',
+      color: 'teal'
+    },
+    '&:disabled': {
+      opacity: 0.6,
+      cursor: 'not-allowed'
     }
   }
 };

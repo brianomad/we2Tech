@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { Waypoint } from 'react-waypoint';
 import Sticky from 'react-stickynode';
 import { useStickyState } from 'contexts/app/app.provider';
@@ -15,6 +15,7 @@ import Footer from './footer/footer';
 export default function Layout({ children }) {
   const dispatch = useStickyDispatch();
   const isSticky = useStickyState('isSticky');
+  const [showWhatsApp, setShowWhatsApp] = useState(false);
   
   const control = useAnimation()
   const [ref, inView] = useInView()
@@ -42,6 +43,11 @@ export default function Layout({ children }) {
     };
   }, [control, inView]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => setShowWhatsApp(true), 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <React.Fragment>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,7 +58,6 @@ export default function Layout({ children }) {
       </Sticky>
       <Waypoint
         onEnter={removeSticky}
-        // onLeave={setSticky}
         onPositionChange={onWaypointPositionChange} />
       <motion.main
         id="content"
@@ -64,21 +69,17 @@ export default function Layout({ children }) {
         ref={ref}
         initial="hidden"
         animate={control}
-        // variants={variants}
         >
           {children}
       </motion.main>
-      <WhatsAppWidget
-        phoneNumber="+85253968435"
-        companyName={"we2Tech"}
-        replyTimeText={""}
-        message={"Hi, Thanks for your enquiry"} />
+      {showWhatsApp && (
+        <WhatsAppWidget
+          phoneNumber="+85253968435"
+          companyName={"we2Tech"}
+          replyTimeText={""}
+          message={"Hi, Thanks for your enquiry"} />
+      )}
       <Footer />
     </React.Fragment>
   );
 }
-
-const variants = {
-  visible: { opacity: 10, scale: 0 },
-  hidden: { opacity: 0, scale: 0 },
-};

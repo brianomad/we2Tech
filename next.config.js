@@ -1,8 +1,17 @@
-const withPlugins = require('next-compose-plugins');
-const optimizedImages = require('next-optimized-images');
-
-const nextConfiguration = {
+module.exports = {
   target: 'serverless',
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.(png|jpg|gif|svg|ico)$/,
+      use: {
+        loader: 'file-loader',
+        options: {
+          publicPath: '/_next/static/images',
+          outputPath: 'static/images',
+          name: '[name]-[hash].[ext]',
+        },
+      },
+    });
+    return config;
+  },
 };
-
-module.exports = withPlugins([optimizedImages], nextConfiguration);

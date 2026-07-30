@@ -11,6 +11,8 @@ export default {
     yellow: '#FFA740', // border color
     primary: '#EA3A60', // primary button and link color
     secondary: '#2563FF', // secondary color - can be used for hover states
+    teal: '#008B8B', // brand teal/dark cyan - header bg, accents
+    cyan: '#00FFFF', // bright cyan - hover states, accents
     muted: '#E4E4E4', // muted color
     accent: '#609', // a contrast color for emphasizing UI
 

@@ -4,12 +4,10 @@ import { Container, Grid, Box } from 'theme-ui';
 import SectionHeader from '../components/section-header';
 import FeatureCardColumn from 'components/feature-card-column.js';
 
-// import stepOne from 'assets/we2Tech/stepOne.png';
+import stepOne from 'assets/we2Tech/stepOne.png';
 import stepTwo from 'assets/we2Tech/stepTwo.png';
 import stepThree from 'assets/we2Tech/stepThree.png';
 import stepFour from 'assets/we2Tech/stepFour.png';
-
-import stepOne from 'assets/we2Tech/stepOne.png';
 
 
 const data = [
@@ -18,10 +16,9 @@ const data = [
     imgSrc: stepOne,
     step: 'STEP 1',
     altText: 'Fast Performance',
-    title: 'PROBLEM IDENTIFICATION ADN PRECISE SOLUTION',
+    title: 'PROBLEM IDENTIFICATION AND PRECISE SOLUTION',
     text:
       'Helping you articulate where the problem areas are, and how tech might be able to provide the solutions you didn`t even know you needed.',
-      imgSrc: stepOne,
   },
   {
     id: 2,
@@ -30,7 +27,7 @@ const data = [
     altText: 'Partnership deal',
     title: 'DESIGN UI/UX FOR THE APPLICATION',
     text:
-      'Design awesome UI/UX base on your requirement and design the UI/UX become more user-friendly and attractive for teh application`s user',
+      'Design awesome UI/UX based on your requirements. We make the UI/UX user-friendly and attractive for your application`s users.',
   },
   {
     id: 3,
@@ -46,9 +43,9 @@ const data = [
     imgSrc: stepFour,
     step: 'STEP 4',
     altText: 'Customer Support',
-    title: 'LANUCH THE APPLIACTION',
+    title: 'LAUNCH THE APPLICATION',
     text:
-      'Lannch the application on time and without any unexpected issue.',
+      'Launch the application on time and without any unexpected issues.',
   },
 ];
 
@@ -80,7 +77,7 @@ const styles = {
   container: {
     textAlign: 'center',
     width: '100%',
-    backgroundColor: '#008B8B',
+    backgroundColor: 'teal',
     p: 20
   },
   grid: {

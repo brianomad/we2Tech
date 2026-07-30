@@ -93,7 +93,7 @@ const styles = {
     fontFamily: 'Ubuntu'
   },
   footer: {
-    backgroundColor: '#008B8B',
+    backgroundColor: 'teal',
     footerBottomArea: {
       pt: [7, null, 6],
       pb: ['40px', null, '100px'],
