@@ -24,7 +24,8 @@ export default function ServicePage({ content }) {
       <ServiceHero
         eyebrow={content.hero.eyebrow}
         title={content.hero.title}
-        slogan={content.hero.slogan} />
+        slogan={content.hero.slogan}
+        image={content.hero.image} />
       <FeatureGrid
         title={content.features.title}
         slogan={content.features.slogan}

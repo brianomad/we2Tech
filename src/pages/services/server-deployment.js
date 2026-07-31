@@ -1,4 +1,5 @@
 import ServicePage from '../../components/service-page';
+import BannerImg from 'assets/we2Tech/serverDeployment.png';
 import {
   FaCloudUploadAlt,
   FaServer,
@@ -21,6 +22,7 @@ const content = {
     title: 'Cloud infrastructure your business can rely on',
     slogan:
       'We deploy cloud-based systems and implement cloud servers based on your needs — adopting the worldwide trend of remote working and infusing digital culture into your work environment.',
+    image: BannerImg,
   },
   features: {
     title: 'What we deploy',

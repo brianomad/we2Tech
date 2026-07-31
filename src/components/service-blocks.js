@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Container, Grid, Box, Text, Button } from 'theme-ui';
+import { jsx, Container, Grid, Box, Text, Button, Image } from 'theme-ui';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
@@ -8,7 +8,7 @@ import SectionHeader from './section-header';
 import { IoIosArrowDown } from 'react-icons/io';
 import { FaCheckCircle, FaWhatsapp } from 'react-icons/fa';
 
-export function ServiceHero({ eyebrow, title, slogan }) {
+export function ServiceHero({ eyebrow, title, slogan, image }) {
   return (
     <section sx={styles.hero}>
       <Container sx={styles.heroContainer}>
@@ -30,6 +30,11 @@ export function ServiceHero({ eyebrow, title, slogan }) {
           </Box>
         </Reveal>
       </Container>
+      {image && (
+        <Box sx={styles.heroImageBox}>
+          <Image src={image} alt="" />
+        </Box>
+      )}
     </section>
   );
 }
@@ -342,6 +347,17 @@ const styles = {
     alignItems: 'center',
     gap: 2,
     fontFamily: 'Ubuntu',
+  },
+  heroImageBox: {
+    position: 'relative',
+    zIndex: 1,
+    mt: [5, null, 6],
+    px: [0, null, null, 4],
+    img: {
+      width: '100%',
+      height: 'auto',
+      borderRadius: [0, null, null, 12],
+    },
   },
   section: {
     py: [7, null, 9],

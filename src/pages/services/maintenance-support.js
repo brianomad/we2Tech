@@ -1,4 +1,5 @@
 import ServicePage from '../../components/service-page';
+import BannerImg from 'assets/we2Tech/maintenance.png';
 import {
   FaBug,
   FaHeartbeat,
@@ -21,6 +22,7 @@ const content = {
     title: 'Keep your application monitored, maintained and ready for what comes next',
     slogan:
       'We host and maintain your application, troubleshoot unexpected issues, and upgrade the system as your requirements grow — long after launch.',
+    image: BannerImg,
   },
   features: {
     title: 'What we support',

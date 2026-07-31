@@ -1,4 +1,5 @@
 import ServicePage from '../../components/service-page';
+import BannerImg from 'assets/we2Tech/UIUX.png';
 import {
   FaSearch,
   FaDrawPolygon,
@@ -21,6 +22,7 @@ const content = {
     title: 'Interfaces your users will actually enjoy using',
     slogan:
       'Our design team creates user-friendly, attractive UI/UX for mobile and web applications — turning first-time visitors into loyal customers with clear, delightful experiences.',
+    image: BannerImg,
   },
   features: {
     title: 'What we design',

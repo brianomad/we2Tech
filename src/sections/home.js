@@ -4,6 +4,7 @@ import { Link as ScrollLink } from 'react-scroll';
 import { motion } from 'framer-motion';
 
 import BannerImg from 'assets/we2Tech/home.png';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Home() {
   return (
@@ -25,15 +26,15 @@ export default function Home() {
           </Text>
           <Box sx={styles.buttons}>
             <ScrollLink to="contactUs" spy={true} smooth={true} offset={-70} duration={500}>
-              <Button variant="primary" aria-label="Get a Free Quote">
-                Get a Free Quote
+              <Button variant="primary" sx={styles.heroBtnPrimary} aria-label="Book a Consultation">
+                Book a Consultation
               </Button>
             </ScrollLink>
-            <ScrollLink to="services" spy={true} smooth={true} offset={-70} duration={500}>
-              <Button variant="secondary" aria-label="Our Services">
-                Our Services
+            <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer">
+              <Button variant="secondary" sx={styles.heroBtnOutline}>
+                <FaWhatsapp /> Chat on WhatsApp
               </Button>
-            </ScrollLink>
+            </a>
           </Box>
         </motion.div>
       </Container>
@@ -133,6 +134,15 @@ const styles = {
     a: {
       cursor: 'pointer',
     },
+  },
+  heroBtnPrimary: {
+    fontFamily: 'Ubuntu',
+  },
+  heroBtnOutline: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
+    fontFamily: 'Ubuntu',
   },
   imageBox: {
     mt: [5, null, 6],

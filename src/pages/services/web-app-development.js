@@ -1,4 +1,5 @@
 import ServicePage from '../../components/service-page';
+import BannerImg from 'assets/we2Tech/website.png';
 import {
   FaGlobe,
   FaShoppingCart,
@@ -21,6 +22,7 @@ const content = {
     title: 'Web platforms and portals built to keep your business running',
     slogan:
       'We design and build responsive websites, customer portals, admin dashboards, booking systems and eCommerce flows around real users and operational workflows.',
+    image: BannerImg,
   },
   features: {
     title: 'What we build',

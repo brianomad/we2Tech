@@ -25,8 +25,8 @@ export default function CTABand() {
                 </Button>
               </a>
               <ScrollLink to="contactUs" spy={true} smooth={true} offset={-70} duration={500}>
-                <Button variant="textButton" sx={styles.outlineBtn} aria-label="Get a Free Quote">
-                  Get a Free Quote
+                <Button variant="textButton" sx={styles.outlineBtn} aria-label="Book a Consultation">
+                  Book a Consultation
                 </Button>
               </ScrollLink>
             </Box>
