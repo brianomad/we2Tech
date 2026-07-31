@@ -9,8 +9,8 @@ export default {
     background_secondary: '#F9FBFD', // secondary background color
     border_color: '#E5ECF4', // border color
     yellow: '#FFA740', // border color
-    primary: '#EA3A60', // primary button and link color
-    secondary: '#2563FF', // secondary color - can be used for hover states
+    primary: '#008B8B', // primary button and link color (brand teal)
+    secondary: '#005555', // secondary color - can be used for hover states
     teal: '#008B8B', // brand teal/dark cyan - header bg, accents
     cyan: '#00FFFF', // bright cyan - hover states, accents
     muted: '#E4E4E4', // muted color
@@ -265,7 +265,7 @@ export default {
       color: 'white',
       bg: 'primary',
       '&:hover': {
-        boxShadow: 'rgba(233, 76, 84, 0.57) 0px 9px 20px -5px',
+        boxShadow: 'rgba(0, 139, 139, 0.5) 0px 9px 20px -5px',
       },
     },
     whiteButton: {

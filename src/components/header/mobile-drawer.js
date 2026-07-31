@@ -119,16 +119,16 @@ const styles = {
     a: {
       fontSize: '16px',
       fontWeight: '500',
-      color: 'text_white',
+      color: 'white',
       py: '15px',
       cursor: 'pointer',
       borderBottom: '1px solid #e8e5e5',
       transition: 'all 0.25s',
       '&:hover': {
-        color: 'secondary',
+        color: 'cyan',
       },
       '&.active': {
-        color: 'secondary',
+        color: 'cyan',
       },
     },
   },
@@ -151,7 +151,7 @@ const styles = {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      color: 'text',
+      color: 'white',
       fontSize: 14,
       mr: '15px',
       transition: 'all 0.25s',
@@ -160,7 +160,7 @@ const styles = {
         mr: '0',
       },
       '&:hover': {
-        color: 'secondary',
+        color: 'cyan',
       },
     },
   },

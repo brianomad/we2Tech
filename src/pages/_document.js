@@ -9,8 +9,9 @@ class CustomDocument extends Document {
   render() {
     return (
       <Html lang="en-US">
-        {/* <link rel="icon" href="/2.ico" /> */}
-        <Head />
+        <Head>
+          <link rel="icon" href="/we2Tech.ico" />
+        </Head>
         <body>
           <Main />
           <NextScript />

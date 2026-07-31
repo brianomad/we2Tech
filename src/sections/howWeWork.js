@@ -51,7 +51,7 @@ const data = [
 
 export default function HowWeWorkSection() {
   return (
-    <section sx={{ variant: 'section.services', backgroundColor: 'teal' }} id="howWeWork">
+    <section sx={{ variant: 'section.services', backgroundColor: 'teal', pb: 0 }} id="howWeWork">
       <Container>
         <SectionHeader title="How We Work?" slogan="A transparent, step-by-step process from first idea to live launch." />
         <Box sx={styles.container}>

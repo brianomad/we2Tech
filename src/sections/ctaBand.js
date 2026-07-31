@@ -24,12 +24,12 @@ export default function CTABand() {
                 href="https://wa.me/85253968435"
                 target="_blank"
                 rel="noopener noreferrer">
-                <Button variant="primary" aria-label="Chat on WhatsApp">
+                <Button variant="whiteButton" aria-label="Chat on WhatsApp">
                   Chat on WhatsApp
                 </Button>
               </a>
               <ScrollLink to="contactUs" spy={true} smooth={true} offset={-70} duration={500}>
-                <Button variant="whiteButton" aria-label="Get a Free Quote">
+                <Button variant="textButton" sx={styles.outlineBtn} aria-label="Get a Free Quote">
                   Get a Free Quote
                 </Button>
               </ScrollLink>
@@ -78,6 +78,16 @@ const styles = {
     gap: 3,
     a: {
       cursor: 'pointer',
+    },
+  },
+  outlineBtn: {
+    border: '2px solid',
+    borderColor: 'white',
+    color: 'white',
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: 'white',
+      color: 'teal',
     },
   },
 };

@@ -63,7 +63,7 @@ export default function Header({ className }) {
             smooth={true}
             offset={-70}
             duration={500}>
-            <Button variant="primary" sx={styles.cta}>Get a Quote</Button>
+            <Button variant="whiteButton" sx={styles.cta}>Get a Quote</Button>
           </ScrollLink>
         </Box>
         <MobileDrawer />
