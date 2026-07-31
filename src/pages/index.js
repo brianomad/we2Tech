@@ -1,6 +1,3 @@
-import { ThemeProvider } from 'theme-ui';
-import { StickyProvider } from '../contexts/app/app.provider';
-import theme from 'theme';
 import SEO from 'components/seo';
 import Layout from 'components/layout';
 import Home from '../sections/home';
@@ -20,26 +17,22 @@ import ContactUs from '../sections/contactUs.tsx';
 
 export default function IndexPage() {
   return (
-    <ThemeProvider theme={theme}>
-      <StickyProvider>
-        <Layout>
-          <SEO />
-          <Home />
-          <Stats />
-          <Stages />
-          <Operational />
-          <MVPPath />
-          <Architecture />
-          <ProjectRescue />
-          <WhyChooseUs />
-          <Services />
-          <HowWeWork />
-          <TechStack />
-          <FAQ />
-          <CTABand />
-          <ContactUs />
-        </Layout>
-      </StickyProvider>
-    </ThemeProvider>
+    <Layout>
+      <SEO />
+      <Home />
+      <Stats />
+      <Stages />
+      <Operational />
+      <MVPPath />
+      <Architecture />
+      <ProjectRescue />
+      <WhyChooseUs />
+      <Services />
+      <HowWeWork />
+      <TechStack />
+      <FAQ />
+      <CTABand />
+      <ContactUs />
+    </Layout>
   );
 }
