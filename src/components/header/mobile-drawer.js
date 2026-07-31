@@ -4,7 +4,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import Drawer from 'components/drawer';
 import { DrawerContext } from '../../contexts/drawer/drawer.context';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
-import { Link as ScrollLink } from 'react-scroll';
+import { scroller } from 'react-scroll';
 import { useRouter } from 'next/router';
 import {
   FaInstagram,
@@ -30,21 +30,21 @@ const MobileDrawer = () => {
     });
   }, [dispatch]);
 
+  const smoothScroll = (e, target) => {
+    if (!isHome) return;
+    e.preventDefault();
+    dispatch({ type: 'TOGGLE' });
+    scroller.scrollTo(target === 'home' ? 'home' : target, {
+      smooth: true,
+      offset: -70,
+      duration: 500,
+    });
+  };
+
   const renderNavItem = ({ path, label }, i) => {
     const href = path === 'home' ? '/' : `/#${path}`;
-    return isHome ? (
-      <ScrollLink
-        activeClass="active"
-        to={path}
-        spy={true}
-        smooth={true}
-        offset={-70}
-        duration={500}
-        key={i}>
-        {label}
-      </ScrollLink>
-    ) : (
-      <a href={href} key={i}>
+    return (
+      <a href={href} key={i} onClick={(e) => smoothScroll(e, path)}>
         {label}
       </a>
     );
@@ -75,18 +75,13 @@ const MobileDrawer = () => {
           </Box>
 
           <Box sx={styles.menuFooter}>
-            {isHome ? (
-              <ScrollLink
-                to="contactUs"
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}>
-                <Box as="span" sx={styles.button}>Get a Quote</Box>
-              </ScrollLink>
-            ) : (
-              <a href="/#contactUs" sx={styles.button}>Get a Quote</a>
-            )}
+          <Box
+            as="a"
+            href="/#contactUs"
+            sx={styles.button}
+            onClick={(e) => smoothScroll(e, 'contactUs')}>
+            Get a Quote
+          </Box>
             <Box sx={styles.social}>
               {social.map(({ path, icon }, i) => (
                 <Box as="span" key={i} sx={styles.social.icon}>

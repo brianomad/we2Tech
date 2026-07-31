@@ -2,7 +2,7 @@
 import { jsx, Box, Flex, Image, Button, Text } from 'theme-ui';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Link as ScrollLink } from 'react-scroll';
+import { scroller } from 'react-scroll';
 import { DrawerProvider } from '../../contexts/drawer/drawer.provider';
 import menuItems from './header.data';
 import { AiFillInstagram } from "react-icons/ai";
@@ -24,21 +24,20 @@ export default function Header({ className }) {
   const isHome = router.pathname === '/';
   const [servicesOpen, setServicesOpen] = useState(false);
 
+  const smoothScroll = (e, target) => {
+    if (!isHome) return;
+    e.preventDefault();
+    scroller.scrollTo(target === 'home' ? 'home' : target, {
+      smooth: true,
+      offset: -70,
+      duration: 500,
+    });
+  };
+
   const renderNavItem = ({ path, label }, i) => {
     const href = path === 'home' ? '/' : `/#${path}`;
-    return isHome ? (
-      <ScrollLink
-        activeClass="active"
-        to={path}
-        spy={true}
-        smooth={true}
-        offset={-70}
-        duration={500}
-        key={i}>
-        {label}
-      </ScrollLink>
-    ) : (
-      <a href={href} key={i}>
+    return (
+      <a href={href} key={i} onClick={(e) => smoothScroll(e, path)}>
         {label}
       </a>
     );
@@ -57,7 +56,7 @@ export default function Header({ className }) {
       </Box>
       {servicesOpen && (
         <Box sx={styles.dropdown}>
-          <a href="/#services" onClick={() => setServicesOpen(false)}>All Services</a>
+          <a href="/#services" onClick={(e) => { setServicesOpen(false); smoothScroll(e, 'services'); }}>All Services</a>
           {serviceLinks.map((item) => (
             <a key={item.path} href={item.path} onClick={() => setServicesOpen(false)}>
               {item.label}
@@ -69,14 +68,9 @@ export default function Header({ className }) {
   );
 
   const renderCta = (
-    <ScrollLink
-      to="contactUs"
-      spy={true}
-      smooth={true}
-      offset={-70}
-      duration={500}>
+    <a href="/#contactUs" onClick={(e) => smoothScroll(e, 'contactUs')}>
       <Button variant="whiteButton" sx={styles.cta}>Get a Quote</Button>
-    </ScrollLink>
+    </a>
   );
 
   return (
@@ -100,7 +94,7 @@ export default function Header({ className }) {
               <AiFillInstagram size="30px" />
             </a>
           </Flex>
-          {isHome ? renderCta : <a href="/#contactUs"><Button variant="whiteButton" sx={styles.cta}>Get a Quote</Button></a>}
+          {renderCta}
         </Box>
         <MobileDrawer />
       </header>
