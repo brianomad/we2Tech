@@ -1,29 +1,96 @@
 /** @jsx jsx */
-import { jsx, Container, Box, Text } from 'theme-ui';
+import { jsx, Container, Grid, Box, Text } from 'theme-ui';
+import { motion } from 'framer-motion';
 import SectionHeader from '../components/section-header';
+import {
+  SiReact,
+  SiFlutter,
+  SiSwift,
+  SiKotlin,
+  SiAngular,
+  SiWordpress,
+  SiTypescript,
+  SiJavascript,
+  SiFirebase,
+  SiAmazonaws,
+  SiGooglecloud,
+  SiMicrosoftazure,
+  SiGit,
+  SiGoogleanalytics,
+} from 'react-icons/si';
+import {
+  FaVuejs,
+  FaNodeJs,
+  FaCode,
+  FaCreditCard,
+  FaMobileAlt,
+  FaGoogle,
+} from 'react-icons/fa';
 
 const groups = [
   {
     id: 1,
     category: 'Mobile Development',
-    items: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'HarmonyOS'],
+    items: [
+      { name: 'React Native', icon: <SiReact /> },
+      { name: 'Flutter', icon: <SiFlutter /> },
+      { name: 'Swift', icon: <SiSwift /> },
+      { name: 'Kotlin', icon: <SiKotlin /> },
+      { name: 'HarmonyOS', icon: <FaMobileAlt /> },
+    ],
   },
   {
     id: 2,
     category: 'Web Development',
-    items: ['React', 'Next.js', 'Vue', 'Angular', 'WordPress', 'TypeScript'],
+    items: [
+      { name: 'React', icon: <SiReact /> },
+      { name: 'Next.js', icon: <FaCode /> },
+      { name: 'Vue', icon: <FaVuejs /> },
+      { name: 'Angular', icon: <SiAngular /> },
+      { name: 'WordPress', icon: <SiWordpress /> },
+      { name: 'TypeScript', icon: <SiTypescript /> },
+      { name: 'JavaScript', icon: <SiJavascript /> },
+    ],
   },
   {
     id: 3,
     category: 'Backend & Cloud',
-    items: ['Node.js', 'Firebase', 'AWS', 'Google Cloud', 'Azure'],
+    items: [
+      { name: 'Node.js', icon: <FaNodeJs /> },
+      { name: 'Firebase', icon: <SiFirebase /> },
+      { name: 'AWS', icon: <SiAmazonaws /> },
+      { name: 'Google Cloud', icon: <SiGooglecloud /> },
+      { name: 'Azure', icon: <SiMicrosoftazure /> },
+    ],
   },
   {
     id: 4,
     category: 'Tools & Integrations',
-    items: ['Git', 'Google Workspace', 'Google Analytics', 'Payment Gateways'],
+    items: [
+      { name: 'Git', icon: <SiGit /> },
+      { name: 'Google Workspace', icon: <FaGoogle /> },
+      { name: 'Google Analytics', icon: <SiGoogleanalytics /> },
+      { name: 'Payment Gateways', icon: <FaCreditCard /> },
+    ],
   },
 ];
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+const chipVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.35 } },
+};
 
 export default function TechStack() {
   return (
@@ -33,20 +100,35 @@ export default function TechStack() {
           title="Technologies We Work With"
           slogan="Modern, proven tools to build reliable products"
           icColor={true} />
-        <Box sx={styles.wrapper}>
-          {groups.map((group) => (
-            <Box sx={styles.group} key={group.id}>
-              <Text sx={styles.category}>{group.category}</Text>
-              <Box sx={styles.chips}>
-                {group.items.map((item) => (
-                  <Box sx={styles.chip} key={item}>
-                    <Text>{item}</Text>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}>
+          <Grid sx={styles.grid}>
+            {groups.map((group) => (
+              <motion.div key={group.id} variants={itemVariants}>
+                <Box sx={styles.group}>
+                  <Text sx={styles.category}>{group.category}</Text>
+                  <Box sx={styles.chips}>
+                    {group.items.map((item) => (
+                      <motion.div
+                        key={item.name}
+                        variants={chipVariants}
+                        whileHover={{ scale: 1.08, y: -4 }}
+                        transition={{ duration: 0.2 }}>
+                        <Box sx={styles.chip}>
+                          <Box sx={styles.icon}>{item.icon}</Box>
+                          <Text>{item.name}</Text>
+                        </Box>
+                      </motion.div>
+                    ))}
                   </Box>
-                ))}
-              </Box>
-            </Box>
-          ))}
-        </Box>
+                </Box>
+              </motion.div>
+            ))}
+          </Grid>
+        </motion.div>
       </Container>
     </section>
   );
@@ -57,25 +139,27 @@ const styles = {
     py: [7, null, 9],
     backgroundColor: 'background_secondary',
   },
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 4,
+  grid: {
+    gridGap: ['30px 20px', null, '30px'],
+    gridTemplateColumns: ['repeat(1,1fr)', null, 'repeat(2,1fr)'],
   },
   group: {
-    display: 'flex',
-    flexDirection: ['column', null, 'row'],
-    alignItems: ['flex-start', null, 'center'],
-    gap: [2, null, 4],
+    height: '100%',
+    p: [4, null, 5],
+    backgroundColor: 'white',
+    borderRadius: 12,
+    border: '1px solid',
+    borderColor: 'border_color',
   },
   category: {
-    minWidth: ['100%', null, '220px'],
+    display: 'block',
     fontSize: 2,
     fontWeight: 700,
     color: 'teal',
     textTransform: 'uppercase',
     letterSpacing: '1px',
     fontFamily: 'Ubuntu',
+    mb: 3,
   },
   chips: {
     display: 'flex',
@@ -83,19 +167,41 @@ const styles = {
     gap: 2,
   },
   chip: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
     px: 3,
     py: 2,
-    backgroundColor: 'white',
+    backgroundColor: 'background_secondary',
     border: '1px solid',
     borderColor: 'border_color',
     borderRadius: 30,
     color: 'text',
     fontSize: 1,
+    fontWeight: 500,
     fontFamily: 'Ubuntu',
     transition: 'all 0.25s',
+    cursor: 'default',
     '&:hover': {
       backgroundColor: 'teal',
       borderColor: 'teal',
+      color: 'white',
+      boxShadow: '0 6px 16px rgba(0,139,139,0.35)',
+      svg: {
+        color: 'white',
+      },
+    },
+  },
+  icon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'teal',
+    fontSize: 3,
+    svg: {
+      display: 'block',
+    },
+    '&:hover': {
       color: 'white',
     },
   },
