@@ -21,7 +21,7 @@ export default function ServicesCard2(props) {
 
         {details.features.map((Details) => {
           return (
-            <Grid sx={styles.grid}>
+            <Grid sx={styles.grid} key={Details.title || Details.id}>
               <Box sx={styles.card} key={Details.id}>
                 <Box sx={styles.wrapper}>
                   <Heading sx={styles.wrapper.title}>{Details.title}</Heading>

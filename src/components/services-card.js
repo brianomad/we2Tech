@@ -27,7 +27,7 @@ export default function ServicesCard(props) {
         <TextFeature subTitle={details.subTitle} title={details.title} />
         {details.features.map((Details) => {
           return (
-            <Grid sx={styles.grid}>
+            <Grid sx={styles.grid} key={Details.title || Details.id}>
               <Box sx={styles.card} key={Details.id}>
                 <Box sx={styles.wrapper}>
                   <Heading sx={styles.wrapper.title}>{Details.title}</Heading>

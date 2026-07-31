@@ -1,131 +1,222 @@
 /** @jsx jsx */
-import { jsx, Box, Grid, Container, Image, Heading, Text, Flex } from 'theme-ui';
+import { jsx, Box, Grid, Container, Heading, Text, Flex } from 'theme-ui';
 import { BiPhoneCall, BiMailSend } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
-import { motion } from "framer-motion";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { Link as ScrollLink } from 'react-scroll';
 
-const data = [
+const contact = [
   {
     id: 1,
-    icon: <GoLocation size="40px" sx={{ width: '100%', color: 'white' }} />,
+    icon: <GoLocation size="28px" />,
     title: 'Address',
     text: 'WEST WING 2/F, 822 LAI CHI KO ROAD, CHEUNG SHA WAN, KOWLOON, HONG KONG'
   },
   {
     id: 2,
-    // icon: <BiMailSend size="40px" />,
-    icon: <BiMailSend size="40px" sx={{ width: '100%', color: 'white' }} />,
+    icon: <BiMailSend size="28px" />,
     title: 'Email',
     text: 'enquiry@we2tech.pro'
   },
   {
     id: 3,
-    icon: <BiPhoneCall size="40px" sx={{ width: '100%', color: 'white' }} />,
+    icon: <BiPhoneCall size="28px" />,
     title: 'Telephone Number',
     text: '+852 53968435'
   }
 ];
 
+const quickLinks = [
+  { id: 1, path: 'home', label: 'Home' },
+  { id: 2, path: 'services', label: 'Services' },
+  { id: 3, path: 'howWeWork', label: 'How We Work' },
+  { id: 4, path: 'whyChooseUs', label: 'Why Choose Us' },
+  { id: 5, path: 'contactUs', label: 'Contact Us' },
+];
 
 export default function Footer() {
   return (
     <footer sx={styles.footer}>
-      <Box sx={styles.container}>
-        <Grid sx={styles.grid}>
-          {data.map((item) => (
-            <motion.div className="card" whileHover={{
-              scale: 1.1,
-              transition: {
-                duration: .2
-              }
-            }}>
-              <Box sx={styles.wrapper}>
-                {item.icon}
-                <Text sx={styles.wrapper.title}>{item.title}</Text>
-                <Text sx={styles.wrapper.subTitle}>{item.text}</Text>
-              </Box>
-            </motion.div>
-          ))}
+      <Container sx={styles.container}>
+        <Grid sx={styles.topGrid}>
+          <Box sx={styles.about}>
+            <Heading as="h3" sx={styles.brand}>[ we2Tech Ltd ]</Heading>
+            <Text sx={styles.blurb}>
+              Hong Kong-based development team building mobile apps, websites,
+              UI/UX design and cloud systems that help businesses grow.
+            </Text>
+            <Flex sx={styles.social}>
+              <a href="https://www.instagram.com/we2tech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <FaInstagram />
+              </a>
+              <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <FaWhatsapp />
+              </a>
+            </Flex>
+          </Box>
+
+          <Box sx={styles.links}>
+            <Heading as="h4" sx={styles.heading}>Quick Links</Heading>
+            {quickLinks.map((item) => (
+              <ScrollLink
+                key={item.id}
+                activeClass="active"
+                to={item.path}
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}>
+                {item.label}
+              </ScrollLink>
+            ))}
+          </Box>
+
+          <Box sx={styles.contactBox}>
+            <Heading as="h4" sx={styles.heading}>Contact Us</Heading>
+            {contact.map((item) => (
+              <Flex sx={styles.contactItem} key={item.id}>
+                <Box sx={styles.contactIcon}>{item.icon}</Box>
+                <Box>
+                  <Text sx={styles.contactTitle}>{item.title}</Text>
+                  <Text sx={styles.contactText}>{item.text}</Text>
+                </Box>
+              </Flex>
+            ))}
+          </Box>
         </Grid>
-      </Box>
-      <Container>
-        {/* End of footer widgets area */}
-        <Box sx={styles.footer.footerBottomArea}>
-          <Text sx={styles.title}>[ we2Tech Ltd ]</Text>
-          <Text sx={styles.footer.copyright}>
-            Copyright by {new Date().getFullYear()} we2Tech Ltd.
-          </Text>
-        </Box>
       </Container>
+      <Box sx={styles.bottom}>
+        <Text sx={styles.copyright}>
+          Copyright © {new Date().getFullYear()} we2Tech Ltd. All rights reserved.
+        </Text>
+      </Box>
     </footer>
   );
 }
 
 const styles = {
-  container: {
-    borderTop: '1px solid',
-    borderTopColor: 'border_color',
-    p: [7, null, 6],
+  footer: {
+    backgroundColor: 'teal',
   },
-  grid: {
-    width: ['100%', '80%', '100%'],
-    mx: 'auto',
-    gridGap: [
-      '35px 0',
-      null,
-      '40px 40px',
-      '50px 60px',
-      '30px',
-      '50px 40px',
-      '55px 90px',
-    ],
+  container: {
+    py: [6, null, 7],
+  },
+  topGrid: {
+    gridGap: ['40px 30px', null, '40px'],
     gridTemplateColumns: [
       'repeat(1,1fr)',
-      null,
-      'repeat(2,1fr)',
       null,
       'repeat(3,1fr)',
     ],
   },
-
-  title: {
-    color: 'lightgreen',
-    fontFamily: 'Ubuntu'
-  },
-  footer: {
-    backgroundColor: 'teal',
-    footerBottomArea: {
-      pt: [7, null, 6],
-      pb: ['40px', null, '100px'],
-      textAlign: 'center',
-      flexDirection: 'column',
-    },
-    copyright: {
-      fontSize: [1, '15px'],
-      width: '100%',
-      color: 'white',
-      fontFamily: 'Ubuntu'
-    },
-  },
-  wrapper: {
-    textAlign: 'center',
+  about: {
     display: 'flex',
-    width: '100%',
     flexDirection: 'column',
-    title: {
-      fontSize: 3,
-      lineHeight: 1.4,
-      fontWeight: 700,
-      mb: [2, null, 3],
+    alignItems: ['center', null, 'flex-start'],
+    textAlign: ['center', null, 'left'],
+  },
+  brand: {
+    color: 'white',
+    fontFamily: 'Ubuntu',
+    fontSize: 4,
+    fontWeight: 700,
+    mb: 3,
+  },
+  blurb: {
+    color: 'white',
+    fontSize: 1,
+    lineHeight: 1.9,
+    opacity: 0.9,
+    fontFamily: 'Ubuntu',
+    mb: 4,
+  },
+  social: {
+    gap: 3,
+    a: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: ['40px', null, '44px'],
+      height: ['40px', null, '44px'],
+      borderRadius: '50%',
+      backgroundColor: 'rgba(255,255,255,0.15)',
       color: 'white',
-      fontFamily: 'Ubuntu'
+      fontSize: 4,
+      transition: 'all 0.25s',
+      '&:hover': {
+        backgroundColor: 'cyan',
+        color: 'teal',
+      },
     },
-    subTitle: {
-      fontSize: 2,
-      fontWeight: 400,
-      lineHeight: '1.9',
+  },
+  links: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: ['center', null, 'flex-start'],
+    textAlign: ['center', null, 'left'],
+    a: {
       color: 'white',
-      fontFamily: 'Ubuntu'
+      fontSize: 1,
+      lineHeight: 2.2,
+      cursor: 'pointer',
+      opacity: 0.9,
+      fontFamily: 'Ubuntu',
+      transition: 'all 0.25s',
+      '&:hover': {
+        color: 'cyan',
+        opacity: 1,
+      },
     },
+  },
+  contactBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: ['center', null, 'flex-start'],
+    textAlign: ['center', null, 'left'],
+  },
+  heading: {
+    color: 'white',
+    fontSize: 3,
+    fontWeight: 700,
+    mb: 3,
+    fontFamily: 'Ubuntu',
+  },
+  contactItem: {
+    alignItems: 'flex-start',
+    mb: 3,
+    gap: 3,
+    justifyContent: ['center', null, 'flex-start'],
+  },
+  contactIcon: {
+    color: 'cyan',
+    fontSize: 4,
+    flexShrink: 0,
+    mt: '2px',
+  },
+  contactTitle: {
+    color: 'white',
+    fontSize: 1,
+    fontWeight: 700,
+    fontFamily: 'Ubuntu',
+    mb: 1,
+  },
+  contactText: {
+    color: 'white',
+    fontSize: 1,
+    lineHeight: 1.8,
+    opacity: 0.9,
+    fontFamily: 'Ubuntu',
+  },
+  bottom: {
+    borderTop: '1px solid',
+    borderTopColor: 'rgba(255,255,255,0.2)',
+    py: 4,
+    textAlign: 'center',
+  },
+  copyright: {
+    color: 'white',
+    fontSize: 1,
+    fontFamily: 'Ubuntu',
+    opacity: 0.9,
   },
 };

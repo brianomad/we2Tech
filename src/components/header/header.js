@@ -57,6 +57,14 @@ export default function Header({ className }) {
               <AiFillInstagram size="30px" />
             </a>
           </Flex>
+          <ScrollLink
+            to="contactUs"
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}>
+            <Button variant="primary" sx={styles.cta}>Get a Quote</Button>
+          </ScrollLink>
         </Box>
         <MobileDrawer />
       </header>
@@ -75,7 +83,8 @@ const styles = {
     pl: 4,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: 'teal',
+    boxShadow: '0 1px 2px rgba(0, 0, 0, 0.06)',
     transition: 'all 0.4s ease',
     '&.sticky': {
       '@media screen and (max-width: 1024px)': {
@@ -135,5 +144,12 @@ const styles = {
         color: 'white',
       },
     },
+  },
+  cta: {
+    ml: 3,
+    py: '10px',
+    px: '22px',
+    fontSize: 1,
+    fontFamily: 'Ubuntu',
   },
 };

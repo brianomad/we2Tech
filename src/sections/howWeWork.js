@@ -51,9 +51,9 @@ const data = [
 
 export default function HowWeWorkSection() {
   return (
-    <section sx={{ variant: 'section.services' }} id="howWeWork">
-      <Container sx={styles.container}>
-        <SectionHeader title="How We Work?" />
+    <section sx={{ variant: 'section.services', backgroundColor: 'teal' }} id="howWeWork">
+      <Container>
+        <SectionHeader title="How We Work?" slogan="A transparent, step-by-step process from first idea to live launch." />
         <Box sx={styles.container}>
           <Grid sx={styles.grid}>
             {data.map((item) => (
@@ -77,8 +77,7 @@ const styles = {
   container: {
     textAlign: 'center',
     width: '100%',
-    backgroundColor: 'teal',
-    p: 20
+    py: [6, null, 8],
   },
   grid: {
     width: ['100%', '80%', '100%'],

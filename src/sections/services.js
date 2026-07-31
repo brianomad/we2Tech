@@ -108,9 +108,9 @@ export default function Services() {
       <Container sx={styles.containerBox}>
         {details.map((Details, index) => (
           index % 2 === 1 ? (
-            <ServicesCard2 details={Details} />
+            <ServicesCard2 details={Details} key={Details.title} />
           ) : (
-            <ServicesCard details={Details} />
+            <ServicesCard details={Details} key={Details.title} />
           )
         ))}
         {/* <ServicesCardRow /> */}
