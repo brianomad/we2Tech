@@ -60,7 +60,7 @@ const MobileDrawer = () => {
       }
       open={state.isOpen}
       toggleHandler={toggleHandler}
-      closeButton={<IoMdClose size="24px" color="#000000" />}
+      closeButton={<IoMdClose size="24px" color="#FFFFFF" />}
       drawerStyle={styles.drawer}
       closeBtnStyle={styles.close}>
       <Scrollbars autoHide>
@@ -75,6 +75,18 @@ const MobileDrawer = () => {
           </Box>
 
           <Box sx={styles.menuFooter}>
+            {isHome ? (
+              <ScrollLink
+                to="contactUs"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}>
+                <Box as="span" sx={styles.button}>Get a Quote</Box>
+              </ScrollLink>
+            ) : (
+              <a href="/#contactUs" sx={styles.button}>Get a Quote</a>
+            )}
             <Box sx={styles.social}>
               {social.map(({ path, icon }, i) => (
                 <Box as="span" key={i} sx={styles.social.icon}>
@@ -139,7 +151,7 @@ const styles = {
       color: 'white',
       py: '15px',
       cursor: 'pointer',
-      borderBottom: '1px solid #e8e5e5',
+      borderBottom: '1px solid rgba(255,255,255,0.15)',
       transition: 'all 0.25s',
       '&:hover': {
         color: 'cyan',
@@ -183,17 +195,24 @@ const styles = {
   },
 
   button: {
-    color: 'white',
-    fontSize: '14px',
-    fw: '700',
-    height: '45px',
-    borderRadius: '5px',
+    color: 'teal',
+    fontSize: '15px',
+    fontWeight: '700',
+    backgroundColor: 'white',
+    borderRadius: '45px',
     cursor: 'pointer',
     width: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    py: '0'
+    py: '14px',
+    mb: '25px',
+    fontFamily: 'Ubuntu',
+    transition: 'all 0.25s',
+    '&:hover': {
+      backgroundColor: 'cyan',
+      color: 'teal',
+    },
   },
 };
 

@@ -161,7 +161,7 @@ const ContactUs: NextPage = () => {
                 </Box>
                 <Box sx={styles.contactRow}>
                   <FaEnvelope />
-                  <a href="mailto:enquiry@we-2-tech.com">enquiry@we-2-tech.com</a>
+                  <a href="mailto:enquiry@we2tech.pro">enquiry@we2tech.pro</a>
                 </Box>
               </Box>
               <Box sx={styles.stepsCard}>
@@ -281,7 +281,7 @@ export default ContactUs
 const styles = {
   section: {
     py: [7, null, 9],
-    backgroundColor: 'white',
+    backgroundColor: 'background_secondary',
   },
   container: {
     display: 'grid',
@@ -297,7 +297,7 @@ const styles = {
   },
   infoCard: {
     p: [4, null, 5],
-    backgroundColor: 'background_secondary',
+    backgroundColor: 'white',
     borderRadius: 10,
     border: '1px solid',
     borderColor: 'border_color',
@@ -391,7 +391,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     p: [4, null, 5],
-    backgroundColor: 'background_secondary',
+    backgroundColor: 'white',
     borderRadius: 10,
     border: '1px solid',
     borderColor: 'border_color',
@@ -523,7 +523,7 @@ const styles = {
   },
   useCase: {
     p: [3, null, 4],
-    backgroundColor: 'background_secondary',
+    backgroundColor: 'white',
     borderRadius: 10,
     border: '1px solid',
     borderColor: 'border_color',
@@ -539,7 +539,7 @@ const styles = {
   faq: {
     p: [4, null, 5],
     mb: 3,
-    backgroundColor: 'background_secondary',
+    backgroundColor: 'white',
     borderRadius: 10,
     border: '1px solid',
     borderColor: 'border_color',

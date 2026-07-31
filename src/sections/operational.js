@@ -46,7 +46,7 @@ export default function Operational() {
     <section id="operational" sx={styles.section}>
       <Container>
         <SectionHeader
-          eyebrow="Operational Systems"
+          eyebrow="01 · Operational Systems"
           title="Software only matters when your business can rely on it"
           slogan="Great apps do more than look good. They connect people, workflows and customers so your daily operations move with less manual follow-up."
           icColor={true} />

@@ -37,8 +37,8 @@ export default {
     '1620px',
   ],
   fonts: {
-    body: "'DM Sans', sans-serif",
-    heading: "'DM Sans', sans-serif",
+    body: "'Ubuntu', sans-serif",
+    heading: "'Ubuntu', sans-serif",
   },
   fontSizes: [12, 15, 16, 18, 20, 22, 24, 28, 32, 36, 42, 48, 52, 64],
   fontWeights: {
@@ -184,7 +184,7 @@ export default {
     },
     lead: {
       fontSize: 40,
-      fontFamily: 'DM Sans',
+      fontFamily: 'heading',
       fontWeight: '500',
       lineHeight: '60px',
       letterSpacing: '-1.5px',
@@ -363,6 +363,44 @@ export default {
       lineHeight: 'body',
       fontWeight: 'body',
       fontSmoothing: 'antialiased',
+      // Smooth in-page anchors (react-scroll already smooths, this helps plain links)
+      html: {
+        scrollBehavior: 'smooth',
+      },
+      // Keep headings on the heading font family
+      'h1, h2, h3, h4, h5, h6': {
+        fontFamily: 'heading',
+      },
+      // Brand-aware text selection
+      '::selection': {
+        backgroundColor: 'primary',
+        color: 'white',
+      },
+      // Refined scrollbar
+      '::-webkit-scrollbar': {
+        width: '10px',
+        height: '10px',
+      },
+      '::-webkit-scrollbar-track': {
+        backgroundColor: '#F1F5F9',
+      },
+      '::-webkit-scrollbar-thumb': {
+        backgroundColor: 'primary',
+        borderRadius: '10px',
+        '&:hover': {
+          backgroundColor: 'secondary',
+        },
+      },
+      // Visible keyboard focus for accessibility
+      ':focus-visible': {
+        outline: '2px solid',
+        outlineColor: 'primary',
+        outlineOffset: '2px',
+      },
+      // Prevent horizontal scroll bleed from decorative elements
+      body: {
+        overflowX: 'hidden',
+      },
       // Modal Global Style
       '.modal-video-close-btn': {
         cursor: 'pointer',

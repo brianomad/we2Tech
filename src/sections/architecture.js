@@ -34,7 +34,7 @@ export default function Architecture() {
     <section id="architecture" sx={styles.section}>
       <Container>
         <SectionHeader
-          eyebrow="Architecture & Integration"
+          eyebrow="02 · Architecture & Integration"
           title="Connect the parts that keep your business running"
           slogan="We design and improve the technical layer behind your daily operations — backend systems, cloud infrastructure, databases, APIs and internal tools."
           icColor={true} />

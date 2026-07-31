@@ -20,10 +20,10 @@ export function ServiceHero({ eyebrow, title, slogan }) {
           <Text as="p" sx={styles.heroSlogan}>{slogan}</Text>
           <Box sx={styles.heroButtons}>
             <ScrollLink to="contactUs" spy={true} smooth={true} offset={-70} duration={500}>
-              <Button variant="whiteButton" sx={styles.heroBtnPrimary}>Book a Consultation</Button>
+              <Button variant="primary" sx={styles.heroBtnPrimary}>Book a Consultation</Button>
             </ScrollLink>
             <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer">
-              <Button variant="textButton" sx={styles.heroBtnOutline}>
+              <Button variant="secondary" sx={styles.heroBtnOutline}>
                 <FaWhatsapp /> Chat on WhatsApp
               </Button>
             </a>
@@ -255,38 +255,72 @@ export function ServiceCTA({ title, text }) {
 
 const styles = {
   hero: {
+    position: 'relative',
     pt: [120, null, 140, 160],
-    pb: [7, null, 9],
-    backgroundColor: 'teal',
+    pb: [40, null, 60],
+    overflow: 'hidden',
+    backgroundColor: 'white',
     backgroundImage:
-      'radial-gradient(circle at 15% 20%, rgba(0,255,255,0.15), transparent 50%), radial-gradient(circle at 85% 80%, rgba(0,255,255,0.15), transparent 50%)',
+      'linear-gradient(180deg, rgba(0,139,139,0.07) 0%, rgba(255,255,255,0) 55%)',
+    '::before, ::after': {
+      content: '""',
+      position: 'absolute',
+      borderRadius: '50%',
+      filter: 'blur(90px)',
+      pointerEvents: 'none',
+    },
+    '::before': {
+      width: ['260px', null, '420px'],
+      height: ['260px', null, '420px'],
+      top: ['60px', null, '80px'],
+      left: '-160px',
+      backgroundColor: 'rgba(0,139,139,0.10)',
+    },
+    '::after': {
+      width: ['220px', null, '360px'],
+      height: ['220px', null, '360px'],
+      top: ['180px', null, '240px'],
+      right: '-140px',
+      backgroundColor: 'rgba(0,255,255,0.08)',
+    },
   },
   heroContainer: {
+    position: 'relative',
+    zIndex: 1,
     textAlign: 'center',
     maxWidth: ['100%', null, null, '820px'],
   },
   heroEyebrow: {
-    color: 'cyan',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 2,
+    color: 'secondary',
     textTransform: 'uppercase',
     letterSpacing: '2px',
-    fontSize: 0,
     fontWeight: 'bold',
-    fontFamily: 'Ubuntu',
+    fontSize: [1, null, 2],
     mb: 3,
+    py: 2,
+    px: 3,
+    backgroundColor: 'rgba(0,139,139,0.08)',
+    border: '1px solid rgba(0,139,139,0.18)',
+    borderRadius: '30px',
+    fontFamily: 'Ubuntu',
   },
   heroTitle: {
-    color: 'white',
-    fontSize: ['28px', null, '38px', '46px'],
+    color: 'heading',
+    fontSize: ['30px', '38px', '44px', '48px', '56px'],
     lineHeight: 1.25,
     fontWeight: 700,
+    letterSpacing: '-1px',
     mb: 4,
     fontFamily: 'Ubuntu',
   },
   heroSlogan: {
-    color: 'white',
-    fontSize: [1, null, 2],
+    color: 'text',
+    fontSize: [2, null, 3],
     lineHeight: 1.9,
-    mb: 6,
+    mb: 5,
     maxWidth: '640px',
     mx: 'auto',
     fontFamily: 'Ubuntu',
@@ -307,14 +341,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     gap: 2,
-    border: '2px solid',
-    borderColor: 'white',
-    color: 'white',
-    backgroundColor: 'transparent',
-    '&:hover': {
-      backgroundColor: 'white',
-      color: 'teal',
-    },
+    fontFamily: 'Ubuntu',
   },
   section: {
     py: [7, null, 9],

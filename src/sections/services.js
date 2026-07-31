@@ -14,6 +14,7 @@ import maintenance from 'assets/we2Tech/maintenance.png';
 
 import ServicesCard from '../components/services-card';
 import ServicesCard2 from '../components/services-card2';
+import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
 
 const details = [
@@ -110,8 +111,13 @@ const details = [
 export default function Services() {
 
   return (
-    <section sx={{ variant: 'section.services' }} id="services">
+    <section sx={{ variant: 'section.services', pt: [7, null, 9], backgroundColor: 'background_secondary' }} id="services">
       <Container sx={styles.containerBox}>
+        <SectionHeader
+          eyebrow="Our Solutions"
+          title="What we build for your business"
+          slogan="From first idea to launch and beyond — mobile apps, websites, UI/UX, cloud deployment and long-term support."
+          icColor={true} />
         {details.map((Details, index) => (
           <Reveal
             key={Details.title}
@@ -148,7 +154,12 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white'
+    '> div': {
+      mb: [6, null, 8],
+      '&:last-child': {
+        mb: 0,
+      },
+    },
   },
   shapeBox: {
     position: 'absolute',

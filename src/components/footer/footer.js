@@ -35,6 +35,14 @@ const quickLinks = [
   { id: 5, path: 'contactUs', label: 'Contact Us' },
 ];
 
+const serviceLinks = [
+  { id: 1, path: '/services/mobile-app-development', label: 'Mobile App Development' },
+  { id: 2, path: '/services/web-app-development', label: 'Web App Development' },
+  { id: 3, path: '/services/ui-ux-design', label: 'UI/UX Design' },
+  { id: 4, path: '/services/server-deployment', label: 'Server Deployment' },
+  { id: 5, path: '/services/maintenance-support', label: 'Maintenance & Support' },
+];
+
 export default function Footer() {
   const router = useRouter();
   const isHome = router.pathname === '/';
@@ -77,6 +85,13 @@ export default function Footer() {
           </Box>
 
           <Box sx={styles.links}>
+            <Heading as="h4" sx={styles.heading}>Services</Heading>
+            {serviceLinks.map((item) => (
+              <a key={item.id} href={item.path}>{item.label}</a>
+            ))}
+          </Box>
+
+          <Box sx={styles.links}>
             <Heading as="h4" sx={styles.heading}>Quick Links</Heading>
             {quickLinks.map((item) => renderQuickLink(item))}
           </Box>
@@ -116,7 +131,8 @@ const styles = {
     gridTemplateColumns: [
       'repeat(1,1fr)',
       null,
-      'repeat(3,1fr)',
+      'repeat(2,1fr)',
+      'repeat(4,1fr)',
     ],
   },
   about: {

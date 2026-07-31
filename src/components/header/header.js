@@ -85,7 +85,8 @@ export default function Header({ className }) {
         <a href="/">
           <Image
             src={Logo}
-            width={'100'} />
+            alt="we2Tech"
+            sx={styles.logo} />
         </a>
         <Box sx={styles.contextContainer}>
           <Flex as="nav" sx={styles.nav}>
@@ -115,41 +116,63 @@ const styles = {
     left: 0,
     display: 'flex',
     pl: 4,
+    pr: 4,
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'teal',
-    boxShadow: '0 1px 2px rgba(0, 0, 0, 0.06)',
+    py: ['12px', null, '15px'],
+    borderBottom: '1px solid rgba(255,255,255,0.12)',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
     transition: 'all 0.4s ease',
     '&.sticky': {
-      '@media screen and (max-width: 1024px)': {
-        display: 'none',
-      },
       backgroundColor: 'teal',
-      py: '15px',
-      boxShadow: '0 1px 2px rgba(0, 0, 0, 0.06)',
+      py: '12px',
+      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
     },
+  },
+  logo: {
+    height: ['36px', null, '42px'],
+    width: 'auto',
+    display: 'block',
   },
   contextContainer: {
     display: 'flex',
-    '@media screen and (max-width: 1024px)': {
+    '@media screen and (max-width: 1000px)': {
       display: 'none',
     },
   },
   nav: {
     alignItems: 'center',
     a: {
+      position: 'relative',
       fontSize: 1,
       fontWeight: 'bold',
       color: 'white',
       px: 5,
+      py: 2,
       cursor: 'pointer',
       lineHeight: '1.2',
-      transition: 'all 0.15s',
+      transition: 'color 0.25s',
       textDecoration: 'none',
       fontFamily: 'Ubuntu',
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        left: 5,
+        right: 5,
+        bottom: '2px',
+        height: '2px',
+        backgroundColor: 'cyan',
+        transform: 'scaleX(0)',
+        transformOrigin: 'left',
+        transition: 'transform 0.25s ease',
+      },
       '&:hover, &.active': {
         color: 'cyan',
-      }
+      },
+      '&:hover::after, &.active::after': {
+        transform: 'scaleX(1)',
+      },
     },
   },
   dropdownWrap: {
@@ -207,17 +230,16 @@ const styles = {
   instagram: {
     alignItems: 'center',
     a: {
-      color: 'cyan',
+      color: 'white',
       px: 5,
       cursor: 'pointer',
       lineHeight: '1.2',
-      transition: 'all 0.15s',
+      transition: 'color 0.25s',
+      display: 'flex',
+      alignItems: 'center',
       fontFamily: 'Ubuntu',
-      '&:hover': {
-        color: 'white'
-      },
-      '&.active': {
-        color: 'white',
+      '&:hover, &.active': {
+        color: 'cyan',
       },
     },
   },

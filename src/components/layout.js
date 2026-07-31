@@ -6,8 +6,6 @@ import Sticky from 'react-stickynode';
 import { useStickyState } from 'contexts/app/app.provider';
 import { useStickyDispatch } from 'contexts/app/app.provider';
 import { WhatsAppWidget } from 'react-whatsapp-widget';
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from 'react-intersection-observer';
 
 import Header from './header/header';
 import Footer from './footer/footer';
@@ -17,9 +15,6 @@ export default function Layout({ children }) {
   const isSticky = useStickyState('isSticky');
   const [showWhatsApp, setShowWhatsApp] = useState(false);
   
-  const control = useAnimation()
-  const [ref, inView] = useInView()
-
   const setSticky = useCallback(() => dispatch({ type: 'SET_STICKY' }), [
     dispatch,
   ]);
@@ -34,14 +29,6 @@ export default function Layout({ children }) {
       removeSticky();
     }
   };
-
-  useEffect(() => {
-    if (inView) {
-      control.start("visible");
-    } else {
-      control.start("hidden");
-    };
-  }, [control, inView]);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowWhatsApp(true), 5000);
@@ -59,19 +46,14 @@ export default function Layout({ children }) {
       <Waypoint
         onEnter={removeSticky}
         onPositionChange={onWaypointPositionChange} />
-      <motion.main
+      <main
         id="content"
-        overflow={'hidden'} 
         sx={{
           variant: 'layout.main',
-          position: 'relative'
-        }}
-        ref={ref}
-        initial="hidden"
-        animate={control}
-        >
+          position: 'relative',
+        }}>
           {children}
-      </motion.main>
+      </main>
       {showWhatsApp && (
         <WhatsAppWidget
           phoneNumber="+85253968435"

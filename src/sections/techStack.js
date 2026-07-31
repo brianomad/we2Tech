@@ -131,7 +131,7 @@ export default function TechStack() {
 const styles = {
   section: {
     py: [7, null, 9],
-    backgroundColor: 'background_secondary',
+    backgroundColor: 'white',
   },
   grid: {
     gridGap: ['30px 20px', null, '30px'],
@@ -140,7 +140,7 @@ const styles = {
   group: {
     height: '100%',
     p: [4, null, 5],
-    backgroundColor: 'white',
+    backgroundColor: 'background_secondary',
     borderRadius: 12,
     border: '1px solid',
     borderColor: 'border_color',
@@ -166,7 +166,7 @@ const styles = {
     gap: 2,
     px: 3,
     py: 2,
-    backgroundColor: 'background_secondary',
+    backgroundColor: 'white',
     border: '1px solid',
     borderColor: 'border_color',
     borderRadius: 30,

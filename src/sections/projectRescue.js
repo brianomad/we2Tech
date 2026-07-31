@@ -38,9 +38,10 @@ export default function ProjectRescue() {
     <section id="rescue" sx={styles.section}>
       <Container>
         <SectionHeader
-          eyebrow="Improve Stuck Systems"
+          eyebrow="03 · Improve stuck systems"
           title="Turn unclear systems into workable platforms"
-          slogan="Projects slow down when scope, code quality or ownership become unclear. We help stabilise the system and move delivery back into practical milestones." />
+          slogan="Projects slow down when scope, code quality or ownership become unclear. We help stabilise the system and move delivery back into practical milestones."
+          icColor={true} />
         <Grid sx={styles.grid}>
           {data.map((item) => (
             <Reveal key={item.id} delay={(item.id - 1) * 0.1}>
@@ -59,7 +60,7 @@ export default function ProjectRescue() {
         <Reveal delay={0.2}>
           <Box sx={styles.ctaWrap}>
             <ScrollLink to="contactUs" spy={true} smooth={true} offset={-70} duration={500}>
-              <Button variant="whiteButton" aria-label="Book a Consultation">
+              <Button variant="primary" aria-label="Book a Consultation">
                 Book a Consultation
               </Button>
             </ScrollLink>
@@ -73,7 +74,7 @@ export default function ProjectRescue() {
 const styles = {
   section: {
     py: [7, null, 9],
-    backgroundColor: 'teal',
+    backgroundColor: 'background_secondary',
   },
   grid: {
     gridGap: ['30px 20px', null, '30px'],
@@ -92,11 +93,13 @@ const styles = {
     textAlign: 'center',
     p: [4, null, 5],
     height: '100%',
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'white',
     borderRadius: 10,
+    border: '1px solid',
+    borderColor: 'border_color',
     transition: 'all 0.3s',
     '&:hover': {
-      backgroundColor: 'rgba(255,255,255,0.16)',
+      boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
     },
   },
   icon: {
@@ -106,8 +109,8 @@ const styles = {
     width: ['60px', null, '70px'],
     height: ['60px', null, '70px'],
     borderRadius: '50%',
-    backgroundColor: 'cyan',
-    color: 'heading',
+    backgroundColor: 'teal',
+    color: 'white',
     fontSize: ['26px', null, '30px'],
     mb: 4,
     svg: {
@@ -117,14 +120,14 @@ const styles = {
   title: {
     fontSize: [3, null, 4],
     fontWeight: 700,
-    color: 'white',
+    color: 'heading',
     mb: 3,
     fontFamily: 'Ubuntu',
   },
   text: {
     fontSize: 1,
     lineHeight: 1.9,
-    color: 'white',
+    color: 'text',
     fontFamily: 'Ubuntu',
   },
   ctaWrap: {
