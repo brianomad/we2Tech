@@ -14,6 +14,7 @@ import maintenance from 'assets/we2Tech/maintenance.png';
 
 import ServicesCard from '../components/services-card';
 import ServicesCard2 from '../components/services-card2';
+import Reveal from '../components/reveal';
 
 const details = [
   {
@@ -107,11 +108,16 @@ export default function Services() {
     <section sx={{ variant: 'section.services' }} id="services">
       <Container sx={styles.containerBox}>
         {details.map((Details, index) => (
-          index % 2 === 1 ? (
-            <ServicesCard2 details={Details} key={Details.title} />
-          ) : (
-            <ServicesCard details={Details} key={Details.title} />
-          )
+          <Reveal
+            key={Details.title}
+            direction={index % 2 === 1 ? 'right' : 'left'}
+            delay={(index % 2) * 0.1}>
+            {index % 2 === 1 ? (
+              <ServicesCard2 details={Details} />
+            ) : (
+              <ServicesCard details={Details} />
+            )}
+          </Reveal>
         ))}
         {/* <ServicesCardRow /> */}
       </Container>

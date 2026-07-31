@@ -1,7 +1,9 @@
 /** @jsx jsx */
 import { jsx, Container, Box, Text } from 'theme-ui';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '../components/section-header';
+import Reveal from '../components/reveal';
 import { IoIosArrowDown } from 'react-icons/io';
 
 const data = [
@@ -48,26 +50,38 @@ export default function FAQ() {
           slogan="Answers to the questions we hear most often"
           icColor={true} />
         <Box sx={styles.wrapper}>
-          {data.map((item) => (
-            <Box sx={styles.item} key={item.id}>
-              <Box
-                sx={styles.questionRow}
-                onClick={() => setOpen(open === item.id ? null : item.id)}
-                role="button"
-                aria-expanded={open === item.id}>
-                <Text sx={styles.question}>{item.question}</Text>
+          {data.map((item, index) => (
+            <Reveal key={item.id} delay={index * 0.06}>
+              <Box sx={styles.item}>
                 <Box
-                  sx={{
-                    ...styles.arrow,
-                    ...(open === item.id ? styles.arrowOpen : {}),
-                  }}>
-                  <IoIosArrowDown />
+                  sx={styles.questionRow}
+                  onClick={() => setOpen(open === item.id ? null : item.id)}
+                  role="button"
+                  aria-expanded={open === item.id}>
+                  <Text sx={styles.question}>{item.question}</Text>
+                  <Box
+                    sx={{
+                      ...styles.arrow,
+                      ...(open === item.id ? styles.arrowOpen : {}),
+                    }}>
+                    <IoIosArrowDown />
+                  </Box>
                 </Box>
+                <AnimatePresence initial={false}>
+                  {open === item.id && (
+                    <motion.div
+                      key="answer"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
+                      style={{ overflow: 'hidden' }}>
+                      <Text sx={styles.answer}>{item.answer}</Text>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </Box>
-              {open === item.id && (
-                <Text sx={styles.answer}>{item.answer}</Text>
-              )}
-            </Box>
+            </Reveal>
           ))}
         </Box>
       </Container>

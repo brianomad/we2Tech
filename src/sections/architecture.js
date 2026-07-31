@@ -3,63 +3,44 @@ import { jsx, Container, Grid, Box, Text } from 'theme-ui';
 import { motion } from 'framer-motion';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
-import {
-  FaMapMarkerAlt,
-  FaRocket,
-  FaHandshake,
-  FaHeadset,
-  FaCode,
-} from 'react-icons/fa';
+import { FaProjectDiagram, FaPlug, FaSyncAlt } from 'react-icons/fa';
 
 const data = [
   {
     id: 1,
-    icon: <FaMapMarkerAlt />,
-    title: 'Hong Kong Team',
+    icon: <FaProjectDiagram />,
+    title: 'Architecture',
     text:
-      'Local context, direct communication and face-to-face collaboration throughout your project.',
+      'Plan the system structure, data flow, access control and technical foundation before features pile up.',
   },
   {
     id: 2,
-    icon: <FaRocket />,
-    title: 'On-Time Delivery',
+    icon: <FaPlug />,
+    title: 'Integration',
     text:
-      'Clear milestones and effective project management so your application launches on schedule.',
+      'Connect platforms, payments, messaging and operational tools so information flows without manual work.',
   },
   {
     id: 3,
-    icon: <FaHandshake />,
-    title: 'Transparent Pricing',
+    icon: <FaSyncAlt />,
+    title: 'Improvement',
     text:
-      'Clear quotes and honest advice. No hidden costs — you always know what you are paying for.',
-  },
-  {
-    id: 4,
-    icon: <FaHeadset />,
-    title: 'Post-Launch Support',
-    text:
-      'We host, maintain and troubleshoot your application long after launch — even upgrade it for you.',
-  },
-  {
-    id: 5,
-    icon: <FaCode />,
-    title: 'Modern Tech Stack',
-    text:
-      'React Native, Flutter, Next.js and more — we build with proven, scalable technology.',
+      'Modernise weak points and legacy bottlenecks without rebuilding more than necessary.',
   },
 ];
 
-export default function WhyChooseUs() {
+export default function Architecture() {
   return (
-    <section id="whyChooseUs" sx={styles.section}>
+    <section id="architecture" sx={styles.section}>
       <Container>
         <SectionHeader
-          title="Why Choose We2Tech?"
-          slogan="A technology partner who cares about your business goals"
+          eyebrow="Architecture & Integration"
+          title="Connect the parts that keep your business running"
+          slogan="We design and improve the technical layer behind your daily operations — backend systems, cloud infrastructure, databases, APIs and internal tools."
           icColor={true} />
         <Grid sx={styles.grid}>
           {data.map((item) => (
-            <Reveal key={item.id} delay={(item.id - 1) * 0.08}>
+            <Reveal key={item.id} delay={(item.id - 1) * 0.1}>
               <motion.div
                 className="card"
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}>
@@ -90,12 +71,13 @@ const styles = {
       null,
       'repeat(3,1fr)',
     ],
+    mt: [5, null, 7],
   },
   card: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
+    alignItems: 'flex-start',
+    textAlign: 'left',
     p: [4, null, 5],
     height: '100%',
     backgroundColor: 'background_secondary',

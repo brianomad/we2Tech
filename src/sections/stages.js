@@ -3,68 +3,55 @@ import { jsx, Container, Grid, Box, Text } from 'theme-ui';
 import { motion } from 'framer-motion';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
-import {
-  FaMapMarkerAlt,
-  FaRocket,
-  FaHandshake,
-  FaHeadset,
-  FaCode,
-} from 'react-icons/fa';
 
 const data = [
   {
     id: 1,
-    icon: <FaMapMarkerAlt />,
-    title: 'Hong Kong Team',
+    number: '01',
+    title: 'New Project Planning',
     text:
-      'Local context, direct communication and face-to-face collaboration throughout your project.',
+      'We help you articulate your requirements, define scope and choose the right approach before a single line of code is written.',
   },
   {
     id: 2,
-    icon: <FaRocket />,
-    title: 'On-Time Delivery',
+    number: '02',
+    title: 'Design & Development',
     text:
-      'Clear milestones and effective project management so your application launches on schedule.',
+      'We design the UI/UX and build the application with clear milestones, regular demos and visible progress.',
   },
   {
     id: 3,
-    icon: <FaHandshake />,
-    title: 'Transparent Pricing',
+    number: '03',
+    title: 'Launch & Rollout',
     text:
-      'Clear quotes and honest advice. No hidden costs — you always know what you are paying for.',
+      'We deploy to production, configure hosting and make sure everything runs smoothly on day one.',
   },
   {
     id: 4,
-    icon: <FaHeadset />,
-    title: 'Post-Launch Support',
+    number: '04',
+    title: 'Ongoing Improvement',
     text:
-      'We host, maintain and troubleshoot your application long after launch — even upgrade it for you.',
-  },
-  {
-    id: 5,
-    icon: <FaCode />,
-    title: 'Modern Tech Stack',
-    text:
-      'React Native, Flutter, Next.js and more — we build with proven, scalable technology.',
+      'We monitor, maintain and upgrade your application as your business grows.',
   },
 ];
 
-export default function WhyChooseUs() {
+export default function Stages() {
   return (
-    <section id="whyChooseUs" sx={styles.section}>
+    <section id="stages" sx={styles.section}>
       <Container>
         <SectionHeader
-          title="Why Choose We2Tech?"
-          slogan="A technology partner who cares about your business goals"
+          eyebrow="Your Technology Partner"
+          title="Support for every stage of your project"
+          slogan="We review your needs, budget and roadmap before shaping a practical plan."
           icColor={true} />
         <Grid sx={styles.grid}>
           {data.map((item) => (
-            <Reveal key={item.id} delay={(item.id - 1) * 0.08}>
+            <Reveal key={item.id} delay={(item.id - 1) * 0.1}>
               <motion.div
                 className="card"
                 whileHover={{ y: -6, transition: { duration: 0.2 } }}>
                 <Box sx={styles.card}>
-                  <Box sx={styles.icon}>{item.icon}</Box>
+                  <Text as="span" sx={styles.number}>{item.number}</Text>
                   <Text sx={styles.title}>{item.title}</Text>
                   <Text sx={styles.text}>{item.text}</Text>
                 </Box>
@@ -88,14 +75,15 @@ const styles = {
       'repeat(1,1fr)',
       'repeat(2,1fr)',
       null,
-      'repeat(3,1fr)',
+      'repeat(4,1fr)',
     ],
+    mt: [5, null, 7],
   },
   card: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
+    alignItems: 'flex-start',
+    textAlign: 'left',
     p: [4, null, 5],
     height: '100%',
     backgroundColor: 'background_secondary',
@@ -107,20 +95,13 @@ const styles = {
       boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
     },
   },
-  icon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: ['60px', null, '70px'],
-    height: ['60px', null, '70px'],
-    borderRadius: '50%',
-    backgroundColor: 'teal',
-    color: 'white',
-    fontSize: ['26px', null, '30px'],
-    mb: 4,
-    svg: {
-      display: 'block',
-    },
+  number: {
+    fontSize: 7,
+    fontWeight: 700,
+    color: 'teal',
+    lineHeight: 1,
+    mb: 3,
+    fontFamily: 'Ubuntu',
   },
   title: {
     fontSize: [3, null, 4],

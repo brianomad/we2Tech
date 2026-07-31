@@ -12,6 +12,14 @@ export default [
     label: 'PROCESS',
   },
   {
+    path: 'whyChooseUs',
+    label: 'WHY US',
+  },
+  {
+    path: 'faq',
+    label: 'FAQ',
+  },
+  {
     path: 'contactUs',
     label: 'CONTACT',
   }

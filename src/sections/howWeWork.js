@@ -3,6 +3,7 @@ import { jsx } from 'theme-ui';
 import { Container, Grid, Box } from 'theme-ui';
 import SectionHeader from '../components/section-header';
 import FeatureCardColumn from 'components/feature-card-column.js';
+import Reveal from '../components/reveal';
 
 import stepOne from 'assets/we2Tech/stepOne.png';
 import stepTwo from 'assets/we2Tech/stepTwo.png';
@@ -57,14 +58,15 @@ export default function HowWeWorkSection() {
         <Box sx={styles.container}>
           <Grid sx={styles.grid}>
             {data.map((item) => (
-              <FeatureCardColumn
-                key={item.id}
-                src={item.imgSrc}
-                step={item.step}
-                alt={item.altText}
-                title={item.title}
-                text={item.text}
-                imgSrc={item.imgSrc} />
+              <Reveal key={item.id} delay={item.id * 0.12}>
+                <FeatureCardColumn
+                  src={item.imgSrc}
+                  step={item.step}
+                  alt={item.altText}
+                  title={item.title}
+                  text={item.text}
+                  imgSrc={item.imgSrc} />
+              </Reveal>
             ))}
           </Grid>
         </Box>

@@ -1,12 +1,14 @@
 /** @jsx jsx */
 import { jsx, Container, Grid, Box, Text } from 'theme-ui';
 import { motion } from 'framer-motion';
+import Reveal from '../components/reveal';
+import CountUp from '../components/count-up';
 
 const data = [
-  { id: 1, number: '10+', label: 'Years Combined Experience' },
-  { id: 2, number: '50+', label: 'Projects Delivered' },
-  { id: 3, number: '100%', label: 'Client Satisfaction' },
-  { id: 4, number: '24/7', label: 'Post-Launch Support' },
+  { id: 1, value: 10, suffix: '+', label: 'Years Combined Experience' },
+  { id: 2, value: 50, suffix: '+', label: 'Projects Delivered' },
+  { id: 3, value: 100, suffix: '%', label: 'Client Satisfaction' },
+  { id: 4, value: 24, suffix: '/7', label: 'Post-Launch Support' },
 ];
 
 export default function Stats() {
@@ -14,16 +16,19 @@ export default function Stats() {
     <section id="stats" sx={styles.section}>
       <Container>
         <Grid sx={styles.grid}>
-          {data.map((item) => (
-            <motion.div
-              key={item.id}
-              className="card"
-              whileHover={{ scale: 1.08, transition: { duration: 0.2 } }}>
-              <Box sx={styles.card}>
-                <Text sx={styles.number}>{item.number}</Text>
-                <Text sx={styles.label}>{item.label}</Text>
-              </Box>
-            </motion.div>
+          {data.map((item, index) => (
+            <Reveal key={item.id} delay={index * 0.1}>
+              <motion.div
+                className="card"
+                whileHover={{ scale: 1.08, y: -4, transition: { duration: 0.2 } }}>
+                <Box sx={styles.card}>
+                  <Text sx={styles.number}>
+                    <CountUp end={item.value} suffix={item.suffix} />
+                  </Text>
+                  <Text sx={styles.label}>{item.label}</Text>
+                </Box>
+              </motion.div>
+            </Reveal>
           ))}
         </Grid>
       </Container>
@@ -54,7 +59,7 @@ const styles = {
   },
   number: {
     color: 'teal',
-    fontSize: ['36px', null, '44px', '52px'],
+    fontSize: ['32px', null, '40px', '48px'],
     fontWeight: 700,
     lineHeight: 1.2,
     mb: 2,

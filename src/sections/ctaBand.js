@@ -1,17 +1,13 @@
 /** @jsx jsx */
 import { jsx, Container, Box, Heading, Text, Button } from 'theme-ui';
 import { Link as ScrollLink } from 'react-scroll';
-import { motion } from 'framer-motion';
+import Reveal from '../components/reveal';
 
 export default function CTABand() {
   return (
     <section id="cta" sx={styles.section}>
       <Container>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}>
+        <Reveal>
           <Box sx={styles.card}>
             <Heading as="h2" sx={styles.title}>
               Have a project in mind? Let&apos;s build it together.
@@ -35,7 +31,7 @@ export default function CTABand() {
               </ScrollLink>
             </Box>
           </Box>
-        </motion.div>
+        </Reveal>
       </Container>
     </section>
   );

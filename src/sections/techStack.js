@@ -2,6 +2,7 @@
 import { jsx, Container, Grid, Box, Text } from 'theme-ui';
 import { motion } from 'framer-motion';
 import SectionHeader from '../components/section-header';
+import Reveal from '../components/reveal';
 import {
   SiReact,
   SiFlutter,
@@ -100,35 +101,28 @@ export default function TechStack() {
           title="Technologies We Work With"
           slogan="Modern, proven tools to build reliable products"
           icColor={true} />
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}>
-          <Grid sx={styles.grid}>
-            {groups.map((group) => (
-              <motion.div key={group.id} variants={itemVariants}>
-                <Box sx={styles.group}>
-                  <Text sx={styles.category}>{group.category}</Text>
-                  <Box sx={styles.chips}>
-                    {group.items.map((item) => (
-                      <motion.div
-                        key={item.name}
-                        variants={chipVariants}
-                        whileHover={{ scale: 1.08, y: -4 }}
-                        transition={{ duration: 0.2 }}>
-                        <Box sx={styles.chip}>
-                          <Box sx={styles.icon}>{item.icon}</Box>
-                          <Text>{item.name}</Text>
-                        </Box>
-                      </motion.div>
-                    ))}
-                  </Box>
+        <Grid sx={styles.grid}>
+          {groups.map((group, index) => (
+            <Reveal key={group.id} delay={index * 0.1}>
+              <Box sx={styles.group}>
+                <Text sx={styles.category}>{group.category}</Text>
+                <Box sx={styles.chips}>
+                  {group.items.map((item) => (
+                    <motion.div
+                      key={item.name}
+                      whileHover={{ scale: 1.08, y: -4 }}
+                      transition={{ duration: 0.2 }}>
+                      <Box sx={styles.chip}>
+                        <Box sx={styles.icon}>{item.icon}</Box>
+                        <Text>{item.name}</Text>
+                      </Box>
+                    </motion.div>
+                  ))}
                 </Box>
-              </motion.div>
-            ))}
-          </Grid>
-        </motion.div>
+              </Box>
+            </Reveal>
+          ))}
+        </Grid>
       </Container>
     </section>
   );
