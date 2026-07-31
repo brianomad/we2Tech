@@ -4,6 +4,7 @@ import { BiPhoneCall, BiMailSend } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { Link as ScrollLink } from 'react-scroll';
+import { useRouter } from 'next/router';
 
 const contact = [
   {
@@ -35,6 +36,26 @@ const quickLinks = [
 ];
 
 export default function Footer() {
+  const router = useRouter();
+  const isHome = router.pathname === '/';
+  const renderQuickLink = (item) => {
+    const href = item.path === 'home' ? '/' : `/#${item.path}`;
+    return isHome ? (
+      <ScrollLink
+        key={item.id}
+        activeClass="active"
+        to={item.path}
+        spy={true}
+        smooth={true}
+        offset={-70}
+        duration={500}>
+        {item.label}
+      </ScrollLink>
+    ) : (
+      <a key={item.id} href={href}>{item.label}</a>
+    );
+  };
+
   return (
     <footer sx={styles.footer}>
       <Container sx={styles.container}>
@@ -57,18 +78,7 @@ export default function Footer() {
 
           <Box sx={styles.links}>
             <Heading as="h4" sx={styles.heading}>Quick Links</Heading>
-            {quickLinks.map((item) => (
-              <ScrollLink
-                key={item.id}
-                activeClass="active"
-                to={item.path}
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}>
-                {item.label}
-              </ScrollLink>
-            ))}
+            {quickLinks.map((item) => renderQuickLink(item))}
           </Box>
 
           <Box sx={styles.contactBox}>

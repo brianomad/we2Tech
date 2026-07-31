@@ -4,7 +4,8 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import Drawer from 'components/drawer';
 import { DrawerContext } from '../../contexts/drawer/drawer.context';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
-import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
+import { useRouter } from 'next/router';
 import {
   FaInstagram,
 } from 'react-icons/fa';
@@ -19,6 +20,8 @@ const social = [
 
 const MobileDrawer = () => {
   const { state, dispatch } = useContext(DrawerContext);
+  const router = useRouter();
+  const isHome = router.pathname === '/';
 
   // Toggle drawer
   const toggleHandler = React.useCallback(() => {
@@ -26,6 +29,26 @@ const MobileDrawer = () => {
       type: 'TOGGLE',
     });
   }, [dispatch]);
+
+  const renderNavItem = ({ path, label }, i) => {
+    const href = path === 'home' ? '/' : `/#${path}`;
+    return isHome ? (
+      <ScrollLink
+        activeClass="active"
+        to={path}
+        spy={true}
+        smooth={true}
+        offset={-70}
+        duration={500}
+        key={i}>
+        {label}
+      </ScrollLink>
+    ) : (
+      <a href={href} key={i}>
+        {label}
+      </a>
+    );
+  };
 
   return (
     <Drawer
@@ -43,18 +66,12 @@ const MobileDrawer = () => {
       <Scrollbars autoHide>
         <Box sx={styles.content}>
           <Box sx={styles.menu}>
-            {menuItems.map(({ path, label }, i) => (
-              <Link
-                activeClass="active"
-                to={path}
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-                key={i}>
-                {label}
-              </Link>
-            ))}
+            {menuItems.map((item, i) => renderNavItem(item, i))}
+            <a href="/services/mobile-app-development">Mobile App Development</a>
+            <a href="/services/web-app-development">Web App Development</a>
+            <a href="/services/ui-ux-design">UI/UX Design</a>
+            <a href="/services/server-deployment">Server Deployment</a>
+            <a href="/services/maintenance-support">Maintenance &amp; Support</a>
           </Box>
 
           <Box sx={styles.menuFooter}>

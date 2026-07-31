@@ -37,6 +37,7 @@ export default function ServicesCard(props) {
             </Grid>
           )
         })}
+        <a href={details.path} sx={styles.learnMore}>Learn More →</a>
       </Box>
     </Box >
   );
@@ -103,6 +104,18 @@ const styles = {
       lineHeight: 1.9,
       color: 'black',
       fontFamily: 'Ubuntu'
+    },
+  },
+  learnMore: {
+    display: 'inline-block',
+    mt: 2,
+    color: 'teal',
+    fontSize: 2,
+    fontWeight: 700,
+    textDecoration: 'none',
+    fontFamily: 'Ubuntu',
+    '&:hover': {
+      color: 'secondary',
     },
   },
 }

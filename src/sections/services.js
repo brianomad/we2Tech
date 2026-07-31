@@ -20,6 +20,7 @@ const details = [
   {
     subTitle: 'our services',
     title: 'MOBILE APPLICATION DEVELOPMENT',
+    path: '/services/mobile-app-development',
     features: [
       {
         id: 1,
@@ -41,6 +42,7 @@ const details = [
   {
     subTitle: 'our services',
     title: 'WEBSITE APPLICATION DEVELOPMENT',
+    path: '/services/web-app-development',
     features: [
       {
         id: 1,
@@ -61,6 +63,7 @@ const details = [
   {
     subTitle: 'our services',
     title: 'APPLICATION UI/UX DESIGN',
+    path: '/services/ui-ux-design',
     features: [
       {
         id: 1,
@@ -75,6 +78,7 @@ const details = [
    {
     subTitle: 'our services',
     title: 'SERVER DEPLOYMENT',
+    path: '/services/server-deployment',
     features: [
       {
         id: 1,
@@ -89,6 +93,7 @@ const details = [
   {
     subTitle: 'our services',
     title: 'MAINTENANCE',
+    path: '/services/maintenance-support',
     features: [
       {
         id: 1,
