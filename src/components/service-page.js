@@ -48,7 +48,7 @@ export default function ServicePage({ content }) {
       <DirectAnswers items={content.directAnswers} />
       {content.faq && content.faq.length > 0 && <ServiceFAQ items={content.faq} />}
       {content.cta && <ServiceCTA title={content.cta.title} text={content.cta.text} />}
-      <ContactUs compact showCaseCards={false} />
+      {content.contact !== false && <ContactUs compact showCaseCards={false} />}
     </Layout>
   );
 }
