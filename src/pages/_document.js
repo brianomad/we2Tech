@@ -10,9 +10,9 @@ class CustomDocument extends Document {
     return (
       <Html lang="en-US">
         <Head>
-          <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-          <link rel="icon" href="/we2Tech.ico" />
-          <link rel="apple-touch-icon" href="/favicon.svg" />
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/favicon.png" type="image/png" />
+          <link rel="apple-touch-icon" href="/favicon.png" />
           <meta name="theme-color" content="#008B8B" />
         </Head>
         <body>
