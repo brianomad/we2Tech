@@ -245,7 +245,16 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
               <Text sx={styles.useCasesTitle}>Client success stories</Text>
               <Box sx={styles.useCasesGrid}>
                 {featuredCases.map((item) => (
-                  <Box sx={styles.useCase} key={item.id}>
+                  <Box
+                    key={item.id}
+                    sx={{
+                      ...styles.useCase,
+                      backgroundImage: `linear-gradient(180deg, rgba(0,51,51,0.10) 0%, rgba(0,51,51,0.88) 100%), url(/images/cases/case-${item.id}.jpg)`,
+                    }}>
+                    <Text sx={styles.useCaseRef}>Photo for reference</Text>
+                    <Text sx={styles.useCaseNumber}>
+                      {String(item.id).padStart(2, '0')} case
+                    </Text>
                     <Box sx={styles.useCaseTags}>
                       {item.tags.slice(0, 3).map((tag) => (
                         <Text key={tag} sx={styles.useCaseTag}>{tag}</Text>
@@ -526,21 +535,50 @@ const styles = {
     gridGap: '20px',
   },
   useCase: {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
+    justifyContent: 'flex-end',
     height: '100%',
+    minHeight: 320,
     textAlign: 'left',
     p: [4, null, 5],
-    backgroundColor: 'white',
     borderRadius: 12,
-    border: '1px solid',
-    borderColor: 'border_color',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    overflow: 'hidden',
     transition: 'all 0.25s',
     '&:hover': {
-      boxShadow: '0 10px 30px rgba(0,139,139,0.12)',
+      boxShadow: '0 10px 30px rgba(0,139,139,0.25)',
       transform: 'translateY(-3px)',
     },
+  },
+  useCaseRef: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    padding: '4px 10px',
+    borderRadius: 14,
+    backgroundColor: 'rgba(51,51,51,0.55)',
+    color: 'rgba(255,255,255,0.8)',
+    fontSize: 0,
+    fontWeight: 600,
+    fontFamily: 'Ubuntu',
+  },
+  useCaseNumber: {
+    position: 'absolute',
+    top: 12,
+    left: 12,
+    padding: '4px 10px',
+    borderRadius: 8,
+    backgroundColor: 'rgba(0,0,0,0.45)',
+    border: '1px solid rgba(255,255,255,0.25)',
+    color: 'white',
+    fontSize: 0,
+    fontWeight: 700,
+    fontFamily: 'Ubuntu',
   },
   useCaseTags: {
     display: 'flex',
@@ -551,9 +589,9 @@ const styles = {
   useCaseTag: {
     padding: '4px 12px',
     borderRadius: 14,
-    backgroundColor: 'rgba(0,139,139,0.08)',
-    border: '1px solid rgba(0,139,139,0.18)',
-    color: 'teal',
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    border: '1px solid rgba(255,255,255,0.3)',
+    color: 'white',
     fontSize: 0,
     fontWeight: 700,
     fontFamily: 'Ubuntu',
@@ -561,14 +599,14 @@ const styles = {
   useCaseTitle: {
     fontSize: [2, null, 3],
     fontWeight: 700,
-    color: 'heading',
+    color: 'white',
     mb: 2,
     fontFamily: 'Ubuntu',
   },
   useCaseSummary: {
     fontSize: 1,
     lineHeight: 1.8,
-    color: 'text',
+    color: 'rgba(255,255,255,0.9)',
     mb: 3,
     fontFamily: 'Ubuntu',
   },
@@ -577,7 +615,7 @@ const styles = {
     alignItems: 'center',
     gap: 2,
     mt: 'auto',
-    color: 'teal',
+    color: 'cyan',
     fontSize: 1,
     fontWeight: 700,
     textDecoration: 'none',
@@ -586,7 +624,7 @@ const styles = {
       transition: 'transform 0.2s',
     },
     '&:hover': {
-      color: 'secondary',
+      color: 'white',
       svg: {
         transform: 'translateX(4px)',
       },
