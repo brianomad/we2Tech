@@ -57,8 +57,8 @@ const styles = {
     mt: [5, null, 7],
   },
   feed: {
-    width: '100%',
-    maxWidth: '400px',
+    width: '400px',
+    maxWidth: '100%',
     height: '460px',
     border: '1px solid',
     borderColor: 'border_color',
