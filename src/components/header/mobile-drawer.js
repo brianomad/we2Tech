@@ -42,6 +42,13 @@ const MobileDrawer = () => {
   };
 
   const renderNavItem = ({ path, label }, i) => {
+    if (path.startsWith('/')) {
+      return (
+        <a href={path} key={i} onClick={() => dispatch({ type: 'TOGGLE' })}>
+          {label}
+        </a>
+      );
+    }
     const href = path === 'home' ? '/' : `/#${path}`;
     return (
       <a href={href} key={i} onClick={(e) => smoothScroll(e, path)}>

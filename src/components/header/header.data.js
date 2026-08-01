@@ -8,6 +8,10 @@ export default [
     label: 'SERVICES',
   },
   {
+    path: '/cases',
+    label: 'CASES',
+  },
+  {
     path: 'faq',
     label: 'FAQ',
   },

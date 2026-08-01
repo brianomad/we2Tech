@@ -29,8 +29,9 @@ const contact = [
 
 const quickLinks = [
   { id: 1, path: 'home', label: 'Home' },
-  { id: 2, path: 'faq', label: 'FAQ' },
-  { id: 3, path: 'contactUs', label: 'Contact Us' },
+  { id: 2, path: '/cases', label: 'Cases' },
+  { id: 3, path: 'faq', label: 'FAQ' },
+  { id: 4, path: 'contactUs', label: 'Contact Us' },
 ];
 
 const serviceLinks = [
@@ -45,6 +46,11 @@ export default function Footer() {
   const router = useRouter();
   const isHome = router.pathname === '/';
   const renderQuickLink = (item) => {
+    if (item.path.startsWith('/')) {
+      return (
+        <a key={item.id} href={item.path}>{item.label}</a>
+      );
+    }
     const href = item.path === 'home' ? '/' : `/#${item.path}`;
     return isHome ? (
       <ScrollLink

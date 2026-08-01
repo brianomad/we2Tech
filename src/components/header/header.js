@@ -35,6 +35,13 @@ export default function Header({ className }) {
   };
 
   const renderNavItem = ({ path, label }, i) => {
+    if (path.startsWith('/')) {
+      return (
+        <a href={path} key={i}>
+          {label}
+        </a>
+      );
+    }
     const href = path === 'home' ? '/' : `/#${path}`;
     return (
       <a href={href} key={i} onClick={(e) => smoothScroll(e, path)}>

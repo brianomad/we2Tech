@@ -22,13 +22,6 @@ const projectTypes = [
   'Other',
 ];
 
-const useCases = [
-  'Scope a new system',
-  'Review a stuck project',
-  'Plan an MVP / POC',
-  'Assess existing app work',
-];
-
 const steps = [
   {
     step: '1',
@@ -240,11 +233,18 @@ const ContactUs: NextPage = () => {
         </Reveal>
         <Reveal delay={0.1}>
           <Box sx={styles.useCases}>
-            <Text sx={styles.useCasesTitle}>Common use cases</Text>
+            <Text sx={styles.useCasesTitle}>Client success stories</Text>
             <Box sx={styles.useCasesGrid}>
-              {useCases.map((item) => (
+              {['Mini-storage company', 'Hong Kong groceries chain', 'Taxi management company', 'Multi-location gym rooms'].map((item) => (
                 <Box sx={styles.useCase} key={item}>{item}</Box>
               ))}
+            </Box>
+            <Box sx={styles.useCasesCta}>
+              <a href="/cases">
+                <Button variant="primary" sx={styles.useCasesBtn}>
+                  View all case studies
+                </Button>
+              </a>
             </Box>
           </Box>
         </Reveal>
@@ -506,6 +506,12 @@ const styles = {
     borderColor: 'border_color',
     color: 'text',
     fontWeight: 700,
+    fontFamily: 'Ubuntu',
+  },
+  useCasesCta: {
+    mt: 5,
+  },
+  useCasesBtn: {
     fontFamily: 'Ubuntu',
   },
 };
