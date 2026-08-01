@@ -1,18 +1,40 @@
 /** @jsx jsx */
 import { jsx, Container, Box, Text, Button } from 'theme-ui';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
-import { FaArrowRight, FaWhatsapp } from 'react-icons/fa';
+import { FaArrowRight, FaWhatsapp, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import cases from './case-data';
 
 const allCategories = ['All', ...Array.from(new Set(cases.flatMap((c) => c.tags)))];
 
+const PAGE_SIZE = 12;
+
 export default function Cases() {
   const [active, setActive] = useState('All');
+  const [page, setPage] = useState(1);
 
   const filtered =
     active === 'All' ? cases : cases.filter((c) => c.tags.includes(active));
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const startIndex = (page - 1) * PAGE_SIZE;
+  const paginated = filtered.slice(startIndex, startIndex + PAGE_SIZE);
+
+  useEffect(() => {
+    setPage(1);
+  }, [active]);
+
+  useEffect(() => {
+    const section = document.getElementById('cases');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [page]);
+
+  const goToPage = (next) => {
+    setPage(Math.min(Math.max(1, next), totalPages));
+  };
 
   return (
     <section id="cases" sx={styles.section}>
@@ -46,7 +68,7 @@ export default function Cases() {
           ))}
         </Box>
         <Box sx={styles.grid}>
-          {filtered.map((item, index) => (
+          {paginated.map((item, index) => (
             <Reveal key={item.id} delay={(index % 3) * 0.08}>
               <Box sx={styles.card}>
                 <Box sx={styles.tags}>
@@ -65,6 +87,25 @@ export default function Cases() {
               </Box>
             </Reveal>
           ))}
+        </Box>
+        <Box sx={styles.pagination}>
+          <Button
+            variant="textButton"
+            sx={styles.pageBtn}
+            disabled={page <= 1}
+            onClick={() => goToPage(page - 1)}>
+            <FaChevronLeft /> Prev
+          </Button>
+          <Text sx={styles.pageInfo}>
+            Page {page} of {totalPages}
+          </Text>
+          <Button
+            variant="textButton"
+            sx={styles.pageBtn}
+            disabled={page >= totalPages}
+            onClick={() => goToPage(page + 1)}>
+            Next <FaChevronRight />
+          </Button>
         </Box>
         <Reveal delay={0.1}>
           <Box sx={styles.ctaCard}>
@@ -238,6 +279,38 @@ const styles = {
         transform: 'translateX(4px)',
       },
     },
+  },
+  pagination: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 3,
+    mt: [6, null, 8],
+  },
+  pageBtn: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 2,
+    border: '2px solid',
+    borderColor: 'teal',
+    color: 'teal',
+    backgroundColor: 'transparent',
+    fontFamily: 'Ubuntu',
+    cursor: 'pointer',
+    '&:hover:not(:disabled)': {
+      backgroundColor: 'teal',
+      color: 'white',
+    },
+    '&:disabled': {
+      opacity: 0.35,
+      cursor: 'not-allowed',
+    },
+  },
+  pageInfo: {
+    fontSize: 1,
+    fontWeight: 700,
+    color: 'text',
+    fontFamily: 'Ubuntu',
   },
   ctaCard: {
     mt: [6, null, 8],
