@@ -86,7 +86,7 @@ export default function Cases() {
             <Reveal key={item.id} delay={(index % 3) * 0.08}>
               <Box sx={styles.card} onClick={() => setSelected(item)}>
                 <Image
-                  src={`/images/cases/case-${item.id}.svg`}
+                  src={`/images/cases/case-${item.id}.jpg`}
                   alt={item.title}
                   sx={styles.cardImage} />
                 <Box sx={styles.tags}>
@@ -129,7 +129,7 @@ export default function Cases() {
           <Box sx={styles.modalOverlay} onClick={() => setSelected(null)}>
             <Box sx={styles.modal} onClick={(e) => e.stopPropagation()}>
               <Image
-                src={`/images/cases/case-${selected.id}.svg`}
+                src={`/images/cases/case-${selected.id}.jpg`}
                 alt={selected.title}
                 sx={styles.modalImage} />
               <Box sx={styles.modalHeader}>

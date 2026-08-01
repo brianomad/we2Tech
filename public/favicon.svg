@@ -14,5 +14,5 @@
   <circle cx="430" cy="70" r="110" fill="rgba(255,255,255,0.06)"/>
   <circle cx="70" cy="445" r="70" fill="rgba(255,255,255,0.05)"/>
   <circle cx="470" cy="430" r="45" fill="rgba(0,255,255,0.08)"/>
-  <text x="256" y="300" text-anchor="middle" font-family="Ubuntu, sans-serif" font-size="180" font-weight="700" fill="rgba(255,255,255,0.95)">01</text>
+  <text x="256" y="316" text-anchor="middle" font-family="Ubuntu, sans-serif" font-size="200" font-weight="700" fill="rgba(255,255,255,0.95)">W</text>
 </svg>

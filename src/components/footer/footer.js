@@ -3,15 +3,13 @@ import { jsx, Box, Grid, Container, Heading, Text, Flex } from 'theme-ui';
 import { BiPhoneCall, BiMailSend } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
-import { Link as ScrollLink } from 'react-scroll';
-import { useRouter } from 'next/router';
 
 const contact = [
   {
     id: 1,
     icon: <GoLocation size="28px" />,
     title: 'Address',
-    text: 'WEST WING 2/F, 822 LAI CHI KO ROAD, CHEUNG SHA WAN, KOWLOON, HONG KONG'
+    text: 'WEST WING 2/F, 822 LAI CHI KOK ROAD, CHEUNG SHA WAN, KOWLOON, HONG KONG'
   },
   {
     id: 2,
@@ -27,14 +25,6 @@ const contact = [
   }
 ];
 
-const quickLinks = [
-  { id: 1, path: 'home', label: 'Home' },
-  { id: 2, path: '/cases', label: 'Cases' },
-  { id: 3, path: '/blog', label: 'Insights & Blog' },
-  { id: 4, path: '/faq', label: 'FAQ' },
-  { id: 5, path: '/contact', label: 'Contact Us' },
-];
-
 const serviceLinks = [
   { id: 1, path: '/services/mobile-app-development', label: 'Mobile App Development' },
   { id: 2, path: '/services/web-app-development', label: 'Web App Development' },
@@ -44,31 +34,6 @@ const serviceLinks = [
 ];
 
 export default function Footer() {
-  const router = useRouter();
-  const isHome = router.pathname === '/';
-  const renderQuickLink = (item) => {
-    if (item.path.startsWith('/')) {
-      return (
-        <a key={item.id} href={item.path}>{item.label}</a>
-      );
-    }
-    const href = item.path === 'home' ? '/' : `/#${item.path}`;
-    return isHome ? (
-      <ScrollLink
-        key={item.id}
-        activeClass="active"
-        to={item.path}
-        spy={true}
-        smooth={true}
-        offset={-70}
-        duration={500}>
-        {item.label}
-      </ScrollLink>
-    ) : (
-      <a key={item.id} href={href}>{item.label}</a>
-    );
-  };
-
   return (
     <footer sx={styles.footer}>
       <Container sx={styles.container}>
@@ -94,11 +59,6 @@ export default function Footer() {
             {serviceLinks.map((item) => (
               <a key={item.id} href={item.path}>{item.label}</a>
             ))}
-          </Box>
-
-          <Box sx={styles.links}>
-            <Heading as="h4" sx={styles.heading}>Quick Links</Heading>
-            {quickLinks.map((item) => renderQuickLink(item))}
           </Box>
 
           <Box sx={styles.contactBox}>
@@ -136,8 +96,7 @@ const styles = {
     gridTemplateColumns: [
       'repeat(1,1fr)',
       null,
-      'repeat(2,1fr)',
-      'repeat(4,1fr)',
+      'repeat(3,1fr)',
     ],
   },
   about: {
