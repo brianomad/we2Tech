@@ -23,6 +23,7 @@ const content = {
     slogan:
       'We deploy cloud-based systems and implement cloud servers based on your needs — adopting the worldwide trend of remote working and infusing digital culture into your work environment.',
     image: BannerImg,
+    background: BannerImg,
   },
   features: {
     title: 'What we deploy',

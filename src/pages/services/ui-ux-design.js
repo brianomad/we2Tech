@@ -23,6 +23,7 @@ const content = {
     slogan:
       'Our design team creates user-friendly, attractive UI/UX for mobile and web applications — turning first-time visitors into loyal customers with clear, delightful experiences.',
     image: BannerImg,
+    background: BannerImg,
   },
   features: {
     title: 'What we design',

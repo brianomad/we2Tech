@@ -23,6 +23,7 @@ const content = {
     slogan:
       'We host and maintain your application, troubleshoot unexpected issues, and upgrade the system as your requirements grow — long after launch.',
     image: BannerImg,
+    background: BannerImg,
   },
   features: {
     title: 'What we support',
