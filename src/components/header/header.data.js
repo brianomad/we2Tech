@@ -16,7 +16,7 @@ export default [
     label: 'FAQ',
   },
   {
-    path: 'contactUs',
+    path: '/contact',
     label: 'CONTACT',
   }
 ];

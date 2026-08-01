@@ -4,7 +4,6 @@ import Home from '../sections/home';
 import Stats from '../sections/stats';
 import TechStack from '../sections/techStack';
 import FAQ from '../sections/faq';
-import ContactUs from '../sections/contactUs.tsx';
 
 export default function IndexPage() {
   return (
@@ -14,7 +13,6 @@ export default function IndexPage() {
       <Stats />
       <TechStack />
       <FAQ />
-      <ContactUs />
     </Layout>
   );
 }

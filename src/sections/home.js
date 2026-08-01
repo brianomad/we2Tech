@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, Container, Box, Heading, Text, Button } from 'theme-ui';
-import { Link as ScrollLink } from 'react-scroll';
 import { motion } from 'framer-motion';
 
 import BannerImg from 'assets/we2Tech/home.png';
@@ -25,11 +24,11 @@ export default function Home() {
             idea to launch and beyond.
           </Text>
           <Box sx={styles.buttons}>
-            <ScrollLink to="contactUs" spy={true} smooth={true} offset={-70} duration={500}>
+            <a href="/contact">
               <Button variant="primary" sx={styles.heroBtnPrimary} aria-label="Book a Consultation">
                 Book a Consultation
               </Button>
-            </ScrollLink>
+            </a>
             <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer">
               <Button variant="secondary" sx={styles.heroBtnOutline}>
                 <FaWhatsapp /> Chat on WhatsApp

@@ -84,9 +84,8 @@ const MobileDrawer = () => {
           <Box sx={styles.menuFooter}>
           <Box
             as="a"
-            href="/#contactUs"
-            sx={styles.button}
-            onClick={(e) => smoothScroll(e, 'contactUs')}>
+            href="/contact"
+            sx={styles.button}>
             Get a Quote
           </Box>
             <Box sx={styles.social}>

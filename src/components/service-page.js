@@ -2,7 +2,6 @@
 import { jsx } from 'theme-ui';
 import Layout from 'components/layout';
 import SEO from 'components/seo';
-import ContactUs from '../sections/contactUs.tsx';
 import {
   ServiceHero,
   FeatureGrid,
@@ -48,7 +47,6 @@ export default function ServicePage({ content }) {
       <DirectAnswers items={content.directAnswers} />
       {content.faq && content.faq.length > 0 && <ServiceFAQ items={content.faq} />}
       {content.cta && <ServiceCTA title={content.cta.title} text={content.cta.text} />}
-      {content.contact !== false && <ContactUs compact showCaseCards={false} />}
     </Layout>
   );
 }

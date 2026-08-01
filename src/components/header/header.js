@@ -74,7 +74,7 @@ export default function Header({ className }) {
   );
 
   const renderCta = (
-    <a href="/#contactUs" onClick={(e) => smoothScroll(e, 'contactUs')}>
+    <a href="/contact">
       <Button variant="whiteButton" sx={styles.cta}>Get a Quote</Button>
     </a>
   );

@@ -2,7 +2,6 @@
 import { jsx, Container, Grid, Box, Text, Button, Image } from 'theme-ui';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link as ScrollLink } from 'react-scroll';
 import Reveal from './reveal';
 import SectionHeader from './section-header';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -31,9 +30,9 @@ export function ServiceHero({ eyebrow, title, slogan, image, backgroundImage, sh
           <Text as="p" sx={styles.heroSlogan}>{slogan}</Text>
           <Box sx={styles.heroButtons}>
             {showBookButton && (
-              <ScrollLink to="contactUs" spy={true} smooth={true} offset={-70} duration={500}>
+              <a href="/contact">
                 <Button variant="primary" sx={styles.heroBtnPrimary}>Book a Consultation</Button>
-              </ScrollLink>
+              </a>
             )}
             <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer">
               <Button variant="secondary" sx={styles.heroBtnOutline}>
@@ -260,9 +259,9 @@ export function ServiceCTA({ title, text }) {
                   <FaWhatsapp /> Chat on WhatsApp
                 </Button>
               </a>
-              <ScrollLink to="contactUs" spy={true} smooth={true} offset={-70} duration={500}>
+              <a href="/contact">
                 <Button variant="textButton" sx={styles.ctaBtnOutline}>Book a Consultation</Button>
-              </ScrollLink>
+              </a>
             </Box>
           </Box>
         </Reveal>
