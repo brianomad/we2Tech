@@ -1,0 +1,31 @@
+name: blog-bot
+
+on:
+  schedule:
+    - cron: '0 2 1,15 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: blog-bot
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate and commit blog post
+        env:
+          BLOG_BOT_API_KEY: ${{ secrets.BLOG_BOT_API_KEY }}
+          BLOG_BOT_MODEL: ${{ secrets.BLOG_BOT_MODEL }}
+          BLOG_BOT_API_BASE: ${{ secrets.BLOG_BOT_API_BASE }}
+        run: node scripts/blog-bot/index.js

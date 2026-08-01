@@ -2,7 +2,7 @@
 import { jsx, Container, Box, Text } from 'theme-ui';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
-import posts from '../data/blog-data';
+import posts from '../data/blog-data.json';
 
 export default function Blog() {
   return (

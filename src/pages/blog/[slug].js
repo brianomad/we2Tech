@@ -1,7 +1,7 @@
 import SEO from 'components/seo';
 import Layout from 'components/layout';
 import JsonLd from '../../components/json-ld';
-import posts from '../../data/blog-data';
+import posts from '../../data/blog-data.json';
 import PostBody from '../../components/blog-post-body';
 
 export default function BlogPost({ post }) {
