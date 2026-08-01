@@ -5,6 +5,7 @@ import Home from '../sections/home';
 import Stats from '../sections/stats';
 import TechStack from '../sections/techStack';
 import Instagram from '../sections/instagram';
+import Location from '../sections/location';
 
 export default function IndexPage() {
   return (
@@ -15,6 +16,7 @@ export default function IndexPage() {
       <Stats />
       <TechStack />
       <Instagram />
+      <Location />
     </Layout>
   );
 }
