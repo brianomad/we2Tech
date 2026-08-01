@@ -163,6 +163,13 @@ const styles = {
     flexDirection: 'column',
     alignItems: ['center', null, 'flex-start'],
     textAlign: ['center', null, 'left'],
+    backgroundColor: 'white',
+    borderRadius: 12,
+    p: [4, null, 5],
+    boxShadow: '0 10px 30px rgba(0,0,0,0.12)',
+    '& > h4': {
+      color: 'teal',
+    },
   },
   heading: {
     color: 'white',
@@ -178,23 +185,22 @@ const styles = {
     justifyContent: ['center', null, 'flex-start'],
   },
   contactIcon: {
-    color: 'cyan',
+    color: 'teal',
     fontSize: 4,
     flexShrink: 0,
     mt: '2px',
   },
   contactTitle: {
-    color: 'white',
+    color: 'heading',
     fontSize: 1,
     fontWeight: 700,
     fontFamily: 'Ubuntu',
     mb: 1,
   },
   contactText: {
-    color: 'white',
+    color: 'text',
     fontSize: 1,
     lineHeight: 1.8,
-    opacity: 0.9,
     fontFamily: 'Ubuntu',
   },
   bottom: {
