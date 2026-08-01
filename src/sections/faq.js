@@ -15,24 +15,36 @@ const data = [
   },
   {
     id: 2,
+    question: 'Can you advise before a full project is confirmed?',
+    answer:
+      'Yes. We can help clarify feasibility, project shape, risk, budget range and phased delivery options before implementation.',
+  },
+  {
+    id: 3,
     question: 'How long does development take?',
     answer:
       'Typical projects range from 4 to 16 weeks depending on size. We break the work into milestones so you can see progress throughout the process.',
   },
   {
-    id: 3,
+    id: 4,
     question: 'What technologies do you use?',
     answer:
       'We build with modern, proven technologies including React Native, Flutter, Swift, Kotlin for mobile, and React, Next.js and WordPress for web — all backed by cloud infrastructure.',
   },
   {
-    id: 4,
+    id: 5,
     question: 'Do you provide support after launch?',
     answer:
       'Yes. We host, maintain and monitor your application after launch, fix any unexpected issues, and can upgrade the system as your requirements grow.',
   },
   {
-    id: 5,
+    id: 6,
+    question: 'What should I prepare before contacting we2Tech?',
+    answer:
+      'Share your business goal, current workflow, target users, existing systems, timeline and any known constraints.',
+  },
+  {
+    id: 7,
     question: 'How do we start a project with we2Tech?',
     answer:
       'Simply send us a message through the contact form or WhatsApp. We will arrange a consultation to understand your needs and outline the best solution for you.',

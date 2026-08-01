@@ -52,21 +52,6 @@ const steps = [
   },
 ];
 
-const faqs = [
-  {
-    q: 'What should I prepare before contacting we2Tech?',
-    a: 'Share your business goal, current workflow, target users, existing systems, timeline and any known constraints.',
-  },
-  {
-    q: 'Can you advise before a full project is confirmed?',
-    a: 'Yes. We can help clarify feasibility, project shape, risk, budget range and phased delivery options before implementation.',
-  },
-  {
-    q: 'Which topics can be discussed?',
-    a: 'Mobile and web apps, UI/UX design, server deployment, cloud hosting, maintenance and project rescue.',
-  },
-];
-
 const ContactUs: NextPage = () => {
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
@@ -261,16 +246,6 @@ const ContactUs: NextPage = () => {
                 <Box sx={styles.useCase} key={item}>{item}</Box>
               ))}
             </Box>
-          </Box>
-        </Reveal>
-        <Reveal delay={0.15}>
-          <Box sx={styles.faqWrap}>
-            {faqs.map((item) => (
-              <Box sx={styles.faq} key={item.q}>
-                <Text sx={styles.faqQ}>{item.q}</Text>
-                <Text sx={styles.faqA}>{item.a}</Text>
-              </Box>
-            ))}
           </Box>
         </Reveal>
       </Container>
@@ -531,32 +506,6 @@ const styles = {
     borderColor: 'border_color',
     color: 'text',
     fontWeight: 700,
-    fontFamily: 'Ubuntu',
-  },
-  faqWrap: {
-    mt: [6, null, 8],
-    maxWidth: '800px',
-    mx: 'auto',
-  },
-  faq: {
-    p: [4, null, 5],
-    mb: 3,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    border: '1px solid',
-    borderColor: 'border_color',
-  },
-  faqQ: {
-    fontSize: 2,
-    fontWeight: 700,
-    color: 'heading',
-    mb: 2,
-    fontFamily: 'Ubuntu',
-  },
-  faqA: {
-    fontSize: 1,
-    lineHeight: 1.9,
-    color: 'text',
     fontFamily: 'Ubuntu',
   },
 };
