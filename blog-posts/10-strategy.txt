@@ -1,0 +1,325 @@
+slug: how-to-validate-a-software-idea-before-building-it
+title: How to Validate a Software Idea Before Building It
+description: Most software fails because nobody wanted it. How to test whether your idea is worth building before you spend the money.
+category: Strategy
+tags: validation, startup, product
+===BODY===
+## The expensive mistake
+
+Most software products fail not because of bad code but because nobody wanted them. Validation is the discipline of checking the demand before spending months and money on the build.
+
+## The validation ladder
+
+- Talk to real potential users about the problem, not your solution
+- Watch how they solve the problem today, without your product
+- Test the promise with a landing page that asks for signups or payments
+- Sell or pre-sell, because money is the most honest feedback
+- Build the smallest version and see if people actually use it
+
+## The signals that matter
+
+People describing the problem vividly, trying to solve it themselves and paying for help are real signals. Polite interest, "sounds cool" and empty promises are not.
+
+## The common traps
+
+Validating with friends, who will be kind. Asking "do you like it" instead of "how do you handle this now". Treating a waitlist as demand when nobody pays. Each feels like validation and is not.
+
+## The mindset
+
+Validation is not a gate you pass once; it continues as you build and after you launch. The market is the final validator. The we2Tech team can help you scope the smallest build that tests your idea honestly.
+===BLOG-END===
+slug: the-product-development-lifecycle-explained
+title: The Product Development Lifecycle Explained
+description: From idea to launch to improvement, software products follow a lifecycle. What each stage involves and why they matter.
+category: Strategy
+tags: product, lifecycle, process
+===BODY===
+## The journey of a product
+
+Every software product moves through a lifecycle, from an idea through building, launching and improving. Understanding the stages helps you plan, budget and set expectations.
+
+## The stages
+
+- Discovery: understanding the problem, the users and the scope
+- Design: shaping the experience and the flows
+- Build: creating the product in working increments
+- Test: making sure it works for real users and real situations
+- Launch: releasing it to the market and making it known
+- Operate: keeping it running, secure and improving
+
+## The important truth
+
+The lifecycle does not end at launch. Successful products spend most of their life in the operate stage, being improved, fixed and extended. The launch is the midpoint, not the end.
+
+## What it means for you
+
+Budgeting, timelines and expectations should follow the lifecycle. A project that skips discovery pays later; a product that ignores operation decays. Each stage protects the others.
+
+## The takeaway for owners
+
+You do not need to master the stages, but knowing they exist helps you ask the right questions and plan realistically. The we2Tech team guides clients through every stage of the lifecycle.
+===BLOG-END===
+slug: build-vs-buy-when-to-custom-build-software
+title: Build vs Buy: When to Custom Build Software
+description: Ready-made software is fast and cheap; custom software fits exactly. How to make the build vs buy decision honestly.
+category: Strategy
+tags: build vs buy, software, decision
+===BODY===
+## The decision every business faces
+
+Almost every business need can be met by ready-made software, custom software, or both. The build vs buy decision is less about which is better and more about which fits your situation.
+
+## When to buy
+
+- A ready-made product does the core job well enough
+- You need to move fast and the setup is straightforward
+- The subscription cost is reasonable relative to the value
+- Your process can adapt to the software, without losing your edge
+
+## When to build
+
+- Your process is genuinely different and is part of your advantage
+- Off-the-shelf products do not exist or force you into bad workflows
+- You need deep integration that no product supports
+- The subscription costs over time exceed a custom build
+- The product is central to your business model, not a side tool
+
+## The hybrid path
+
+Start with bought software to validate, then build the custom piece where the bought tools hold you back. Many successful businesses evolve this way.
+
+## The honest questions
+
+Would this software still be worth building if the bought option were free? What is your process worth to the business? The answers reveal the real choice.
+
+## Get an outside view
+
+The build vs buy decision is easy to get wrong from inside. The we2Tech team gives honest recommendations based on your situation, not on what we sell.
+===BLOG-END===
+slug: how-to-write-a-product-requirements-document
+title: How to Write a Product Requirements Document
+description: A PRD is the contract between your idea and the team that builds it. What to include so everyone builds the same thing.
+category: Strategy
+tags: PRD, requirements, product
+===BODY===
+## The document that makes teams agree
+
+A product requirements document (PRD) describes what you are building, for whom and why. It exists so the team, the stakeholders and the developers all picture the same product, which is rarer than you would think.
+
+## What a good PRD contains
+
+- The problem you are solving and who it is for
+- The goal and the measures that will tell you it worked
+- The core user journeys, described as stories
+- The features in scope, written as behaviours, not opinions
+- The features explicitly out of scope, so boundaries are clear
+- Dependencies and integrations with other systems
+- Open questions, because an honest PRD lists what is not decided
+
+## The length that works
+
+As long as it needs to be and no longer. The goal is clarity, not a book. A focused PRD that the team actually reads beats a comprehensive one nobody opens.
+
+## The living document
+
+A PRD changes as decisions are made. The discipline is that changes are conscious, agreed and reflected in the plan, not silent.
+
+## Write it together
+
+The best PRDs are shaped with the team that will build, so the questions that would surface mid-build surface early. The we2Tech team helps clients turn rough ideas into requirements the build can trust.
+===BLOG-END===
+slug: user-stories-what-they-are-and-how-to-write-them
+title: User Stories: What They Are and How to Write Them
+description: User stories are the simple format that keeps software focused on people. How to write stories your team can build from.
+category: Strategy
+tags: user stories, agile, product
+===BODY===
+## Software in human sentences
+
+A user story is a short, plain description of a feature from the user's point of view. It exists to keep everyone focused on what the software does for people, instead of drowning in technical detail.
+
+## The format
+
+"As a [type of user], I want to [do something], so that [I get a benefit]." Three parts: who, what and why. The why is the part people usually forget, and the part that matters most for decisions.
+
+## A good example
+
+"As a returning customer, I want to reorder my last order in one click, so that I do not have to rebuild my basket." It names the user, the action and the value.
+
+## What makes stories useful
+
+- They are small enough to be understood and delivered in a short time
+- They focus on the outcome, not the implementation
+- They spark questions about edge cases and details
+- They keep the team honest about whether a feature earns its place
+
+## The companion detail
+
+Stories describe the what; the details and acceptance criteria live alongside them. The story is the compass, the details are the map.
+
+## Write them with your team
+
+The conversation around stories is the value, not the text. The we2Tech team writes user stories with clients so the build stays aimed at real users.
+===BLOG-END===
+slug: how-to-prioritise-features-for-your-mvp
+title: How to Prioritise Features for Your MVP
+description: Not everything belongs in the first version. How to choose the features that make your MVP actually work.
+category: Strategy
+tags: MVP, prioritisation, product
+===BODY===
+## The MVP discipline
+
+The hardest part of building an MVP is not building it, it is deciding what to leave out. Everything you include costs time and money before you know it is wanted, so prioritisation is the core skill.
+
+## The criteria to weigh
+
+- Does this feature deliver the core value that makes the product work?
+- Will users experience the product as broken without it?
+- Does it prove a key assumption we need to test?
+- Does it serve the launch goal, or just a wish for completeness?
+- Can it wait for phase two without hurting the first version?
+
+## The methods that help
+
+Score every feature against these questions and rank honestly. Ask of each feature: if this is missing, does the product still prove itself? If yes, cut it.
+
+## The common mistake
+
+Designing the full vision into version one, so the MVP takes too long and arrives with too much to test. A focused first version tells you what to build next; a bloated one tells you nothing.
+
+## The sequence
+
+Launch the slice that delivers the core value end to end, measure how people use it, then build the next slice from real learning.
+
+## Protect the focus
+
+Every small addition is a decision to delay launch. The we2Tech team helps founders keep the first version sharp so it ships and teaches.
+===BLOG-END===
+slug: the-lean-startup-approach-to-software
+title: The Lean Startup Approach to Software
+description: Build, measure, learn. How the lean startup method keeps software focused on what users actually want.
+category: Strategy
+tags: lean, startup, methodology
+===BODY===
+## The method for uncertain products
+
+The lean startup approach treats software development as a series of experiments: build the smallest version that can test a belief, measure what happens, and learn before building more. It is built for the uncertainty every new product faces.
+
+## The loop
+
+- Build: the smallest version that can test a key assumption
+- Measure: real data on how people use it, from signups to retention
+- Learn: decide to pivot, persist or adjust based on what the data shows
+
+## Why it works
+
+Instead of building the full vision and discovering nobody wants it, you learn early, cheaply and with real behaviour instead of opinions. Each loop makes the next version smarter.
+
+## The discipline it requires
+
+- Deciding what to test, because not everything is worth testing
+- Keeping versions small, so learning is fast
+- Measuring honestly, because the data you want is not the data you have
+- Accepting the result, even when it is not what you hoped
+
+## The fit for small teams
+
+Lean thinking is ideal for startups and new products with limited budget: it spends money where it teaches the most. For established systems with clear requirements, a more structured approach may fit better.
+
+## The honest application
+
+Lean is a mindset, not a formula. The we2Tech team applies its core idea, test before you build big, to every uncertain project.
+===BLOG-END===
+slug: how-to-find-your-first-users
+title: How to Find Your First Users
+description: The first users of a product are the hardest to find and the most valuable. How to get your first users, honestly.
+category: Strategy
+tags: users, growth, startup
+===BODY===
+## The first hundred are the hardest
+
+Finding your first users is the hardest marketing a product will ever face: no track record, no reviews, no word of mouth. It is also the most valuable, because early users give you the feedback that shapes everything.
+
+## Where first users come from
+
+- Your own network, the people who know you and want to help
+- Communities where your audience already gathers, online and offline
+- Direct outreach to the exact people who have the problem you solve
+- Content that answers their questions and shows you understand them
+- Manual effort: personally finding and helping the first users
+
+## The rule of small
+
+A hundred people who fit perfectly beat ten thousand who sort of fit. Early users should be the ones who feel the problem most painfully, because they give the sharpest feedback and the most honest validation.
+
+## The conversation
+
+Talk to early users personally. Ask what works, what breaks and whether they would be upset if it disappeared. Their answers are the roadmap.
+
+## The honest reality
+
+The first users take manual work, not clever growth hacks. Every product that found an audience did the unglamorous work of finding people one by one. The we2Tech team helps founders build the product those first users deserve.
+===BLOG-END===
+slug: when-to-build-a-website-before-an-app
+title: When to Build a Website Before an App
+description: Everyone wants the app, but a website often makes more sense first. When the web-first path is the right one.
+category: Strategy
+tags: website, app, launch strategy
+===BODY===
+## The app obsession
+
+Most founders dream of the app: the icon on the home screen, the store listing, the feeling of a real product. But the app is not always the right first step, and building a website first is often smarter.
+
+## When web-first wins
+
+- You need to validate the idea before investing in two platforms
+- Your users can get the value through a browser without the app
+- Speed matters more than store presence
+- You want changes to ship instantly, without store reviews
+- Budget is tight and the web version covers the core need
+
+## What a web version can do
+
+A well-built web app can handle signups, payments, dashboards and the core value entirely in a browser, including on phones. It can be installed to the home screen and work offline, covering much of what an app would give.
+
+## When the app wins
+
+Deep device features, heavy offline use, store discovery, and audiences that expect an app all favour building native. The choice depends on your users and your value.
+
+## The honest sequence
+
+Build the web version, learn what users actually need, then build the app with that knowledge. The second version is always better than the first guess. The we2Tech team helps clients choose the right first step.
+===BLOG-END===
+slug: how-to-evaluate-a-software-development-agency-checklist
+title: How to Evaluate a Software Development Agency: A Checklist
+description: Choosing an agency is choosing a partner for years. A checklist for evaluating development agencies before you commit.
+category: Strategy
+tags: agency, checklist, evaluation
+===BODY===
+## The checklist approach
+
+The agencies that look the same on paper perform very differently in practice. A structured evaluation, using the same checklist for every candidate, makes the comparison honest.
+
+## The checklist
+
+- Portfolio: real, shipped projects still in use, not concept work
+- Domain: do they understand your industry or only the technology?
+- Team: who does the work, and what are their actual roles?
+- Process: discovery, design, testing, communication and change handling
+- Communication: who you talk to weekly, and how decisions flow
+- References: clients you can actually call, including ones with hard projects
+- Support: what happens after launch, because the product continues
+- Honesty: do they push back on bad ideas, or agree with everything?
+
+## How to use it
+
+Score each agency against the same criteria and compare the pattern, not the marketing. The agency that asks good questions and shows its weaknesses is often the strongest.
+
+## The red flags
+
+Fixed quotes before understanding the scope, no process to describe, and an unwillingness to name the people or the references. Each is a reason to look elsewhere.
+
+## Take the time
+
+The cost of a bad choice is months and money. The checklist is cheap insurance. The we2Tech team welcomes the full checklist from any client.
+===BLOG-END===

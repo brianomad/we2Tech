@@ -1,0 +1,608 @@
+slug: onboarding-users-first-time-app-experience
+title: Onboarding Users: Designing a First-Time App Experience
+description: The first minutes decide whether your app lives or dies. How to design onboarding that gets users to the value fast.
+category: Mobile
+tags: onboarding, UX, mobile app
+===BODY===
+## The first minutes decide everything
+
+The moment someone opens your app for the first time, they are deciding whether to keep it. Good onboarding gets users to the value quickly; bad onboarding buries it behind signups and tours.
+
+## What good onboarding does
+
+- Shows the value in seconds, before asking for anything
+- Delays the signup until the user has seen why they should bother
+- Guides one clear action, not a tour of every feature
+- Lets users skip everything and start using the app
+- Feels fast, with no loading screens disguised as tutorials
+
+## The mistakes that kill retention
+
+- A login screen before any value, on the very first open
+- A tutorial that lectures about features the user has not met yet
+- Asking for permissions and personal data before earning trust
+- Making users rebuild preferences they could have been asked once
+
+## Ask for things in context
+
+Ask for permissions when the feature that needs them is being used, not all at once at the start. Ask for the account when the user has something worth saving.
+
+## Design for the shortcut
+
+The best onboarding is the one users barely notice because the app just makes sense. If you are designing a first-time experience, the we2Tech team can help you get the first minutes right.
+===BLOG-END===
+slug: app-analytics-metrics-that-matter
+title: App Analytics: The Metrics That Matter
+description: Not every number is worth chasing. The handful of app metrics that actually tell you how your product is doing.
+category: Mobile
+tags: analytics, metrics, mobile app
+===BODY===
+## The data overload problem
+
+Analytics tools can report dozens of numbers, and most of them are noise. The skill is knowing which few numbers matter for your product.
+
+## The metrics worth watching
+
+- Retention, especially how many users come back after a week and a month
+- Activation, the rate at which users reach the app's core value
+- Daily and weekly active users, which show your real engaged audience
+- Time in app and session depth, which show how sticky the product is
+- The conversion that matters to your business, whether booking, buying or subscribing
+
+## The vanity traps
+
+Downloads, screen views and social mentions feel good and prove little. A metric only matters if acting on it improves the business. If you cannot change a number with your decisions, stop watching it.
+
+## Compare over time, not in isolation
+
+A single week of numbers means little. Watch trends and, crucially, compare against the changes you made, so you know what worked.
+
+## Make analytics a habit
+
+Review the metrics weekly, set up alerts for drops, and tie every product decision to a number. The we2Tech team can help you pick the metrics that match your business and instrument your app to track them.
+===BLOG-END===
+slug: localising-your-app-for-hong-kong-market
+title: How to Localise Your App for the Hong Kong Market
+description: Translation is only the start. Language, payments, design and tone — what real localisation for Hong Kong means for your app.
+category: Mobile
+tags: localisation, Hong Kong, mobile app
+===BODY===
+## Localisation is more than translation
+
+Many apps translate their text and call it localised. For Hong Kong, true localisation changes how the app feels, not just what it says.
+
+## What to localise
+
+- Language: support English and Traditional Chinese properly, with room for Chinese text that is naturally longer or shorter
+- Payments: integrate the methods customers actually use, like FPS, PayMe, AlipayHK and cards
+- Dates, addresses and numbers formatted for Hong Kong conventions
+- Tone: language that fits your audience, formal where trust matters
+- Design: layout that survives longer Chinese strings without breaking
+
+## The cultural layer
+
+Localisation includes context: how customers expect to contact support, what they consider trustworthy, and how they discover apps. A Hong Kong user's expectations differ from a user in another market.
+
+## The technical approach
+
+Build with localisation in mind from the start, storing all text separately so translation and future languages do not require redesign. Retro-fitting localisation later is expensive.
+
+## Test with real local users
+
+Hand the localised app to people in Hong Kong, not just translators. They will find the phrases and flows that feel imported. The we2Tech team localises apps for Hong Kong properly, from text to payments.
+===BLOG-END===
+slug: wechat-and-whatsapp-in-your-app-strategy
+title: WeChat and WhatsApp: Messaging in Your App Strategy
+description: Hong Kong lives on chat apps. How to use WeChat and WhatsApp in your product strategy without trying to replace them.
+category: Mobile
+tags: WeChat, WhatsApp, Hong Kong
+===BODY===
+## Chat is where customers live
+
+In Hong Kong, WhatsApp and WeChat are the front line of customer contact. Businesses that ignore them miss where their customers already spend their time.
+
+## Using chat to your advantage
+
+- Let customers contact you and receive notifications through WhatsApp, not just email
+- Use WhatsApp Business features for catalogues, quick replies and automated messages
+- Consider WeChat for reaching mainland and cross-border audiences with its ecosystem
+- Meet customers in chat for support and enquiries, then bring them to your product for deeper experiences
+
+## What not to do
+
+Do not build a chat clone inside your app to replace WhatsApp. Users will not switch away from an app where everyone they know already is. Compete on your product's value, not on messaging.
+
+## The integration layer
+
+Real value comes from linking the two: an app or website that sends order updates, bookings and reminders via WhatsApp, or a WeChat mini program that extends your service inside WeChat. These are practical wins for Hong Kong businesses.
+
+## Decide based on your audience
+
+The right mix depends on who your customers are. The we2Tech team can help you design the messaging layer that fits your Hong Kong audience.
+===BLOG-END===
+slug: banking-apps-ux-lessons-for-any-product
+title: Banking Apps: UX Lessons for Any Product
+description: Finance apps have taught the best UX lessons in the industry. What any product can learn from how banks design for trust and clarity.
+category: Mobile
+tags: UX, fintech, design
+===BODY===
+## Why banking apps are the benchmark
+
+Banking apps handle money, which means their users are anxious, impatient and unimpressed by cleverness. The UX lessons they have learned apply to almost any product.
+
+## The lessons worth stealing
+
+- Show the most important information first, uncluttered by anything else
+- Make every action predictable, with no hidden fees or surprise flows
+- Design error states with the calm of "here is what happened and here is the fix"
+- Use confirmation screens for anything irreversible
+- Be transparent about what is happening, from processing to completed
+- Prioritise speed, because every second of uncertainty raises anxiety
+
+## Trust is designed, not claimed
+
+Banks earn trust through consistency and clarity, not through slogans. A product that is clear about what it does, what it costs and what happens next earns the same trust in any industry.
+
+## The anti-lessons
+
+Banks also demonstrate what to avoid: cluttered dashboards, jargon, buried settings and punitive error messages. Your product does not need to repeat those mistakes.
+
+## Apply the discipline
+
+Ask of every screen: does this reassure or confuse? If you are building a product that touches money, bookings or personal data, the we2Tech team applies these trust-first principles to your design.
+===BLOG-END===
+slug: how-to-get-your-app-found-app-store-aso
+title: How to Get Your App Found in the App Store (ASO)
+description: Building a great app is useless if nobody finds it. App store optimisation — the practice of ranking higher and getting more downloads.
+category: Mobile
+tags: ASO, app store, growth
+===BODY===
+## The discoverability problem
+
+App stores are search engines for apps, and most downloads come from search. If your app is not optimised for how people search, it stays invisible no matter how good it is.
+
+## The elements you control
+
+- A title that includes the words people actually search for
+- Keywords chosen from what users type, not what your marketing team would type
+- A description that reads naturally while covering the main search terms
+- Screenshots that tell the story at a glance, since most browsers never scroll
+- An icon that is clear at a small size and distinct from competitors
+- Ratings and reviews, which directly influence rankings
+
+## The practical approach
+
+Use a tool to see what keywords your competitors rank for, then find terms that are searched but not crowded. Optimise for the platform that matters most first, then the other.
+
+## The feedback loop
+
+Rankings respond to downloads, which respond to rankings. A launch burst, from your website, social channels and press, helps the flywheel start turning.
+
+## Treat ASO as ongoing
+
+Search behaviour changes, and your optimisation should be reviewed regularly. The we2Tech team can help you set up your listing so your app is actually discoverable.
+===BLOG-END===
+slug: what-is-ui-design-and-why-it-matters
+title: What Is UI Design and Why It Matters
+description: UI design is the visual layer users see and touch. What it covers, why it matters, and how it differs from the code that powers it.
+category: Design
+tags: UI design, web design, product
+===BODY===
+## The visible layer
+
+UI (user interface) design is the visual layer of a product: the screens, buttons, colours, type, icons and layouts users see and interact with. It is the design you can actually look at.
+
+## What a UI designer does
+
+- Creates the visual language of the product, including colours, typography and spacing
+- Designs every screen and component, from landing pages to empty states
+- Builds design systems so the product stays consistent as it grows
+- Applies principles of hierarchy so the important thing is the most visible thing
+- Hands the finished screens to developers as the blueprint for the code
+
+## Why UI matters to business
+
+UI is the first impression of your product and the daily experience of your customers. Good UI makes your product look trustworthy and be pleasant to use; poor UI makes even a strong product feel amateur.
+
+## The quality difference
+
+Two products with identical features feel completely different with different UI. Consistency, spacing and attention to detail are what make a product feel professional, and users notice the difference even when they cannot name it.
+
+## Invest in the surface
+
+The interface is what your customers remember. If your product's visual layer is not carrying your brand's quality, the we2Tech team can design an interface that does.
+===BLOG-END===
+slug: what-is-ux-design-and-why-it-matters
+title: What Is UX Design and Why It Matters
+description: UX is how a product feels to use, not just how it looks. What user experience design covers and why it decides whether products succeed.
+category: Design
+tags: UX design, product, process
+===BODY===
+## The experience beneath the surface
+
+UX (user experience) design is about how a product feels to use: whether it is easy, whether it solves the problem, whether it frustrates or delights. It is the invisible layer beneath the visible interface.
+
+## What a UX designer does
+
+- Researches who users are and what they actually need
+- Maps the flows, from first contact to the goal being completed
+- Tests ideas with prototypes before any code is written
+- Designs information so people find what they need without thinking
+- Works with developers to make sure the experience survives the build
+
+## Why UX decides success
+
+Users judge products in seconds and abandon them in frustration. A product with a great feature list but a frustrating experience fails; a product that feels easy wins. UX is the discipline that prevents "it works but nobody uses it".
+
+## UX is not decoration
+
+Good UX is not making things pretty, it is making things work. The best UX is invisible, because users simply do what they came to do without noticing the design.
+
+## The cheapest insurance
+
+Fixing a UX problem in design costs a fraction of fixing it after launch. The we2Tech team builds UX thinking into every project so your product feels right from the first screen.
+===BLOG-END===
+slug: ui-vs-ux-understanding-the-difference
+title: UI vs UX: Understanding the Difference
+description: Everyone uses the terms, few can separate them. What UI and UX each mean, how they differ, and why your project needs both.
+category: Design
+tags: UI design, UX design, process
+===BODY===
+## Two disciplines, one product
+
+UI and UX are often used as if they are the same thing. They are different jobs that work together, and understanding the difference helps you brief, budget and evaluate a project.
+
+## The difference in one sentence
+
+UX is about how the product works and feels; UI is about how the product looks. UX decides the flow; UI decides the style.
+
+## How they divide the work
+
+- UX: research, user flows, wireframes, testing, information architecture
+- UI: visual design, colour, typography, icons, components, consistency
+- UX asks "does this make sense?"; UI asks "does this look right?"
+
+## Why both matter
+
+You can have beautiful UI on a confusing UX, and a sensible UX wearing ugly UI. A product that feels good needs both working together, with the designer and the user experience specialist talking throughout the project.
+
+## How it shows up in practice
+
+On a small project, one person may do both. On bigger products, they are separate roles. However it is organised, both halves have to be treated seriously. The we2Tech team brings both disciplines to every build.
+===BLOG-END===
+slug: how-to-build-a-design-system
+title: How to Build a Design System for Your Product
+description: A design system keeps every screen consistent as your product grows. What it is, what goes in it, and why your team needs one.
+category: Design
+tags: design system, product, UI design
+===BODY===
+## Consistency at scale
+
+As products grow, screens multiply and small style differences creep in. A design system is the shared set of components and rules that keeps everything consistent, from one-page websites to apps with hundreds of screens.
+
+## What a design system contains
+
+- Colour, typography and spacing standards, so every screen uses the same language
+- Reusable components, like buttons, forms, cards and navigation, built once and used everywhere
+- Naming and documentation, so anyone can find and use the right piece
+- Guidelines for how components behave, including error and loading states
+
+## Why it pays
+
+A design system makes development faster, because nobody rebuilds a button from scratch. It keeps quality consistent, because the rules are agreed and written down. And it makes onboarding easier, because the "house style" is explicit.
+
+## The risk of over-engineering
+
+A design system for a two-screen product is wasted effort. Build the system as the product grows, adding components when they are reused rather than speculatively.
+
+## Start simple
+
+Begin with the core standards and a handful of most-used components, then expand. The we2Tech team can help you build a system that grows with your product.
+===BLOG-END===
+slug: common-ux-mistakes-that-kill-conversions
+title: 10 Common UX Mistakes That Kill Conversions
+description: Small design mistakes quietly cost you enquiries and sales. The most common UX errors we see, and how to fix each one.
+category: Design
+tags: UX, conversion, mistakes
+===BODY===
+## Conversion leaks are design leaks
+
+Every step of your website or app where users hesitate is a place where revenue leaks. Most leaks are the same few mistakes repeated across businesses.
+
+## The ten mistakes
+
+- Hiding the call to action below the fold or in a way users must hunt for
+- Navigation that does not match how users actually think about your offering
+- Forms that ask for more than is needed and punish mistakes harshly
+- Text that is dense and unreadable, especially on mobile
+- Slow loading, because every delay erodes patience
+- Pop-ups that interrupt at the wrong moment
+- Links and buttons that are too small to tap easily on a phone
+- Unclear pricing or hidden costs that arrive too late
+- Trust signals missing at the moment of decision
+- No next step, so users who finish a page have nothing obvious to do
+
+## Fix them in order of impact
+
+Start with the mistakes at the moment of decision, like clarity and trust, then work outward. Each fix compounds.
+
+## Watch your users
+
+The best way to find leaks is watching real people use your product. If you would like a UX audit that finds your leaks, the we2Tech team can show you where and why visitors drop off.
+===BLOG-END===
+slug: how-to-design-for-mobile-first
+title: How to Design for Mobile-First
+description: Most users are on phones. Designing for mobile first means starting with the small screen and adding on, not shrinking a desktop design.
+category: Design
+tags: mobile, responsive, design
+===BODY===
+## The small screen is the main screen
+
+For most businesses, the phone is where the majority of users arrive. Mobile-first design means starting with the constraints of the small screen and letting the desktop experience be the expansion.
+
+## What mobile-first changes
+
+- Content is prioritised, because only the essential fits on a phone screen
+- Navigation is designed for thumbs and one hand, not mice and cursors
+- Performance is treated as a feature, because phones and mobile data are less forgiving
+- Forms are short and mobile-native, using the right keyboards for the input
+- Touch targets are sized for fingers, with room to spare
+
+## The common mistake
+
+Building the desktop version first, then "shrinking" it for phones, produces a mobile experience that is cramped, slow and confusing. The users who suffer are the majority of your traffic.
+
+## The design process
+
+Start with the phone layout and the single most important action. Design that flow perfectly, then expand to tablets and desktop as enhancements rather than compromises.
+
+## Test on a real phone
+
+Designing in a desktop browser hides what your users experience. Test on actual devices and real networks. The we2Tech team designs mobile-first so your site works where your customers actually are.
+===BLOG-END===
+slug: accessibility-in-design-building-for-everyone
+title: Accessibility in Design: Building for Everyone
+description: Inclusive design serves more users and improves the product for everyone. A practical guide to building accessibility in, not bolting it on.
+category: Design
+tags: accessibility, inclusive design, UX
+===BODY===
+## Design for the whole audience
+
+A product designed only for the "average" user quietly excludes millions of people with vision, hearing, motor or cognitive differences. Accessible design widens your audience and improves the experience for everyone.
+
+## The fundamentals
+
+- Text that has enough contrast to read in bright light
+- Touch targets and click areas large enough to use with unsteady hands
+- Support for keyboard navigation for those who cannot use a mouse
+- Screen-reader support through proper structure, headings and labels
+- Colour used as a complement to meaning, not the only signal
+- Motion kept subtle and avoidable for those sensitive to it
+
+## Why accessible is better for everyone
+
+The curb-cut effect is real: features designed for accessibility, like clearer labels and larger targets, turn out to be easier for all users. Accessibility and good UX are the same discipline.
+
+## The cost of waiting
+
+Retrofitting accessibility later is expensive and rarely done well. Building it in from the start costs little and protects you from excluding customers.
+
+## Start with the basics
+
+Begin with contrast, structure and keyboard support, then measure and improve. The we2Tech team builds accessibility into every project from the first screen.
+===BLOG-END===
+slug: colour-psychology-in-web-and-app-design
+title: Colour Psychology in Web and App Design
+description: Colours influence trust, mood and decisions before a single word is read. How to choose a palette that serves your brand.
+category: Design
+tags: colour, branding, design
+===BODY===
+## Colour speaks before you do
+
+Users form an impression of your brand from its colours in seconds. Colour choice is a brand decision, not just a taste decision, because it sets expectations about what your business feels like.
+
+## What different colours tend to communicate
+
+- Blues convey trust and stability, common in finance and tech
+- Greens suggest growth, health and nature
+- Red draws attention and energy, but used heavily can feel aggressive
+- Orange and yellow feel warm and optimistic, good for drawing action
+- Purple signals premium or creative
+- Black and grey communicate seriousness and luxury
+
+## The cultural layer
+
+Colour meaning is cultural, so a palette that works in one market may feel wrong in another. For a Hong Kong audience, consider local associations as well as global ones.
+
+## The practical rules
+
+Use one or two primary colours consistently, not a rainbow. Reserve accent colour for actions, so the buy button stands out because nothing else is that colour. Ensure contrast so colour choice never harms readability.
+
+## Keep it consistent
+
+Consistency in colour across your site, app and marketing builds recognition. The we2Tech team can help you build a colour system that matches your brand and converts.
+===BLOG-END===
+slug: typography-in-web-design
+title: Typography in Web Design: A Quick Guide
+description: Good type makes content readable and credible; bad type makes a great business look cheap. The basics of web typography done right.
+category: Design
+tags: typography, web design, readability
+===BODY===
+## Type is the voice of your site
+
+Typography is the largest part of most pages, and it quietly decides how readable and credible you look. Get it right and nobody notices; get it wrong and everything feels off.
+
+## The basics that matter
+
+- Choose a small set of fonts: one or two families, used consistently
+- Keep line lengths comfortable so sentences are not too long or too short
+- Set line height generously for comfortable reading on screens
+- Use hierarchy: the main heading clearly bigger than section headings than body text
+- Match font sizes to the device, with mobile never forcing zoom
+
+## The common mistakes
+
+Using too many fonts, making body text too small and light, and justifying text so spacing breaks apart. These instantly signal "amateur" even to people who cannot explain why.
+
+## Web-safe and performance-conscious
+
+Fonts are files that slow your site down. Use web font systems wisely and load only the weights you actually use, so good type does not cost performance.
+
+## Align type with brand
+
+A professional firm and a playful consumer brand should not use the same type. The choice should reflect who you are. The we2Tech team can build a typographic system that carries your brand.
+===BLOG-END===
+slug: how-to-use-prototypes-to-test-ideas
+title: How to Use Prototypes to Test Ideas Before Building
+description: A prototype costs a fraction of a build and tells you what users actually think. How to prototype and test your ideas properly.
+category: Design
+tags: prototyping, testing, product
+===BODY===
+## Test the idea, not the code
+
+Building software to find out an idea does not work is the most expensive way to learn. Prototypes let you test the idea with real users for a fraction of the cost.
+
+## What a prototype is
+
+A clickable model of the product, from simple sketches to interactive screens, that simulates the experience without building the real thing. Users can tap through the flow, and you can watch what they do.
+
+## How to test it
+
+- Give users a realistic task, not a tour: "book a table for Friday"
+- Watch what they do, not what they say
+- Ask them to think out loud as they go
+- Note where they hesitate, back up or give up
+- Run it with five to ten people; that is enough to find the main problems
+
+## What you learn
+
+Prototypes reveal wrong assumptions about the flow, the language and the priorities before any code is written. They also help you communicate the idea to investors and your own team.
+
+## Cheap at every stage
+
+Even simple paper or screen sketches catch problems early. The we2Tech team prototypes before building, so you test your idea before paying for development.
+===BLOG-END===
+slug: webflow-vs-custom-design
+title: Webflow vs Custom Design: What's Right for Your Business?
+description: Webflow lets you build a design-led site without code, while custom development gives full control. How to choose between them.
+category: Design
+tags: Webflow, web design, development
+===BODY===
+## Two ways to get a designed site
+
+Webflow is a design tool that builds websites visually, letting designers create without writing code. Custom development writes the code by hand for full control. Both can produce excellent sites; they suit different needs.
+
+## What Webflow offers
+
+- Fast turnaround for marketing and brochure sites
+- Design freedom without a developer for every change
+- Hosting and content editing built in
+- A monthly cost that covers everything, including hosting
+
+## When custom wins
+
+- Complex functionality like custom dashboards, integrations or eCommerce rules
+- Applications that Webflow simply cannot do, whatever the design quality
+- Performance-critical or highly custom backends
+- Long-term products where the design and system will evolve beyond what a visual tool supports
+
+## The practical split
+
+Many businesses use Webflow for their marketing site and a custom build for their actual product. It is not either-or; it is choosing the right tool for each job.
+
+## Decide on the outcome
+
+If you need a beautiful marketing site fast, Webflow is often ideal. If you need software, you need development. The we2Tech team can tell you honestly which fits your project.
+===BLOG-END===
+slug: roi-of-good-design
+title: The ROI of Good Design for Your Business
+description: Design is an investment, not an expense. Where good design pays for itself in conversion, retention and credibility.
+category: Design
+tags: design, ROI, business
+===BODY===
+## Design pays back
+
+It is easy to see design as a cost to be minimised. In practice, good design is one of the highest-return investments a digital product gets, because it works on every visitor, every day.
+
+## Where the returns come from
+
+- Conversion: a clearer, faster experience turns more visitors into customers
+- Retention: a product that feels good to use keeps users coming back
+- Trust: professional design makes customers comfortable buying from you
+- Word of mouth: people recommend products that feel good, not just work
+- Support costs: intuitive design means fewer confused users and fewer support tickets
+
+## The cost of bad design
+
+Bad design has a cost too, and it is invisible. Visitors who leave, users who churn, and staff hours spent explaining a confusing product all trace back to design decisions.
+
+## Measure it
+
+Compare conversion before and after a redesign. The lift is usually visible and often dramatic, which is the honest proof that design pays.
+
+## Spend on the right design
+
+The return depends on designing for outcomes, not decoration. If you are considering a design investment, the we2Tech team can show you what good design should return for your business.
+===BLOG-END===
+slug: how-to-work-with-a-ui-ux-designer
+title: How to Work with a UI/UX Designer: A Guide for Founders
+description: The best design projects start with a good working relationship. How to brief, collaborate with and get the most from your designer.
+category: Design
+tags: collaboration, design, founders
+===BODY===
+## The relationship is the process
+
+Design outcomes depend heavily on how founders and designers work together. Good communication produces good design; a poor relationship produces compromises and delays.
+
+## How to get the most from a designer
+
+- Give context, not prescriptions: describe the problem and audience, not the solution
+- Share examples you love and, just as useful, examples you hate
+- Give feedback on goals, not on pixels: "this feels unclear" beats "make the button bigger"
+- Decide quickly, because design iterations stall waiting on feedback
+- Trust the professional's judgment on the how once you have agreed the what
+
+## The common mistakes
+
+Micromanaging every visual decision, changing the audience halfway through, and treating the designer as a "drawer" of your ideas instead of a partner.
+
+## Set up the loop
+
+Agree on how feedback will flow, how many rounds are included, and how decisions get made. A clear process prevents the biggest source of design frustration: endless revisions.
+
+## A designer who asks questions
+
+A good designer interrogates your brief before drawing anything. If yours does not, ask more of them. The we2Tech team treats every design project as a partnership with clear process.
+===BLOG-END===
+slug: landing-page-design-rules
+title: Landing Page Design: 7 Rules That Convert
+description: A landing page has one job: get the visitor to act. The seven design rules that make landing pages actually convert.
+category: Design
+tags: landing page, conversion, design
+===BODY===
+## One page, one job
+
+A landing page exists to drive one action: sign up, book, download or buy. Every element either serves that goal or it does not belong on the page.
+
+## Seven rules that convert
+
+- Lead with a headline that states the value and the audience in one line
+- Show the offer immediately, before asking for anything
+- Keep the message scannable, with short copy and clear visual hierarchy
+- Use one primary call to action, repeated at the moments of decision
+- Remove navigation and other exits, because a landing page is not a website
+- Build trust with proof: testimonials, logos, numbers, guarantees
+- Test everything, because assumptions about what works are usually wrong
+
+## The distractions that kill conversion
+
+Long forms, competing buttons, vague headlines and slow loading all drain the action. Every extra choice you give a visitor is a chance to leave.
+
+## Match the page to the traffic
+
+The page should continue the promise of the ad or link that brought the visitor. A mismatch between expectation and page is the fastest way to lose them.
+
+## Start simple, then test
+
+Launch with a clean version and run experiments to improve. The we2Tech team can design and build a landing page engineered for your conversion goal.
+===BLOG-END===

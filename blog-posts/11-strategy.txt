@@ -1,0 +1,325 @@
+slug: building-a-second-product-when-and-how
+title: Building a Second Product: When and How
+description: The first product worked, and now you want another one. When a second product makes sense, and how to avoid the trap.
+category: Strategy
+tags: product strategy, growth, roadmap
+===BODY===
+## The pull of the next thing
+
+The first product is working, and the next idea is pulling. A second product can grow the business, or it can drain the resources that made the first one succeed. The difference is the reasoning behind it.
+
+## When a second product makes sense
+
+- The first product's growth is slowing and a new lane is needed
+- You see a clear customer need the first product cannot serve
+- The second product builds on the first, sharing audience, brand or infrastructure
+- The business has the resources to run both well
+
+## The warning signs
+
+- Building the second product because the first one is boring
+- Diversifying away from what you are good at
+- Stretching a small team across two products, doing both badly
+- The second product is really a feature of the first, disguised
+
+## The discipline
+
+Apply the same validation to the second product as the first: prove the need before building. And question whether the second product should exist at all, because focus is a strategy.
+
+## The sequence
+
+Build the first product as deep as it can go, then consider the second from a position of strength. The we2Tech team helps businesses decide when the next product is right.
+===BLOG-END===
+slug: how-to-measure-product-market-fit
+title: How to Measure Product-Market Fit
+description: Product-market fit is the moment users would be upset if your product disappeared. How to measure something that sounds fuzzy.
+category: Strategy
+tags: product-market fit, metrics, startup
+===BODY===
+## The turning point every product chases
+
+Product-market fit is the moment when your product solves a problem so well that users keep it, keep coming back and keep telling others. It sounds fuzzy, and it is measurable.
+
+## The signals of fit
+
+- Users keep using the product without being reminded
+- They return day after day and week after week
+- They would be genuinely disappointed if it disappeared
+- Growth comes from word of mouth, not from you pushing
+- Usage outgrows your expectations and your roadmaps
+
+## The measurement approaches
+
+Ask a simple question of active users: "How would you feel if you could not use this product?" The share answering "very disappointed" is a strong signal of fit. Pair that with the behaviour metrics: retention, repeat use and referral.
+
+## The honest interpretation
+
+Product-market fit is rarely a clean yes or no. It is a spectrum, and it shifts as markets and competitors move. The question is whether the signal is strong enough to build on.
+
+## The practical use
+
+Fit tells you when to pour on growth and when to keep iterating. Chasing growth before fit is wasted money. The we2Tech team builds products with the measurement of fit built in.
+===BLOG-END===
+slug: the-future-of-work-tools-for-hybrid-teams
+title: The Future of Work: Tools for Hybrid Teams
+description: Hybrid teams run on clear tools and processes. How software helps Hong Kong teams work together wherever they are.
+category: Strategy
+tags: hybrid work, tools, teams
+===BODY===
+## Work is where the work happens
+
+Hybrid work means part of the team is in the office and part is not, and the gap between them is where communication dies. The tools a team chooses decide how well the two halves work as one.
+
+## What hybrid teams need
+
+- A single source of truth for documents and decisions, so nobody works from an old copy
+- Clear communication channels, with rules for which channel fits which message
+- Task and project tracking that everyone can see, so progress is never a mystery
+- Meetings that work for both sides, not just the office group
+- Processes that are written down, because informal knowledge does not travel
+
+## The common failure
+
+Teams use too many tools with no agreement on how to use them, so information scatters across platforms. The tool is not the problem; the discipline of using it consistently is.
+
+## The human factor
+
+Hybrid work succeeds when remote and office staff are treated equally, in decisions, visibility and opportunity. Software supports this only if the team's culture does.
+
+## Start with the friction
+
+Identify where information currently gets lost, and fix that one flow with the right tool and the right rules. The we2Tech team can build the custom pieces that off-the-shelf tools cannot cover.
+===BLOG-END===
+slug: how-to-write-a-technology-brief-for-an-agency
+title: How to Write a Technology Brief for an Agency
+description: A technology brief is the foundation of every good agency relationship. How to write one that gets you the right proposals.
+category: Strategy
+tags: brief, agency, technology
+===BODY===
+## The brief does the pre-qualifying
+
+A good technology brief saves you weeks: it attracts the right agencies, filters the wrong ones and makes every proposal comparable. The effort you put in the brief is repaid many times in the responses.
+
+## What to include
+
+- Your business and the problem you are solving, in plain language
+- The audience and the outcome you want, not the solution
+- The scope: what is in and clearly what is out
+- Constraints that matter: budget, timeline, existing systems
+- Success measures, so agencies can propose toward a goal
+- What you expect from the agency, from proposals to process
+
+## What to leave out
+
+Technology opinions you do not need and design preferences that are not requirements. Give agencies the problem and let them propose the how. The brief that says "we need to increase bookings" beats the one that says "we need a React app".
+
+## The response you want
+
+A strong proposal answers your brief, asks sharp questions and shows understanding, not just enthusiasm. Compare the proposals against each other, not against a fantasy.
+
+## Get it reviewed
+
+Before sending it out, have someone who builds software read your brief. The we2Tech team can help you write a brief that gets you proposals worth reading.
+===BLOG-END===
+slug: what-your-agency-needs-from-you-to-succeed
+title: What Your Agency Needs From You to Succeed
+description: Agencies fail for reasons that start on the client side. The things a development agency needs from you to deliver well.
+category: Strategy
+tags: agency, collaboration, process
+===BODY===
+## The partnership is two-sided
+
+Every project has a client and an agency, and most problems trace back to one side or the other breaking the agreement. Agencies get blamed for failures that were often set in motion by the client's own habits.
+
+## What agencies need from you
+
+- Decisions made on time, because waiting on a decision is waiting on the project
+- A single point of contact, so instructions do not arrive from five directions
+- Content and inputs when they are needed, not weeks late
+- Feedback that is about outcomes, not about preferences
+- Trust in the process once the scope is agreed
+- Respect for the change process: new requests have a cost in time and money
+
+## The common client-side failures
+
+Deciding by committee, adding scope while expecting the same timeline, changing the audience mid-project, and treating feedback as an instruction to start over.
+
+## The honest trade
+
+You are hiring expertise. The agency delivers on the scope; you deliver on the decisions and inputs. When both sides do their jobs, the project works.
+
+## Set the rules at the start
+
+Agree up front on decision makers, feedback loops and how changes are handled. The we2Tech team sets these expectations clearly so the partnership starts well.
+===BLOG-END===
+slug: product-design-sprint-how-to-run-one
+title: Product Design Sprint: How to Run One
+description: A design sprint compresses months of decisions into days. How to run a focused sprint that answers your biggest product question.
+category: Strategy
+tags: design sprint, product, process
+===BODY===
+## The week that answers the big question
+
+A design sprint is a focused, time-boxed process, usually a week, where a team answers a critical product question and tests a prototype with real users. It is a way to learn fast without building the real thing.
+
+## The sprint structure
+
+- Understand: frame the problem and pick the single question to answer
+- Diverge: generate ideas and solutions, without judging yet
+- Decide: choose the strongest direction and turn it into a plan
+- Prototype: build a realistic, testable version, even a rough one
+- Test: put it in front of real users and learn what they do
+
+## What makes a sprint work
+
+- A clear, single question, because unfocused sprints produce unfocused results
+- The right people in the room, including the decision maker
+- A real prototype and real users, not opinions around a table
+- Discipline on time, so the process does not drift
+
+## The payoffs
+
+Sprints replace weeks of debate with five days of progress, and they test assumptions before the expensive build. The insights transfer directly into the product plan.
+
+## Run one deliberately
+
+A sprint is not a magic formula; it is structure applied to a real question. The we2Tech team uses sprint-style approaches to answer product questions before committing to builds.
+===BLOG-END===
+slug: how-to-do-a-competitive-analysis
+title: How to Do a Competitive Analysis
+description: Understanding your competition sharpens your product and your messaging. How to analyse competitors without drowning in data.
+category: Strategy
+tags: competitive analysis, strategy, product
+===BODY===
+## The map before the battle
+
+A competitive analysis is the practice of understanding who you compete with, what they do well and where they are weak. It is not about copying; it is about positioning.
+
+## What to analyse
+
+- Who your real competitors are, including adjacent and indirect ones
+- What they offer and how they price it
+- Where they are strong, and where their customers complain
+- How they position and market themselves
+- What users say about them, in reviews and in the wild
+
+## The honest purpose
+
+A competitive analysis should tell you where to play, not where to copy. The best insight is usually the gap: the problem nobody solves well, which becomes your opportunity.
+
+## The common mistakes
+
+Obsessing over features instead of positioning, copying competitors instead of finding the gap, and treating the analysis as a document that sits in a drawer.
+
+## The practical output
+
+A short summary of where you fit, your honest advantages and the gap you are aiming at. That summary guides the product and the messaging.
+
+## Keep it alive
+
+Competitors move, so the analysis is a habit, not a one-time report. The we2Tech team helps clients position their products with a clear view of the competitive landscape.
+===BLOG-END===
+slug: designing-a-roadmap-for-your-software-product
+title: Designing a Roadmap for Your Software Product
+description: A roadmap sets the direction of your product for the next year. How to build one that guides without overpromising.
+category: Strategy
+tags: roadmap, product, planning
+===BODY===
+## The map that guides the build
+
+A product roadmap is a plan of where your product is heading: the themes and priorities over the next months, not a detailed list of dates. It keeps the team, the stakeholders and the build aligned.
+
+## What a good roadmap contains
+
+- The goals the roadmap serves, stated at the top
+- Themes or outcomes, not just features
+- Priorities, so it is clear what matters most
+- A time horizon, communicated honestly as direction, not promises
+- The big things explicitly not planned, so boundaries are clear
+
+## The roadmap mistakes
+
+- Treating it as a fixed date-based promise, which fails at the first delay
+- Loading it with every idea, so nothing is actually prioritised
+- Never updating it, so it becomes a historical document
+- Confusing the roadmap with the schedule, which are different things
+
+## The living document
+
+A roadmap should be reviewed and adjusted as you learn, quarterly at least. It is a communication tool that keeps everyone pointed the same way.
+
+## Build it from strategy
+
+The roadmap flows from the strategy and the measures, not from a feature wish list. The we2Tech team helps clients turn strategy into a roadmap the build can follow.
+===BLOG-END===
+slug: the-business-case-for-custom-software
+title: The Business Case for Custom Software
+description: Custom software is an investment with a return. How to build a business case for building software that is actually worth building.
+category: Strategy
+tags: business case, ROI, software
+===BODY===
+## Software as an investment
+
+Custom software looks like a cost until you ask the question behind every good business case: what does this return? Framed correctly, the build is an investment with a measurable payoff, not an expense.
+
+## The case starts with the problem
+
+Name the problem in money: hours of manual work, errors that cost orders, growth blocked by systems that cannot scale, or customers lost to competitors who moved faster. A business case begins with the cost of doing nothing.
+
+## The return side of the case
+
+- Time saved by staff, which is capacity you already pay for
+- Revenue gained, from higher conversion, retention or reach
+- Errors avoided, which carry real costs in refunds and trust
+- Growth enabled, when the system can handle what the old one could not
+- Advantages kept, because your process is part of what makes you different
+
+## The honest costs
+
+Include the build, the ongoing maintenance and the operational changes the software demands. A case that ignores maintenance is a case that will be surprised.
+
+## The decision frame
+
+Compare the software's cost against the return over three years, and compare it with the alternatives. The case should convince you, not just a spreadsheet.
+
+## Get the numbers right
+
+Estimates beat guesses, and a case built on your real numbers is worth the effort. The we2Tech team can help you structure the case so the decision is based on evidence.
+===BLOG-END===
+slug: working-with-an-agency-complete-guide-for-founders
+title: Working With an Agency: A Complete Guide for Founders
+description: The agency relationship shapes your product for years. How founders can make it work, from selection to launch and beyond.
+category: Strategy
+tags: agency, founders, guide
+===BODY===
+## The relationship that builds your product
+
+For most founders, the agency is the product team. Getting the relationship right, from selection to handover, is one of the highest-leverage skills a founder can develop.
+
+## Before you start
+
+- Write a brief that describes the problem and the outcome
+- Evaluate agencies on process, team and communication, not just price
+- Agree the rules: decisions, feedback, changes and communication
+
+## During the build
+
+- Make decisions on time and give feedback on outcomes, not preferences
+- Provide content and inputs when they are needed
+- Trust the process you agreed and manage changes through it
+- Watch the metrics and the milestones, not the day-to-day details
+
+## At launch and beyond
+
+- Plan launch preparation and maintenance before the build ends
+- Know what support looks like after launch
+- Keep the relationship healthy, because the product continues
+
+## The common founder mistakes
+
+Hiring on price alone, micromanaging the build, adding scope while expecting the same timeline, and treating the agency as a vendor instead of a partner.
+
+## The mindset
+
+Agencies succeed with clients who engage like partners: clear, honest and decisive. The we2Tech team builds long-term relationships with founders because the product keeps going.
+===BLOG-END===
