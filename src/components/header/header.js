@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { scroller } from 'react-scroll';
 import { DrawerProvider } from '../../contexts/drawer/drawer.provider';
 import menuItems from './header.data';
-import { AiFillInstagram } from "react-icons/ai";
 import { IoIosArrowDown } from 'react-icons/io';
 import Logo from 'assets/we2Tech/we2Tech_logo.png';
 
@@ -101,23 +100,6 @@ export default function Header({ className }) {
               if (item.path === 'services') return renderServices;
               return renderNavItem(item, i);
             })}
-          </Flex>
-          <Flex as="instagram" sx={styles.instagram}>
-            <a
-              href="/#instagram"
-              aria-label="Instagram"
-              onClick={(e) => {
-                if (isHome) {
-                  e.preventDefault();
-                  scroller.scrollTo('instagram', {
-                    smooth: true,
-                    offset: -70,
-                    duration: 500,
-                  });
-                }
-              }}>
-              <AiFillInstagram size="30px" />
-            </a>
           </Flex>
           {renderCta}
         </Box>
@@ -246,22 +228,6 @@ const styles = {
       '&:hover': {
         color: 'teal',
         backgroundColor: 'background_secondary',
-      },
-    },
-  },
-  instagram: {
-    alignItems: 'center',
-    a: {
-      color: 'white',
-      px: 5,
-      cursor: 'pointer',
-      lineHeight: '1.2',
-      transition: 'color 0.25s',
-      display: 'flex',
-      alignItems: 'center',
-      fontFamily: 'Ubuntu',
-      '&:hover, &.active': {
-        color: 'cyan',
       },
     },
   },

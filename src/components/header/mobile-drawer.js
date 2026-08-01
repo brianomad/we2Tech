@@ -6,17 +6,7 @@ import { DrawerContext } from '../../contexts/drawer/drawer.context';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import { scroller } from 'react-scroll';
 import { useRouter } from 'next/router';
-import {
-  FaInstagram,
-} from 'react-icons/fa';
 import menuItems from './header.data';
-
-const social = [
-  {
-    path: '/#instagram',
-    icon: <FaInstagram />,
-  },
-];
 
 const MobileDrawer = () => {
   const { state, dispatch } = useContext(DrawerContext);
@@ -114,29 +104,6 @@ const MobileDrawer = () => {
             sx={styles.button}>
             Get a Quote
           </Box>
-            <Box sx={styles.social}>
-              {social.map(({ path, icon }, i) => (
-                <Box as="span" key={i} sx={styles.social.icon}>
-                  <a
-                    href={path}
-                    onClick={(e) => {
-                      if (isHome) {
-                        e.preventDefault();
-                        dispatch({ type: 'TOGGLE' });
-                        setTimeout(() => {
-                          scroller.scrollTo('instagram', {
-                            smooth: true,
-                            offset: -70,
-                            duration: 500,
-                          });
-                        }, 250);
-                      }
-                    }}>
-                    {icon}
-                  </a>
-                </Box>
-              ))}
-            </Box>
           </Box>
         </Box>
       </Scrollbars>
@@ -211,30 +178,6 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     mt: 'auto',
-  },
-
-  social: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-    icon: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: 'white',
-      fontSize: 14,
-      mr: '15px',
-      transition: 'all 0.25s',
-      cursor: 'pointer',
-      ':last-child': {
-        mr: '0',
-      },
-      '&:hover': {
-        color: 'cyan',
-      },
-    },
   },
 
   button: {
