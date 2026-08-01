@@ -13,22 +13,24 @@ export default function Instagram() {
           title="Follow Us on Instagram"
           slogan="Daily tech insights, project builds and behind-the-scenes from the we2Tech team"
           icColor={true} />
-        <Reveal delay={0.1}>
-          <Box sx={styles.feedWrap}>
-            <iframe
-              src="https://www.instagram.com/we2tech/embed/"
-              width="100%"
-              height="560"
-              frameBorder="0"
-              allowtransparency="true"
-              allowFullScreen
-              title="we2Tech Instagram feed"
-              scrolling="no"
-              loading="lazy"
-              sx={styles.feed} />
-          </Box>
-        </Reveal>
-        <Reveal delay={0.2}>
+      </Container>
+      <Reveal delay={0.1}>
+        <Box sx={styles.feedWrap}>
+          <iframe
+            src="https://www.instagram.com/we2tech/embed/"
+            width="100%"
+            height="560"
+            frameBorder="0"
+            allowtransparency="true"
+            allowFullScreen
+            title="we2Tech Instagram feed"
+            scrolling="no"
+            loading="lazy"
+            sx={styles.feed} />
+        </Box>
+      </Reveal>
+      <Reveal delay={0.2}>
+        <Container>
           <Box sx={styles.followWrap}>
             <a
               href="https://www.instagram.com/we2tech/"
@@ -39,8 +41,8 @@ export default function Instagram() {
               </Button>
             </a>
           </Box>
-        </Reveal>
-      </Container>
+        </Container>
+      </Reveal>
     </section>
   );
 }
@@ -52,16 +54,15 @@ const styles = {
     backgroundColor: 'background_secondary',
   },
   feedWrap: {
-    display: 'flex',
-    justifyContent: 'center',
+    width: '100%',
     mt: [5, null, 7],
   },
   feed: {
+    display: 'block',
     width: '100%',
     height: ['460px', null, '560px'],
-    border: '1px solid',
-    borderColor: 'border_color',
-    borderRadius: 12,
+    border: 'none',
+    borderRadius: 0,
     backgroundColor: 'white',
   },
   followWrap: {
