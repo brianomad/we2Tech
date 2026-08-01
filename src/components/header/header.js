@@ -35,16 +35,22 @@ export default function Header({ className }) {
   };
 
   const renderNavItem = ({ path, label }, i) => {
+    const isActive =
+      path === 'home' ? router.pathname === '/' : router.pathname === path;
     if (path.startsWith('/')) {
       return (
-        <a href={path} key={i}>
+        <a href={path} key={i} className={isActive ? 'active' : undefined}>
           {label}
         </a>
       );
     }
     const href = path === 'home' ? '/' : `/#${path}`;
     return (
-      <a href={href} key={i} onClick={(e) => smoothScroll(e, path)}>
+      <a
+        href={href}
+        key={i}
+        className={isActive ? 'active' : undefined}
+        onClick={(e) => smoothScroll(e, path)}>
         {label}
       </a>
     );
@@ -54,6 +60,7 @@ export default function Header({ className }) {
     <Box sx={styles.dropdownWrap} onMouseLeave={() => setServicesOpen(false)}>
       <Box
         sx={styles.dropdownTrigger}
+        className={router.pathname.startsWith('/services') ? 'active' : undefined}
         onMouseEnter={() => setServicesOpen(true)}
         onClick={() => setServicesOpen(!servicesOpen)}>
         SERVICES
@@ -191,6 +198,9 @@ const styles = {
     transition: 'all 0.15s',
     fontFamily: 'Ubuntu',
     '&:hover': {
+      color: 'cyan',
+    },
+    '&.active': {
       color: 'cyan',
     },
   },

@@ -30,7 +30,7 @@ const contact = [
 const quickLinks = [
   { id: 1, path: 'home', label: 'Home' },
   { id: 2, path: '/cases', label: 'Cases' },
-  { id: 3, path: 'faq', label: 'FAQ' },
+  { id: 3, path: '/faq', label: 'FAQ' },
   { id: 4, path: '/contact', label: 'Contact Us' },
 ];
 

@@ -12,7 +12,7 @@ export default [
     label: 'CASES',
   },
   {
-    path: 'faq',
+    path: '/faq',
     label: 'FAQ',
   },
   {

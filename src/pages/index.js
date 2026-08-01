@@ -3,7 +3,7 @@ import Layout from 'components/layout';
 import Home from '../sections/home';
 import Stats from '../sections/stats';
 import TechStack from '../sections/techStack';
-import FAQ from '../sections/faq';
+import Instagram from '../sections/instagram';
 
 export default function IndexPage() {
   return (
@@ -12,7 +12,7 @@ export default function IndexPage() {
       <Home />
       <Stats />
       <TechStack />
-      <FAQ />
+      <Instagram />
     </Layout>
   );
 }

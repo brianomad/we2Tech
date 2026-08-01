@@ -42,16 +42,26 @@ const MobileDrawer = () => {
   };
 
   const renderNavItem = ({ path, label }, i) => {
+    const isActive =
+      path === 'home' ? router.pathname === '/' : router.pathname === path;
     if (path.startsWith('/')) {
       return (
-        <a href={path} key={i} onClick={() => dispatch({ type: 'TOGGLE' })}>
+        <a
+          href={path}
+          key={i}
+          className={isActive ? 'active' : undefined}
+          onClick={() => dispatch({ type: 'TOGGLE' })}>
           {label}
         </a>
       );
     }
     const href = path === 'home' ? '/' : `/#${path}`;
     return (
-      <a href={href} key={i} onClick={(e) => smoothScroll(e, path)}>
+      <a
+        href={href}
+        key={i}
+        className={isActive ? 'active' : undefined}
+        onClick={(e) => smoothScroll(e, path)}>
         {label}
       </a>
     );
@@ -74,11 +84,27 @@ const MobileDrawer = () => {
         <Box sx={styles.content}>
           <Box sx={styles.menu}>
             {menuItems.map((item, i) => (item.path === 'services' ? null : renderNavItem(item, i)))}
-            <a href="/services/mobile-app-development">Mobile App Development</a>
-            <a href="/services/web-app-development">Web App Development</a>
-            <a href="/services/ui-ux-design">UI/UX Design</a>
-            <a href="/services/server-deployment">Server Deployment</a>
-            <a href="/services/maintenance-support">Maintenance &amp; Support</a>
+            {[
+              '/services/mobile-app-development',
+              '/services/web-app-development',
+              '/services/ui-ux-design',
+              '/services/server-deployment',
+              '/services/maintenance-support',
+            ].map((path) => (
+              <a
+                key={path}
+                href={path}
+                className={router.pathname === path ? 'active' : undefined}
+                onClick={() => dispatch({ type: 'TOGGLE' })}>
+                {{
+                  '/services/mobile-app-development': 'Mobile App Development',
+                  '/services/web-app-development': 'Web App Development',
+                  '/services/ui-ux-design': 'UI/UX Design',
+                  '/services/server-deployment': 'Server Deployment',
+                  '/services/maintenance-support': 'Maintenance & Support',
+                }[path]}
+              </a>
+            ))}
           </Box>
 
           <Box sx={styles.menuFooter}>
