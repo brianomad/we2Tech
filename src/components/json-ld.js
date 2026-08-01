@@ -42,8 +42,9 @@ const localBusiness = {
   priceRange: 'Contact for a quote',
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'West Wing 2/F, 822 Lai Chi Kok Road, Cheung Sha Wan',
     addressLocality: 'Hong Kong',
-    addressRegion: 'Hong Kong',
+    addressRegion: 'Kowloon',
     addressCountry: 'HK',
   },
   geo: {
@@ -62,7 +63,7 @@ const localBusiness = {
   ],
 };
 
-export default function JsonLd({ type, items, service }) {
+export default function JsonLd({ type, items, service, post }) {
   let data = null;
 
   if (type === 'organization') {
@@ -87,6 +88,20 @@ export default function JsonLd({ type, items, service }) {
       provider: { '@type': 'Organization', name: 'we2Tech Ltd', url: SITE_URL },
       areaServed: { '@type': 'Place', name: 'Hong Kong' },
       url: `${SITE_URL}${service.path}`,
+    };
+  } else if (type === 'article' && post) {
+    data = {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.title,
+      description: post.description,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: { '@type': 'Organization', name: 'we2Tech', url: SITE_URL },
+      publisher: { '@type': 'Organization', name: 'we2Tech Ltd', url: SITE_URL, logo: { '@type': 'ImageObject', url: `${SITE_URL}/we2Tech.ico` } },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': post.url },
+      inLanguage: 'en-HK',
+      image: `${SITE_URL}/og-image.png`,
     };
   } else if (type === 'breadcrumb' && items) {
     data = {

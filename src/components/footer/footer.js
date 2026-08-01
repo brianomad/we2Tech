@@ -30,8 +30,9 @@ const contact = [
 const quickLinks = [
   { id: 1, path: 'home', label: 'Home' },
   { id: 2, path: '/cases', label: 'Cases' },
-  { id: 3, path: '/faq', label: 'FAQ' },
-  { id: 4, path: '/contact', label: 'Contact Us' },
+  { id: 3, path: '/blog', label: 'Insights & Blog' },
+  { id: 4, path: '/faq', label: 'FAQ' },
+  { id: 5, path: '/contact', label: 'Contact Us' },
 ];
 
 const serviceLinks = [

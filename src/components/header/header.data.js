@@ -12,6 +12,10 @@ export default [
     label: 'CASES',
   },
   {
+    path: '/blog',
+    label: 'INSIGHTS',
+  },
+  {
     path: '/faq',
     label: 'FAQ',
   },
