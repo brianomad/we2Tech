@@ -8,9 +8,20 @@ import SectionHeader from './section-header';
 import { IoIosArrowDown } from 'react-icons/io';
 import { FaCheckCircle, FaWhatsapp } from 'react-icons/fa';
 
-export function ServiceHero({ eyebrow, title, slogan, image }) {
+export function ServiceHero({ eyebrow, title, slogan, image, backgroundImage }) {
   return (
-    <section sx={styles.hero}>
+    <section
+      sx={
+        backgroundImage
+          ? {
+              ...styles.hero,
+              backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.84) 55%, rgba(255,255,255,0.9) 100%), url(${backgroundImage})`,
+              backgroundSize: 'cover, cover',
+              backgroundPosition: 'center, center',
+              backgroundRepeat: 'no-repeat, no-repeat',
+            }
+          : styles.hero
+      }>
       <Container sx={styles.heroContainer}>
         <Reveal>
           {eyebrow && (
@@ -30,7 +41,7 @@ export function ServiceHero({ eyebrow, title, slogan, image }) {
           </Box>
         </Reveal>
       </Container>
-      {image && (
+      {image && !backgroundImage && (
         <Box sx={styles.heroImageBox}>
           <Image src={image} alt="" />
         </Box>

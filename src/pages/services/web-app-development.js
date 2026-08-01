@@ -23,6 +23,7 @@ const content = {
     slogan:
       'We design and build responsive websites, customer portals, admin dashboards, booking systems and eCommerce flows around real users and operational workflows.',
     image: BannerImg,
+    background: BannerImg,
   },
   features: {
     title: 'What we build',
