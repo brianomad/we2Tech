@@ -17,8 +17,8 @@ export default function Instagram() {
           <Box sx={styles.feedWrap}>
             <iframe
               src="https://www.instagram.com/we2tech/embed/"
-              width="400"
-              height="460"
+              width="100%"
+              height="560"
               frameBorder="0"
               allowtransparency="true"
               allowFullScreen
@@ -58,8 +58,7 @@ const styles = {
   },
   feed: {
     width: '100%',
-    maxWidth: '400px',
-    height: '460px',
+    height: ['460px', null, '560px'],
     border: '1px solid',
     borderColor: 'border_color',
     borderRadius: 12,
