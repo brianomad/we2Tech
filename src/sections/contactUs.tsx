@@ -278,7 +278,8 @@ export default ContactUs
 
 const styles = {
   section: {
-    py: [7, null, 9],
+    pt: [8, null, 10],
+    pb: [7, null, 9],
     backgroundColor: 'background_secondary',
   },
   container: {

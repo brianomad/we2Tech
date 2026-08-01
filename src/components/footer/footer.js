@@ -79,7 +79,7 @@ export default function Footer() {
               UI/UX design and cloud systems that help businesses grow.
             </Text>
             <Flex sx={styles.social}>
-              <a href="https://www.instagram.com/we2tech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <a href="/#instagram" aria-label="Instagram">
                 <FaInstagram />
               </a>
               <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">

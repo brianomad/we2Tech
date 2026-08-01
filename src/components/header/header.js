@@ -103,7 +103,19 @@ export default function Header({ className }) {
             })}
           </Flex>
           <Flex as="instagram" sx={styles.instagram}>
-            <a href="https://www.instagram.com/we2tech/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="/#instagram"
+              aria-label="Instagram"
+              onClick={(e) => {
+                if (isHome) {
+                  e.preventDefault();
+                  scroller.scrollTo('instagram', {
+                    smooth: true,
+                    offset: -70,
+                    duration: 500,
+                  });
+                }
+              }}>
               <AiFillInstagram size="30px" />
             </a>
           </Flex>

@@ -48,6 +48,7 @@ export default function Instagram() {
 const styles = {
   section: {
     py: [7, null, 9],
+    scrollMarginTop: '70px',
     backgroundColor: 'background_secondary',
   },
   feedWrap: {

@@ -13,7 +13,7 @@ import menuItems from './header.data';
 
 const social = [
   {
-    path: 'https://www.instagram.com/we2tech/',
+    path: '/#instagram',
     icon: <FaInstagram />,
   },
 ];
@@ -117,7 +117,23 @@ const MobileDrawer = () => {
             <Box sx={styles.social}>
               {social.map(({ path, icon }, i) => (
                 <Box as="span" key={i} sx={styles.social.icon}>
-                  <a href={path} target="_blank" rel="noopener noreferrer">{icon}</a>
+                  <a
+                    href={path}
+                    onClick={(e) => {
+                      if (isHome) {
+                        e.preventDefault();
+                        dispatch({ type: 'TOGGLE' });
+                        setTimeout(() => {
+                          scroller.scrollTo('instagram', {
+                            smooth: true,
+                            offset: -70,
+                            duration: 500,
+                          });
+                        }, 250);
+                      }
+                    }}>
+                    {icon}
+                  </a>
                 </Box>
               ))}
             </Box>
