@@ -42,6 +42,13 @@ import {
   SiStripe,
   SiPaypal,
   SiNextDotJs,
+  SiTensorflow,
+  SiPytorch,
+  SiKeras,
+  SiJupyter,
+  SiJenkins,
+  SiCircleci,
+  SiGithubactions,
 } from 'react-icons/si';
 import {
   FaVuejs,
@@ -49,6 +56,8 @@ import {
   FaCreditCard,
   FaMobileAlt,
   FaGoogle,
+  FaRobot,
+  FaBrain,
 } from 'react-icons/fa';
 
 const groups = [
@@ -83,7 +92,7 @@ const groups = [
   },
   {
     id: 3,
-    category: 'Backend, Database & Cloud',
+    category: 'Backend & Databases',
     items: [
       { name: 'Node.js', icon: <FaNodeJs /> },
       { name: 'Python', icon: <SiPython /> },
@@ -94,16 +103,37 @@ const groups = [
       { name: 'MySQL', icon: <SiMysql /> },
       { name: 'Redis', icon: <SiRedis /> },
       { name: 'GraphQL', icon: <SiGraphql /> },
-      { name: 'Docker', icon: <SiDocker /> },
-      { name: 'Kubernetes', icon: <SiKubernetes /> },
-      { name: 'Firebase', icon: <SiFirebase /> },
-      { name: 'AWS', icon: <SiAmazonaws /> },
-      { name: 'Google Cloud', icon: <SiGooglecloud /> },
-      { name: 'Azure', icon: <SiMicrosoftazure /> },
     ],
   },
   {
     id: 4,
+    category: 'Cloud & DevOps',
+    items: [
+      { name: 'Firebase', icon: <SiFirebase /> },
+      { name: 'AWS', icon: <SiAmazonaws /> },
+      { name: 'Google Cloud', icon: <SiGooglecloud /> },
+      { name: 'Azure', icon: <SiMicrosoftazure /> },
+      { name: 'Docker', icon: <SiDocker /> },
+      { name: 'Kubernetes', icon: <SiKubernetes /> },
+      { name: 'GitHub Actions', icon: <SiGithubactions /> },
+      { name: 'Jenkins', icon: <SiJenkins /> },
+      { name: 'CircleCI', icon: <SiCircleci /> },
+    ],
+  },
+  {
+    id: 5,
+    category: 'AI & Machine Learning',
+    items: [
+      { name: 'AI Chatbots', icon: <FaRobot /> },
+      { name: 'Machine Learning', icon: <FaBrain /> },
+      { name: 'TensorFlow', icon: <SiTensorflow /> },
+      { name: 'PyTorch', icon: <SiPytorch /> },
+      { name: 'Keras', icon: <SiKeras /> },
+      { name: 'Jupyter', icon: <SiJupyter /> },
+    ],
+  },
+  {
+    id: 6,
     category: 'Tools & Integrations',
     items: [
       { name: 'Git', icon: <SiGit /> },
