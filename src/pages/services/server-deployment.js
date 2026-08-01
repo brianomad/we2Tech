@@ -16,6 +16,7 @@ const content = {
       'Cloud server deployment and hosting in Hong Kong. CI/CD pipelines, domains and SSL, database and storage setup, monitoring, backups and security hardening.',
     keywords:
       'server deployment Hong Kong, cloud hosting, cloud server, AWS, CI/CD, SSL, database, deployment',
+    path: '/services/server-deployment',
   },
   hero: {
     eyebrow: 'Server Deployment & Cloud Hosting',

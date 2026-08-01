@@ -12,10 +12,6 @@ class CustomDocument extends Document {
         <Head>
           <link rel="icon" href="/we2Tech.ico" />
           <meta name="theme-color" content="#008B8B" />
-          <meta
-            name="description"
-            content="we2Tech is a Hong Kong-based software development team building mobile apps, websites, UI/UX design and cloud systems — from first idea to launch and beyond."
-          />
         </Head>
         <body>
           <Main />

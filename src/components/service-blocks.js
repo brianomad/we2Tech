@@ -44,7 +44,7 @@ export function ServiceHero({ eyebrow, title, slogan, image, backgroundImage, sh
       </Container>
       {image && !backgroundImage && (
         <Box sx={styles.heroImageBox}>
-          <Image src={image} alt="" />
+          <Image src={image} alt={title} />
         </Box>
       )}
     </section>

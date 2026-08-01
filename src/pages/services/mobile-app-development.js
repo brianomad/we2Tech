@@ -16,6 +16,7 @@ const content = {
       'Custom iOS, Android and cross-platform mobile app development in Hong Kong. React Native, Flutter, Swift, Kotlin — from MVP to launch and beyond.',
     keywords:
       'mobile app development Hong Kong, iOS development, Android development, React Native, Flutter, mobile application',
+    path: '/services/mobile-app-development',
   },
   hero: {
     eyebrow: 'Mobile App Development',

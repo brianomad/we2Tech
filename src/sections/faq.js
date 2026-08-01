@@ -51,6 +51,8 @@ const data = [
   },
 ];
 
+export { data as faqData };
+
 export default function FAQ() {
   const [open, setOpen] = useState(null);
 

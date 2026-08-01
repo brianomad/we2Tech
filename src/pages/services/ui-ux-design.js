@@ -16,6 +16,7 @@ const content = {
       'User-centred UI/UX design for mobile and web applications in Hong Kong. User flows, wireframes, high-fidelity mock-ups and clickable prototypes.',
     keywords:
       'UI UX design Hong Kong, mobile app design, website design, wireframes, prototypes, user experience',
+    path: '/services/ui-ux-design',
   },
   hero: {
     eyebrow: 'Application UI/UX Design',

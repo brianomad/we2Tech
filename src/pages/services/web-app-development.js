@@ -16,6 +16,7 @@ const content = {
       'Responsive website and web application development in Hong Kong. React, Next.js and WordPress — from corporate sites to portals, dashboards and eCommerce.',
     keywords:
       'web development Hong Kong, website development, Next.js, React, WordPress, web application, eCommerce',
+    path: '/services/web-app-development',
   },
   hero: {
     eyebrow: 'Web App Development',

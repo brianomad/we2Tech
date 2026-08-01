@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, Container, Box, Text, Button } from 'theme-ui';
+import Head from 'next/head';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
 import { AiFillInstagram } from 'react-icons/ai';
@@ -7,6 +8,10 @@ import { AiFillInstagram } from 'react-icons/ai';
 export default function Instagram() {
   return (
     <section id="instagram" sx={styles.section}>
+      <Head>
+        <link rel="preconnect" href="https://www.instagram.com" />
+        <link rel="dns-prefetch" href="https://www.instagram.com" />
+      </Head>
       <Container>
         <SectionHeader
           eyebrow="Instagram"

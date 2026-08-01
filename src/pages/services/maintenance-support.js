@@ -16,6 +16,7 @@ const content = {
       'Ongoing maintenance and support for applications in Hong Kong. Bug fixing, monitoring, security patches, backups, upgrades and monthly service reports.',
     keywords:
       'application maintenance Hong Kong, app support, bug fixing, server maintenance, monitoring, SLA',
+    path: '/services/maintenance-support',
   },
   hero: {
     eyebrow: 'Maintenance & Support',
