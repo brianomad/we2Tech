@@ -3,7 +3,7 @@ import { jsx, Container, Box, Text, Button } from 'theme-ui';
 import { useState } from 'react';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaWhatsapp } from 'react-icons/fa';
 import cases from './case-data';
 
 const allCategories = ['All', ...Array.from(new Set(cases.flatMap((c) => c.tags)))];
@@ -67,15 +67,29 @@ export default function Cases() {
           ))}
         </Box>
         <Reveal delay={0.1}>
-          <Box sx={styles.cta}>
-            <Text sx={styles.ctaText}>
+          <Box sx={styles.ctaCard}>
+            <Text as="h2" sx={styles.ctaTitle}>
               Want results like these for your business?
             </Text>
-            <a href="/#contactUs">
-              <Button variant="primary" sx={styles.ctaBtn}>
-                Book a free consultation
-              </Button>
-            </a>
+            <Text as="p" sx={styles.ctaText}>
+              Book a free consultation and we&apos;ll walk you through how your
+              project would be scoped, built and supported.
+            </Text>
+            <Box sx={styles.ctaButtons}>
+              <a
+                href="https://wa.me/85253968435"
+                target="_blank"
+                rel="noopener noreferrer">
+                <Button variant="whiteButton" sx={styles.ctaBtnPrimary}>
+                  <FaWhatsapp /> Chat on WhatsApp
+                </Button>
+              </a>
+              <a href="/#contactUs">
+                <Button variant="textButton" sx={styles.ctaBtnOutline}>
+                  Book a free consultation
+                </Button>
+              </a>
+            </Box>
           </Box>
         </Reveal>
       </Container>
@@ -225,21 +239,55 @@ const styles = {
       },
     },
   },
-  cta: {
+  ctaCard: {
     mt: [6, null, 8],
     textAlign: 'center',
-    p: [4, null, 5],
     backgroundColor: 'teal',
-    borderRadius: 12,
+    borderRadius: 16,
+    p: [6, null, 8],
+    backgroundImage:
+      'radial-gradient(circle at 20% 20%, rgba(0,255,255,0.15), transparent 50%), radial-gradient(circle at 80% 80%, rgba(0,255,255,0.15), transparent 50%)',
+  },
+  ctaTitle: {
+    color: 'white',
+    fontSize: ['26px', null, '34px', '40px'],
+    lineHeight: 1.3,
+    fontWeight: 700,
+    mb: 3,
+    fontFamily: 'Ubuntu',
   },
   ctaText: {
-    fontSize: [3, null, 4],
-    fontWeight: 700,
     color: 'white',
-    mb: 4,
+    fontSize: 2,
+    lineHeight: 1.9,
+    mb: 5,
+    maxWidth: '640px',
+    mx: 'auto',
     fontFamily: 'Ubuntu',
   },
-  ctaBtn: {
+  ctaButtons: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 3,
+    a: {
+      cursor: 'pointer',
+    },
+  },
+  ctaBtnPrimary: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
     fontFamily: 'Ubuntu',
+  },
+  ctaBtnOutline: {
+    border: '2px solid',
+    borderColor: 'white',
+    color: 'white',
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: 'white',
+      color: 'teal',
+    },
   },
 };
