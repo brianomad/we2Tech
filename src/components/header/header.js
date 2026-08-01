@@ -69,11 +69,18 @@ export default function Header({ className }) {
       </Box>
       {servicesOpen && (
         <Box sx={styles.dropdown}>
-          {serviceLinks.map((item) => (
-            <a key={item.path} href={item.path} onClick={() => setServicesOpen(false)}>
-              {item.label}
-            </a>
-          ))}
+          {serviceLinks.map((item) => {
+            const isActive = router.pathname === item.path;
+            return (
+              <a
+                key={item.path}
+                href={item.path}
+                className={isActive ? 'active' : undefined}
+                onClick={() => setServicesOpen(false)}>
+                {item.label}
+              </a>
+            );
+          })}
         </Box>
       )}
     </Box>
@@ -228,6 +235,13 @@ const styles = {
       '&:hover': {
         color: 'teal',
         backgroundColor: 'background_secondary',
+      },
+      '&.active': {
+        color: 'teal',
+        backgroundColor: 'background_secondary',
+        fontWeight: 700,
+        borderLeft: '3px solid',
+        borderLeftColor: 'teal',
       },
     },
   },
