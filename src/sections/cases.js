@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Container, Box, Text, Button, Image } from 'theme-ui';
+import { jsx, Container, Box, Text, Button } from 'theme-ui';
 import { useState, useEffect } from 'react';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
@@ -85,23 +85,27 @@ export default function Cases() {
           {paginated.map((item, index) => (
             <Reveal key={item.id} delay={(index % 3) * 0.08}>
               <Box sx={styles.card} onClick={() => setSelected(item)}>
-                <Image
-                  src={`/images/cases/case-${item.id}.jpg`}
-                  alt={item.title}
-                  sx={styles.cardImage} />
-                <Box sx={styles.tags}>
-                  {item.tags.map((tag) => (
-                    <Text key={tag} sx={styles.tag}>{tag}</Text>
-                  ))}
+                <Box
+                  sx={{
+                    ...styles.cardImageBg,
+                    backgroundImage: `linear-gradient(180deg, rgba(0,51,51,0.10) 0%, rgba(0,51,51,0.88) 100%), url(/images/cases/case-${item.id}.jpg)`,
+                  }} />
+                <Text sx={styles.refNote}>Photo for reference</Text>
+                <Box sx={styles.cardContent}>
+                  <Box sx={styles.cardTags}>
+                    {item.tags.map((tag) => (
+                      <Text key={tag} sx={styles.cardTag}>{tag}</Text>
+                    ))}
+                  </Box>
+                  <Text sx={styles.cardNumber}>
+                    {String(item.id).padStart(2, '0')} case
+                  </Text>
+                  <Text sx={styles.cardTitle}>{item.title}</Text>
+                  <Text sx={styles.cardSummary}>{item.summary}</Text>
+                  <a href="/contact" sx={styles.cardLink} onClick={(e) => e.stopPropagation()}>
+                    Discuss a similar project <FaArrowRight />
+                  </a>
                 </Box>
-                <Text sx={styles.number}>
-                  {String(item.id).padStart(2, '0')} case
-                </Text>
-                <Text sx={styles.title}>{item.title}</Text>
-                <Text sx={styles.summary}>{item.summary}</Text>
-                <a href="/contact" sx={styles.link} onClick={(e) => e.stopPropagation()}>
-                  Discuss a similar project <FaArrowRight />
-                </a>
               </Box>
             </Reveal>
           ))}
@@ -128,10 +132,13 @@ export default function Cases() {
         {selected && (
           <Box sx={styles.modalOverlay} onClick={() => setSelected(null)}>
             <Box sx={styles.modal} onClick={(e) => e.stopPropagation()}>
-              <Image
-                src={`/images/cases/case-${selected.id}.jpg`}
-                alt={selected.title}
-                sx={styles.modalImage} />
+              <Box
+                sx={{
+                  ...styles.modalImageBox,
+                  backgroundImage: `url(/images/cases/case-${selected.id}.jpg)`,
+                }}>
+                <Text sx={styles.refNote}>Photo for reference</Text>
+              </Box>
               <Box sx={styles.modalHeader}>
                 <Box>
                   <Text sx={styles.number}>
@@ -264,35 +271,127 @@ const styles = {
     gridGap: ['24px', null, '30px'],
   },
   card: {
+    position: 'relative',
+    overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
     height: '100%',
+    minHeight: ['340px', null, '360px'],
     p: [4, null, 5],
-    backgroundColor: 'white',
     borderRadius: 12,
-    border: '1px solid',
-    borderColor: 'border_color',
     cursor: 'pointer',
     transition: 'all 0.25s',
     '&:hover': {
-      boxShadow: '0 10px 30px rgba(0,139,139,0.12)',
+      boxShadow: '0 10px 30px rgba(0,139,139,0.25)',
       transform: 'translateY(-3px)',
+    },
+  },
+  cardImageBg: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    borderRadius: 12,
+  },
+  refNote: {
+    position: 'absolute',
+    top: 3,
+    right: 3,
+    zIndex: 2,
+    px: 2,
+    py: 1,
+    borderRadius: 12,
+    backgroundColor: 'rgba(255,255,255,0.88)',
+    color: '#005555',
+    fontSize: 0,
+    fontWeight: 700,
+    fontFamily: 'Ubuntu',
+  },
+  cardContent: {
+    position: 'relative',
+    zIndex: 1,
+    mt: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  cardTags: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '8px',
+    mb: 3,
+  },
+  cardTag: {
+    padding: '4px 12px',
+    borderRadius: 14,
+    backgroundColor: 'rgba(255,255,255,0.18)',
+    border: '1px solid rgba(255,255,255,0.35)',
+    color: 'white',
+    fontSize: 0,
+    fontWeight: 700,
+    fontFamily: 'Ubuntu',
+  },
+  cardNumber: {
+    color: 'cyan',
+    fontSize: 0,
+    fontWeight: 700,
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    mb: 2,
+    fontFamily: 'Ubuntu',
+  },
+  cardTitle: {
+    fontSize: [3, null, 4],
+    fontWeight: 700,
+    color: 'white',
+    mb: 3,
+    fontFamily: 'Ubuntu',
+  },
+  cardSummary: {
+    fontSize: 1,
+    lineHeight: 1.9,
+    color: 'rgba(255,255,255,0.92)',
+    mb: 4,
+    fontFamily: 'Ubuntu',
+  },
+  cardLink: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 2,
+    mt: 'auto',
+    color: 'cyan',
+    fontSize: 1,
+    fontWeight: 700,
+    textDecoration: 'none',
+    fontFamily: 'Ubuntu',
+    svg: {
+      transition: 'transform 0.2s',
+    },
+    '&:hover': {
+      color: 'white',
+      svg: {
+        transform: 'translateX(4px)',
+      },
     },
   },
   tags: {
     display: 'flex',
     flexWrap: 'wrap',
     gap: '8px',
-    mb: 4,
+    mb: 3,
   },
-  cardImage: {
-    width: '100%',
-    height: 'auto',
-    aspectRatio: '8/5',
-    objectFit: 'cover',
-    borderRadius: 10,
-    mb: 4,
+  tag: {
+    padding: '4px 12px',
+    borderRadius: 14,
+    backgroundColor: 'rgba(0,139,139,0.08)',
+    border: '1px solid rgba(0,139,139,0.18)',
+    color: 'teal',
+    fontSize: 0,
+    fontWeight: 700,
+    fontFamily: 'Ubuntu',
   },
   tag: {
     padding: '4px 12px',
@@ -410,11 +509,11 @@ const styles = {
     gap: 3,
     mb: 3,
   },
-  modalImage: {
-    width: '100%',
-    height: 'auto',
-    aspectRatio: '8/5',
-    objectFit: 'cover',
+  modalImageBox: {
+    position: 'relative',
+    height: ['180px', null, '220px'],
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
     borderRadius: 10,
     mb: 4,
   },
