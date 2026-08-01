@@ -24,6 +24,7 @@ const content = {
       'We design and build custom iOS, Android and cross-platform applications for customers, members, field teams and internal operations — from idea to app store launch and long-term support.',
     image: BannerImg,
     background: BannerImg,
+    showBookButton: false,
   },
   features: {
     title: 'What we build',
@@ -145,10 +146,6 @@ const content = {
       a: 'Discovery and requirements mapping -> UX and system flow design -> development -> UAT, launch, analytics and support.',
     },
   ],
-  cta: {
-    title: 'Have a mobile app idea? Let\'s build it together.',
-    text: 'Tell us about your app, users and business stage. We will help define the useful first version and the system it should grow into.',
-  },
 };
 
 export default function MobileAppDevelopment() {

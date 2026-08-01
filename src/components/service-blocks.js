@@ -8,7 +8,7 @@ import SectionHeader from './section-header';
 import { IoIosArrowDown } from 'react-icons/io';
 import { FaCheckCircle, FaWhatsapp } from 'react-icons/fa';
 
-export function ServiceHero({ eyebrow, title, slogan, image, backgroundImage }) {
+export function ServiceHero({ eyebrow, title, slogan, image, backgroundImage, showBookButton = true }) {
   return (
     <section
       sx={
@@ -30,9 +30,11 @@ export function ServiceHero({ eyebrow, title, slogan, image, backgroundImage }) 
           <Text as="h1" sx={styles.heroTitle}>{title}</Text>
           <Text as="p" sx={styles.heroSlogan}>{slogan}</Text>
           <Box sx={styles.heroButtons}>
-            <ScrollLink to="contactUs" spy={true} smooth={true} offset={-70} duration={500}>
-              <Button variant="primary" sx={styles.heroBtnPrimary}>Book a Consultation</Button>
-            </ScrollLink>
+            {showBookButton && (
+              <ScrollLink to="contactUs" spy={true} smooth={true} offset={-70} duration={500}>
+                <Button variant="primary" sx={styles.heroBtnPrimary}>Book a Consultation</Button>
+              </ScrollLink>
+            )}
             <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer">
               <Button variant="secondary" sx={styles.heroBtnOutline}>
                 <FaWhatsapp /> Chat on WhatsApp

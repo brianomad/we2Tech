@@ -121,7 +121,6 @@ const ContactUs = ({ showCaseCards = true }: { showCaseCards?: boolean }) => {
     <section id="contactUs" sx={styles.section}>
       <Container>
         <SectionHeader
-          eyebrow="Book a Consultation"
           title="Tell us what system, workflow or operating issue you want to improve"
           slogan="We will review the current stage, technical direction, risks, timeline and practical next step — free of charge."
           icColor={true} />

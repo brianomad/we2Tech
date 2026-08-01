@@ -26,7 +26,8 @@ export default function ServicePage({ content }) {
         title={content.hero.title}
         slogan={content.hero.slogan}
         image={content.hero.image}
-        backgroundImage={content.hero.background} />
+        backgroundImage={content.hero.background}
+        showBookButton={content.hero.showBookButton !== false} />
       <FeatureGrid
         title={content.features.title}
         slogan={content.features.slogan}
@@ -46,7 +47,7 @@ export default function ServicePage({ content }) {
         dark={content.process.dark} />
       <DirectAnswers items={content.directAnswers} />
       {content.faq && content.faq.length > 0 && <ServiceFAQ items={content.faq} />}
-      <ServiceCTA title={content.cta.title} text={content.cta.text} />
+      {content.cta && <ServiceCTA title={content.cta.title} text={content.cta.text} />}
       <ContactUs showCaseCards={false} />
     </Layout>
   );
