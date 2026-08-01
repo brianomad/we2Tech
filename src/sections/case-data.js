@@ -1401,4 +1401,75 @@ const cases = [
   },
 ];
 
-export default cases;
+const detailByTag = {
+  Booking:
+    'A booking layer was built with real-time availability, slot management and automated reminders so customers could reserve without phoning in.',
+  Membership:
+    'A membership engine handled tiers, renewals, passes and entitlements so access could be packaged and sold consistently.',
+  'Cloud System':
+    'The platform was deployed on managed cloud infrastructure with role-based access, automatic backups, monitoring and secure storage.',
+  eCommerce:
+    'A storefront with product catalogues, payments and order management was connected to the company\u2019s existing operations.',
+  'Order Placement':
+    'Order capture was digitised end to end, from browsing a catalogue to confirmation, with status updates at every step.',
+  'Web/Website':
+    'A responsive website was delivered as the public face of the service and a channel for enquiries, sign-ups and self-service.',
+  'Mobile App':
+    'Mobile apps for iOS and Android let customers and staff use the same workflows from their phones, online or offline.',
+  Attendance:
+    'Attendance capture, covering both walk-ins and scheduled visits, was digitised with live records for management to review.',
+  'Visitor Management':
+    'Visitor registration, pre-registration and entry control, including badge or QR handling, were introduced at reception.',
+  Blockchain:
+    'Smart contracts and token infrastructure were designed, reviewed and deployed as part of the product\u2019s core logic.',
+  Loyalty:
+    'A points and rewards layer was added so repeat customers could be recognised and rewarded automatically.',
+  Inventory:
+    'Stock records were centralised with low-stock alerts and reorder tracking so the right products were always on hand.',
+  Logistics:
+    'Dispatch, routing and delivery tracking were coordinated so jobs and shipments could be followed in real time.',
+  'Data & Analytics':
+    'Dashboards and reporting were built so the business could see usage, sales and operations in a single view.',
+  Payment:
+    'Payment collection was integrated, covering online and in-app settlement with reconciliation and records.',
+  Ticketing:
+    'Ticketed access was digitised with purchase, e-ticket delivery and QR check-in at the door.',
+};
+
+const techByTag = {
+  Booking: ['React Native', 'Node.js', 'PostgreSQL', 'Twilio'],
+  Membership: ['Node.js', 'PostgreSQL', 'Redis'],
+  'Cloud System': ['AWS', 'Docker', 'GitHub Actions'],
+  eCommerce: ['Next.js', 'Stripe', 'PostgreSQL'],
+  'Order Placement': ['React Native', 'Node.js', 'Redis'],
+  'Web/Website': ['Next.js', 'Tailwind CSS', 'Vercel'],
+  'Mobile App': ['React Native', 'Firebase'],
+  Attendance: ['React Native', 'PostgreSQL', 'Node.js'],
+  'Visitor Management': ['QR Codes', 'React', 'Node.js'],
+  Blockchain: ['Solidity', 'Hardhat', 'Web3.js'],
+  Loyalty: ['Redis', 'PostgreSQL', 'Node.js'],
+  Inventory: ['Node.js', 'PostgreSQL', 'AWS'],
+  Logistics: ['Mapbox', 'Node.js', 'PostgreSQL'],
+  'Data & Analytics': ['Metabase', 'AWS Athena', 'PostgreSQL'],
+  Payment: ['Stripe', 'Node.js', 'PostgreSQL'],
+  Ticketing: ['QR Codes', 'Next.js', 'Stripe'],
+};
+
+const closingDetail =
+  'Delivery covered discovery, UI/UX design, development, testing and post-launch support. The solution was designed to be maintained and extended as the business grows.';
+
+const enriched = cases.map((c) => {
+  const detail = c.tags
+    .map((t) => detailByTag[t])
+    .filter(Boolean)
+    .concat(closingDetail);
+  const tech = [];
+  c.tags.forEach((t) => {
+    (techByTag[t] || []).forEach((item) => {
+      if (!tech.includes(item)) tech.push(item);
+    });
+  });
+  return { ...c, detail, tech: tech.slice(0, 6) };
+});
+
+export default enriched;
