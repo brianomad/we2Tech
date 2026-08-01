@@ -5,7 +5,6 @@ import { Waypoint } from 'react-waypoint';
 import Sticky from 'react-stickynode';
 import { useStickyState } from 'contexts/app/app.provider';
 import { useStickyDispatch } from 'contexts/app/app.provider';
-import { WhatsAppWidget } from 'react-whatsapp-widget';
 
 import Header from './header/header';
 import Footer from './footer/footer';
@@ -13,8 +12,7 @@ import Footer from './footer/footer';
 export default function Layout({ children }) {
   const dispatch = useStickyDispatch();
   const isSticky = useStickyState('isSticky');
-  const [showWhatsApp, setShowWhatsApp] = useState(false);
-  
+
   const setSticky = useCallback(() => dispatch({ type: 'SET_STICKY' }), [
     dispatch,
   ]);
@@ -29,11 +27,6 @@ export default function Layout({ children }) {
       removeSticky();
     }
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => setShowWhatsApp(true), 5000);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <React.Fragment>
@@ -54,13 +47,6 @@ export default function Layout({ children }) {
         }}>
           {children}
       </main>
-      {showWhatsApp && (
-        <WhatsAppWidget
-          phoneNumber="+85253968435"
-          companyName={"we2Tech"}
-          replyTimeText={""}
-          message={"Hi, Thanks for your enquiry"} />
-      )}
       <Footer />
     </React.Fragment>
   );
