@@ -49,6 +49,18 @@ import {
   SiJenkins,
   SiCircleci,
   SiGithubactions,
+  SiEthereum,
+  SiBitcoin,
+  SiLitecoin,
+  SiXrp,
+  SiStellar,
+  SiShopify,
+  SiWoo,
+  SiMagento,
+  SiGoogleads,
+  SiHubspot,
+  SiMailchimp,
+  SiWix,
 } from 'react-icons/si';
 import {
   FaVuejs,
@@ -58,6 +70,9 @@ import {
   FaGoogle,
   FaRobot,
   FaBrain,
+  FaFileCode,
+  FaCoins,
+  FaEthereum,
 } from 'react-icons/fa';
 
 const groups = [
@@ -88,6 +103,7 @@ const groups = [
       { name: 'CSS3', icon: <SiCss3 /> },
       { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
       { name: 'Sass', icon: <SiSass /> },
+      { name: 'Wix', icon: <SiWix /> },
     ],
   },
   {
@@ -134,6 +150,32 @@ const groups = [
   },
   {
     id: 6,
+    category: 'Blockchain & Web3',
+    items: [
+      { name: 'Ethereum', icon: <SiEthereum /> },
+      { name: 'Bitcoin', icon: <SiBitcoin /> },
+      { name: 'Litecoin', icon: <SiLitecoin /> },
+      { name: 'Ripple', icon: <SiXrp /> },
+      { name: 'Stellar', icon: <SiStellar /> },
+      { name: 'Smart Contracts', icon: <FaFileCode /> },
+      { name: 'Web3 & DApps', icon: <FaCoins /> },
+      { name: 'Crypto Payments', icon: <FaEthereum /> },
+    ],
+  },
+  {
+    id: 7,
+    category: 'E-commerce & Marketing',
+    items: [
+      { name: 'Shopify', icon: <SiShopify /> },
+      { name: 'WooCommerce', icon: <SiWoo /> },
+      { name: 'Magento', icon: <SiMagento /> },
+      { name: 'Google Ads', icon: <SiGoogleads /> },
+      { name: 'HubSpot', icon: <SiHubspot /> },
+      { name: 'Mailchimp', icon: <SiMailchimp /> },
+    ],
+  },
+  {
+    id: 8,
     category: 'Tools & Integrations',
     items: [
       { name: 'Git', icon: <SiGit /> },
