@@ -248,7 +248,7 @@ export function ServiceFAQ({ items }) {
 
 export function ServiceCTA({ title, text }) {
   return (
-    <section sx={{ ...styles.section, py: 0 }}>
+    <section sx={{ ...styles.section, py: 0, pb: [7, null, 9] }}>
       <Container>
         <Reveal>
           <Box sx={styles.ctaCard}>
