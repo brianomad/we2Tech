@@ -5,9 +5,9 @@ import Reveal from '../components/reveal';
 import CountUp from '../components/count-up';
 
 const data = [
-  { id: 1, value: 10, suffix: '+', label: 'Years Combined Experience' },
-  { id: 2, value: 50, suffix: '+', label: 'Projects Delivered' },
-  { id: 3, value: 100, suffix: '%', label: 'Client Satisfaction' },
+  { id: 1, value: 4, suffix: '+', label: 'Years in Business' },
+  { id: 2, value: 8, suffix: '+', label: 'Years App Development Experience' },
+  { id: 3, value: 50, suffix: '+', label: 'Projects Delivered' },
   { id: 4, value: 24, suffix: '/7', label: 'Post-Launch Support' },
 ];
 
