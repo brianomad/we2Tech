@@ -10,7 +10,10 @@ import {
 } from 'theme-ui';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
-import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+import { FaWhatsapp, FaEnvelope, FaArrowRight } from 'react-icons/fa';
+import cases from './case-data';
+
+const featuredCases = cases.slice(0, 4);
 
 const projectTypes = [
   'Mobile App',
@@ -235,8 +238,19 @@ const ContactUs: NextPage = () => {
           <Box sx={styles.useCases}>
             <Text sx={styles.useCasesTitle}>Client success stories</Text>
             <Box sx={styles.useCasesGrid}>
-              {['Mini-storage company', 'Hong Kong groceries chain', 'Taxi management company', 'Multi-location gym rooms'].map((item) => (
-                <Box sx={styles.useCase} key={item}>{item}</Box>
+              {featuredCases.map((item) => (
+                <Box sx={styles.useCase} key={item.id}>
+                  <Box sx={styles.useCaseTags}>
+                    {item.tags.slice(0, 3).map((tag) => (
+                      <Text key={tag} sx={styles.useCaseTag}>{tag}</Text>
+                    ))}
+                  </Box>
+                  <Text sx={styles.useCaseTitle}>{item.title}</Text>
+                  <Text sx={styles.useCaseSummary}>{item.summary}</Text>
+                  <a href="/cases" sx={styles.useCaseLink}>
+                    View case study <FaArrowRight />
+                  </a>
+                </Box>
               ))}
             </Box>
             <Box sx={styles.useCasesCta}>
@@ -495,18 +509,75 @@ const styles = {
   },
   useCasesGrid: {
     display: 'grid',
-    gridTemplateColumns: ['repeat(1,1fr)', 'repeat(2,1fr)', null, 'repeat(4,1fr)'],
+    gridTemplateColumns: ['repeat(1,1fr)', 'repeat(2,1fr)', null, 'repeat(2,1fr)'],
     gridGap: '20px',
   },
   useCase: {
-    p: [3, null, 4],
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    height: '100%',
+    textAlign: 'left',
+    p: [4, null, 5],
     backgroundColor: 'white',
-    borderRadius: 10,
+    borderRadius: 12,
     border: '1px solid',
     borderColor: 'border_color',
-    color: 'text',
+    transition: 'all 0.25s',
+    '&:hover': {
+      boxShadow: '0 10px 30px rgba(0,139,139,0.12)',
+      transform: 'translateY(-3px)',
+    },
+  },
+  useCaseTags: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '8px',
+    mb: 3,
+  },
+  useCaseTag: {
+    padding: '4px 12px',
+    borderRadius: 14,
+    backgroundColor: 'rgba(0,139,139,0.08)',
+    border: '1px solid rgba(0,139,139,0.18)',
+    color: 'teal',
+    fontSize: 0,
     fontWeight: 700,
     fontFamily: 'Ubuntu',
+  },
+  useCaseTitle: {
+    fontSize: [2, null, 3],
+    fontWeight: 700,
+    color: 'heading',
+    mb: 2,
+    fontFamily: 'Ubuntu',
+  },
+  useCaseSummary: {
+    fontSize: 1,
+    lineHeight: 1.8,
+    color: 'text',
+    mb: 3,
+    fontFamily: 'Ubuntu',
+  },
+  useCaseLink: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 2,
+    mt: 'auto',
+    color: 'teal',
+    fontSize: 1,
+    fontWeight: 700,
+    textDecoration: 'none',
+    fontFamily: 'Ubuntu',
+    svg: {
+      transition: 'transform 0.2s',
+    },
+    '&:hover': {
+      color: 'secondary',
+      svg: {
+        transform: 'translateX(4px)',
+      },
+    },
   },
   useCasesCta: {
     mt: 5,
