@@ -145,24 +145,6 @@ const content = {
       a: 'Discovery and requirements mapping -> UX and system flow design -> development -> UAT, launch, analytics and support.',
     },
   ],
-  faq: [
-    {
-      q: 'Which platforms do you build for?',
-      a: 'iOS, Android and cross-platform via React Native and Flutter, as well as native Swift and Kotlin where needed.',
-    },
-    {
-      q: 'Can you connect the app with our existing systems?',
-      a: 'Yes. We plan APIs, data flow and integrations with CRM, ERP, payments, cloud systems and third-party platforms.',
-    },
-    {
-      q: 'Do you help with app store launch?',
-      a: 'Yes. We handle submission preparation, release checks and analytics setup, plus monitoring after launch.',
-    },
-    {
-      q: 'Can you improve an existing app?',
-      a: 'Yes. We review the current codebase and operations, then stabilise, refocus and enhance the app in clear increments.',
-    },
-  ],
   cta: {
     title: 'Have a mobile app idea? Let\'s build it together.',
     text: 'Tell us about your app, users and business stage. We will help define the useful first version and the system it should grow into.',

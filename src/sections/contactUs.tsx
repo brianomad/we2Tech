@@ -233,8 +233,8 @@ const ContactUs = ({ showCaseCards = true }: { showCaseCards?: boolean }) => {
             </Box>
           </Box>
         </Reveal>
-        <Reveal delay={0.1}>
-          {showCaseCards ? (
+        {showCaseCards && (
+          <Reveal delay={0.1}>
             <Box sx={styles.useCases}>
               <Text sx={styles.useCasesTitle}>Client success stories</Text>
               <Box sx={styles.useCasesGrid}>
@@ -261,23 +261,8 @@ const ContactUs = ({ showCaseCards = true }: { showCaseCards?: boolean }) => {
                 </a>
               </Box>
             </Box>
-          ) : (
-            <Box sx={styles.useCases}>
-              <Text sx={styles.useCasesTitle}>Client success stories</Text>
-              <Text sx={styles.useCasesText}>
-                See how we have helped businesses across industries — from mini-storage and
-                retail to taxis, gyms and blockchain platforms.
-              </Text>
-              <Box sx={styles.useCasesCta}>
-                <a href="/cases">
-                  <Button variant="primary" sx={styles.useCasesBtn}>
-                    View all case studies
-                  </Button>
-                </a>
-              </Box>
-            </Box>
-          )}
-        </Reveal>
+          </Reveal>
+        )}
       </Container>
     </section>
   )
@@ -521,14 +506,6 @@ const styles = {
     fontWeight: 700,
     color: 'heading',
     mb: 4,
-    fontFamily: 'Ubuntu',
-  },
-  useCasesText: {
-    fontSize: 2,
-    lineHeight: 1.9,
-    color: 'text',
-    maxWidth: '560px',
-    mx: 'auto',
     fontFamily: 'Ubuntu',
   },
   useCasesGrid: {

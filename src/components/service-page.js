@@ -45,7 +45,7 @@ export default function ServicePage({ content }) {
         steps={content.process.items}
         dark={content.process.dark} />
       <DirectAnswers items={content.directAnswers} />
-      <ServiceFAQ items={content.faq} />
+      {content.faq && content.faq.length > 0 && <ServiceFAQ items={content.faq} />}
       <ServiceCTA title={content.cta.title} text={content.cta.text} />
       <ContactUs showCaseCards={false} />
     </Layout>
