@@ -8,14 +8,6 @@ export default [
     label: 'SERVICES',
   },
   {
-    path: 'howWeWork',
-    label: 'PROCESS',
-  },
-  {
-    path: 'whyChooseUs',
-    label: 'WHY US',
-  },
-  {
     path: 'faq',
     label: 'FAQ',
   },

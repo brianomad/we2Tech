@@ -56,7 +56,6 @@ export default function Header({ className }) {
       </Box>
       {servicesOpen && (
         <Box sx={styles.dropdown}>
-          <a href="/#services" onClick={(e) => { setServicesOpen(false); smoothScroll(e, 'services'); }}>All Services</a>
           {serviceLinks.map((item) => (
             <a key={item.path} href={item.path} onClick={() => setServicesOpen(false)}>
               {item.label}

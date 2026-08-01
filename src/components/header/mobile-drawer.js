@@ -66,7 +66,7 @@ const MobileDrawer = () => {
       <Scrollbars autoHide>
         <Box sx={styles.content}>
           <Box sx={styles.menu}>
-            {menuItems.map((item, i) => renderNavItem(item, i))}
+            {menuItems.map((item, i) => (item.path === 'services' ? null : renderNavItem(item, i)))}
             <a href="/services/mobile-app-development">Mobile App Development</a>
             <a href="/services/web-app-development">Web App Development</a>
             <a href="/services/ui-ux-design">UI/UX Design</a>
