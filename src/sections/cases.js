@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Container, Box, Text, Button } from 'theme-ui';
+import { jsx, Container, Box, Text, Button, Image } from 'theme-ui';
 import { useState, useEffect } from 'react';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
@@ -85,6 +85,10 @@ export default function Cases() {
           {paginated.map((item, index) => (
             <Reveal key={item.id} delay={(index % 3) * 0.08}>
               <Box sx={styles.card} onClick={() => setSelected(item)}>
+                <Image
+                  src={`/images/cases/case-${item.id}.svg`}
+                  alt={item.title}
+                  sx={styles.cardImage} />
                 <Box sx={styles.tags}>
                   {item.tags.map((tag) => (
                     <Text key={tag} sx={styles.tag}>{tag}</Text>
@@ -95,7 +99,7 @@ export default function Cases() {
                 </Text>
                 <Text sx={styles.title}>{item.title}</Text>
                 <Text sx={styles.summary}>{item.summary}</Text>
-                <a href="/#contactUs" sx={styles.link} onClick={(e) => e.stopPropagation()}>
+                <a href="/contact" sx={styles.link} onClick={(e) => e.stopPropagation()}>
                   Discuss a similar project <FaArrowRight />
                 </a>
               </Box>
@@ -124,6 +128,10 @@ export default function Cases() {
         {selected && (
           <Box sx={styles.modalOverlay} onClick={() => setSelected(null)}>
             <Box sx={styles.modal} onClick={(e) => e.stopPropagation()}>
+              <Image
+                src={`/images/cases/case-${selected.id}.svg`}
+                alt={selected.title}
+                sx={styles.modalImage} />
               <Box sx={styles.modalHeader}>
                 <Box>
                   <Text sx={styles.number}>
@@ -151,7 +159,7 @@ export default function Cases() {
                   <Text key={t} sx={styles.tech}>{t}</Text>
                 ))}
               </Box>
-              <a href="/#contactUs" sx={styles.modalCta}>
+              <a href="/contact" sx={styles.modalCta}>
                 <Button variant="primary">Discuss a similar project</Button>
               </a>
             </Box>
@@ -175,7 +183,7 @@ export default function Cases() {
                   <FaWhatsapp /> Chat on WhatsApp
                 </Button>
               </a>
-              <a href="/#contactUs">
+              <a href="/contact">
                 <Button variant="textButton" sx={styles.ctaBtnOutline}>
                   Book a free consultation
                 </Button>
@@ -276,6 +284,14 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     gap: '8px',
+    mb: 4,
+  },
+  cardImage: {
+    width: '100%',
+    height: 'auto',
+    aspectRatio: '8/5',
+    objectFit: 'cover',
+    borderRadius: 10,
     mb: 4,
   },
   tag: {
@@ -393,6 +409,14 @@ const styles = {
     justifyContent: 'space-between',
     gap: 3,
     mb: 3,
+  },
+  modalImage: {
+    width: '100%',
+    height: 'auto',
+    aspectRatio: '8/5',
+    objectFit: 'cover',
+    borderRadius: 10,
+    mb: 4,
   },
   modalTitle: {
     fontSize: [3, null, 4],
