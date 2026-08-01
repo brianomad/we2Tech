@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import type { NextPage } from 'next'
 import { FormEvent, useState } from "react";
 import {
   jsx,
@@ -48,7 +47,7 @@ const steps = [
   },
 ];
 
-const ContactUs: NextPage = () => {
+const ContactUs = ({ showCaseCards = true }: { showCaseCards?: boolean }) => {
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
@@ -235,32 +234,49 @@ const ContactUs: NextPage = () => {
           </Box>
         </Reveal>
         <Reveal delay={0.1}>
-          <Box sx={styles.useCases}>
-            <Text sx={styles.useCasesTitle}>Client success stories</Text>
-            <Box sx={styles.useCasesGrid}>
-              {featuredCases.map((item) => (
-                <Box sx={styles.useCase} key={item.id}>
-                  <Box sx={styles.useCaseTags}>
-                    {item.tags.slice(0, 3).map((tag) => (
-                      <Text key={tag} sx={styles.useCaseTag}>{tag}</Text>
-                    ))}
+          {showCaseCards ? (
+            <Box sx={styles.useCases}>
+              <Text sx={styles.useCasesTitle}>Client success stories</Text>
+              <Box sx={styles.useCasesGrid}>
+                {featuredCases.map((item) => (
+                  <Box sx={styles.useCase} key={item.id}>
+                    <Box sx={styles.useCaseTags}>
+                      {item.tags.slice(0, 3).map((tag) => (
+                        <Text key={tag} sx={styles.useCaseTag}>{tag}</Text>
+                      ))}
+                    </Box>
+                    <Text sx={styles.useCaseTitle}>{item.title}</Text>
+                    <Text sx={styles.useCaseSummary}>{item.summary}</Text>
+                    <a href="/cases" sx={styles.useCaseLink}>
+                      View case study <FaArrowRight />
+                    </a>
                   </Box>
-                  <Text sx={styles.useCaseTitle}>{item.title}</Text>
-                  <Text sx={styles.useCaseSummary}>{item.summary}</Text>
-                  <a href="/cases" sx={styles.useCaseLink}>
-                    View case study <FaArrowRight />
-                  </a>
-                </Box>
-              ))}
+                ))}
+              </Box>
+              <Box sx={styles.useCasesCta}>
+                <a href="/cases">
+                  <Button variant="primary" sx={styles.useCasesBtn}>
+                    View all case studies
+                  </Button>
+                </a>
+              </Box>
             </Box>
-            <Box sx={styles.useCasesCta}>
-              <a href="/cases">
-                <Button variant="primary" sx={styles.useCasesBtn}>
-                  View all case studies
-                </Button>
-              </a>
+          ) : (
+            <Box sx={styles.useCases}>
+              <Text sx={styles.useCasesTitle}>Client success stories</Text>
+              <Text sx={styles.useCasesText}>
+                See how we have helped businesses across industries — from mini-storage and
+                retail to taxis, gyms and blockchain platforms.
+              </Text>
+              <Box sx={styles.useCasesCta}>
+                <a href="/cases">
+                  <Button variant="primary" sx={styles.useCasesBtn}>
+                    View all case studies
+                  </Button>
+                </a>
+              </Box>
             </Box>
-          </Box>
+          )}
         </Reveal>
       </Container>
     </section>
@@ -505,6 +521,14 @@ const styles = {
     fontWeight: 700,
     color: 'heading',
     mb: 4,
+    fontFamily: 'Ubuntu',
+  },
+  useCasesText: {
+    fontSize: 2,
+    lineHeight: 1.9,
+    color: 'text',
+    maxWidth: '560px',
+    mx: 'auto',
     fontFamily: 'Ubuntu',
   },
   useCasesGrid: {
