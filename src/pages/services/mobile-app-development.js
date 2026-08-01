@@ -146,6 +146,10 @@ const content = {
       a: 'Discovery and requirements mapping -> UX and system flow design -> development -> UAT, launch, analytics and support.',
     },
   ],
+  cta: {
+    title: 'Have a mobile app idea? Let\'s build it together.',
+    text: 'Tell us about your app, users and business stage. We will help define the useful first version and the system it should grow into.',
+  },
 };
 
 export default function MobileAppDevelopment() {

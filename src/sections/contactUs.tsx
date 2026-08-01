@@ -47,7 +47,7 @@ const steps = [
   },
 ];
 
-const ContactUs = ({ showCaseCards = true }: { showCaseCards?: boolean }) => {
+const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: boolean; compact?: boolean }) => {
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
@@ -117,15 +117,92 @@ const ContactUs = ({ showCaseCards = true }: { showCaseCards?: boolean }) => {
     }
   };
 
+  const form = (
+    <Box sx={styles.formCol}>
+      <form onSubmit={handleSubmit} sx={styles.form}>
+        <Box sx={styles.fieldGrid}>
+          <div>
+            <input
+              value={name}
+              onChange={e => setName(e.target.value)}
+              type="text" name="name" id="name"
+              sx={{ ...styles.input, borderColor: errors.name ? 'red' : undefined }}
+              placeholder={'Name'} />
+            {errors.name && <Text sx={styles.error}>{errors.name}</Text>}
+          </div>
+          <div>
+            <input
+              value={company}
+              onChange={e => setCompany(e.target.value)}
+              type="text" name="company" id="company"
+              sx={styles.input}
+              placeholder={'Company (optional)'} />
+          </div>
+          <div>
+            <input
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              type="email" name="email" id="email"
+              sx={{ ...styles.input, borderColor: errors.email ? 'red' : undefined }}
+              placeholder={'Email'} />
+            {errors.email && <Text sx={styles.error}>{errors.email}</Text>}
+          </div>
+          <div>
+            <input
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+              type="tel" name="phone" id="phone"
+              sx={styles.input}
+              placeholder={'Phone / WhatsApp (optional)'} />
+          </div>
+        </Box>
+        <Text sx={styles.chipsLabel}>Project type</Text>
+        <Box sx={styles.chips}>
+          {projectTypes.map((type) => (
+            <Box
+              key={type}
+              onClick={() => toggleType(type)}
+              sx={{
+                ...styles.chip,
+                ...(selectedTypes.includes(type) ? styles.chipActive : {}),
+              }}>
+              {type}
+            </Box>
+          ))}
+        </Box>
+        <div>
+          <textarea
+            value={message}
+            onChange={e => setMessage(e.target.value)}
+            id="message"
+            sx={{ ...styles.messageArea, borderColor: errors.message ? 'red' : undefined }}
+            placeholder={'Tell us about your project — goals, current systems, timeline, and what you want to improve.'} />
+          {errors.message && <Text sx={styles.error}>{errors.message}</Text>}
+        </div>
+        {status === 'success' && (
+          <Text sx={styles.successMsg}>Thank you! We'll get back to you within one business day.</Text>
+        )}
+        {status === 'error' && (
+          <Text sx={styles.errorMsg}>{errorMsg}</Text>
+        )}
+        <Button sx={styles.submit} disabled={status === 'submitting'}>
+          {status === 'submitting' ? 'Submitting...' : 'Send Enquiry'}
+        </Button>
+      </form>
+    </Box>
+  );
+
   return (
     <section id="contactUs" sx={styles.section}>
       <Container>
-        <SectionHeader
+        {!compact && <SectionHeader
+          eyebrow="Book a Consultation"
           title="Tell us what system, workflow or operating issue you want to improve"
           slogan="We will review the current stage, technical direction, risks, timeline and practical next step — free of charge."
-          icColor={true} />
+          icColor={true} />}
         <Reveal>
-          <Box sx={styles.container}>
+          <Box sx={!compact ? styles.container : styles.containerCompact}>
+            {!compact && (
             <Box sx={styles.infoCol}>
               <Box sx={styles.infoCard}>
                 <Text sx={styles.infoTitle}>Talk to your technology partner</Text>
@@ -158,78 +235,8 @@ const ContactUs = ({ showCaseCards = true }: { showCaseCards?: boolean }) => {
                 ))}
               </Box>
             </Box>
-            <Box sx={styles.formCol}>
-              <form onSubmit={handleSubmit} sx={styles.form}>
-                <Box sx={styles.fieldGrid}>
-                  <div>
-                    <input
-                      value={name}
-                      onChange={e => setName(e.target.value)}
-                      type="text" name="name" id="name"
-                      sx={{ ...styles.input, borderColor: errors.name ? 'red' : undefined }}
-                      placeholder={'Name'} />
-                    {errors.name && <Text sx={styles.error}>{errors.name}</Text>}
-                  </div>
-                  <div>
-                    <input
-                      value={company}
-                      onChange={e => setCompany(e.target.value)}
-                      type="text" name="company" id="company"
-                      sx={styles.input}
-                      placeholder={'Company (optional)'} />
-                  </div>
-                  <div>
-                    <input
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
-                      type="email" name="email" id="email"
-                      sx={{ ...styles.input, borderColor: errors.email ? 'red' : undefined }}
-                      placeholder={'Email'} />
-                    {errors.email && <Text sx={styles.error}>{errors.email}</Text>}
-                  </div>
-                  <div>
-                    <input
-                      value={phone}
-                      onChange={e => setPhone(e.target.value)}
-                      type="tel" name="phone" id="phone"
-                      sx={styles.input}
-                      placeholder={'Phone / WhatsApp (optional)'} />
-                  </div>
-                </Box>
-                <Text sx={styles.chipsLabel}>Project type</Text>
-                <Box sx={styles.chips}>
-                  {projectTypes.map((type) => (
-                    <Box
-                      key={type}
-                      onClick={() => toggleType(type)}
-                      sx={{
-                        ...styles.chip,
-                        ...(selectedTypes.includes(type) ? styles.chipActive : {}),
-                      }}>
-                      {type}
-                    </Box>
-                  ))}
-                </Box>
-                <div>
-                  <textarea
-                    value={message}
-                    onChange={e => setMessage(e.target.value)}
-                    id="message"
-                    sx={{ ...styles.messageArea, borderColor: errors.message ? 'red' : undefined }}
-                    placeholder={'Tell us about your project — goals, current systems, timeline, and what you want to improve.'} />
-                  {errors.message && <Text sx={styles.error}>{errors.message}</Text>}
-                </div>
-                {status === 'success' && (
-                  <Text sx={styles.successMsg}>Thank you! We'll get back to you within one business day.</Text>
-                )}
-                {status === 'error' && (
-                  <Text sx={styles.errorMsg}>{errorMsg}</Text>
-                )}
-                <Button sx={styles.submit} disabled={status === 'submitting'}>
-                  {status === 'submitting' ? 'Submitting...' : 'Send Enquiry'}
-                </Button>
-              </form>
-            </Box>
+            )}
+            {form}
           </Box>
         </Reveal>
         {showCaseCards && (
@@ -280,6 +287,11 @@ const styles = {
     gridGap: ['30px', null, '40px'],
     mt: [5, null, 7],
     alignItems: 'start',
+  },
+  containerCompact: {
+    mt: [5, null, 7],
+    maxWidth: ['100%', null, null, '760px'],
+    mx: 'auto',
   },
   infoCol: {
     display: 'flex',
