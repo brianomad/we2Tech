@@ -1,5 +1,6 @@
 import ServicePage from '../../components/service-page';
 import BannerImg from 'assets/we2Tech/mobileAppDevelopment.png';
+import WebsiteBg from 'assets/we2Tech/website.png';
 import {
   FaMobileAlt,
   FaApple,
@@ -23,6 +24,7 @@ const content = {
     slogan:
       'We design and build custom iOS, Android and cross-platform applications for customers, members, field teams and internal operations — from idea to app store launch and long-term support.',
     image: BannerImg,
+    background: WebsiteBg,
   },
   features: {
     title: 'What we build',
