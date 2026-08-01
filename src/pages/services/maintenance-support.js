@@ -24,6 +24,7 @@ const content = {
       'We host and maintain your application, troubleshoot unexpected issues, and upgrade the system as your requirements grow — long after launch.',
     image: BannerImg,
     background: BannerImg,
+    showBookButton: false,
   },
   features: {
     title: 'What we support',
@@ -131,24 +132,6 @@ const content = {
     {
       q: 'How does a project usually start?',
       a: 'System and ownership review -> scope and SLA agreement -> monitoring setup -> ongoing operation.',
-    },
-  ],
-  faq: [
-    {
-      q: 'Do you only support apps you built?',
-      a: 'No. We also take over inherited systems that need a clearer maintenance routine.',
-    },
-    {
-      q: 'How fast will you respond to issues?',
-      a: 'Response time depends on the SLA you choose. We agree severity rules and expectations up front.',
-    },
-    {
-      q: 'Can you upgrade our application?',
-      a: 'Yes. We plan enhancements in controlled releases based on real usage and business priorities.',
-    },
-    {
-      q: 'How do we report an issue?',
-      a: 'Through WhatsApp, email or a support channel we agree — whichever is easiest for your team.',
     },
   ],
   cta: {

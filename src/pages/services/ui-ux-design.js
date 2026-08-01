@@ -24,6 +24,7 @@ const content = {
       'Our design team creates user-friendly, attractive UI/UX for mobile and web applications — turning first-time visitors into loyal customers with clear, delightful experiences.',
     image: BannerImg,
     background: BannerImg,
+    showBookButton: false,
   },
   features: {
     title: 'What we design',
@@ -136,24 +137,6 @@ const content = {
     {
       q: 'How does a project usually start?',
       a: 'Research and user mapping -> structure and wireframes -> visual design -> prototype and handoff.',
-    },
-  ],
-  faq: [
-    {
-      q: 'Can you design only part of the project?',
-      a: 'Yes. You can engage us for research and wireframes, full UI design, or a design review of an existing app.',
-    },
-    {
-      q: 'Do you work with our brand?',
-      a: 'Yes. We extend your existing brand, or help define a fresh visual direction from scratch.',
-    },
-    {
-      q: 'What files do we receive?',
-      a: 'Organised design files, assets and a style guide that developers can implement consistently.',
-    },
-    {
-      q: 'Can you redesign an existing app?',
-      a: 'Yes. We audit the current interface and user journey, then redesign to improve usability and conversion.',
     },
   ],
   cta: {

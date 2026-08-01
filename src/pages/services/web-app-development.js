@@ -24,6 +24,7 @@ const content = {
       'We design and build responsive websites, customer portals, admin dashboards, booking systems and eCommerce flows around real users and operational workflows.',
     image: BannerImg,
     background: BannerImg,
+    showBookButton: false,
   },
   features: {
     title: 'What we build',
@@ -143,24 +144,6 @@ const content = {
     {
       q: 'How does a project usually start?',
       a: 'Discovery and requirements mapping -> design -> development -> UAT, launch, analytics and support.',
-    },
-  ],
-  faq: [
-    {
-      q: 'Do you build websites that work on mobile?',
-      a: 'Yes. Every site we build is fully responsive and tested across phones, tablets and desktops.',
-    },
-    {
-      q: 'Can my team update content themselves?',
-      a: 'Yes. We build on CMS platforms like WordPress or provide a simple admin panel for your content.',
-    },
-    {
-      q: 'Can you connect the website to our systems?',
-      a: 'Yes. We integrate payments, CRM, booking, logistics and third-party APIs into the platform.',
-    },
-    {
-      q: 'Can you improve an existing website?',
-      a: 'Yes. We review the current site and operations, then stabilise, refocus and enhance it in clear increments.',
     },
   ],
   cta: {

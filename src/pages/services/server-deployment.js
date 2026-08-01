@@ -24,6 +24,7 @@ const content = {
       'We deploy cloud-based systems and implement cloud servers based on your needs — adopting the worldwide trend of remote working and infusing digital culture into your work environment.',
     image: BannerImg,
     background: BannerImg,
+    showBookButton: false,
   },
   features: {
     title: 'What we deploy',
@@ -135,24 +136,6 @@ const content = {
     {
       q: 'How does a project usually start?',
       a: 'Current setup review -> target architecture design -> deployment -> validation and monitoring.',
-    },
-  ],
-  faq: [
-    {
-      q: 'Which cloud providers do you support?',
-      a: 'AWS, Google Cloud, Microsoft Azure, Alibaba Cloud and DigitalOcean, depending on your budget and needs.',
-    },
-    {
-      q: 'Can you migrate our existing server?',
-      a: 'Yes. We assess the current setup, plan the migration and move your system with minimal downtime.',
-    },
-    {
-      q: 'Do you handle maintenance after deployment?',
-      a: 'Yes. We offer ongoing monitoring, security patches, backups and support after launch.',
-    },
-    {
-      q: 'Can you reduce our hosting costs?',
-      a: 'We right-size infrastructure to your actual traffic and implement cost controls to avoid waste.',
     },
   ],
   cta: {
