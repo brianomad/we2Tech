@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Container, Box, Heading, Text, Image, Button } from 'theme-ui';
+import { jsx, Container, Box, Heading, Text, Button } from 'theme-ui';
 import { Link as ScrollLink } from 'react-scroll';
 import { motion } from 'framer-motion';
 
@@ -38,9 +38,6 @@ export default function Home() {
           </Box>
         </motion.div>
       </Container>
-      <Box sx={styles.imageBox}>
-        <Image src={BannerImg} alt="we2Tech application development banner" />
-      </Box>
     </section>
   );
 }
@@ -51,8 +48,10 @@ const styles = {
     pt: [120, null, 140, 160],
     pb: [40, null, 60],
     overflow: 'hidden',
-    backgroundImage:
-      'linear-gradient(180deg, rgba(0,139,139,0.07) 0%, rgba(255,255,255,0) 55%)',
+    backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.84) 55%, rgba(255,255,255,0.9) 100%), url(${BannerImg})`,
+    backgroundSize: 'cover, cover',
+    backgroundPosition: 'center, center',
+    backgroundRepeat: 'no-repeat, no-repeat',
     '::before, ::after': {
       content: '""',
       position: 'absolute',
@@ -143,14 +142,5 @@ const styles = {
     alignItems: 'center',
     gap: 2,
     fontFamily: 'Ubuntu',
-  },
-  imageBox: {
-    mt: [5, null, 6],
-    px: [0, null, null, 4],
-    img: {
-      width: '100%',
-      height: 'auto',
-      borderRadius: [0, null, null, 12],
-    },
   },
 };
