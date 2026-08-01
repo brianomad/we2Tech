@@ -1,6 +1,8 @@
+/** @jsx jsx */
 import type { NextPage } from 'next'
 import { FormEvent, useState } from "react";
 import {
+  jsx,
   Box,
   Container,
   Button,
@@ -185,7 +187,7 @@ const ContactUs: NextPage = () => {
                       value={name}
                       onChange={e => setName(e.target.value)}
                       type="text" name="name" id="name"
-                      style={{...styles.input, borderColor: errors.name ? 'red' : undefined}}
+                      sx={{ ...styles.input, borderColor: errors.name ? 'red' : undefined }}
                       placeholder={'Name'} />
                     {errors.name && <Text sx={styles.error}>{errors.name}</Text>}
                   </div>
@@ -194,7 +196,7 @@ const ContactUs: NextPage = () => {
                       value={company}
                       onChange={e => setCompany(e.target.value)}
                       type="text" name="company" id="company"
-                      style={styles.input}
+                      sx={styles.input}
                       placeholder={'Company (optional)'} />
                   </div>
                   <div>
@@ -202,7 +204,7 @@ const ContactUs: NextPage = () => {
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       type="email" name="email" id="email"
-                      style={{...styles.input, borderColor: errors.email ? 'red' : undefined}}
+                      sx={{ ...styles.input, borderColor: errors.email ? 'red' : undefined }}
                       placeholder={'Email'} />
                     {errors.email && <Text sx={styles.error}>{errors.email}</Text>}
                   </div>
@@ -211,7 +213,7 @@ const ContactUs: NextPage = () => {
                       value={phone}
                       onChange={e => setPhone(e.target.value)}
                       type="tel" name="phone" id="phone"
-                      style={styles.input}
+                      sx={styles.input}
                       placeholder={'Phone / WhatsApp (optional)'} />
                   </div>
                 </Box>
@@ -234,7 +236,7 @@ const ContactUs: NextPage = () => {
                     value={message}
                     onChange={e => setMessage(e.target.value)}
                     id="message"
-                    style={{...styles.messageArea, borderColor: errors.message ? 'red' : undefined}}
+                    sx={{ ...styles.messageArea, borderColor: errors.message ? 'red' : undefined }}
                     placeholder={'Tell us about your project — goals, current systems, timeline, and what you want to improve.'} />
                   {errors.message && <Text sx={styles.error}>{errors.message}</Text>}
                 </div>
