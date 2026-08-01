@@ -50,10 +50,9 @@ import {
   SiCircleci,
   SiGithubactions,
   SiEthereum,
-  SiBitcoin,
-  SiLitecoin,
-  SiXrp,
-  SiStellar,
+  SiParitysubstrate,
+  SiRust,
+  SiIpfs,
   SiShopify,
   SiWoo,
   SiMagento,
@@ -72,7 +71,6 @@ import {
   FaBrain,
   FaFileCode,
   FaCoins,
-  FaEthereum,
 } from 'react-icons/fa';
 
 const groups = [
@@ -152,14 +150,11 @@ const groups = [
     id: 6,
     category: 'Blockchain & Web3',
     items: [
-      { name: 'Ethereum', icon: <SiEthereum /> },
-      { name: 'Bitcoin', icon: <SiBitcoin /> },
-      { name: 'Litecoin', icon: <SiLitecoin /> },
-      { name: 'Ripple', icon: <SiXrp /> },
-      { name: 'Stellar', icon: <SiStellar /> },
+      { name: 'Substrate', icon: <SiParitysubstrate /> },
+      { name: 'Rust', icon: <SiRust /> },
+      { name: 'IPFS', icon: <SiIpfs /> },
       { name: 'Smart Contracts', icon: <FaFileCode /> },
       { name: 'Web3 & DApps', icon: <FaCoins /> },
-      { name: 'Crypto Payments', icon: <FaEthereum /> },
     ],
   },
   {
