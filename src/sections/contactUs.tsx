@@ -10,44 +10,24 @@ import {
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
 import { FaWhatsapp, FaEnvelope, FaArrowRight } from 'react-icons/fa';
-import cases from './case-data';
+import enCases from './case-data';
+import zhCases from '../data/case-data-zh';
+import zhCnCases from '../data/case-data-zh-cn';
+import { tagNames as zhTagNames } from '../data/case-data-zh';
+import { tagNames as zhCnTagNames } from '../data/case-data-zh-cn';
+import { useLocale, localizedPath } from '../locales';
 
-const featuredCases = cases.slice(0, 4);
-
-const projectTypes = [
-  'Mobile App',
-  'Web App',
-  'UI/UX Design',
-  'Server Deployment',
-  'Maintenance',
-  'MVP / POC',
-  'Other',
-];
-
-const steps = [
-  {
-    step: '1',
-    title: 'Share context',
-    text: 'Tell us about your business goal, current workflow and target users.',
-  },
-  {
-    step: '2',
-    title: 'Identify constraints',
-    text: 'We review the business and technical limits that shape the project.',
-  },
-  {
-    step: '3',
-    title: 'Discuss feasible scope',
-    text: 'We propose a practical scope, approach and phasing for the build.',
-  },
-  {
-    step: '4',
-    title: 'Define the next step',
-    text: 'You leave with a clear recommendation and a decision path.',
-  },
-];
+const casesByLocale = { en: enCases, zh: zhCases, 'zh-cn': zhCnCases };
+const tagNamesByLocale = { en: {}, zh: zhTagNames, 'zh-cn': zhCnTagNames };
 
 const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: boolean; compact?: boolean }) => {
+  const { locale, t } = useLocale();
+  const cases = casesByLocale[locale] || casesByLocale.en;
+  const tagNames = tagNamesByLocale[locale] || {};
+  const localizedTag = (tag: string) => tagNames[tag] || tag;
+  const featuredCases = cases.slice(0, 4);
+  const projectTypes = t('contact.projectTypes') as string[];
+  const steps = t('contact.steps') as { step?: string; title: string; text: string }[];
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
@@ -66,13 +46,13 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
 
   const validate = () => {
     const errs: Record<string, string> = {};
-    if (!name.trim()) errs.name = 'Name is required';
+    if (!name.trim()) errs.name = t('contact.errName');
     if (!email.trim()) {
-      errs.email = 'Email is required';
+      errs.email = t('contact.errEmail');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errs.email = 'Invalid email format';
+      errs.email = t('contact.errEmailInvalid');
     }
-    if (!message.trim()) errs.message = 'Message is required';
+    if (!message.trim()) errs.message = t('contact.errMessage');
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -113,7 +93,7 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
       setSelectedTypes([]);
     } catch {
       setStatus('error');
-      setErrorMsg('Submission failed. Please try again or email us directly.');
+      setErrorMsg(t('contact.failed'));
     }
   };
 
@@ -127,7 +107,7 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
               onChange={e => setName(e.target.value)}
               type="text" name="name" id="name"
               sx={{ ...styles.input, borderColor: errors.name ? 'red' : undefined }}
-              placeholder={'Name'} />
+              placeholder={t('contact.namePh')} />
             {errors.name && <Text sx={styles.error}>{errors.name}</Text>}
           </div>
           <div>
@@ -136,7 +116,7 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
               onChange={e => setCompany(e.target.value)}
               type="text" name="company" id="company"
               sx={styles.input}
-              placeholder={'Company (optional)'} />
+              placeholder={t('contact.companyPh')} />
           </div>
           <div>
             <input
@@ -144,7 +124,7 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
               onChange={e => setEmail(e.target.value)}
               type="email" name="email" id="email"
               sx={{ ...styles.input, borderColor: errors.email ? 'red' : undefined }}
-              placeholder={'Email'} />
+              placeholder={t('contact.emailPh')} />
             {errors.email && <Text sx={styles.error}>{errors.email}</Text>}
           </div>
           <div>
@@ -153,10 +133,10 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
               onChange={e => setPhone(e.target.value)}
               type="tel" name="phone" id="phone"
               sx={styles.input}
-              placeholder={'Phone / WhatsApp (optional)'} />
+              placeholder={t('contact.phonePh')} />
           </div>
         </Box>
-        <Text sx={styles.chipsLabel}>Project type</Text>
+        <Text sx={styles.chipsLabel}>{t('contact.projectType')}</Text>
         <Box sx={styles.chips}>
           {projectTypes.map((type) => (
             <Box
@@ -176,17 +156,17 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
             onChange={e => setMessage(e.target.value)}
             id="message"
             sx={{ ...styles.messageArea, borderColor: errors.message ? 'red' : undefined }}
-            placeholder={'Tell us about your project — goals, current systems, timeline, and what you want to improve.'} />
+            placeholder={t('contact.messagePh')} />
           {errors.message && <Text sx={styles.error}>{errors.message}</Text>}
         </div>
         {status === 'success' && (
-          <Text sx={styles.successMsg}>Thank you! We'll get back to you within one business day.</Text>
+          <Text sx={styles.successMsg}>{t('contact.success')}</Text>
         )}
         {status === 'error' && (
           <Text sx={styles.errorMsg}>{errorMsg}</Text>
         )}
         <Button sx={styles.submit} disabled={status === 'submitting'}>
-          {status === 'submitting' ? 'Submitting...' : 'Send Enquiry'}
+          {status === 'submitting' ? t('contact.submitting') : t('contact.send')}
         </Button>
       </form>
     </Box>
@@ -196,25 +176,23 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
     <section id="contactUs" sx={styles.section}>
       <Container>
         {!compact && <SectionHeader
-          eyebrow="Book a Consultation"
-          title="Tell us what system, workflow or operating issue you want to improve"
-          slogan="We will review the current stage, technical direction, risks, timeline and practical next step — free of charge."
+          eyebrow={t('contact.eyebrow')}
+          title={t('contact.title')}
+          slogan={t('contact.slogan')}
           icColor={true} />}
         <Reveal>
           <Box sx={!compact ? styles.container : styles.containerCompact}>
             {!compact && (
             <Box sx={styles.infoCol}>
               <Box sx={styles.infoCard}>
-                <Text sx={styles.infoTitle}>Talk to your technology partner</Text>
+                <Text sx={styles.infoTitle}>{t('contact.infoTitle')}</Text>
                 <Text sx={styles.infoText}>
-                  Share the business stage, pressure and outcome you are aiming for.
-                  We will consider the technology need together with customer
-                  experience, market context and operations.
+                  {t('contact.infoText')}
                 </Text>
                 <Box sx={styles.contactRow}>
                   <FaWhatsapp />
                   <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer">
-                    WhatsApp / Phone: (852) 5396 8435
+                    {t('location.whatsapp')}: (852) 5396 8435
                   </a>
                 </Box>
                 <Box sx={styles.contactRow}>
@@ -223,10 +201,10 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
                 </Box>
               </Box>
               <Box sx={styles.stepsCard}>
-                <Text sx={styles.stepsTitle}>How we work</Text>
-                {steps.map((item) => (
-                  <Box sx={styles.step} key={item.step}>
-                    <Box sx={styles.stepBadge}>{item.step}</Box>
+                <Text sx={styles.stepsTitle}>{t('contact.howWeWork')}</Text>
+                {steps.map((item, index) => (
+                  <Box sx={styles.step} key={index}>
+                    <Box sx={styles.stepBadge}>{index + 1}</Box>
                     <Box>
                       <Text sx={styles.stepTitle}>{item.title}</Text>
                       <Text sx={styles.stepText}>{item.text}</Text>
@@ -242,7 +220,7 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
         {showCaseCards && (
           <Reveal delay={0.1}>
             <Box sx={styles.useCases}>
-              <Text sx={styles.useCasesTitle}>Client success stories</Text>
+              <Text sx={styles.useCasesTitle}>{t('contact.storiesTitle')}</Text>
               <Box sx={styles.useCasesGrid}>
                 {featuredCases.map((item) => (
                   <Box
@@ -251,27 +229,27 @@ const ContactUs = ({ showCaseCards = true, compact = false }: { showCaseCards?: 
                       ...styles.useCase,
                       backgroundImage: `linear-gradient(180deg, rgba(0,51,51,0.10) 0%, rgba(0,51,51,0.88) 100%), url(/images/cases/case-${item.id}.jpg)`,
                     }}>
-                    <Text sx={styles.useCaseRef}>Photo for reference</Text>
+                    <Text sx={styles.useCaseRef}>{t('cases.photo')}</Text>
                     <Text sx={styles.useCaseNumber}>
-                      {String(item.id).padStart(2, '0')} case
+                      {String(item.id).padStart(2, '0')} {t('cases.caseWord')}
                     </Text>
                     <Box sx={styles.useCaseTags}>
                       {item.tags.slice(0, 3).map((tag) => (
-                        <Text key={tag} sx={styles.useCaseTag}>{tag}</Text>
+                        <Text key={tag} sx={styles.useCaseTag}>{localizedTag(tag)}</Text>
                       ))}
                     </Box>
                     <Text sx={styles.useCaseTitle}>{item.title}</Text>
                     <Text sx={styles.useCaseSummary}>{item.summary}</Text>
-                    <a href="/cases" sx={styles.useCaseLink}>
-                      View case study <FaArrowRight />
+                    <a href={localizedPath(locale, '/cases')} sx={styles.useCaseLink}>
+                      {t('contact.viewCase')} <FaArrowRight />
                     </a>
                   </Box>
                 ))}
               </Box>
               <Box sx={styles.useCasesCta}>
-                <a href="/cases">
+                <a href={localizedPath(locale, '/cases')}>
                   <Button variant="primary" sx={styles.useCasesBtn}>
-                    View all case studies
+                    {t('contact.viewAll')}
                   </Button>
                 </a>
               </Box>

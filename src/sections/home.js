@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 
 import BannerImg from 'assets/we2Tech/home.png';
 import { FaWhatsapp } from 'react-icons/fa';
+import { useLocale, localizedPath } from '../locales';
 
 export default function Home() {
+  const { locale, t } = useLocale();
   return (
     <section id="home" sx={styles.section}>
       <Container>
@@ -14,24 +16,22 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           sx={styles.textBox}>
-          <Text as="p" sx={styles.eyebrow}>Hong Kong Software Development</Text>
+          <Text as="p" sx={styles.eyebrow}>{t('home.eyebrow')}</Text>
           <Heading as="h1" sx={styles.title}>
-            We Build Mobile &amp; Web Applications That Grow Your Business
+            {t('home.title')}
           </Heading>
           <Text as="p" sx={styles.description}>
-            we2Tech is a Hong Kong-based development team crafting user-friendly
-            mobile apps, websites, UI/UX design and cloud systems — from first
-            idea to launch and beyond.
+            {t('home.description')}
           </Text>
           <Box sx={styles.buttons}>
-            <a href="/contact">
-              <Button variant="primary" sx={styles.heroBtnPrimary} aria-label="Book a Consultation">
-                Book a Consultation
+            <a href={localizedPath(locale, '/contact')}>
+              <Button variant="primary" sx={styles.heroBtnPrimary} aria-label={t('cta.bookConsultation')}>
+                {t('cta.bookConsultation')}
               </Button>
             </a>
             <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer">
               <Button variant="secondary" sx={styles.heroBtnOutline}>
-                <FaWhatsapp /> Chat on WhatsApp
+                <FaWhatsapp /> {t('cta.chatWhatsapp')}
               </Button>
             </a>
           </Box>

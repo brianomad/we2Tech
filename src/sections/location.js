@@ -5,35 +5,32 @@ import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
 import { GoLocation } from 'react-icons/go';
 import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
-
-const ADDRESS_LINES = [
-  'West Wing 2/F, 822 Lai Chi Kok Road',
-  'Cheung Sha Wan, Kowloon, Hong Kong',
-];
+import { useLocale } from '../locales';
 
 const MAP_EMBED = 'https://www.google.com/maps?q=822%20Lai%20Chi%20Kok%20Road%2C%20Cheung%20Sha%20Wan%2C%20Kowloon%2C%20Hong%20Kong&z=16&output=embed';
 
 const DIRECTIONS_URL =
   'https://www.google.com/maps/dir/?api=1&destination=822+Lai+Chi+Kok+Road+Cheung+Sha+Wan+Kowloon+Hong+Kong';
 
-const contact = [
-  {
-    id: 1,
-    icon: <FaWhatsapp />,
-    label: 'WhatsApp / Phone',
-    value: '(852) 5396 8435',
-    href: 'https://wa.me/85253968435',
-  },
-  {
-    id: 2,
-    icon: <FaEnvelope />,
-    label: 'Email',
-    value: 'enquiry@we2tech.pro',
-    href: 'mailto:enquiry@we2tech.pro',
-  },
-];
-
 export default function Location() {
+  const { t } = useLocale();
+  const addressLines = [t('location.addressLine1'), t('location.addressLine2')];
+  const contact = [
+    {
+      id: 1,
+      icon: <FaWhatsapp />,
+      label: t('location.whatsapp'),
+      value: '(852) 5396 8435',
+      href: 'https://wa.me/85253968435',
+    },
+    {
+      id: 2,
+      icon: <FaEnvelope />,
+      label: t('location.email'),
+      value: 'enquiry@we2tech.pro',
+      href: 'mailto:enquiry@we2tech.pro',
+    },
+  ];
   return (
     <section id="location" sx={styles.section}>
       <Head>
@@ -42,9 +39,9 @@ export default function Location() {
       </Head>
       <Container>
         <SectionHeader
-          eyebrow="Visit Us"
-          title="Find Our Studio in Hong Kong"
-          slogan="Located in Cheung Sha Wan, a short walk from the MTR — drop by for a coffee and a chat about your project."
+          eyebrow={t('location.eyebrow')}
+          title={t('location.title')}
+          slogan={t('location.slogan')}
           icColor={true} />
         <Reveal delay={0.1}>
           <Box sx={styles.grid}>
@@ -54,8 +51,8 @@ export default function Location() {
                   <GoLocation />
                 </Box>
                 <Box>
-                  <Text sx={styles.infoLabel}>Address</Text>
-                  {ADDRESS_LINES.map((line) => (
+                  <Text sx={styles.infoLabel}>{t('location.addressLabel')}</Text>
+                  {addressLines.map((line) => (
                     <Text sx={styles.infoText} key={line}>{line}</Text>
                   ))}
                 </Box>
@@ -72,7 +69,7 @@ export default function Location() {
                 </Box>
               ))}
               <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer">
-                <Box sx={styles.directionsBtn}>Get Directions</Box>
+                <Box sx={styles.directionsBtn}>{t('location.getDirections')}</Box>
               </a>
             </Box>
             <Box sx={styles.mapWrap}>

@@ -7,21 +7,26 @@ import { DrawerProvider } from '../../contexts/drawer/drawer.provider';
 import menuItems from './header.data';
 import { IoIosArrowDown } from 'react-icons/io';
 import Logo from 'assets/we2Tech/we2Tech_logo.png';
+import { useLocale, localizedPath, stripLocalePrefix } from '../../locales';
+import LanguageSwitcher from '../language-switcher';
 
 import MobileDrawer from './mobile-drawer';
 
-const serviceLinks = [
-  { path: '/services/mobile-app-development', label: 'Mobile App Development' },
-  { path: '/services/web-app-development', label: 'Web App Development' },
-  { path: '/services/ui-ux-design', label: 'UI/UX Design' },
-  { path: '/services/server-deployment', label: 'Server Deployment' },
-  { path: '/services/maintenance-support', label: 'Maintenance & Support' },
+const serviceSlugs = [
+  '/services/mobile-app-development',
+  '/services/web-app-development',
+  '/services/ui-ux-design',
+  '/services/server-deployment',
+  '/services/maintenance-support',
 ];
 
 export default function Header({ className }) {
   const router = useRouter();
-  const isHome = router.pathname === '/';
+  const { locale, t } = useLocale();
+  const isHome = router.pathname === '/' || router.pathname === '/[locale]';
   const [servicesOpen, setServicesOpen] = useState(false);
+
+  const currentBase = stripLocalePrefix(router.asPath).split('?')[0];
 
   const smoothScroll = (e, target) => {
     if (!isHome) return;
@@ -33,24 +38,24 @@ export default function Header({ className }) {
     });
   };
 
-  const renderNavItem = ({ path, label }, i) => {
+  const renderNavItem = ({ path, labelKey }, i) => {
     const isActive =
-      path === 'home' ? router.pathname === '/' : router.pathname === path;
+      path === 'home' ? currentBase === '/' : currentBase === path;
     if (path.startsWith('/')) {
       return (
-        <a href={path} key={i} className={isActive ? 'active' : undefined}>
-          {label}
+        <a href={localizedPath(locale, path)} key={i} className={isActive ? 'active' : undefined}>
+          {t(labelKey)}
         </a>
       );
     }
-    const href = path === 'home' ? '/' : `/#${path}`;
+    const href = path === 'home' ? localizedPath(locale, '/') : localizedPath(locale, `/#${path}`);
     return (
       <a
         href={href}
         key={i}
         className={isActive ? 'active' : undefined}
         onClick={(e) => smoothScroll(e, path)}>
-        {label}
+        {t(labelKey)}
       </a>
     );
   };
@@ -59,25 +64,25 @@ export default function Header({ className }) {
     <Box sx={styles.dropdownWrap} onMouseLeave={() => setServicesOpen(false)}>
       <Box
         sx={styles.dropdownTrigger}
-        className={router.pathname.startsWith('/services') ? 'active' : undefined}
+        className={currentBase.startsWith('/services') ? 'active' : undefined}
         onMouseEnter={() => setServicesOpen(true)}
         onClick={() => setServicesOpen(!servicesOpen)}>
-        SERVICES
+        {t('nav.services')}
         <Box sx={{ ...styles.caret, ...(servicesOpen ? styles.caretOpen : {}) }}>
           <IoIosArrowDown />
         </Box>
       </Box>
       {servicesOpen && (
         <Box sx={styles.dropdown}>
-          {serviceLinks.map((item) => {
-            const isActive = router.pathname === item.path;
+          {serviceSlugs.map((path, i) => {
+            const isActive = currentBase === path;
             return (
               <a
-                key={item.path}
-                href={item.path}
+                key={path}
+                href={localizedPath(locale, path)}
                 className={isActive ? 'active' : undefined}
                 onClick={() => setServicesOpen(false)}>
-                {item.label}
+                {t(`serviceNames.${i}`)}
               </a>
             );
           })}
@@ -87,15 +92,15 @@ export default function Header({ className }) {
   );
 
   const renderCta = (
-    <a href="/contact">
-      <Button variant="whiteButton" sx={styles.cta}>Get a Quote</Button>
+    <a href={localizedPath(locale, '/contact')}>
+      <Button variant="whiteButton" sx={styles.cta}>{t('cta.getQuote')}</Button>
     </a>
   );
 
   return (
     <DrawerProvider>
       <header id="header" sx={styles.header} className={className}>
-        <a href="/">
+        <a href={localizedPath(locale, '/')}>
           <Image
             src={Logo}
             alt="we2Tech"
@@ -108,6 +113,7 @@ export default function Header({ className }) {
               return renderNavItem(item, i);
             })}
           </Flex>
+          <LanguageSwitcher light />
           {renderCta}
         </Box>
         <MobileDrawer />
@@ -145,6 +151,7 @@ const styles = {
   },
   contextContainer: {
     display: 'flex',
+    alignItems: 'center',
     '@media screen and (max-width: 1000px)': {
       display: 'none',
     },

@@ -72,6 +72,7 @@ import {
   FaFileCode,
   FaCoins,
 } from 'react-icons/fa';
+import { useLocale } from '../locales';
 
 function SolidityIcon() {
   return (
@@ -223,18 +224,19 @@ const chipVariants = {
 };
 
 export default function TechStack() {
+  const { t } = useLocale();
   return (
     <section id="techStack" sx={styles.section}>
       <Container>
         <SectionHeader
-          title="Technologies We Work With"
-          slogan="Modern, proven tools to build reliable products"
+          title={t('techStack.title')}
+          slogan={t('techStack.slogan')}
           icColor={true} />
         <Grid sx={styles.grid}>
           {groups.map((group, index) => (
             <Reveal key={group.id} delay={index * 0.1}>
               <Box sx={styles.group}>
-                <Text sx={styles.category}>{group.category}</Text>
+                <Text sx={styles.category}>{t(`techStack.categories.${group.id - 1}`)}</Text>
                 <Box sx={styles.chips}>
                   {group.items.map((item) => (
                     <motion.div

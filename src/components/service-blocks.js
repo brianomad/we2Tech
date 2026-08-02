@@ -6,8 +6,10 @@ import Reveal from './reveal';
 import SectionHeader from './section-header';
 import { IoIosArrowDown } from 'react-icons/io';
 import { FaCheckCircle, FaWhatsapp } from 'react-icons/fa';
+import { useLocale, localizedPath } from '../locales';
 
 export function ServiceHero({ eyebrow, title, slogan, image, backgroundImage, showBookButton = true }) {
+  const { locale, t } = useLocale();
   return (
     <section
       sx={
@@ -30,13 +32,13 @@ export function ServiceHero({ eyebrow, title, slogan, image, backgroundImage, sh
           <Text as="p" sx={styles.heroSlogan}>{slogan}</Text>
           <Box sx={styles.heroButtons}>
             {showBookButton && (
-              <a href="/contact">
-                <Button variant="primary" sx={styles.heroBtnPrimary}>Book a Consultation</Button>
+              <a href={localizedPath(locale, '/contact')}>
+                <Button variant="primary" sx={styles.heroBtnPrimary}>{t('service.bookConsultation')}</Button>
               </a>
             )}
             <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer">
               <Button variant="secondary" sx={styles.heroBtnOutline}>
-                <FaWhatsapp /> Chat on WhatsApp
+                <FaWhatsapp /> {t('service.chatWhatsapp')}
               </Button>
             </a>
           </Box>
@@ -155,13 +157,14 @@ export function ProcessSteps({ title, slogan, steps, dark }) {
 
 export function DirectAnswers({ items }) {
   const [open, setOpen] = useState(0);
+  const { t } = useLocale();
 
   return (
     <section sx={{ ...styles.section, backgroundColor: 'background_secondary' }} id="directAnswers">
       <Container sx={styles.narrowContainer}>
         <SectionHeader
-          eyebrow="Direct Answers"
-          title="Quick answers before you ask"
+          eyebrow={t('service.directAnswersEyebrow')}
+          title={t('service.directAnswersTitle')}
           icColor={true} />
         <Box sx={styles.accordionWrap}>
           {items.map((item, index) => (
@@ -201,13 +204,14 @@ export function DirectAnswers({ items }) {
 
 export function ServiceFAQ({ items }) {
   const [open, setOpen] = useState(null);
+  const { t } = useLocale();
 
   return (
     <section sx={styles.section} id="faq">
       <Container sx={styles.narrowContainer}>
         <SectionHeader
-          eyebrow="FAQ"
-          title="Frequently asked questions"
+          eyebrow={t('service.faqEyebrow')}
+          title={t('service.faqTitle')}
           icColor={true} />
         <Box sx={styles.accordionWrap}>
           {items.map((item, index) => (
@@ -246,6 +250,7 @@ export function ServiceFAQ({ items }) {
 }
 
 export function ServiceCTA({ title, text }) {
+  const { locale, t } = useLocale();
   return (
     <section sx={{ ...styles.section, py: 0, pb: [7, null, 9] }}>
       <Container>
@@ -256,11 +261,11 @@ export function ServiceCTA({ title, text }) {
             <Box sx={styles.ctaButtons}>
               <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer">
                 <Button variant="whiteButton" sx={styles.ctaBtnPrimary}>
-                  <FaWhatsapp /> Chat on WhatsApp
+                  <FaWhatsapp /> {t('service.chatWhatsapp')}
                 </Button>
               </a>
-              <a href="/contact">
-                <Button variant="textButton" sx={styles.ctaBtnOutline}>Book a Consultation</Button>
+              <a href={localizedPath(locale, '/contact')}>
+                <Button variant="textButton" sx={styles.ctaBtnOutline}>{t('service.bookConsultation')}</Button>
               </a>
             </Box>
           </Box>

@@ -4,8 +4,10 @@ import Head from 'next/head';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
 import { AiFillInstagram } from 'react-icons/ai';
+import { useLocale } from '../locales';
 
 export default function Instagram() {
+  const { t } = useLocale();
   return (
     <section id="instagram" sx={styles.section}>
       <Head>
@@ -14,9 +16,9 @@ export default function Instagram() {
       </Head>
       <Container>
         <SectionHeader
-          eyebrow="Instagram"
-          title="Follow Us on Instagram"
-          slogan="Daily tech insights, project builds and behind-the-scenes from the we2Tech team"
+          eyebrow={t('instagram.eyebrow')}
+          title={t('instagram.title')}
+          slogan={t('instagram.slogan')}
           icColor={true} />
         <Reveal delay={0.1}>
           <Box sx={styles.feedWrap}>
@@ -40,7 +42,7 @@ export default function Instagram() {
               target="_blank"
               rel="noopener noreferrer">
               <Button variant="primary" sx={styles.followBtn}>
-                <AiFillInstagram /> Follow @we2tech
+                <AiFillInstagram /> {t('instagram.follow')}
               </Button>
             </a>
           </Box>

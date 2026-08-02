@@ -2,6 +2,7 @@
 import { jsx, Container, Box, Text, Heading } from 'theme-ui';
 import Reveal from '../components/reveal';
 import SectionHeader from '../components/section-header';
+import { useLocale, localizedPath } from '../locales';
 
 function Block({ block, index }) {
   if (block.type === 'h2') {
@@ -20,6 +21,7 @@ function Block({ block, index }) {
 }
 
 export default function PostBody({ post }) {
+  const { locale, t } = useLocale();
   return (
     <section sx={styles.section}>
       <Container sx={styles.container}>
@@ -46,12 +48,12 @@ export default function PostBody({ post }) {
         </Reveal>
         <Reveal delay={0.2}>
           <Box sx={styles.ctaBox}>
-            <Heading as="h3" sx={styles.ctaTitle}>Have a similar project in mind?</Heading>
+            <Heading as="h3" sx={styles.ctaTitle}>{t('post.similarTitle')}</Heading>
             <Text sx={styles.ctaText}>
-              Talk to your technology partner in Hong Kong. Share your business goal and we will review your project — free of charge.
+              {t('post.similarText')}
             </Text>
-            <a href="/contact">
-              <Box as="button" sx={styles.ctaBtn}>Book a Free Consultation</Box>
+            <a href={localizedPath(locale, '/contact')}>
+              <Box as="button" sx={styles.ctaBtn}>{t('post.bookFree')}</Box>
             </a>
           </Box>
         </Reveal>

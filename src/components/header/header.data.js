@@ -1,26 +1,26 @@
 export default [
   {
     path: 'home',
-    label: 'HOME',
+    labelKey: 'nav.home',
   },
   {
     path: 'services',
-    label: 'SERVICES',
+    labelKey: 'nav.services',
   },
   {
     path: '/cases',
-    label: 'CASES',
+    labelKey: 'nav.cases',
   },
   {
     path: '/blog',
-    label: 'INSIGHTS',
+    labelKey: 'nav.insights',
   },
   {
     path: '/faq',
-    label: 'FAQ',
+    labelKey: 'nav.faq',
   },
   {
     path: '/contact',
-    label: 'CONTACT',
+    labelKey: 'nav.contact',
   }
 ];

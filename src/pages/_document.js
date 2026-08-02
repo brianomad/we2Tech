@@ -1,14 +1,22 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
+function detectHtmlLang(asPath) {
+  const p = asPath ? asPath.split('?')[0] : '';
+  if (p.startsWith('/zh-cn')) return 'zh-Hans-CN';
+  if (p.startsWith('/zh')) return 'zh-Hant-HK';
+  return 'en-HK';
+}
+
 class CustomDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    const asPath = ctx.req ? ctx.req.url : '';
+    return { ...initialProps, htmlLang: detectHtmlLang(asPath) };
   }
 
   render() {
     return (
-      <Html lang="en-US">
+      <Html lang={this.props.htmlLang || 'en-HK'}>
         <Head>
           <link rel="icon" href="/favicon.ico" />
           <link rel="icon" href="/favicon.png" type="image/png" />

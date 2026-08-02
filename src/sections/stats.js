@@ -3,15 +3,17 @@ import { jsx, Container, Grid, Box, Text } from 'theme-ui';
 import { motion } from 'framer-motion';
 import Reveal from '../components/reveal';
 import CountUp from '../components/count-up';
+import { useLocale } from '../locales';
 
 const data = [
-  { id: 1, value: 4, suffix: '+', label: 'Years in Business' },
-  { id: 2, value: 8, suffix: '+', label: 'Years App Development Experience' },
-  { id: 3, value: 50, suffix: '+', label: 'Projects Delivered' },
-  { id: 4, value: 24, suffix: '/7', label: 'Post-Launch Support' },
+  { id: 1, value: 4, suffix: '+', labelKey: 'stats.years' },
+  { id: 2, value: 8, suffix: '+', labelKey: 'stats.appExp' },
+  { id: 3, value: 50, suffix: '+', labelKey: 'stats.projects' },
+  { id: 4, value: 24, suffix: '/7', labelKey: 'stats.support' },
 ];
 
 export default function Stats() {
+  const { t } = useLocale();
   return (
     <section id="stats" sx={styles.section}>
       <Container>
@@ -25,7 +27,7 @@ export default function Stats() {
                   <Text sx={styles.number}>
                     <CountUp end={item.value} suffix={item.suffix} />
                   </Text>
-                  <Text sx={styles.label}>{item.label}</Text>
+                  <Text sx={styles.label}>{t(item.labelKey)}</Text>
                 </Box>
               </motion.div>
             </Reveal>

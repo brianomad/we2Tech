@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-import { faqData } from '../sections/faq';
+import { faqDataByLocale } from '../sections/faq';
+import { getLocaleInfo, localizedPath } from '../locales';
 
 const SITE_URL = 'https://we2tech.pro';
 const PHONE = '+85253968435';
@@ -63,16 +64,19 @@ const localBusiness = {
   ],
 };
 
-export default function JsonLd({ type, items, service, post }) {
+export default function JsonLd({ type, items, service, post, locale = 'en' }) {
+  const info = getLocaleInfo(locale);
   let data = null;
 
   if (type === 'organization') {
     data = [organization, localBusiness];
   } else if (type === 'faq') {
+    const faqList = faqDataByLocale[locale] || faqDataByLocale.en;
     data = {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      mainEntity: faqData.map(({ question, answer }) => ({
+      inLanguage: info.htmlLang,
+      mainEntity: faqList.map(({ question, answer }) => ({
         '@type': 'Question',
         name: question,
         acceptedAnswer: { '@type': 'Answer', text: answer },
@@ -87,7 +91,8 @@ export default function JsonLd({ type, items, service, post }) {
       serviceType: service.title.split('|')[0].trim(),
       provider: { '@type': 'Organization', name: 'we2Tech Ltd', url: SITE_URL },
       areaServed: { '@type': 'Place', name: 'Hong Kong' },
-      url: `${SITE_URL}${service.path}`,
+      inLanguage: info.htmlLang,
+      url: `${SITE_URL}${localizedPath(locale, service.path)}`,
     };
   } else if (type === 'article' && post) {
     data = {
@@ -100,7 +105,7 @@ export default function JsonLd({ type, items, service, post }) {
       author: { '@type': 'Organization', name: 'we2Tech', url: SITE_URL },
       publisher: { '@type': 'Organization', name: 'we2Tech Ltd', url: SITE_URL, logo: { '@type': 'ImageObject', url: `${SITE_URL}/we2Tech.ico` } },
       mainEntityOfPage: { '@type': 'WebPage', '@id': post.url },
-      inLanguage: 'en-HK',
+      inLanguage: info.htmlLang,
       image: `${SITE_URL}/og-image.png`,
     };
   } else if (type === 'breadcrumb' && items) {
@@ -111,7 +116,7 @@ export default function JsonLd({ type, items, service, post }) {
         '@type': 'ListItem',
         position: i + 1,
         name: item.name,
-        item: `${SITE_URL}${item.path}`,
+        item: item.path ? `${SITE_URL}${localizedPath(locale, item.path)}` : item.url,
       })),
     };
   }

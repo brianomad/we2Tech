@@ -5,63 +5,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useLocale } from '../locales';
+import faqDataByLocale from '../data/faq-data';
 
-const data = [
-  {
-    id: 1,
-    question: 'How much does a mobile app or website cost?',
-    answer:
-      'The cost depends on the scope, features and complexity of your project. Contact us with your requirements and we will provide a clear, itemised quote — no hidden fees.',
-  },
-  {
-    id: 2,
-    question: 'Can you advise before a full project is confirmed?',
-    answer:
-      'Yes. We can help clarify feasibility, project shape, risk, budget range and phased delivery options before implementation.',
-  },
-  {
-    id: 3,
-    question: 'How long does development take?',
-    answer:
-      'Typical projects range from 4 to 16 weeks depending on size. We break the work into milestones so you can see progress throughout the process.',
-  },
-  {
-    id: 4,
-    question: 'What technologies do you use?',
-    answer:
-      'We build with modern, proven technologies including React Native, Flutter, Swift, Kotlin for mobile, and React, Next.js and WordPress for web — all backed by cloud infrastructure.',
-  },
-  {
-    id: 5,
-    question: 'Do you provide support after launch?',
-    answer:
-      'Yes. We host, maintain and monitor your application after launch, fix any unexpected issues, and can upgrade the system as your requirements grow.',
-  },
-  {
-    id: 6,
-    question: 'What should I prepare before contacting we2Tech?',
-    answer:
-      'Share your business goal, current workflow, target users, existing systems, timeline and any known constraints.',
-  },
-  {
-    id: 7,
-    question: 'How do we start a project with we2Tech?',
-    answer:
-      'Simply send us a message through the contact form or WhatsApp. We will arrange a consultation to understand your needs and outline the best solution for you.',
-  },
-];
-
-export { data as faqData };
+export { faqDataByLocale };
 
 export default function FAQ() {
+  const { locale, t } = useLocale();
   const [open, setOpen] = useState(null);
+  const data = faqDataByLocale[locale] || faqDataByLocale.en;
 
   return (
     <section id="faq" sx={styles.section}>
       <Container sx={styles.container}>
         <SectionHeader
-          title="Frequently Asked Questions"
-          slogan="Answers to the questions we hear most often"
+          title={t('faq.title')}
+          slogan={t('faq.slogan')}
           icColor={true} />
         <Box sx={styles.wrapper}>
           {data.map((item, index) => (

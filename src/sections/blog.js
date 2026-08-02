@@ -2,21 +2,24 @@
 import { jsx, Container, Box, Text } from 'theme-ui';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
-import posts from '../data/blog-data.json';
+import { postsByLocale } from '../data/blog-data';
+import { useLocale, localizedPath } from '../locales';
 
 export default function Blog() {
+  const { locale, t } = useLocale();
+  const posts = postsByLocale[locale] || postsByLocale.en;
   return (
     <section id="blog" sx={styles.section}>
       <Container>
         <SectionHeader
-          eyebrow="Insights"
-          title="Articles & Guides"
-          slogan="Practical advice on apps, websites and technology strategy for Hong Kong businesses"
+          eyebrow={t('blog.eyebrow')}
+          title={t('blog.title')}
+          slogan={t('blog.slogan')}
           icColor={true} />
         <Box sx={styles.grid}>
           {posts.map((post, index) => (
             <Reveal key={post.slug} delay={(index % 3) * 0.08}>
-              <a href={`/blog/${post.slug}`} sx={styles.cardLink}>
+              <a href={localizedPath(locale, `/blog/${post.slug}`)} sx={styles.cardLink}>
                 <Box sx={styles.card}>
                   <Box sx={styles.meta}>
                     <Text sx={styles.category}>{post.category}</Text>
@@ -25,7 +28,7 @@ export default function Blog() {
                   <Text sx={styles.title}>{post.title}</Text>
                   <Text sx={styles.excerpt}>{post.description}</Text>
                   <Box sx={styles.footer}>
-                    <Text sx={styles.readMore}>Read article →</Text>
+                    <Text sx={styles.readMore}>{t('blog.readArticle')}</Text>
                     <Text sx={styles.readingTime}>{post.readingTime}</Text>
                   </Box>
                 </Box>

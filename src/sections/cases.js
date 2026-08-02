@@ -5,18 +5,30 @@ import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
 import { FaArrowRight, FaWhatsapp, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
 import cases from './case-data';
+import zhCases from '../data/case-data-zh';
+import zhCnCases from '../data/case-data-zh-cn';
+import { tagNames as zhTagNames } from '../data/case-data-zh';
+import { tagNames as zhCnTagNames } from '../data/case-data-zh-cn';
+import { useLocale, localizedPath } from '../locales';
+
+const casesByLocale = { en: cases, zh: zhCases, 'zh-cn': zhCnCases };
+const tagNamesByLocale = { en: {}, zh: zhTagNames, 'zh-cn': zhCnTagNames };
 
 const allCategories = ['All', ...Array.from(new Set(cases.flatMap((c) => c.tags)))];
 
 const PAGE_SIZE = 12;
 
 export default function Cases() {
+  const { locale, t } = useLocale();
+  const data = casesByLocale[locale] || casesByLocale.en;
+  const tagNames = tagNamesByLocale[locale] || {};
+  const localizedTag = (cat) => tagNames[cat] || cat;
   const [active, setActive] = useState('All');
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState(null);
 
   const filtered =
-    active === 'All' ? cases : cases.filter((c) => c.tags.includes(active));
+    active === 'All' ? data : data.filter((c) => c.tags.includes(active));
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const startIndex = (page - 1) * PAGE_SIZE;
@@ -54,18 +66,18 @@ export default function Cases() {
     <section id="cases" sx={styles.section}>
       <Container>
         <SectionHeader
-          eyebrow="Use Case"
-          title="Client Success Stories"
-          slogan="Browse client work by service category and see how technology decisions connect with business stage, operations, data and customer experience."
+          eyebrow={t('cases.eyebrow')}
+          title={t('cases.title')}
+          slogan={t('cases.slogan')}
           icColor={true} />
         <Box sx={styles.stats}>
           <Box sx={styles.stat}>
-            <Text sx={styles.statValue}>{cases.length}</Text>
-            <Text sx={styles.statLabel}>Cases</Text>
+            <Text sx={styles.statValue}>{data.length}</Text>
+            <Text sx={styles.statLabel}>{t('cases.casesLabel')}</Text>
           </Box>
           <Box sx={styles.stat}>
             <Text sx={styles.statValue}>{allCategories.length - 1}</Text>
-            <Text sx={styles.statLabel}>Categories</Text>
+            <Text sx={styles.statLabel}>{t('cases.categoriesLabel')}</Text>
           </Box>
         </Box>
         <Box sx={styles.filters}>
@@ -77,7 +89,7 @@ export default function Cases() {
                 ...styles.chip,
                 ...(active === cat ? styles.chipActive : {}),
               }}>
-              {cat}
+              {cat === 'All' ? t('cases.all') : localizedTag(cat)}
             </Box>
           ))}
         </Box>
@@ -90,20 +102,20 @@ export default function Cases() {
                     ...styles.cardImageBg,
                     backgroundImage: `linear-gradient(180deg, rgba(0,51,51,0.10) 0%, rgba(0,51,51,0.88) 100%), url(/images/cases/case-${item.id}.jpg)`,
                   }} />
-                <Text sx={styles.refNote}>Photo for reference</Text>
+                <Text sx={styles.refNote}>{t('cases.photo')}</Text>
                 <Text sx={styles.cardNumber}>
-                  {String(item.id).padStart(2, '0')} case
+                  {String(item.id).padStart(2, '0')} {t('cases.caseWord')}
                 </Text>
                 <Box sx={styles.cardContent}>
                   <Box sx={styles.cardTags}>
                     {item.tags.map((tag) => (
-                      <Text key={tag} sx={styles.cardTag}>{tag}</Text>
+                      <Text key={tag} sx={styles.cardTag}>{localizedTag(tag)}</Text>
                     ))}
                   </Box>
                   <Text sx={styles.cardTitle}>{item.title}</Text>
                   <Text sx={styles.cardSummary}>{item.summary}</Text>
-                  <a href="/contact" sx={styles.cardLink} onClick={(e) => e.stopPropagation()}>
-                    Discuss a similar project <FaArrowRight />
+                  <a href={localizedPath(locale, '/contact')} sx={styles.cardLink} onClick={(e) => e.stopPropagation()}>
+                    {t('cases.discuss')} <FaArrowRight />
                   </a>
                 </Box>
               </Box>
@@ -116,17 +128,17 @@ export default function Cases() {
             sx={styles.pageBtn}
             disabled={page <= 1}
             onClick={() => goToPage(page - 1)}>
-            <FaChevronLeft /> Prev
+            <FaChevronLeft /> {t('cases.prev')}
           </Button>
           <Text sx={styles.pageInfo}>
-            Page {page} of {totalPages}
+            {t('cases.pageOf', { page, total: totalPages })}
           </Text>
           <Button
             variant="textButton"
             sx={styles.pageBtn}
             disabled={page >= totalPages}
             onClick={() => goToPage(page + 1)}>
-            Next <FaChevronRight />
+            {t('cases.next')} <FaChevronRight />
           </Button>
         </Box>
         {selected && (
@@ -137,22 +149,22 @@ export default function Cases() {
                   ...styles.modalImageBox,
                   backgroundImage: `url(/images/cases/case-${selected.id}.jpg)`,
                 }}>
-                <Text sx={styles.refNote}>Photo for reference</Text>
+                <Text sx={styles.refNote}>{t('cases.photo')}</Text>
               </Box>
               <Box sx={styles.modalHeader}>
                 <Box>
                   <Text sx={styles.number}>
-                    {String(selected.id).padStart(2, '0')} case
+                    {String(selected.id).padStart(2, '0')} {t('cases.caseWord')}
                   </Text>
                   <Text as="h3" sx={styles.modalTitle}>{selected.title}</Text>
                 </Box>
-                <button sx={styles.modalClose} onClick={() => setSelected(null)} aria-label="Close">
+                <button sx={styles.modalClose} onClick={() => setSelected(null)} aria-label={t('cases.all')}>
                   <FaTimes />
                 </button>
               </Box>
               <Box sx={styles.tags}>
                 {selected.tags.map((tag) => (
-                  <Text key={tag} sx={styles.tag}>{tag}</Text>
+                  <Text key={tag} sx={styles.tag}>{localizedTag(tag)}</Text>
                 ))}
               </Box>
               <Box>
@@ -160,14 +172,14 @@ export default function Cases() {
                   <Text key={i} sx={styles.modalText}>{p}</Text>
                 ))}
               </Box>
-              <Text sx={styles.techLabel}>Technology used</Text>
+              <Text sx={styles.techLabel}>{t('cases.techUsed')}</Text>
               <Box sx={styles.techList}>
-                {selected.tech.map((t) => (
-                  <Text key={t} sx={styles.tech}>{t}</Text>
+                {selected.tech.map((item) => (
+                  <Text key={item} sx={styles.tech}>{item}</Text>
                 ))}
               </Box>
-              <a href="/contact" sx={styles.modalCta}>
-                <Button variant="primary">Discuss a similar project</Button>
+              <a href={localizedPath(locale, '/contact')} sx={styles.modalCta}>
+                <Button variant="primary">{t('cases.discuss')}</Button>
               </a>
             </Box>
           </Box>
@@ -175,11 +187,10 @@ export default function Cases() {
         <Reveal delay={0.1}>
           <Box sx={styles.ctaCard}>
             <Text as="h2" sx={styles.ctaTitle}>
-              Want results like these for your business?
+              {t('cases.ctaTitle')}
             </Text>
             <Text as="p" sx={styles.ctaText}>
-              Book a free consultation and we&apos;ll walk you through how your
-              project would be scoped, built and supported.
+              {t('cases.ctaText')}
             </Text>
             <Box sx={styles.ctaButtons}>
               <a
@@ -187,12 +198,12 @@ export default function Cases() {
                 target="_blank"
                 rel="noopener noreferrer">
                 <Button variant="whiteButton" sx={styles.ctaBtnPrimary}>
-                  <FaWhatsapp /> Chat on WhatsApp
+                  <FaWhatsapp /> {t('cta.chatWhatsapp')}
                 </Button>
               </a>
-              <a href="/contact">
+              <a href={localizedPath(locale, '/contact')}>
                 <Button variant="textButton" sx={styles.ctaBtnOutline}>
-                  Book a free consultation
+                  {t('cta.bookFreeConsultation')}
                 </Button>
               </a>
             </Box>

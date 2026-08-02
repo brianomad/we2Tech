@@ -7,11 +7,23 @@ import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import { scroller } from 'react-scroll';
 import { useRouter } from 'next/router';
 import menuItems from './header.data';
+import { useLocale, localizedPath, stripLocalePrefix } from '../../locales';
+
+const serviceSlugs = [
+  '/services/mobile-app-development',
+  '/services/web-app-development',
+  '/services/ui-ux-design',
+  '/services/server-deployment',
+  '/services/maintenance-support',
+];
 
 const MobileDrawer = () => {
   const { state, dispatch } = useContext(DrawerContext);
   const router = useRouter();
-  const isHome = router.pathname === '/';
+  const { locale, t } = useLocale();
+  const isHome = router.pathname === '/' || router.pathname === '/[locale]';
+
+  const currentBase = stripLocalePrefix(router.asPath).split('?')[0];
 
   // Toggle drawer
   const toggleHandler = React.useCallback(() => {
@@ -31,28 +43,28 @@ const MobileDrawer = () => {
     });
   };
 
-  const renderNavItem = ({ path, label }, i) => {
+  const renderNavItem = ({ path, labelKey }, i) => {
     const isActive =
-      path === 'home' ? router.pathname === '/' : router.pathname === path;
+      path === 'home' ? currentBase === '/' : currentBase === path;
     if (path.startsWith('/')) {
       return (
         <a
-          href={path}
+          href={localizedPath(locale, path)}
           key={i}
           className={isActive ? 'active' : undefined}
           onClick={() => dispatch({ type: 'TOGGLE' })}>
-          {label}
+          {t(labelKey)}
         </a>
       );
     }
-    const href = path === 'home' ? '/' : `/#${path}`;
+    const href = path === 'home' ? localizedPath(locale, '/') : localizedPath(locale, `/#${path}`);
     return (
       <a
         href={href}
         key={i}
         className={isActive ? 'active' : undefined}
         onClick={(e) => smoothScroll(e, path)}>
-        {label}
+        {t(labelKey)}
       </a>
     );
   };
@@ -74,36 +86,24 @@ const MobileDrawer = () => {
         <Box sx={styles.content}>
           <Box sx={styles.menu}>
             {menuItems.map((item, i) => (item.path === 'services' ? null : renderNavItem(item, i)))}
-            {[
-              '/services/mobile-app-development',
-              '/services/web-app-development',
-              '/services/ui-ux-design',
-              '/services/server-deployment',
-              '/services/maintenance-support',
-            ].map((path) => (
+            {serviceSlugs.map((path, i) => (
               <a
                 key={path}
-                href={path}
-                className={router.pathname === path ? 'active' : undefined}
+                href={localizedPath(locale, path)}
+                className={currentBase === path ? 'active' : undefined}
                 onClick={() => dispatch({ type: 'TOGGLE' })}>
-                {{
-                  '/services/mobile-app-development': 'Mobile App Development',
-                  '/services/web-app-development': 'Web App Development',
-                  '/services/ui-ux-design': 'UI/UX Design',
-                  '/services/server-deployment': 'Server Deployment',
-                  '/services/maintenance-support': 'Maintenance & Support',
-                }[path]}
+                {t(`serviceNames.${i}`)}
               </a>
             ))}
           </Box>
 
           <Box sx={styles.menuFooter}>
-          <Box
-            as="a"
-            href="/contact"
-            sx={styles.button}>
-            Get a Quote
-          </Box>
+            <Box
+              as="a"
+              href={localizedPath(locale, '/contact')}
+              sx={styles.button}>
+              {t('cta.getQuote')}
+            </Box>
           </Box>
         </Box>
       </Scrollbars>

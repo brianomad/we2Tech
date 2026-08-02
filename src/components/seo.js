@@ -1,18 +1,22 @@
 import React from 'react';
 import Head from 'next/head';
+import { LOCALES, getLocaleInfo, localizedPath } from '../locales';
 
 const SITE_URL = 'https://we2tech.pro';
 
 export default function SEO({
-  description = 'we2Tech provides professional mobile app development, website development, UI/UX design, and server deployment services in Hong Kong.',
+  description,
   author = 'we2Tech Ltd',
   meta,
-  title = 'we2Tech - Mobile & Website Application Development Hong Kong',
+  title,
   image = `${SITE_URL}/og-image.png`,
   path = '/',
-  keywords = 'mobile app development, website development, UI UX design, Hong Kong, iOS, Android, React Native, web application',
+  keywords,
+  locale = 'en',
 }) {
-  const url = `${SITE_URL}${path === '/' ? '/' : path}`;
+  const info = getLocaleInfo(locale);
+  const localPath = localizedPath(locale, path);
+  const url = `${SITE_URL}${localPath === '/' ? '/' : localPath}`;
   const metaData = [
     { name: `description`, content: description },
     { name: `keywords`, content: keywords },
@@ -20,7 +24,7 @@ export default function SEO({
     { property: `og:description`, content: description },
     { property: `og:type`, content: `website` },
     { property: `og:site_name`, content: `we2Tech` },
-    { property: `og:locale`, content: `en_HK` },
+    { property: `og:locale`, content: info.ogLocale },
     { property: `og:image`, content: image },
     { property: `og:url`, content: url },
     { name: `twitter:card`, content: `summary_large_image` },
@@ -30,13 +34,24 @@ export default function SEO({
     { name: `twitter:image`, content: image },
     { name: `geo.region`, content: `HK` },
     { name: `geo.placename`, content: `Hong Kong` },
-  ].concat(meta);
+  ].concat(meta || []);
   return (
     <Head>
       <title>{title}</title>
       <link rel="canonical" href={url} />
-      <link rel="alternate" hrefLang="en" href={url} />
-      <link rel="alternate" hrefLang="x-default" href={url} />
+      {LOCALES.map((l) => (
+        <link
+          key={l.code}
+          rel="alternate"
+          hrefLang={l.htmlLang}
+          href={`${SITE_URL}${localizedPath(l.code, path) === '/' ? '/' : localizedPath(l.code, path)}`}
+        />
+      ))}
+      <link
+        rel="alternate"
+        hrefLang="x-default"
+        href={`${SITE_URL}${localizedPath('en', path) === '/' ? '/' : localizedPath('en', path)}`}
+      />
       {metaData.map(({ name, content, property }, i) => (
         <meta key={i} {...(property ? { property } : { name })} content={content} />
       ))}

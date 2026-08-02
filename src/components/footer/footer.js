@@ -3,37 +3,41 @@ import { jsx, Box, Grid, Container, Heading, Text, Flex } from 'theme-ui';
 import { BiPhoneCall, BiMailSend } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
-
-const contact = [
-  {
-    id: 1,
-    icon: <GoLocation size="28px" />,
-    title: 'Address',
-    text: 'WEST WING 2/F, 822 LAI CHI KOK ROAD, CHEUNG SHA WAN, KOWLOON, HONG KONG'
-  },
-  {
-    id: 2,
-    icon: <BiMailSend size="28px" />,
-    title: 'Email',
-    text: 'enquiry@we2tech.pro'
-  },
-  {
-    id: 3,
-    icon: <BiPhoneCall size="28px" />,
-    title: 'Telephone Number',
-    text: '+852 53968435'
-  }
-];
-
-const serviceLinks = [
-  { id: 1, path: '/services/mobile-app-development', label: 'Mobile App Development' },
-  { id: 2, path: '/services/web-app-development', label: 'Web App Development' },
-  { id: 3, path: '/services/ui-ux-design', label: 'UI/UX Design' },
-  { id: 4, path: '/services/server-deployment', label: 'Server Deployment' },
-  { id: 5, path: '/services/maintenance-support', label: 'Maintenance & Support' },
-];
+import { useLocale, localizedPath } from '../../locales';
+import LanguageSwitcher from '../language-switcher';
 
 export default function Footer() {
+  const { locale, t } = useLocale();
+
+  const contact = [
+    {
+      id: 1,
+      icon: <GoLocation size="28px" />,
+      title: t('footer.address'),
+      text: 'WEST WING 2/F, 822 LAI CHI KOK ROAD, CHEUNG SHA WAN, KOWLOON, HONG KONG'
+    },
+    {
+      id: 2,
+      icon: <BiMailSend size="28px" />,
+      title: t('footer.email'),
+      text: 'enquiry@we2tech.pro'
+    },
+    {
+      id: 3,
+      icon: <BiPhoneCall size="28px" />,
+      title: t('footer.telephone'),
+      text: '+852 53968435'
+    }
+  ];
+
+  const serviceLinks = [
+    { id: 1, path: '/services/mobile-app-development' },
+    { id: 2, path: '/services/web-app-development' },
+    { id: 3, path: '/services/ui-ux-design' },
+    { id: 4, path: '/services/server-deployment' },
+    { id: 5, path: '/services/maintenance-support' },
+  ];
+
   return (
     <footer sx={styles.footer}>
       <Container sx={styles.container}>
@@ -41,28 +45,28 @@ export default function Footer() {
           <Box sx={styles.about}>
             <Heading as="h3" sx={styles.brand}>[ we2Tech Ltd ]</Heading>
             <Text sx={styles.blurb}>
-              Hong Kong-based development team building mobile apps, websites,
-              UI/UX design and cloud systems that help businesses grow.
+              {t('footer.blurb')}
             </Text>
             <Flex sx={styles.social}>
-              <a href="/#instagram" aria-label="Instagram">
+              <a href={localizedPath(locale, '/#instagram')} aria-label="Instagram">
                 <FaInstagram />
               </a>
               <a href="https://wa.me/85253968435" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                 <FaWhatsapp />
               </a>
             </Flex>
+            <LanguageSwitcher light align="left" />
           </Box>
 
           <Box sx={styles.links}>
-            <Heading as="h4" sx={styles.heading}>Services</Heading>
-            {serviceLinks.map((item) => (
-              <a key={item.id} href={item.path}>{item.label}</a>
+            <Heading as="h4" sx={styles.heading}>{t('footer.services')}</Heading>
+            {serviceLinks.map((item, i) => (
+              <a key={item.id} href={localizedPath(locale, item.path)}>{t(`serviceNames.${i}`)}</a>
             ))}
           </Box>
 
           <Box sx={styles.contactBox}>
-            <Heading as="h4" sx={styles.heading}>Contact Us</Heading>
+            <Heading as="h4" sx={styles.heading}>{t('footer.contactUs')}</Heading>
             {contact.map((item) => (
               <Flex sx={styles.contactItem} key={item.id}>
                 <Box sx={styles.contactIcon}>{item.icon}</Box>
@@ -77,7 +81,7 @@ export default function Footer() {
       </Container>
       <Box sx={styles.bottom}>
         <Text sx={styles.copyright}>
-          Copyright © {new Date().getFullYear()} we2Tech Ltd. All rights reserved.
+          {t('footer.copyright', { year: new Date().getFullYear() })}
         </Text>
       </Box>
     </footer>
