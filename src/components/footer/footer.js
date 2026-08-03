@@ -55,7 +55,9 @@ export default function Footer() {
                 <FaWhatsapp />
               </a>
             </Flex>
-            <LanguageSwitcher light align="left" />
+            <Box sx={styles.switcher}>
+              <LanguageSwitcher light align="left" />
+            </Box>
           </Box>
 
           <Box sx={styles.links}>
@@ -143,6 +145,9 @@ const styles = {
       },
     },
   },
+  switcher: {
+    mt: [3, null, 4],
+  },
   links: {
     display: 'flex',
     flexDirection: 'column',
@@ -165,8 +170,8 @@ const styles = {
   contactBox: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: ['center', null, 'flex-start'],
-    textAlign: ['center', null, 'left'],
+    alignItems: 'flex-start',
+    textAlign: 'left',
     backgroundColor: 'white',
     borderRadius: 12,
     p: [4, null, 5],
@@ -186,7 +191,7 @@ const styles = {
     alignItems: 'flex-start',
     mb: 3,
     gap: 3,
-    justifyContent: ['center', null, 'flex-start'],
+    justifyContent: 'flex-start',
   },
   contactIcon: {
     color: 'teal',
