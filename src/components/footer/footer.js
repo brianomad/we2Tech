@@ -160,10 +160,22 @@ const styles = {
       cursor: 'pointer',
       opacity: 0.9,
       fontFamily: 'Ubuntu',
+      textDecoration: 'none',
       transition: 'all 0.25s',
+      '&::after': {
+        content: '"\\2009\\2192"',
+        opacity: 0,
+        transform: 'translateX(-4px)',
+        transition: 'all 0.25s',
+        display: 'inline-block',
+      },
       '&:hover': {
         color: 'cyan',
         opacity: 1,
+      },
+      '&:hover::after': {
+        opacity: 1,
+        transform: 'translateX(0)',
       },
     },
   },
