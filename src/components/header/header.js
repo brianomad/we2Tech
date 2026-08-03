@@ -170,23 +170,8 @@ const styles = {
       transition: 'color 0.25s',
       textDecoration: 'none',
       fontFamily: 'Ubuntu',
-      '&::after': {
-        content: '""',
-        position: 'absolute',
-        left: 5,
-        right: 5,
-        bottom: '2px',
-        height: '2px',
-        backgroundColor: 'cyan',
-        transform: 'scaleX(0)',
-        transformOrigin: 'left',
-        transition: 'transform 0.25s ease',
-      },
       '&:hover, &.active': {
         color: 'cyan',
-      },
-      '&:hover::after, &.active::after': {
-        transform: 'scaleX(1)',
       },
     },
   },

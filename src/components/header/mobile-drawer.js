@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Box } from 'theme-ui';
 import { Scrollbars } from 'react-custom-scrollbars';
 import Drawer from 'components/drawer';
 import { DrawerContext } from '../../contexts/drawer/drawer.context';
-import { IoMdClose, IoMdMenu } from 'react-icons/io';
+import { IoMdClose, IoMdMenu, IoIosArrowDown } from 'react-icons/io';
 import { scroller } from 'react-scroll';
 import { useRouter } from 'next/router';
 import menuItems from './header.data';
@@ -22,6 +22,7 @@ const MobileDrawer = () => {
   const router = useRouter();
   const { locale, t } = useLocale();
   const isHome = router.pathname === '/' || router.pathname === '/[locale]';
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   const currentBase = stripLocalePrefix(router.asPath).split('?')[0];
 
@@ -69,6 +70,33 @@ const MobileDrawer = () => {
     );
   };
 
+  const renderServicesMenu = (
+    <Box key="services">
+      <Box
+        sx={styles.submenuTrigger}
+        className={currentBase.startsWith('/services') ? 'active' : undefined}
+        onClick={() => setServicesOpen(!servicesOpen)}>
+        <Box as="span">{t('nav.services')}</Box>
+        <Box as="span" sx={{ ...styles.caret, ...(servicesOpen ? styles.caretOpen : {}) }}>
+          <IoIosArrowDown />
+        </Box>
+      </Box>
+      {servicesOpen && (
+        <Box sx={styles.submenu}>
+          {serviceSlugs.map((path, i) => (
+            <a
+              key={path}
+              href={localizedPath(locale, path)}
+              className={currentBase === path ? 'active' : undefined}
+              onClick={() => dispatch({ type: 'TOGGLE' })}>
+              {t(`serviceNames.${i}`)}
+            </a>
+          ))}
+        </Box>
+      )}
+    </Box>
+  );
+
   return (
     <Drawer
       width="320px"
@@ -85,16 +113,9 @@ const MobileDrawer = () => {
       <Scrollbars autoHide>
         <Box sx={styles.content}>
           <Box sx={styles.menu}>
-            {menuItems.map((item, i) => (item.path === 'services' ? null : renderNavItem(item, i)))}
-            {serviceSlugs.map((path, i) => (
-              <a
-                key={path}
-                href={localizedPath(locale, path)}
-                className={currentBase === path ? 'active' : undefined}
-                onClick={() => dispatch({ type: 'TOGGLE' })}>
-                {t(`serviceNames.${i}`)}
-              </a>
-            ))}
+            {menuItems.map((item, i) =>
+              item.path === 'services' ? renderServicesMenu : renderNavItem(item, i)
+            )}
           </Box>
 
           <Box sx={styles.menuFooter}>
@@ -161,13 +182,62 @@ const styles = {
       color: 'white',
       py: '15px',
       cursor: 'pointer',
-      borderBottom: '1px solid rgba(255,255,255,0.15)',
       transition: 'all 0.25s',
+      textDecoration: 'none',
       '&:hover': {
         color: 'cyan',
       },
       '&.active': {
         color: 'cyan',
+      },
+    },
+  },
+
+  submenuTrigger: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    fontSize: '16px',
+    fontWeight: '500',
+    color: 'white',
+    py: '15px',
+    cursor: 'pointer',
+    transition: 'all 0.25s',
+    '&:hover': {
+      color: 'cyan',
+    },
+    '&.active': {
+      color: 'cyan',
+    },
+  },
+
+  caret: {
+    display: 'flex',
+    alignItems: 'center',
+    transition: 'transform 0.2s',
+  },
+
+  caretOpen: {
+    transform: 'rotate(180deg)',
+  },
+
+  submenu: {
+    a: {
+      display: 'block',
+      fontSize: '15px',
+      fontWeight: '400',
+      color: 'rgba(255,255,255,0.85)',
+      py: '10px',
+      pl: '16px',
+      cursor: 'pointer',
+      transition: 'all 0.25s',
+      textDecoration: 'none',
+      '&:hover': {
+        color: 'cyan',
+      },
+      '&.active': {
+        color: 'cyan',
+        fontWeight: '700',
       },
     },
   },
