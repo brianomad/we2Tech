@@ -18,7 +18,29 @@ export const S = {
   purple: '#8B5CF6',
   pink: '#EC4899',
   cyan: '#22D3EE',
+  gold: '#C9A227',
+  navy: '#0B1B33',
+  orange: '#F97316',
 };
+
+export function SectionLabel({ children, color = S.muted, sx }) {
+  return (
+    <Text
+      sx={{
+        display: 'block',
+        fontSize: 0,
+        fontWeight: 700,
+        color,
+        textTransform: 'uppercase',
+        letterSpacing: '1.2px',
+        fontFamily: font,
+        mb: 2,
+        ...sx,
+      }}>
+      {children}
+    </Text>
+  );
+}
 
 export const card = {
   backgroundColor: S.white,
@@ -96,6 +118,7 @@ const badgeTones = {
   blue: { bg: 'rgba(59,130,246,0.12)', color: '#2563EB', dot: S.blue },
   purple: { bg: 'rgba(139,92,246,0.12)', color: '#7C3AED', dot: S.purple },
   pink: { bg: 'rgba(236,72,153,0.12)', color: '#DB2777', dot: S.pink },
+  orange: { bg: 'rgba(249,115,22,0.14)', color: '#C2410C', dot: S.orange },
 };
 
 export function Badge({ tone = 'gray', children, dot = true }) {
@@ -137,15 +160,21 @@ export function Btn({ tone = 'primary', children, sx, ...props }) {
     border: 'none',
     fontFamily: font,
     transition: 'transform 0.15s ease, box-shadow 0.15s ease',
-    '&:active': { transform: 'scale(0.98)' },
-    ':disabled': { opacity: 0.5, cursor: 'not-allowed' },
+    '&:active': { transform: 'scale(0.97)' },
+    '&:hover': { transform: 'translateY(-1px)' },
+    ':disabled': { opacity: 0.5, cursor: 'not-allowed', transform: 'none' },
   };
   const tones = {
-    primary: { backgroundColor: S.teal, color: '#fff', boxShadow: `0 8px 18px rgba(0,139,139,0.35)` },
-    dark: { backgroundColor: S.ink, color: '#fff' },
-    ghost: { backgroundColor: '#fff', color: S.ink, border: `1px solid ${S.line}` },
+    primary: {
+      backgroundColor: S.teal,
+      color: '#fff',
+      backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0) 55%)`,
+      boxShadow: '0 8px 18px rgba(0,139,139,0.35), inset 0 1px 0 rgba(255,255,255,0.2)',
+    },
+    dark: { backgroundColor: S.ink, color: '#fff', boxShadow: '0 8px 16px rgba(15,33,55,0.28)' },
+    ghost: { backgroundColor: '#fff', color: S.ink, border: `1px solid ${S.line}`, boxShadow: '0 1px 2px rgba(15,33,55,0.05)' },
     white: { backgroundColor: '#fff', color: S.tealDark },
-    amber: { backgroundColor: S.amber, color: '#fff' },
+    amber: { backgroundColor: S.amber, color: '#fff', boxShadow: '0 8px 16px rgba(245,166,35,0.35)' },
     danger: { backgroundColor: S.red, color: '#fff' },
   };
   return (

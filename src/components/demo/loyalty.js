@@ -2,7 +2,13 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { BrowserFrame } from './frames';
-import { S, font, Card, Btn, Badge, Progress, Avatar } from './shared';
+import { S, font, Card, Btn, Badge, Progress, Avatar, SectionLabel } from './shared';
+
+const REWARD_META = [
+  { icon: '\u2615', grad: 'linear-gradient(135deg,#B45309,#92400E)' },
+  { icon: '\u{1F381}', grad: 'linear-gradient(135deg,#7C3AED,#6D28D9)' },
+  { icon: '\u{1F382}', grad: 'linear-gradient(135deg,#EC4899,#DB2777)' },
+];
 
 export default function LoyaltyDemo({ t }) {
   const d = t('caseDemo.loyalty');
@@ -17,70 +23,93 @@ export default function LoyaltyDemo({ t }) {
     setRedeemed((r) => ({ ...r, [i]: true }));
   };
 
+  const NEXT = 500;
+
   return (
-    <BrowserFrame url="https://rewards.demo.we2tech.pro" height={470}>
-      <Box sx={{ p: 4 }}>
-        <Card sx={{ p: 4, mb: 4, background: `linear-gradient(135deg, ${S.teal}, #0E7490)`, border: 'none' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 3 }}>
+    <BrowserFrame url="https://rewards.demo.we2tech.pro" height={486} brand="Perks Club">
+      <Box sx={{ p: [4, null, 5] }}>
+        <Card sx={{ p: 4, mb: 4, background: 'linear-gradient(135deg,#7C2D12,#B45309)', border: 'none', boxShadow: '0 18px 40px rgba(180,83,9,0.35)', overflow: 'hidden', position: 'relative' }}>
+          <Box sx={{ position: 'absolute', width: 140, height: 140, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%)', top: -40, right: -30 }} />
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 3, position: 'relative' }}>
             <Box>
-              <Text sx={{ fontSize: 0, fontWeight: 700, color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font }}>
+              <Text sx={{ fontSize: 0, fontWeight: 700, color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: '1.2px', fontFamily: font }}>
                 {d.yourPoints}
               </Text>
-              <Text sx={{ fontSize: 5, fontWeight: 700, color: '#fff', fontFamily: font }}>{points.toLocaleString()}</Text>
-              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.8)', fontFamily: font }}>
-                {d.nextReward}: {Math.max(0, 500 - points)}
-              </Text>
+              <Text sx={{ fontSize: 5, fontWeight: 700, color: '#fff', fontFamily: font, mt: '2px' }}>{points.toLocaleString()}</Text>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 1 }}>
+                <Badge tone="amber" dot={false}>&#9733; Gold member</Badge>
+                <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.75)', fontFamily: font }}>
+                  {d.nextReward}: {Math.max(0, NEXT - points)}
+                </Text>
+              </Box>
             </Box>
-            <Box sx={{ width: ['100%', 220] }}>
-              <Progress pct={Math.min(100, (points / 500) * 100)} color="#fff" sx={{ backgroundColor: 'rgba(255,255,255,0.25)' }} />
+            <Box sx={{ width: ['100%', 230] }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', fontSize: 0, color: 'rgba(255,255,255,0.7)', fontFamily: font, mb: 1 }}>
+                <Text>{(points / NEXT) * 100}%</Text>
+                <Text>{points}/{NEXT}</Text>
+              </Box>
+              <Progress pct={Math.min(100, (points / NEXT) * 100)} color="#FDE047" sx={{ backgroundColor: 'rgba(255,255,255,0.25)', height: 10 }} />
             </Box>
           </Box>
         </Card>
 
-        <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.2fr 1fr'], gap: 4 }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.3fr 1fr'], gap: 4 }}>
           <Box>
-            <Text sx={{ fontSize: 0, fontWeight: 700, color: S.muted, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font, mb: 2 }}>
-              {d.rewardsTitle}
-            </Text>
+            <SectionLabel>{d.rewardsTitle}</SectionLabel>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {rewards.map((r, i) => (
-                <Card key={r.name} sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 3 }}>
-                  <Box sx={{ width: 42, height: 42, borderRadius: 10, backgroundColor: [S.amber, S.teal, S.pink][i % 3], color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2 }}>
-                    {['\u{1F415}', '\u{1F381}', '\u{1F381}'][i]}
-                  </Box>
-                  <Box sx={{ flex: 1 }}>
-                    <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{r.name}</Text>
-                    <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{r.points} {d.yourPoints.toLowerCase()}</Text>
-                  </Box>
-                  <Btn
-                    tone={redeemed[i] ? 'ghost' : points >= parseInt(r.points, 10) ? 'primary' : 'ghost'}
-                    sx={{ px: 3, py: '7px', fontSize: 0 }}
-                    disabled={redeemed[i] || points < parseInt(r.points, 10)}
-                    onClick={() => redeem(i)}>
-                    {redeemed[i] ? '\u2713' : d.redeem}
-                  </Btn>
-                </Card>
-              ))}
+              {rewards.map((r, i) => {
+                const meta = REWARD_META[i % REWARD_META.length];
+                const cost = parseInt(r.points, 10);
+                const canAfford = points >= cost;
+                return (
+                  <Card key={r.name} sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 3, opacity: redeemed[i] ? 0.75 : 1, '&:hover': { boxShadow: '0 10px 26px rgba(15,33,55,0.1)' }, transition: 'all 0.15s' }}>
+                    <Box sx={{ width: 48, height: 48, borderRadius: 13, background: meta.grad, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2, flexShrink: 0, boxShadow: '0 6px 14px rgba(0,0,0,0.2)' }}>
+                      {meta.icon}
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
+                      <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{r.name}</Text>
+                      <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>
+                        {canAfford ? 'Ready to redeem' : `${cost - points} more to go`}
+                      </Text>
+                    </Box>
+                    <Box sx={{ textAlign: 'right' }}>
+                      <Text sx={{ fontWeight: 700, fontSize: 1, color: canAfford ? S.tealDark : S.muted, fontFamily: font }}>{r.points} pts</Text>
+                      <Btn
+                        tone={redeemed[i] ? 'ghost' : canAfford ? 'primary' : 'ghost'}
+                        sx={{ mt: 1, px: 3, py: '6px', fontSize: 0, whiteSpace: 'nowrap' }}
+                        disabled={redeemed[i] || !canAfford}
+                        onClick={() => redeem(i)}>
+                        {redeemed[i] ? '\u2713' : d.redeem}
+                      </Btn>
+                    </Box>
+                  </Card>
+                );
+              })}
             </Box>
           </Box>
+
           <Card sx={{ p: 4, alignSelf: 'start' }}>
-            <Text sx={{ fontSize: 0, fontWeight: 700, color: S.muted, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font, mb: 2 }}>
-              {d.historyTitle}
-            </Text>
+            <SectionLabel>{d.historyTitle}</SectionLabel>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               {[
-                ['Coffee order', '120', 'earned'],
-                ['Birthday bonus', '200', 'earned'],
-                ['Redeemed voucher', '300', 'spent'],
-              ].map(([label, pts, type]) => (
+                ['Coffee order', '120', 'earned', '09:14'],
+                ['Birthday bonus', '200', 'earned', 'Yesterday'],
+                ['Redeemed voucher', '300', 'spent', 'Mon'],
+              ].map(([label, pts, type, time]) => (
                 <Box key={label} sx={{ display: 'flex', alignItems: 'center', gap: 3, py: 2, borderBottom: '1px solid', borderColor: S.line, ':last-child': { border: 'none' } }}>
-                  <Avatar label={label.slice(0, 1)} color={type === 'earned' ? S.teal : S.pink} size={32} />
-                  <Text sx={{ flex: 1, fontSize: 1, color: S.ink, fontWeight: 600, fontFamily: font }}>{label}</Text>
+                  <Avatar label={label.slice(0, 1)} color={type === 'earned' ? S.green : S.pink} size={34} />
+                  <Box sx={{ flex: 1 }}>
+                    <Text sx={{ fontSize: 1, color: S.ink, fontWeight: 600, fontFamily: font }}>{label}</Text>
+                    <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{time}</Text>
+                  </Box>
                   <Badge tone={type === 'earned' ? 'green' : 'red'} dot={false}>
                     {type === 'earned' ? `+${pts}` : `\u2212${pts}`}
                   </Badge>
                 </Box>
               ))}
+            </Box>
+            <Box sx={{ mt: 3, p: 3, borderRadius: 12, backgroundColor: '#FFF7E6', border: '1px dashed', borderColor: '#E2B84C', display: 'flex', alignItems: 'center', gap: 2, fontSize: 0, color: '#92400E', fontFamily: font }}>
+              &#128274; {d.title} &middot; per purchase you earn points
             </Box>
           </Card>
         </Box>

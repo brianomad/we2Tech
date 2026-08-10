@@ -2,9 +2,16 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { BrowserFrame } from './frames';
-import { S, font, Card, Btn, Badge, Quantity, Empty } from './shared';
+import { S, font, Card, Btn, Badge, Quantity } from './shared';
 
-const PRODUCT_COLORS = ['#0F6F6F', '#8B5CF6', '#D97706', '#B45309', '#0E7490', '#1FA971'];
+const PRODUCT_META = [
+  { icon: '\u{1F45C}', grad: 'linear-gradient(135deg,#0F766E,#134E4A)', tag: null },
+  { icon: '\u{1F45F}', grad: 'linear-gradient(135deg,#F5F5F4,#D6D3D1)', tag: 'New', tagTone: 'blue' },
+  { icon: '\u{1F9E5}', grad: 'linear-gradient(135deg,#57534E,#292524)', tag: '\u221220%', tagTone: 'red' },
+  { icon: '\u{1F453}', grad: 'linear-gradient(135deg,#B45309,#78350F)', tag: null },
+  { icon: '\u2615', grad: 'linear-gradient(135deg,#F59E0B,#B45309)', tag: null },
+  { icon: '\u{1F9F3}', grad: 'linear-gradient(135deg,#1D4ED8,#1E3A8A)', tag: 'New', tagTone: 'blue' },
+];
 
 export default function EcommerceDemo({ t }) {
   const d = t('caseDemo.ecommerce');
@@ -14,79 +21,106 @@ export default function EcommerceDemo({ t }) {
   const [orderNo] = useState(`OR-${Math.floor(2000 + Math.random() * 8000)}`);
 
   const add = (i) => setCart((c) => ({ ...c, [i]: (c[i] || 0) + 1 }));
-  const setQty = (i, n) => setCart((c) => ({ ...c, [i]: n }));
+  const setQty = (i, n) => {
+    const next = { ...cart, [i]: n };
+    if (n <= 0) delete next[i];
+    setCart(next);
+  };
   const subtotal = Object.entries(cart).reduce((sum, [i, n]) => sum + n * parseInt(products[i].price.replace(/[^\d]/g, ''), 10), 0);
   const shipping = subtotal === 0 || subtotal > 1000 ? 0 : 30;
   const total = subtotal + shipping;
   const count = Object.values(cart).reduce((a, b) => a + b, 0);
 
   return (
-    <BrowserFrame url="https://shop.demo.we2tech.pro" height={470}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 470 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 4, py: 3, backgroundColor: '#fff', borderBottom: '1px solid', borderColor: S.line }}>
-          <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font }}>
-            {d.title} <Text as="span" sx={{ color: S.teal }}>&#128722;</Text>
+    <BrowserFrame url="https://shop.demo.we2tech.pro" height={486} brand="Mono">
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 486 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 4, py: 3, backgroundColor: '#fff', borderBottom: '1px solid', borderColor: S.line, position: 'relative', zIndex: 2 }}>
+          <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font, letterSpacing: '1px' }}>
+            MONO
           </Text>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, px: 3, py: '7px', borderRadius: 10, backgroundColor: S.bg, color: S.muted, fontSize: 0, fontFamily: font }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, px: 3, py: '7px', borderRadius: 10, backgroundColor: '#F4F6FA', color: S.muted, fontSize: 0, fontFamily: font, border: '1px solid', borderColor: S.line }}>
               &#128269; {d.search}
             </Box>
-            <Badge tone="teal">&#128722; {count}</Badge>
+            <Box
+              onClick={() => step === 'shop' && setStep('checkout')}
+              sx={{ position: 'relative', cursor: 'pointer' }}>
+              <Box sx={{ fontSize: 2 }}>&#128722;</Box>
+              {count > 0 && (
+                <Box sx={{ position: 'absolute', top: -6, right: -8, minWidth: 18, height: 18, borderRadius: 99, backgroundColor: S.teal, color: '#fff', fontSize: 0, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', px: '4px', fontFamily: font }}>
+                  {count}
+                </Box>
+              )}
+            </Box>
           </Box>
         </Box>
 
         {step === 'shop' && (
-          <Box sx={{ flex: 1, p: 4, overflow: 'auto' }}>
-            <Box sx={{ display: 'grid', gridTemplateColumns: ['repeat(2, 1fr)', null, 'repeat(3, 1fr)'], gap: 3 }}>
-              {products.map((p, i) => {
-                const inCart = cart[i] || 0;
-                return (
-                  <Card key={p.name} sx={{ overflow: 'hidden' }}>
-                    <Box
-                      sx={{
-                        height: 110,
-                        backgroundColor: PRODUCT_COLORS[i % PRODUCT_COLORS.length],
-                        position: 'relative',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'rgba(255,255,255,0.85)',
-                        fontSize: 4,
-                      }}>
-                      &#128092;
-                      {inCart > 0 && (
-                        <Badge tone="teal" sx={{ position: 'absolute', top: 10, right: 10 }}>{inCart}</Badge>
-                      )}
-                    </Box>
-                    <Box sx={{ p: 3 }}>
-                      <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font, display: 'block' }}>{p.name}</Text>
-                      <Text sx={{ fontWeight: 700, fontSize: 1, color: S.tealDark, fontFamily: font, mb: 2, display: 'block' }}>{p.price}</Text>
-                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        {inCart > 0 ? (
-                          <Quantity value={inCart} onChange={(n) => setQty(i, n)} min={0} />
-                        ) : (
-                          <Btn tone="dark" sx={{ flex: 1, px: 2, py: '7px', fontSize: 0 }} onClick={() => add(i)}>
-                            + {d.addToCart}
-                          </Btn>
+          <>
+            <Box sx={{ flex: 1, p: 4, overflow: 'auto' }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: ['repeat(2, 1fr)', null, 'repeat(3, 1fr)'], gap: 3 }}>
+                {products.map((p, i) => {
+                  const meta = PRODUCT_META[i % PRODUCT_META.length];
+                  const inCart = cart[i] || 0;
+                  const numeric = parseInt(p.price.replace(/[^\d]/g, ''), 10);
+                  return (
+                    <Card key={p.name} sx={{ overflow: 'hidden', cursor: 'pointer', '&:hover': { transform: 'translateY(-3px)', boxShadow: '0 16px 36px rgba(15,33,55,0.14)' }, transition: 'all 0.2s' }} onClick={() => add(i)}>
+                      <Box sx={{ height: 120, background: meta.grad, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Box sx={{ fontSize: 5, filter: 'drop-shadow(0 6px 8px rgba(0,0,0,0.25))' }}>{meta.icon}</Box>
+                        {meta.tag && <Badge tone={meta.tagTone} dot={false} sx={{ position: 'absolute', top: 10, left: 10 }}>{meta.tag}</Badge>}
+                        {inCart > 0 && (
+                          <Badge tone="teal" dot={false} sx={{ position: 'absolute', top: 10, right: 10 }}>&#10003; {inCart}</Badge>
                         )}
                       </Box>
-                    </Box>
-                  </Card>
-                );
-              })}
+                      <Box sx={{ p: 3 }}>
+                        <Text sx={{ fontWeight: 600, fontSize: 1, color: S.ink, fontFamily: font, display: 'block', mb: '2px' }}>{p.name}</Text>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+                          <Text sx={{ color: S.amber, fontSize: 0 }}>&#9733;</Text>
+                          <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>4.8</Text>
+                        </Box>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <Box>
+                            <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{p.price}</Text>
+                            {meta.tag && <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, textDecoration: 'line-through' }}>HK${Math.round(numeric * 1.2)}</Text>}
+                          </Box>
+                          {inCart > 0 ? (
+                            <Box onClick={(e) => e.stopPropagation()}>
+                              <Quantity value={inCart} onChange={(n) => setQty(i, n)} min={0} />
+                            </Box>
+                          ) : (
+                            <Box
+                              onClick={(e) => e.stopPropagation()}
+                              sx={{ px: 3, py: '8px', borderRadius: 10, backgroundColor: S.ink, color: '#fff', fontSize: 0, fontWeight: 700, fontFamily: font, '&:hover': { backgroundColor: S.teal } }}>
+                              + {d.addToCart}
+                            </Box>
+                          )}
+                        </Box>
+                      </Box>
+                    </Card>
+                  );
+                })}
+              </Box>
             </Box>
-          </Box>
+            <Box sx={{ px: 4, py: 3, backgroundColor: '#fff', borderTop: '1px solid', borderColor: S.line, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Text sx={{ fontSize: 1, fontFamily: font, color: S.slate }}>
+                {count > 0 ? <><Text as="span" sx={{ fontWeight: 700, color: S.ink }}>{count}</Text> {d.cart.toLowerCase()}</> : d.emptyCart}
+              </Text>
+              <Btn tone="primary" disabled={count === 0} onClick={() => setStep('checkout')}>
+                {d.checkout} &#8594;
+              </Btn>
+            </Box>
+          </>
         )}
 
         {step === 'checkout' && (
           <Box sx={{ flex: 1, p: 4, overflow: 'auto' }}>
-            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.4fr 1fr'], gap: 4 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.5fr 1fr'], gap: 4 }}>
               <Card sx={{ p: 4 }}>
                 <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font, mb: 3 }}>{d.checkout}</Text>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                   {Object.entries(cart).map(([i, n]) => (
                     <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-                      <Box sx={{ width: 40, height: 40, borderRadius: 10, backgroundColor: PRODUCT_COLORS[i % PRODUCT_COLORS.length] }} />
+                      <Box sx={{ width: 48, height: 48, borderRadius: 12, background: PRODUCT_META[i % PRODUCT_META.length].grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2 }}>{PRODUCT_META[i % PRODUCT_META.length].icon}</Box>
                       <Box sx={{ flex: 1 }}>
                         <Text sx={{ fontWeight: 600, fontSize: 1, color: S.ink, fontFamily: font }}>{products[i].name}</Text>
                         <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{products[i].price} &times; {n}</Text>
@@ -98,16 +132,17 @@ export default function EcommerceDemo({ t }) {
               </Card>
               <Card sx={{ p: 4, alignSelf: 'start' }}>
                 <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font, mb: 3 }}>{d.cart}</Text>
-                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '8px 16px', fontSize: 1, color: S.slate, fontFamily: font, mb: 3 }}>
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '10px 16px', fontSize: 1, color: S.slate, fontFamily: font, mb: 3 }}>
                   <Text>{d.subtotal}</Text>
                   <Text sx={{ fontWeight: 700, color: S.ink }}>HK${subtotal}</Text>
                   <Text>{d.shipping}</Text>
                   <Text sx={{ fontWeight: 700, color: S.ink }}>{shipping === 0 ? 'Free' : `HK$${shipping}`}</Text>
-                  <Text sx={{ fontWeight: 700, color: S.ink, mt: 1 }}>{d.total}</Text>
-                  <Text sx={{ fontWeight: 700, color: S.tealDark, fontSize: 2, mt: 1 }}>HK${total}</Text>
+                  <Box sx={{ borderTop: '1px dashed', borderColor: '#D3E1EE', gridColumn: '1 / -1', my: 1 }} />
+                  <Text sx={{ fontWeight: 700, color: S.ink }}>{d.total}</Text>
+                  <Text sx={{ fontWeight: 700, color: S.tealDark, fontSize: 2 }}>HK${total}</Text>
                 </Box>
                 <Btn tone="primary" sx={{ width: '100%' }} disabled={count === 0} onClick={() => setStep('done')}>
-                  {d.pay}
+                  {d.pay} &middot; HK${total}
                 </Btn>
               </Card>
             </Box>
@@ -115,15 +150,16 @@ export default function EcommerceDemo({ t }) {
         )}
 
         {step === 'done' && (
-          <Box sx={{ flex: 1, p: 4, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Box sx={{ flex: 1, p: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(180deg,#F6FAFD,#EEF4FA)' }}>
             <Card sx={{ p: 5, textAlign: 'center', maxWidth: 420, width: '100%' }}>
-              <Box sx={{ width: 64, height: 64, mx: 'auto', borderRadius: '50%', backgroundColor: 'rgba(31,169,113,0.14)', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 5 }}>
+              <Box sx={{ width: 72, height: 72, mx: 'auto', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(31,169,113,0.18), rgba(31,169,113,0.05))', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 5, boxShadow: 'inset 0 0 0 1px rgba(31,169,113,0.3)' }}>
                 &#10003;
               </Box>
               <Text sx={{ display: 'block', mt: 3, fontSize: 3, fontWeight: 700, color: S.ink, fontFamily: font }}>{d.orderConfirmed}</Text>
-              <Text sx={{ display: 'block', mt: 1, fontSize: 1, color: S.muted, fontFamily: font }}>
-                {d.orderNo}: {orderNo}
-              </Text>
+              <Box sx={{ mt: 2, display: 'inline-block', px: 4, py: 2, borderRadius: 10, backgroundColor: '#F0F6F6', border: '1px dashed', borderColor: S.teal }}>
+                <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.orderNo}</Text>
+                <Text sx={{ fontSize: 1, fontWeight: 700, color: S.tealDark, fontFamily: 'Menlo, monospace' }}>{orderNo}</Text>
+              </Box>
               <Text sx={{ display: 'block', mt: 2, fontSize: 1, color: S.slate, fontFamily: font }}>HK${total} &middot; {count} {d.cart.toLowerCase()}</Text>
               <Btn tone="ghost" sx={{ mt: 4, width: '100%' }} onClick={() => { setCart({}); setStep('shop'); }}>
                 &#8592; {d.title}
@@ -132,13 +168,6 @@ export default function EcommerceDemo({ t }) {
           </Box>
         )}
       </Box>
-      {step === 'shop' && (
-        <Box sx={{ px: 4, py: 3, backgroundColor: '#fff', borderTop: '1px solid', borderColor: S.line, display: 'flex', justifyContent: 'flex-end' }}>
-          <Btn tone="primary" disabled={count === 0} onClick={() => setStep('checkout')}>
-            {d.checkout} {count > 0 && <Text as="span" sx={{ opacity: 0.8 }}>({count})</Text>}
-          </Btn>
-        </Box>
-      )}
     </BrowserFrame>
   );
 }

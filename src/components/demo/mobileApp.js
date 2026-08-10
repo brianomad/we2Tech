@@ -2,79 +2,117 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { PhoneFrame } from './frames';
-import { S, font, Card, Badge, Progress, Avatar } from './shared';
+import { S, font, Card, Badge, Progress, Avatar, SectionLabel } from './shared';
+
+const TABS = [
+  { key: 'home', icon: '\u2302', label: 'Home' },
+  { key: 'bookings', icon: '\u2606', label: 'Bookings' },
+  { key: 'wallet', icon: '\u25A4', label: 'Wallet' },
+  { key: 'profile', icon: '\u263A', label: 'Profile' },
+];
 
 export default function MobileAppDemo({ t }) {
   const d = t('caseDemo.mobile');
-  const tabs = [
-    { key: 'home', icon: '\u2302', label: d.home },
-    { key: 'bookings', icon: '\u2606', label: d.bookings },
-    { key: 'wallet', icon: '\u25A4', label: d.wallet },
-    { key: 'profile', icon: '\u263A', label: d.profile },
-  ];
+  const tabs = TABS.map((tb) => ({ ...tb, label: d[tb.key] }));
   const [tab, setTab] = useState(0);
 
   return (
-    <PhoneFrame title="we2Tech App">
-      <Box sx={{ p: 3 }}>
+    <PhoneFrame title="Pulse Fitness" tint="#7C3AED">
+      <Box sx={{ p: 3, pb: 12 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
           <Box>
             <Text sx={{ display: 'block', fontSize: 0, color: S.muted, fontFamily: font }}>{d.hello},</Text>
             <Text sx={{ display: 'block', fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font }}>Amanda</Text>
           </Box>
-          <Avatar label="A" color={S.teal} size={38} />
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ width: 32, height: 32, borderRadius: 10, backgroundColor: '#F3F4F6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128276;</Box>
+            <Avatar label="A" color="#7C3AED" size={36} />
+          </Box>
         </Box>
 
         {tab === 0 && (
           <>
-            <Card sx={{ p: 3, mb: 3, background: `linear-gradient(135deg, ${S.teal}, #0E7490)`, border: 'none' }}>
-              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.8)', fontFamily: font }}>{d.balance}</Text>
-              <Text sx={{ fontSize: 4, fontWeight: 700, color: '#fff', fontFamily: font, my: '4px' }}>HK$8,420.50</Text>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Badge tone="green" dot={false}>+HK$520</Badge>
-                <Badge sx={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#fff' }} dot={false}>{d.points}: 1,280</Badge>
+            <Card sx={{ p: 3, mb: 3, background: 'linear-gradient(135deg,#7C3AED,#A855F7)', border: 'none', boxShadow: '0 14px 30px rgba(124,58,237,0.35)' }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <Box>
+                  <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.85)', fontFamily: font }}>{d.balance}</Text>
+                  <Text sx={{ fontSize: 4, fontWeight: 700, color: '#fff', fontFamily: font, my: '4px' }}>HK$8,420.50</Text>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <Badge sx={{ backgroundColor: 'rgba(255,255,255,0.22)', color: '#fff' }} dot={false}>+HK$520 this week</Badge>
+                  </Box>
+                </Box>
+                <Badge sx={{ backgroundColor: 'rgba(255,255,255,0.22)', color: '#fff' }} dot={false}>{d.points}: 1,280</Badge>
               </Box>
             </Card>
+
             <Text sx={{ fontSize: 0, fontWeight: 700, color: S.muted, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font, mb: 2 }}>
               {d.quickActions}
             </Text>
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, mb: 3 }}>
-              {[['\u{1F4C5}', 'Book'], ['\u{1F4B3}', 'Pay'], ['\u{1F4CC}', 'QR']].map(([icon, label]) => (
-                <Card key={label} sx={{ p: 3, textAlign: 'center' }}>
+              {[['\u{1F4C5}', 'Book'], ['\u{1F4B3}', 'Pay'], ['\u{1F4CC}', 'QR'], ['\u{1F3CB}', 'Train'], ['\u{1F4C8}', 'Stats'], ['\u{1F4DD}', 'Notes']].map(([icon, label]) => (
+                <Card key={label} sx={{ p: 3, textAlign: 'center', '&:active': { transform: 'scale(0.96)' } }}>
                   <Box sx={{ fontSize: 3, mb: 1 }}>{icon}</Box>
                   <Text sx={{ fontSize: 0, fontWeight: 600, color: S.ink, fontFamily: font }}>{label}</Text>
                 </Card>
               ))}
             </Box>
+
+            <Card sx={{ p: 3, mb: 3, background: 'linear-gradient(135deg,#0F2137,#1B2C45)', border: 'none' }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                <Text sx={{ fontWeight: 700, fontSize: 1, color: '#fff', fontFamily: font }}>Today&rsquo;s activity</Text>
+                <Badge tone="purple" dot={false}>68%</Badge>
+              </Box>
+              <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-end', height: 56 }}>
+                {[38, 55, 42, 70, 58, 84, 66].map((h, i) => (
+                  <Box key={i} sx={{ flex: 1, height: `${h}%`, borderRadius: 6, background: i === 5 ? 'linear-gradient(180deg,#A855F7,#7C3AED)' : 'rgba(255,255,255,0.16)' }} />
+                ))}
+              </Box>
+            </Card>
+
             <Text sx={{ fontSize: 0, fontWeight: 700, color: S.muted, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font, mb: 2 }}>
               {d.upcoming}
             </Text>
-            <Card sx={{ p: 3, mb: 2 }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>Hair &amp; Style</Text>
-                <Badge tone="teal">Sat 14 Jun</Badge>
+            <Card sx={{ p: 3, mb: 2, display: 'flex', alignItems: 'center', gap: 3 }}>
+              <Box sx={{ width: 48, height: 48, borderRadius: 13, background: 'linear-gradient(135deg,#EC4899,#DB2777)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', fontFamily: font, flexShrink: 0 }}>
+                <Text sx={{ fontSize: 0, fontWeight: 700 }}>Sat</Text>
+                <Text sx={{ fontSize: 1, fontWeight: 700 }}>14</Text>
               </Box>
-              <Text sx={{ fontSize: 0, color: S.slate, fontFamily: font }}>14:30 &middot; Central</Text>
+              <Box sx={{ flex: 1 }}>
+                <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>HIIT Circuit</Text>
+                <Text sx={{ fontSize: 0, color: S.slate, fontFamily: font }}>14:30 &middot; Central</Text>
+              </Box>
+              <Badge tone="green" dot={false}>Confirmed</Badge>
             </Card>
-            <Card sx={{ p: 3 }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>Team Dinner</Text>
-                <Badge tone="purple">Fri 20 Jun</Badge>
+            <Card sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 3 }}>
+              <Box sx={{ width: 48, height: 48, borderRadius: 13, background: 'linear-gradient(135deg,#0EA5E9,#0284C7)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', fontFamily: font, flexShrink: 0 }}>
+                <Text sx={{ fontSize: 0, fontWeight: 700 }}>Fri</Text>
+                <Text sx={{ fontSize: 1, fontWeight: 700 }}>20</Text>
               </Box>
-              <Text sx={{ fontSize: 0, color: S.slate, fontFamily: font }}>19:00 &middot; Wan Chai</Text>
+              <Box sx={{ flex: 1 }}>
+                <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>Yoga Flow</Text>
+                <Text sx={{ fontSize: 0, color: S.slate, fontFamily: font }}>19:00 &middot; Wan Chai</Text>
+              </Box>
+              <Badge tone="purple" dot={false}>Booked</Badge>
             </Card>
           </>
         )}
 
         {tab === 1 && (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {['Hair &amp; Style', 'Wellness Massage', 'Car Detailing'].map((name, i) => (
-              <Card key={name} sx={{ p: 3 }}>
+            {[
+              { name: 'HIIT Circuit', date: 'Sat 14 Jun', status: 'Confirmed', tone: 'green' },
+              { name: 'Wellness Massage', date: 'Tue 17 Jun', status: 'Pending', tone: 'amber' },
+              { name: 'Car Detailing', date: 'Fri 20 Jun', status: 'Confirmed', tone: 'green' },
+            ].map((item) => (
+              <Card key={item.name} sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                  <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{name}</Text>
-                  <Badge tone={i === 1 ? 'amber' : 'green'}>{i === 1 ? 'Pending' : 'Confirmed'}</Badge>
+                  <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{item.name}</Text>
+                  <Badge tone={item.tone} dot={false}>{item.status}</Badge>
                 </Box>
-                <Text sx={{ fontSize: 0, color: S.slate, fontFamily: font }}>REF BK-{4820 + i * 7}</Text>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', fontSize: 0, color: S.slate, fontFamily: font }}>
+                  <Text>{item.date}</Text>
+                  <Text sx={{ fontFamily: 'Menlo, monospace' }}>BK-4821</Text>
+                </Box>
               </Card>
             ))}
           </Box>
@@ -82,44 +120,57 @@ export default function MobileAppDemo({ t }) {
 
         {tab === 2 && (
           <>
-            <Card sx={{ p: 3, mb: 3 }}>
-              <Text sx={{ fontSize: 0, fontWeight: 700, color: S.muted, fontFamily: font, mb: 2 }}>{d.balance}</Text>
-              <Text sx={{ fontSize: 4, fontWeight: 700, color: S.tealDark, fontFamily: font }}>HK$8,420.50</Text>
-              <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mt: 1 }}>
-                &#9679;&#9679;&#9679;&#9679; &#9679;&#9679;&#9679;&#9679; 1234
-              </Text>
-            </Card>
-            <Text sx={{ fontSize: 0, fontWeight: 700, color: S.muted, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font, mb: 2 }}>
-              {d.points}
-            </Text>
-            <Card sx={{ p: 3 }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                <Text sx={{ fontWeight: 700, color: S.ink, fontFamily: font }}>1,280 pts</Text>
-                <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>Gold tier</Text>
+            <Card sx={{ p: 3, mb: 3, background: 'linear-gradient(135deg,#111827,#374151)', border: 'none' }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                <Text sx={{ fontSize: 0, fontWeight: 700, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>{d.balance}</Text>
+                <Badge sx={{ backgroundColor: 'rgba(255,255,255,0.18)', color: '#fff' }} dot={false}>&#9679;&#9679;&#9679;&#9679; 1234</Badge>
               </Box>
-              <Progress pct={68} color={S.amber} />
+              <Text sx={{ fontSize: 4, fontWeight: 700, color: '#fff', fontFamily: font }}>HK$8,420.50</Text>
+            </Card>
+            <SectionLabel>{d.points}</SectionLabel>
+            <Card sx={{ p: 3, mb: 3 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                <Text sx={{ fontWeight: 700, color: S.ink, fontFamily: font }}>1,280 pts</Text>
+                <Badge tone="amber" dot={false}>&#9733; Gold tier</Badge>
+              </Box>
+              <Progress pct={68} color="#D97706" />
+              <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mt: 1 }}>520 pts to next tier</Text>
+            </Card>
+            <SectionLabel>Transactions</SectionLabel>
+            <Card sx={{ p: 2 }}>
+              {[
+                ['Class pass', '+HK$880', 'in'],
+                ['Massage', '\u2212HK$520', 'out'],
+                ['Referral bonus', '+HK$150', 'in'],
+              ].map(([label, amt, type], i) => (
+                <Box key={label} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 2, py: 2, borderBottom: '1px solid', borderColor: S.line, ':last-child': { border: 'none' } }}>
+                  <Text sx={{ fontWeight: 600, fontSize: 1, color: S.ink, fontFamily: font }}>{label}</Text>
+                  <Text sx={{ fontWeight: 700, fontSize: 1, color: type === 'in' ? S.green : S.slate, fontFamily: font }}>{amt}</Text>
+                </Box>
+              ))}
             </Card>
           </>
         )}
 
         {tab === 3 && (
           <Card sx={{ p: 4, textAlign: 'center' }}>
-            <Avatar label="A" color={S.teal} size={64} sx={{ mx: 'auto', mb: 2 }} />
+            <Avatar label="A" color="#7C3AED" size={68} sx={{ mx: 'auto', mb: 2 }} />
             <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font }}>Amanda Lee</Text>
             <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mb: 3 }}>Member since 2024</Text>
             <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
-              <Box sx={{ p: 2, borderRadius: 10, backgroundColor: S.bg }}>
-                <Text sx={{ fontWeight: 700, color: S.ink, fontFamily: font }}>12</Text>
+              <Box sx={{ p: 3, borderRadius: 12, backgroundColor: '#F5F3FF', border: '1px solid #EDE9FE' }}>
+                <Text sx={{ fontWeight: 700, color: '#6D28D9', fontFamily: font, fontSize: 2 }}>12</Text>
                 <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.bookings}</Text>
               </Box>
-              <Box sx={{ p: 2, borderRadius: 10, backgroundColor: S.bg }}>
-                <Text sx={{ fontWeight: 700, color: S.ink, fontFamily: font }}>1,280</Text>
+              <Box sx={{ p: 3, borderRadius: 12, backgroundColor: '#FFF7E6', border: '1px solid #FBE3B8' }}>
+                <Text sx={{ fontWeight: 700, color: '#92400E', fontFamily: font, fontSize: 2 }}>1,280</Text>
                 <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.points}</Text>
               </Box>
             </Box>
           </Card>
         )}
       </Box>
+
       <Box
         sx={{
           position: 'absolute',
@@ -145,12 +196,13 @@ export default function MobileAppDemo({ t }) {
               gap: '2px',
               fontSize: 0,
               fontWeight: 700,
-              color: tab === i ? S.teal : S.muted,
+              color: tab === i ? '#7C3AED' : S.muted,
               fontFamily: font,
               cursor: 'pointer',
             }}>
-            <Box sx={{ fontSize: 1 }}>{tb.icon}</Box>
-            {tab === i ? tb.label : ''}
+            <Box sx={{ fontSize: 1, opacity: tab === i ? 1 : 0.6 }}>{tb.icon}</Box>
+            <Text sx={{ fontSize: 0 }}>{tb.label}</Text>
+            {tab === i && <Box sx={{ width: 16, height: 3, borderRadius: 99, backgroundColor: '#7C3AED', mt: '2px' }} />}
           </Box>
         ))}
       </Box>
