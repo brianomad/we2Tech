@@ -11,6 +11,7 @@ import zhCnCases from '../data/case-data-zh-cn';
 import { tagNames as zhTagNames } from '../data/case-data-zh';
 import { tagNames as zhCnTagNames } from '../data/case-data-zh-cn';
 import { useLocale, localizedPath } from '../locales';
+import { caseSlug } from '../data/case-url';
 
 const casesByLocale = { en: cases, zh: zhCases, 'zh-cn': zhCnCases };
 const tagNamesByLocale = { en: {}, zh: zhTagNames, 'zh-cn': zhCnTagNames };
@@ -35,7 +36,7 @@ export default function Cases() {
   const startIndex = (page - 1) * PAGE_SIZE;
   const paginated = filtered.slice(startIndex, startIndex + PAGE_SIZE);
 
-  const openDemo = (id) => router.push(localizedPath(locale, `/cases/${id}`));
+  const openDemo = (item) => router.push(localizedPath(locale, `/cases/${caseSlug(item)}`));
 
   useEffect(() => {
     setPage(1);
@@ -86,7 +87,7 @@ export default function Cases() {
         <Box sx={styles.grid}>
           {paginated.map((item, index) => (
             <Reveal key={item.id} delay={(index % 3) * 0.08}>
-              <Box sx={styles.card} onClick={() => openDemo(item.id)}>
+              <Box sx={styles.card} onClick={() => openDemo(item)}>
                 <Box
                   sx={{
                     ...styles.cardImageBg,
@@ -102,7 +103,7 @@ export default function Cases() {
                   <Text sx={styles.cardTitle}>{item.title}</Text>
                   <Text sx={styles.cardSummary}>{item.summary}</Text>
                   <Box sx={styles.viewDemo} onClick={(e) => e.stopPropagation()}>
-                    <a href={localizedPath(locale, `/cases/${item.id}`)} sx={styles.cardLink}>
+                    <a href={localizedPath(locale, `/cases/${caseSlug(item)}`)} sx={styles.cardLink}>
                       {t('cases.viewDemo')} <FaArrowRight />
                     </a>
                   </Box>

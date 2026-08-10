@@ -8,14 +8,18 @@ import { localizedPath } from '../locales';
 import { DemoForTag } from '../components/demo/registry';
 import { DemoGlobalStyles } from '../components/demo/anim';
 import { S } from '../components/demo/shared';
+import cases from './case-data';
+import { caseSlug } from '../data/case-url';
 
 const TOTAL = 200;
 
 export default function CaseDemo({ item, locale, t, tagNames = {} }) {
   const [activeTab, setActiveTab] = useState(0);
   const tags = item.tags || [];
-  const prev = item.id - 1 <= 0 ? TOTAL : item.id - 1;
-  const next = item.id + 1 > TOTAL ? 1 : item.id + 1;
+  const prevId = item.id - 1 <= 0 ? TOTAL : item.id - 1;
+  const nextId = item.id + 1 > TOTAL ? 1 : item.id + 1;
+  const prevItem = cases.find((c) => c.id === prevId);
+  const nextItem = cases.find((c) => c.id === nextId);
   const label = (tag) => tagNames[tag] || tag;
 
   return (
@@ -113,10 +117,10 @@ export default function CaseDemo({ item, locale, t, tagNames = {} }) {
         </Box>
 
         <Box sx={styles.prevNext}>
-          <a href={localizedPath(locale, `/cases/${prev}`)} sx={styles.pnLink}>
+          <a href={localizedPath(locale, `/cases/${caseSlug(prevItem)}`)} sx={styles.pnLink}>
             <FaChevronLeft /> {t('caseDemo.prevCase')}
           </a>
-          <a href={localizedPath(locale, `/cases/${next}`)} sx={styles.pnLink}>
+          <a href={localizedPath(locale, `/cases/${caseSlug(nextItem)}`)} sx={styles.pnLink}>
             {t('caseDemo.nextCase')} <FaChevronRight />
           </a>
         </Box>

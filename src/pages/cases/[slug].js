@@ -3,14 +3,16 @@ import Layout from 'components/layout';
 import CaseDemo from '../../sections/case-demo';
 import JsonLd from '../../components/json-ld';
 import cases from '../../sections/case-data';
+import { caseSlug, findCaseBySlug } from '../../data/case-url';
 import { useLocale } from '../../locales';
 
 export default function CaseDemoPage({ item }) {
   const { locale, t } = useLocale();
+  const slug = caseSlug(item);
   return (
     <Layout>
       <SEO
-        path={`/cases/${item.id}`}
+        path={`/cases/${slug}`}
         locale={locale}
         title={`${item.title} Demo | we2Tech`}
         description={item.summary} />
@@ -20,7 +22,7 @@ export default function CaseDemoPage({ item }) {
         items={[
           { name: t('nav.home'), path: '/' },
           { name: t('nav.cases'), path: '/cases' },
-          { name: item.title, path: `/cases/${item.id}` },
+          { name: item.title, path: `/cases/${slug}` },
         ]} />
       <CaseDemo item={item} locale={locale} t={t} tagNames={{}} />
     </Layout>
@@ -28,13 +30,14 @@ export default function CaseDemoPage({ item }) {
 }
 
 export async function getStaticPaths() {
-  return {
-    paths: cases.map((c) => ({ params: { id: String(c.id) } })),
-    fallback: false,
-  };
+  const paths = cases.flatMap((c) => [
+    { params: { slug: caseSlug(c) } },
+    { params: { slug: String(c.id) } },
+  ]);
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-  const item = cases.find((c) => String(c.id) === params.id);
+  const item = findCaseBySlug(cases, params.slug);
   return { props: { item } };
 }
