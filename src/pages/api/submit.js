@@ -2,6 +2,8 @@ import nodemailer from 'nodemailer';
 import { google } from 'googleapis';
 
 const EMAIL_TO = process.env.EMAIL_TO || 'enquiry@we2tech.pro';
+const SMTP_HOST = process.env.SMTP_HOST || (process.env.SMTP_USER ? 'smtp.gmail.com' : '');
+const SMTP_PORT = process.env.SMTP_PORT || '465';
 const EMAIL_FROM = process.env.EMAIL_FROM || process.env.SMTP_USER || EMAIL_TO;
 
 export default async function handler(req, res) {
@@ -11,11 +13,16 @@ export default async function handler(req, res) {
 
   const { name, email, phone, company, projectType, message } = req.body || {};
 
+  if (!process.env.SMTP_USER || !process.env.SMTP_PASS || !SMTP_HOST) {
+    console.error('SMTP not configured (SMTP_USER, SMTP_PASS, SMTP_HOST)');
+    return res.status(500).json({ err: 'Email service not configured' });
+  }
+
   try {
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 465,
-      secure: (process.env.SMTP_PORT || '465') === '465',
+      host: SMTP_HOST,
+      port: Number(SMTP_PORT) || 465,
+      secure: (SMTP_PORT || '465') === '465',
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
