@@ -34,8 +34,8 @@ export const demoRegistry = {
   Ticketing: TicketingDemo,
 };
 
-export function DemoForTag({ tag, t, locale }) {
+export function DemoForTag({ tag, t, locale, item }) {
   const Component = demoRegistry[tag];
   if (!Component) return null;
-  return <Component t={t} locale={locale} />;
+  return <Component t={t} locale={locale} item={item} />;
 }

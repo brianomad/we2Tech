@@ -10,7 +10,9 @@ const EVENT_META = [
   { icon: '\u{1F3B8}', grad: 'linear-gradient(135deg,#DB2777,#BE185D)' },
 ];
 
-export default function TicketingDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function TicketingDemo({ t, item }) {
   const d = t('caseDemo.ticketing');
   const events = t('caseDemo.ticketing.events');
   const [selected, setSelected] = useState(0);
@@ -21,7 +23,7 @@ export default function TicketingDemo({ t }) {
   const total = qty * parseInt(event.price.replace(/[^\d]/g, ''), 10);
 
   return (
-    <BrowserFrame url="https://tickets.demo.we2tech.pro" height={486} brand="EventHub">
+    <BrowserFrame url={demoUrlFor(item, 'https://tickets.demo.we2tech.pro')} height={486} brand={brandFor(item, 'EventHub')}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#312E81,#6D28D9)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F472B6,#EC4899)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#127916;</Box>

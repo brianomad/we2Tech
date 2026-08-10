@@ -12,7 +12,9 @@ const ITEM_META = [
   { icon: '\u{1F9C9}', grad: 'linear-gradient(135deg,#F97316,#EA580C)' },
 ];
 
-export default function OrderPlacementDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function OrderPlacementDemo({ t, item }) {
   const d = t('caseDemo.order');
   const items = t('caseDemo.order.items');
   const [cart, setCart] = useState({});
@@ -31,7 +33,7 @@ export default function OrderPlacementDemo({ t }) {
   const total = Object.entries(cart).reduce((s, [i, n]) => s + n * parseInt(items[i].price.replace(/[^\d]/g, ''), 10), 0);
 
   return (
-    <BrowserFrame url="https://order.demo.we2tech.pro" height={486} brand="Daily Grind">
+    <BrowserFrame url={demoUrlFor(item, 'https://order.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Daily Grind')}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#451A03,#7C2D12)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#D97706)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2 }}>&#9749;</Box>

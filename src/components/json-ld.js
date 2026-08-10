@@ -13,7 +13,7 @@ const organization = {
   name: 'we2Tech',
   legalName: 'we2Tech Ltd',
   url: SITE_URL,
-  logo: `${SITE_URL}/we2Tech.ico`,
+  logo: `${SITE_URL}/favicon.png`,
   image: `${SITE_URL}/og-image.png`,
   telephone: PHONE,
   email: EMAIL,
@@ -29,6 +29,29 @@ const organization = {
     'https://wa.me/85253968435',
   ],
 };
+
+const NAV_LINKS = [
+  { name: 'Home', path: '/' },
+  { name: 'Services', path: '/services/mobile-app-development' },
+  { name: 'Case Studies', path: '/cases' },
+  { name: 'Insights & Blog', path: '/blog' },
+  { name: 'FAQ', path: '/faq' },
+  { name: 'Contact', path: '/contact' },
+];
+
+function siteNavigation(locale) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SiteNavigationElement',
+    inLanguage: getLocaleInfo(locale).htmlLang,
+    itemListElement: NAV_LINKS.map((link, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: link.name,
+      url: `${SITE_URL}${localizedPath(locale, link.path)}`,
+    })),
+  };
+}
 
 const localBusiness = {
   '@context': 'https://schema.org',
@@ -69,7 +92,7 @@ export default function JsonLd({ type, items, service, post, locale = 'en' }) {
   let data = null;
 
   if (type === 'organization') {
-    data = [organization, localBusiness];
+    data = [organization, localBusiness, siteNavigation(locale)];
   } else if (type === 'faq') {
     const faqList = faqDataByLocale[locale] || faqDataByLocale.en;
     data = {

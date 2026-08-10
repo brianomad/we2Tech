@@ -26,7 +26,9 @@ export function days(locale) {
   });
 }
 
-export default function BookingDemo({ t, locale }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function BookingDemo({ t, locale, item }) {
   const [service, setService] = useState(0);
   const [day, setDay] = useState(0);
   const [slot, setSlot] = useState(null);
@@ -38,7 +40,7 @@ export default function BookingDemo({ t, locale }) {
   const meta = SERVICE_META[service];
 
   return (
-    <BrowserFrame url="https://book.demo.we2tech.pro" height={486} brand="SpaceBase">
+    <BrowserFrame url={demoUrlFor(item, 'https://book.demo.we2tech.pro')} height={486} brand={brandFor(item, 'SpaceBase')}>
       <Box
         sx={{
           px: [4, null, 5],

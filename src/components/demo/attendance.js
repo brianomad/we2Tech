@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Badge, Btn, Progress, Avatar, SectionLabel } from './shared';
 
-export default function AttendanceDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function AttendanceDemo({ t, item }) {
   const d = t('caseDemo.attendance');
   const sessions = t('caseDemo.attendance.sessions').map((s) => ({ ...s, checked: parseInt(s.checked, 10), expected: parseInt(s.expected, 10) }));
   const [list, setList] = useState(sessions);
@@ -16,7 +18,7 @@ export default function AttendanceDemo({ t }) {
   const totalExpected = list.reduce((a, s) => a + s.expected, 0);
 
   return (
-    <BrowserFrame url="https://attendance.demo.we2tech.pro" height={486} brand="SweatLab">
+    <BrowserFrame url={demoUrlFor(item, 'https://attendance.demo.we2tech.pro')} height={486} brand={brandFor(item, 'SweatLab')}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#111827,#1F2937)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F97316,#EA580C)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128170;</Box>

@@ -1,10 +1,12 @@
 /** @jsx jsx */
 import { jsx, Container, Box, Text, Button } from 'theme-ui';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowLeft, FaArrowRight, FaWhatsapp, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Reveal from '../components/reveal';
 import { localizedPath } from '../locales';
 import { DemoForTag } from '../components/demo/registry';
+import { DemoGlobalStyles } from '../components/demo/anim';
 import { S } from '../components/demo/shared';
 
 const TOTAL = 200;
@@ -18,6 +20,7 @@ export default function CaseDemo({ item, locale, t, tagNames = {} }) {
 
   return (
     <section sx={styles.section}>
+      <DemoGlobalStyles />
       <Container>
         <Box sx={styles.backRow}>
           <a href={localizedPath(locale, '/cases')} sx={styles.backLink}>
@@ -69,7 +72,18 @@ export default function CaseDemo({ item, locale, t, tagNames = {} }) {
             ))}
           </Box>
           <Box sx={styles.demoBody}>
-            {tags[activeTab] && <DemoForTag tag={tags[activeTab]} t={t} locale={locale} />}
+            <AnimatePresence>
+              {tags[activeTab] && (
+                <motion.div
+                  key={tags[activeTab]}
+                  initial={{ opacity: 0, y: 16, scale: 0.995 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, ease: 'easeOut' }}>
+                  <DemoForTag tag={tags[activeTab]} t={t} locale={locale} item={item} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </Box>
         </Box>
 
@@ -245,6 +259,7 @@ const styles = {
     backgroundColor: S.green,
     display: 'inline-block',
     boxShadow: '0 0 0 4px rgba(31,169,113,0.18)',
+    animation: 'dPulse 1.6s ease-in-out infinite',
   },
   tryNote: {
     fontSize: 1,

@@ -10,14 +10,16 @@ const KPIS = [
   { label: 'Conversion', value: '3.8%', delta: '+0.3%', color: S.orange, spark: [48, 52, 50, 56, 54, 60, 58, 64, 62, 66, 68, 72] },
 ];
 
-export default function DataAnalyticsDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function DataAnalyticsDemo({ t, item }) {
   const d = t('caseDemo.analytics');
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const revenue = [42, 58, 51, 72, 66, 89, 84, 103, 96, 118, 112, 134];
   const orders = [820, 960, 1100, 1240, 1380, 1520];
 
   return (
-    <BrowserFrame url="https://insights.demo.we2tech.pro" height={486} brand="Insightly">
+    <BrowserFrame url={demoUrlFor(item, 'https://insights.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Insightly')}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0F172A,#334155)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#F97316)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128200;</Box>

@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Badge, Btn, StatusDot } from './shared';
 
-export default function InventoryDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function InventoryDemo({ t, item }) {
   const d = t('caseDemo.inventory');
   const rows = t('caseDemo.inventory.items');
   const [items, setItems] = useState(rows);
@@ -20,7 +22,7 @@ export default function InventoryDemo({ t }) {
   const totalUnits = items.reduce((a, r) => a + parseInt(r.onHand, 10), 0);
 
   return (
-    <BrowserFrame url="https://stock.demo.we2tech.pro" height={486} brand="StockPilot">
+    <BrowserFrame url={demoUrlFor(item, 'https://stock.demo.we2tech.pro')} height={486} brand={brandFor(item, 'StockPilot')}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0F172A,#1E293B)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#D97706)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128230;</Box>

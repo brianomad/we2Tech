@@ -10,14 +10,16 @@ const TIER_STYLE = [
   { grad: 'linear-gradient(135deg,#0F2137,#1B2C45)', tint: S.gold, hot: false },
 ];
 
-export default function MembershipDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function MembershipDemo({ t, item }) {
   const d = t('caseDemo.membership');
   const plans = t('caseDemo.membership.plans');
   const [current, setCurrent] = useState(1);
   const [points] = useState('2,180');
 
   return (
-    <BrowserFrame url="https://members.demo.we2tech.pro" height={500} brand="The Ascot Club">
+    <BrowserFrame url={demoUrlFor(item, 'https://members.demo.we2tech.pro')} height={500} brand={brandFor(item, 'The Ascot Club')}>
       <Box sx={{ background: 'linear-gradient(180deg,#0B1B33 0%, #0F2137 100%)', p: [4, null, 5] }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 4, flexWrap: 'wrap', gap: 3 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>

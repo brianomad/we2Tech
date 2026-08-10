@@ -10,7 +10,9 @@ const REWARD_META = [
   { icon: '\u{1F382}', grad: 'linear-gradient(135deg,#EC4899,#DB2777)' },
 ];
 
-export default function LoyaltyDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function LoyaltyDemo({ t, item }) {
   const d = t('caseDemo.loyalty');
   const rewards = t('caseDemo.loyalty.rewards');
   const [points, setPoints] = useState(340);
@@ -26,7 +28,7 @@ export default function LoyaltyDemo({ t }) {
   const NEXT = 500;
 
   return (
-    <BrowserFrame url="https://rewards.demo.we2tech.pro" height={486} brand="Perks Club">
+    <BrowserFrame url={demoUrlFor(item, 'https://rewards.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Perks Club')}>
       <Box sx={{ p: [4, null, 5] }}>
         <Card sx={{ p: 4, mb: 4, background: 'linear-gradient(135deg,#7C2D12,#B45309)', border: 'none', boxShadow: '0 18px 40px rgba(180,83,9,0.35)', overflow: 'hidden', position: 'relative' }}>
           <Box sx={{ position: 'absolute', width: 140, height: 140, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%)', top: -40, right: -30 }} />

@@ -11,13 +11,15 @@ const TABS = [
   { key: 'profile', icon: '\u263A', label: 'Profile' },
 ];
 
-export default function MobileAppDemo({ t }) {
+import { brandFor } from './demo-meta';
+
+export default function MobileAppDemo({ t, item }) {
   const d = t('caseDemo.mobile');
   const tabs = TABS.map((tb) => ({ ...tb, label: d[tb.key] }));
   const [tab, setTab] = useState(0);
 
   return (
-    <PhoneFrame title="Pulse Fitness" tint="#7C3AED">
+    <PhoneFrame title={brandFor(item, 'Pulse Fitness')} tint="#7C3AED">
       <Box sx={{ p: 3, pb: 12 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
           <Box>

@@ -6,7 +6,9 @@ import { S, font, Card, Btn, Badge, Field, Qr, Avatar, SectionLabel } from './sh
 
 const PURPOSE_ICONS = ['\u{1F4AC}', '\u{1F4E6}', '\u{1F3DB}', '\u{1F464}'];
 
-export default function VisitorManagementDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function VisitorManagementDemo({ t, item }) {
   const d = t('caseDemo.visitor');
   const purposes = t('caseDemo.visitor.purposes');
   const [name, setName] = useState('Wong Ka Ho');
@@ -25,7 +27,7 @@ export default function VisitorManagementDemo({ t }) {
   };
 
   return (
-    <BrowserFrame url="https://visitor.demo.we2tech.pro" height={486} brand="AccessOne">
+    <BrowserFrame url={demoUrlFor(item, 'https://visitor.demo.we2tech.pro')} height={486} brand={brandFor(item, 'AccessOne')}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#111827)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22D3EE,#3B82F6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128274;</Box>

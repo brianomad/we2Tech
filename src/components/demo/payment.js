@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Field, SectionLabel } from './shared';
 
-export default function PaymentDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function PaymentDemo({ t, item }) {
   const d = t('caseDemo.payment');
   const [method, setMethod] = useState(0);
   const [step, setStep] = useState('pay'); // pay | processing | done
@@ -18,7 +20,7 @@ export default function PaymentDemo({ t }) {
   }, [step]);
 
   return (
-    <BrowserFrame url="https://pay.demo.we2tech.pro" height={486} brand="Payflow">
+    <BrowserFrame url={demoUrlFor(item, 'https://pay.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Payflow')}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#14532D)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22C55E,#16A34A)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128179;</Box>

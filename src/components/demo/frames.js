@@ -2,7 +2,7 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { S, font } from './shared';
 
-export function BrowserFrame({ url = 'https://demo.we2tech.pro', children, height = 460, brand }) {
+export function BrowserFrame({ url = 'https://demo.we2tech.pro', children, height, brand }) {
   return (
     <Box
       sx={{
@@ -59,9 +59,8 @@ export function BrowserFrame({ url = 'https://demo.we2tech.pro', children, heigh
       </Box>
       <Box
         sx={{
-          height,
-          overflow: 'auto',
           backgroundColor: '#F1F4F9',
+          ...(height ? { height, overflow: 'auto' } : {}),
         }}>
         {children}
       </Box>
@@ -69,7 +68,7 @@ export function BrowserFrame({ url = 'https://demo.we2tech.pro', children, heigh
   );
 }
 
-export function PhoneFrame({ children, title, height = 500, tint = S.ink }) {
+export function PhoneFrame({ children, title, height = 500, tint = S.ink, scene }) {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', py: 3 }}>
       <Box

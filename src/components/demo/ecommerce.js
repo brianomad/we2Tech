@@ -13,7 +13,9 @@ const PRODUCT_META = [
   { icon: '\u{1F9F3}', grad: 'linear-gradient(135deg,#1D4ED8,#1E3A8A)', tag: 'New', tagTone: 'blue' },
 ];
 
-export default function EcommerceDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function EcommerceDemo({ t, item }) {
   const d = t('caseDemo.ecommerce');
   const products = t('caseDemo.ecommerce.products');
   const [cart, setCart] = useState({});
@@ -32,7 +34,7 @@ export default function EcommerceDemo({ t }) {
   const count = Object.values(cart).reduce((a, b) => a + b, 0);
 
   return (
-    <BrowserFrame url="https://shop.demo.we2tech.pro" height={486} brand="Mono">
+    <BrowserFrame url={demoUrlFor(item, 'https://shop.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Mono')}>
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 486 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 4, py: 3, backgroundColor: '#fff', borderBottom: '1px solid', borderColor: S.line, position: 'relative', zIndex: 2 }}>
           <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font, letterSpacing: '1px' }}>

@@ -15,14 +15,16 @@ const NFTS = [
 
 const RARITY_TONE = { Rare: 'blue', Epic: 'purple', Legendary: 'amber' };
 
-export default function BlockchainDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function BlockchainDemo({ t, item }) {
   const d = t('caseDemo.blockchain');
   const [connected, setConnected] = useState(true);
 
   const rarityKey = (r) => (r === 'Rare' ? 'rare' : r === 'Epic' ? 'epic' : 'legendary');
 
   return (
-    <BrowserFrame url="https://chain.demo.we2tech.pro" height={486} brand="NovaChain">
+    <BrowserFrame url={demoUrlFor(item, 'https://chain.demo.we2tech.pro')} height={486} brand={brandFor(item, 'NovaChain')}>
       <Box sx={{ background: 'radial-gradient(circle at 70% 0%, #1E1B4B 0%, #0B1220 60%)', p: [4, null, 5] }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
           <Text sx={{ fontWeight: 700, fontSize: 1, color: '#fff', fontFamily: font }}>

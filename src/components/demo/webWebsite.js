@@ -12,13 +12,15 @@ const FEATURE_META = [
   { icon: '\u{1F4E6}', color: S.green, bg: 'rgba(31,169,113,0.12)' },
 ];
 
-export default function WebWebsiteDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function WebWebsiteDemo({ t, item }) {
   const d = t('caseDemo.website');
   const menu = t('caseDemo.website.menu');
   const features = t('caseDemo.website.features');
 
   return (
-    <BrowserFrame url="https://www.demo.we2tech.pro" height={486} brand="Nimbus">
+    <BrowserFrame url={demoUrlFor(item, 'https://www.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Nimbus')}>
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 486, backgroundColor: '#fff' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 4, py: 3, borderBottom: '1px solid', borderColor: S.line, backgroundColor: 'rgba(255,255,255,0.85)' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

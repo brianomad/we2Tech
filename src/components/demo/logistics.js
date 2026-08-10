@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Badge, Avatar, MockMap, Stepper, StatusDot } from './shared';
 
-export default function LogisticsDemo({ t }) {
+import { demoUrlFor, brandFor } from './demo-meta';
+
+export default function LogisticsDemo({ t, item }) {
   const d = t('caseDemo.logistics');
   const shipments = t('caseDemo.logistics.shipments');
   const steps = [d.pickedUp, d.inTransit, d.outForDelivery, d.delivered];
@@ -15,7 +17,7 @@ export default function LogisticsDemo({ t }) {
   const stepLabel = (s) => ({ picked: d.pickedUp, in: d.inTransit, out: d.outForDelivery, delivered: d.delivered }[s] || s);
 
   return (
-    <BrowserFrame url="https://dispatch.demo.we2tech.pro" height={486} brand="FleetTrack">
+    <BrowserFrame url={demoUrlFor(item, 'https://dispatch.demo.we2tech.pro')} height={486} brand={brandFor(item, 'FleetTrack')}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#12324A)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22D3EE,#0EA5E9)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128663;</Box>
