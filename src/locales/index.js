@@ -92,7 +92,7 @@ const en = {
     eyebrow: 'Use Case',
     title: 'Demo Cases',
     slogan:
-      'Browse client work by service category and see how technology decisions connect with business stage, operations, data and customer experience.',
+      'Browse demo cases by service category and see how technology decisions connect with business stage, operations, data and customer experience.',
     casesLabel: 'Cases',
     categoriesLabel: 'Categories',
     all: 'All',
@@ -182,7 +182,7 @@ const en = {
     },
     cases: {
       title: 'Demo Cases | we2Tech',
-      desc: 'See how we2Tech helps Hong Kong businesses build mobile apps, websites, cloud systems and more — browse client work by service category.',
+      desc: 'See how we2Tech helps Hong Kong businesses build mobile apps, websites, cloud systems and more — browse demo cases by service category.',
     },
     contact: {
       title: 'Contact Us | we2Tech',
@@ -284,7 +284,7 @@ const zh = {
     eyebrow: '客戶案例',
     title: '示範案例',
     slogan:
-      '按服務類別瀏覽客戶項目，了解技術決策如何與業務階段、營運、數據及客戶體驗相連。',
+      '按服務類別瀏覽示範案例，了解技術決策如何與業務階段、營運、數據及客戶體驗相連。',
     casesLabel: '案例',
     categoriesLabel: '類別',
     all: '全部',
@@ -362,7 +362,7 @@ const zh = {
     },
     cases: {
       title: '示範案例 | we2Tech',
-      desc: '瀏覽 we2Tech 如何協助香港企業建立行動應用程式、網站、雲端系統等——按服務類別查看客戶項目。',
+      desc: '瀏覽 we2Tech 如何協助香港企業建立行動應用程式、網站、雲端系統等——按服務類別查看示範案例。',
     },
     contact: {
       title: '聯絡我們 | we2Tech',
@@ -463,7 +463,7 @@ const zhCn = {
   cases: {
     eyebrow: '客户案例',
     title: '示范案例',
-    slogan: '按服务类别浏览客户项目，了解技术决策如何与业务阶段、运营、数据及客户体验相连。',
+    slogan: '按服务类别浏览示范案例，了解技术决策如何与业务阶段、运营、数据及客户体验相连。',
     casesLabel: '案例',
     categoriesLabel: '类别',
     all: '全部',
@@ -541,7 +541,7 @@ const zhCn = {
     },
     cases: {
       title: '示范案例 | we2Tech',
-      desc: '浏览 we2Tech 如何协助香港企业建立移动应用、网站、云端系统等——按服务类别查看客户项目。',
+      desc: '浏览 we2Tech 如何协助香港企业建立移动应用、网站、云端系统等——按服务类别查看示范案例。',
     },
     contact: {
       title: '联系我们 | we2Tech',

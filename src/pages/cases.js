@@ -9,7 +9,7 @@ export default function CasesPage() {
       <SEO
         path="/cases"
         title="Demo Cases | we2Tech"
-        description="See how we2Tech helps Hong Kong businesses build mobile apps, websites, cloud systems and more — browse client work by service category." />
+        description="See how we2Tech helps Hong Kong businesses build mobile apps, websites, cloud systems and more — browse demo cases by service category." />
       <JsonLd type="breadcrumb" items={[{ name: 'Home', path: '/' }, { name: 'Demo Cases', path: '/cases' }]} />
       <Cases />
     </Layout>
