@@ -8,9 +8,9 @@ export default function CasesPage() {
     <Layout>
       <SEO
         path="/cases"
-        title="Client Success Stories | we2Tech"
+        title="Demo Cases | we2Tech"
         description="See how we2Tech helps Hong Kong businesses build mobile apps, websites, cloud systems and more — browse client work by service category." />
-      <JsonLd type="breadcrumb" items={[{ name: 'Home', path: '/' }, { name: 'Client Success Stories', path: '/cases' }]} />
+      <JsonLd type="breadcrumb" items={[{ name: 'Home', path: '/' }, { name: 'Demo Cases', path: '/cases' }]} />
       <Cases />
     </Layout>
   );

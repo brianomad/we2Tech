@@ -90,7 +90,7 @@ const en = {
   },
   cases: {
     eyebrow: 'Use Case',
-    title: 'Client Success Stories',
+    title: 'Demo Cases',
     slogan:
       'Browse client work by service category and see how technology decisions connect with business stage, operations, data and customer experience.',
     casesLabel: 'Cases',
@@ -146,7 +146,7 @@ const en = {
     submitting: 'Submitting...',
     send: 'Send Enquiry',
     failed: 'Submission failed. Please try again or email us directly.',
-    storiesTitle: 'Client success stories',
+    storiesTitle: 'Demo cases',
     viewCase: 'View case study',
     viewAll: 'View all case studies',
   },
@@ -181,7 +181,7 @@ const en = {
       desc: 'we2Tech provides professional mobile app development, website development, UI/UX design, and server deployment services in Hong Kong.',
     },
     cases: {
-      title: 'Client Success Stories | we2Tech',
+      title: 'Demo Cases | we2Tech',
       desc: 'See how we2Tech helps Hong Kong businesses build mobile apps, websites, cloud systems and more — browse client work by service category.',
     },
     contact: {
@@ -282,7 +282,7 @@ const zh = {
   },
   cases: {
     eyebrow: '客戶案例',
-    title: '客戶成功故事',
+    title: '示範案例',
     slogan:
       '按服務類別瀏覽客戶項目，了解技術決策如何與業務階段、營運、數據及客戶體驗相連。',
     casesLabel: '案例',
@@ -327,7 +327,7 @@ const zh = {
     submitting: '正在送出...',
     send: '送出查詢',
     failed: '送出失敗，請再試一次或直接電郵我們。',
-    storiesTitle: '客戶成功故事',
+    storiesTitle: '示範案例',
     viewCase: '查看案例',
     viewAll: '查看所有案例',
   },
@@ -361,7 +361,7 @@ const zh = {
       desc: 'we2Tech 提供香港專業行動應用程式開發、網站開發、UI/UX 設計及伺服器部署服務。',
     },
     cases: {
-      title: '客戶成功故事 | we2Tech',
+      title: '示範案例 | we2Tech',
       desc: '瀏覽 we2Tech 如何協助香港企業建立行動應用程式、網站、雲端系統等——按服務類別查看客戶項目。',
     },
     contact: {
@@ -462,7 +462,7 @@ const zhCn = {
   },
   cases: {
     eyebrow: '客户案例',
-    title: '客户成功故事',
+    title: '示范案例',
     slogan: '按服务类别浏览客户项目，了解技术决策如何与业务阶段、运营、数据及客户体验相连。',
     casesLabel: '案例',
     categoriesLabel: '类别',
@@ -506,7 +506,7 @@ const zhCn = {
     submitting: '正在提交...',
     send: '提交咨询',
     failed: '提交失败，请重试或直接发邮件给我们。',
-    storiesTitle: '客户成功故事',
+    storiesTitle: '示范案例',
     viewCase: '查看案例',
     viewAll: '查看所有案例',
   },
@@ -540,7 +540,7 @@ const zhCn = {
       desc: 'we2Tech 提供香港专业移动应用开发、网站开发、UI/UX 设计及服务器部署服务。',
     },
     cases: {
-      title: '客户成功故事 | we2Tech',
+      title: '示范案例 | we2Tech',
       desc: '浏览 we2Tech 如何协助香港企业建立移动应用、网站、云端系统等——按服务类别查看客户项目。',
     },
     contact: {
