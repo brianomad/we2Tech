@@ -1,9 +1,10 @@
 /** @jsx jsx */
 import { jsx, Container, Box, Text, Button } from 'theme-ui';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import SectionHeader from '../components/section-header';
 import Reveal from '../components/reveal';
-import { FaArrowRight, FaWhatsapp, FaChevronLeft, FaChevronRight, FaTimes } from 'react-icons/fa';
+import { FaArrowRight, FaWhatsapp, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import cases from './case-data';
 import zhCases from '../data/case-data-zh';
 import zhCnCases from '../data/case-data-zh-cn';
@@ -20,12 +21,12 @@ const PAGE_SIZE = 12;
 
 export default function Cases() {
   const { locale, t } = useLocale();
+  const router = useRouter();
   const data = casesByLocale[locale] || casesByLocale.en;
   const tagNames = tagNamesByLocale[locale] || {};
   const localizedTag = (cat) => tagNames[cat] || cat;
   const [active, setActive] = useState('All');
   const [page, setPage] = useState(1);
-  const [selected, setSelected] = useState(null);
 
   const filtered =
     active === 'All' ? data : data.filter((c) => c.tags.includes(active));
@@ -33,6 +34,8 @@ export default function Cases() {
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const startIndex = (page - 1) * PAGE_SIZE;
   const paginated = filtered.slice(startIndex, startIndex + PAGE_SIZE);
+
+  const openDemo = (id) => router.push(localizedPath(locale, `/cases/${id}`));
 
   useEffect(() => {
     setPage(1);
@@ -44,19 +47,6 @@ export default function Cases() {
       section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [page]);
-
-  useEffect(() => {
-    if (!selected) return;
-    document.body.style.overflow = 'hidden';
-    const onKey = (e) => {
-      if (e.key === 'Escape') setSelected(null);
-    };
-    window.addEventListener('keydown', onKey);
-    return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', onKey);
-    };
-  }, [selected]);
 
   const goToPage = (next) => {
     setPage(Math.min(Math.max(1, next), totalPages));
@@ -96,7 +86,7 @@ export default function Cases() {
         <Box sx={styles.grid}>
           {paginated.map((item, index) => (
             <Reveal key={item.id} delay={(index % 3) * 0.08}>
-              <Box sx={styles.card} onClick={() => setSelected(item)}>
+              <Box sx={styles.card} onClick={() => openDemo(item.id)}>
                 <Box
                   sx={{
                     ...styles.cardImageBg,
@@ -114,9 +104,11 @@ export default function Cases() {
                   </Box>
                   <Text sx={styles.cardTitle}>{item.title}</Text>
                   <Text sx={styles.cardSummary}>{item.summary}</Text>
-                  <a href={localizedPath(locale, '/contact')} sx={styles.cardLink} onClick={(e) => e.stopPropagation()}>
-                    {t('cases.discuss')} <FaArrowRight />
-                  </a>
+                  <Box sx={styles.viewDemo} onClick={(e) => e.stopPropagation()}>
+                    <a href={localizedPath(locale, `/cases/${item.id}`)} sx={styles.cardLink}>
+                      {t('cases.viewDemo')} <FaArrowRight />
+                    </a>
+                  </Box>
                 </Box>
               </Box>
             </Reveal>
@@ -141,49 +133,6 @@ export default function Cases() {
             {t('cases.next')} <FaChevronRight />
           </Button>
         </Box>
-        {selected && (
-          <Box sx={styles.modalOverlay} onClick={() => setSelected(null)}>
-            <Box sx={styles.modal} onClick={(e) => e.stopPropagation()}>
-              <Box
-                sx={{
-                  ...styles.modalImageBox,
-                  backgroundImage: `url(/images/cases/case-${selected.id}.jpg)`,
-                }}>
-                <Text sx={styles.refNote}>{t('cases.photo')}</Text>
-              </Box>
-              <Box sx={styles.modalHeader}>
-                <Box>
-                  <Text sx={styles.number}>
-                    {String(selected.id).padStart(2, '0')} {t('cases.caseWord')}
-                  </Text>
-                  <Text as="h3" sx={styles.modalTitle}>{selected.title}</Text>
-                </Box>
-                <button sx={styles.modalClose} onClick={() => setSelected(null)} aria-label={t('cases.all')}>
-                  <FaTimes />
-                </button>
-              </Box>
-              <Box sx={styles.tags}>
-                {selected.tags.map((tag) => (
-                  <Text key={tag} sx={styles.tag}>{localizedTag(tag)}</Text>
-                ))}
-              </Box>
-              <Box>
-                {selected.detail.map((p, i) => (
-                  <Text key={i} sx={styles.modalText}>{p}</Text>
-                ))}
-              </Box>
-              <Text sx={styles.techLabel}>{t('cases.techUsed')}</Text>
-              <Box sx={styles.techList}>
-                {selected.tech.map((item) => (
-                  <Text key={item} sx={styles.tech}>{item}</Text>
-                ))}
-              </Box>
-              <a href={localizedPath(locale, '/contact')} sx={styles.modalCta}>
-                <Button variant="primary">{t('cases.discuss')}</Button>
-              </a>
-            </Box>
-          </Box>
-        )}
         <Reveal delay={0.1}>
           <Box sx={styles.ctaCard}>
             <Text as="h2" sx={styles.ctaTitle}>
@@ -497,108 +446,9 @@ const styles = {
     color: 'text',
     fontFamily: 'Ubuntu',
   },
-  modalOverlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.55)',
-    zIndex: 1200,
+  viewDemo: {
+    mt: 'auto',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    p: [3, null, 5],
-    overflowY: 'auto',
-  },
-  modal: {
-    backgroundColor: 'white',
-    borderRadius: 16,
-    maxWidth: '680px',
-    width: '100%',
-    maxHeight: '85vh',
-    overflowY: 'auto',
-    p: [4, null, 6],
-    boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
-  },
-  modalHeader: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    gap: 3,
-    mb: 3,
-  },
-  modalImageBox: {
-    position: 'relative',
-    height: ['180px', null, '220px'],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    borderRadius: 10,
-    mb: 4,
-  },
-  modalTitle: {
-    fontSize: [3, null, 4],
-    fontWeight: 700,
-    color: 'heading',
-    fontFamily: 'Ubuntu',
-  },
-  modalClose: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 40,
-    height: 40,
-    flexShrink: 0,
-    borderRadius: '50%',
-    border: '1px solid',
-    borderColor: 'border_color',
-    backgroundColor: 'transparent',
-    color: 'text',
-    fontSize: 2,
-    cursor: 'pointer',
-    fontFamily: 'Ubuntu',
-    '&:hover': {
-      backgroundColor: 'teal',
-      color: 'white',
-      borderColor: 'teal',
-    },
-  },
-  modalText: {
-    fontSize: 1,
-    lineHeight: 1.9,
-    color: 'text',
-    mb: 3,
-    fontFamily: 'Ubuntu',
-  },
-  techLabel: {
-    display: 'block',
-    color: 'secondary',
-    fontSize: 0,
-    fontWeight: 700,
-    textTransform: 'uppercase',
-    letterSpacing: '1px',
-    mt: 2,
-    mb: 2,
-    fontFamily: 'Ubuntu',
-  },
-  techList: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '8px',
-    mb: 4,
-  },
-  tech: {
-    padding: '4px 12px',
-    borderRadius: 14,
-    backgroundColor: 'secondary',
-    color: 'white',
-    fontSize: 0,
-    fontWeight: 700,
-    fontFamily: 'Ubuntu',
-  },
-  modalCta: {
-    display: 'inline-flex',
-    fontFamily: 'Ubuntu',
   },
   ctaCard: {
     mt: [6, null, 8],
