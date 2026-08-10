@@ -93,9 +93,6 @@ export default function Cases() {
                     backgroundImage: `linear-gradient(180deg, rgba(0,51,51,0.10) 0%, rgba(0,51,51,0.88) 100%), url(/images/cases/case-${item.id}.jpg)`,
                   }} />
                 <Text sx={styles.refNote}>{t('cases.photo')}</Text>
-                <Text sx={styles.cardNumber}>
-                  {String(item.id).padStart(2, '0')} {t('cases.caseWord')}
-                </Text>
                 <Box sx={styles.cardContent}>
                   <Box sx={styles.cardTags}>
                     {item.tags.map((tag) => (
@@ -292,23 +289,6 @@ const styles = {
     color: 'white',
     fontSize: 0,
     fontWeight: 700,
-    fontFamily: 'Ubuntu',
-  },
-  cardNumber: {
-    position: 'absolute',
-    top: 3,
-    left: 3,
-    zIndex: 2,
-    px: 2,
-    py: 1,
-    borderRadius: 8,
-    backgroundColor: 'rgba(0,0,0,0.45)',
-    border: '1px solid rgba(255,255,255,0.25)',
-    color: 'white',
-    fontSize: 0,
-    fontWeight: 700,
-    textTransform: 'uppercase',
-    letterSpacing: '1px',
     fontFamily: 'Ubuntu',
   },
   cardTitle: {
