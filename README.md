@@ -124,6 +124,13 @@ BLOG_BOT_DRY_RUN=1 node scripts/blog-bot/index.js
 | `NEXT_PUBLIC_GA_ID`      | Google Analytics ID (react-ga)           |
 | `GOOGLE_CLIENT_EMAIL`    | Contact form → Google Sheets (service account) |
 | `GOOGLE_PRIVATE_KEY`     | Contact form → Google Sheets (service account) |
+| `GOOGLE_SHEET_ID`        | Contact form → Google Sheets (spreadsheet ID) |
+| `SMTP_HOST`              | Contact form → email (nodemailer SMTP host) |
+| `SMTP_PORT`              | Contact form → email (default `465`)     |
+| `SMTP_USER`              | Contact form → email (SMTP auth user)    |
+| `SMTP_PASS`              | Contact form → email (SMTP auth password/app password) |
+| `EMAIL_TO`               | Contact form → email recipient (default `enquiry@we2tech.pro`) |
+| `EMAIL_FROM`             | Contact form → email sender (defaults to `SMTP_USER`) |
 
 ## SEO
 
