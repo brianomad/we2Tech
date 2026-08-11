@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Badge, LineChart, StatusDot, Avatar, SectionLabel } from './shared';
 import { LiveDot, Toast, fadeUp, barGrow } from './anim';
+import { AppBar, FootBar, Skeleton, LoadingRows } from './chrome';
 import CountUp from '../count-up';
 
 const NAV = [
@@ -25,7 +26,13 @@ export default function CloudSystemDemo({ t, item }) {
   const [tab, setTab] = useState(0);
   const [req, setReq] = useState(BASE_REQ);
   const [toast, setToast] = useState(0);
+  const [loading, setLoading] = useState(true);
   const errors = [1, 2, 1, 1, 3, 2, 1, 2, 1, 1, 2, 1];
+
+  useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 900);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -168,7 +175,26 @@ export default function CloudSystemDemo({ t, item }) {
             </Box>
           </Box>
 
-          {tab === 0 && (
+          {loading && (
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3 }}>
+                {[0, 1, 2, 3].map((i) => (
+                  <Card key={i} sx={{ p: 3 }}>
+                    <Skeleton w={34} h={34} r={10} />
+                    <Skeleton w="70%" h={16} sx={{ mt: 2 }} />
+                    <Skeleton w="45%" h={9} sx={{ mt: 1 }} />
+                  </Card>
+                ))}
+              </Box>
+              <Card sx={{ p: 4 }}>
+                <Skeleton w="40%" h={14} />
+                <Skeleton w="100%" h={120} r={10} sx={{ mt: 3 }} />
+              </Card>
+              <LoadingRows rows={3} />
+            </Box>
+          )}
+
+          {!loading && tab === 0 && (
             <>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3, flexWrap: 'wrap', gap: 2 }}>
                 <SectionLabel sx={{ mb: 0 }}>{d.allOperational}</SectionLabel>
@@ -278,7 +304,6 @@ export default function CloudSystemDemo({ t, item }) {
             </Card>
           )}
         </Box>
-
         {tab === 0 && (
           <Box
             key={toast}
@@ -299,6 +324,8 @@ export default function CloudSystemDemo({ t, item }) {
           </Box>
         )}
       </Box>
+
+      <FootBar light left="CloudOS Console" right="Region: ap-east-1 &middot; v4.2.0" />
     </BrowserFrame>
   );
 }

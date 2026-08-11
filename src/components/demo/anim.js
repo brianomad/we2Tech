@@ -32,6 +32,19 @@ export const demoKeyframes = css`
     from { background-position: 0 0; }
     to { background-position: 26px 0; }
   }
+  @keyframes dShimmer {
+    0% { background-position: -400px 0; }
+    100% { background-position: 400px 0; }
+  }
+  @keyframes dPulseBar {
+    0% { opacity: 1; }
+    50% { opacity: 0.45; }
+    100% { opacity: 1; }
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(249,115,22,0.45); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 5px rgba(249,115,22,0); }
+  }
 `;
 
 export function DemoGlobalStyles() {

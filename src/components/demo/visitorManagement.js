@@ -3,6 +3,8 @@ import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Field, Qr, Avatar, SectionLabel } from './shared';
+import { FootBar } from './chrome';
+import { Toast } from './anim';
 
 const PURPOSE_ICONS = ['\u{1F4AC}', '\u{1F4E6}', '\u{1F3DB}', '\u{1F464}'];
 
@@ -15,6 +17,7 @@ export default function VisitorManagementDemo({ t, item }) {
   const [host, setHost] = useState('M. Leung');
   const [purpose, setPurpose] = useState(0);
   const [pass, setPass] = useState(false);
+  const [toast, setToast] = useState(false);
   const [log, setLog] = useState([
     { name: 'Chan Tai Man', time: '09:12', purpose: purposes[0] },
     { name: 'Lau Wing Sze', time: '09:40', purpose: purposes[1] },
@@ -23,11 +26,14 @@ export default function VisitorManagementDemo({ t, item }) {
 
   const generate = () => {
     setPass(true);
+    setToast(true);
+    setTimeout(() => setToast(false), 2400);
     setLog((l) => [{ name, time: '10:05', purpose: purposes[purpose] }, ...l]);
   };
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://visitor.demo.we2tech.pro')} height={486} brand={brandFor(item, 'AccessOne')}>
+    <BrowserFrame url={demoUrlFor(item, 'https://visitor.demo.we2tech.pro')} height={540} brand={brandFor(item, 'AccessOne')}>
+      <Box sx={{ position: 'relative', flex: 1 }}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#111827)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22D3EE,#3B82F6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128274;</Box>
@@ -129,6 +135,21 @@ export default function VisitorManagementDemo({ t, item }) {
           </Card>
         </Box>
       </Box>
+
+      {toast && (
+        <Box sx={{ position: 'absolute', right: 4, bottom: 14, zIndex: 10, display: ['none', null, 'block'] }}>
+          <Toast tone="light">
+            <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(14,165,233,0.14)', color: '#0369A1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+            <Box>
+              <Text sx={{ display: 'block', fontWeight: 700 }}>{d.passTitle}</Text>
+              <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{d.validFor}</Text>
+            </Box>
+          </Toast>
+        </Box>
+      )}
+      </Box>
+
+      <FootBar light left="AccessOne &middot; Front desk" right={`${log.length} visitors today`} />
     </BrowserFrame>
   );
 }

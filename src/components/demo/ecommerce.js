@@ -3,15 +3,27 @@ import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Quantity } from './shared';
+import { FootBar } from './chrome';
+import { Toast } from './anim';
 
 const PRODUCT_META = [
-  { icon: '\u{1F45C}', grad: 'linear-gradient(135deg,#0F766E,#134E4A)', tag: null },
-  { icon: '\u{1F45F}', grad: 'linear-gradient(135deg,#F5F5F4,#D6D3D1)', tag: 'New', tagTone: 'blue' },
-  { icon: '\u{1F9E5}', grad: 'linear-gradient(135deg,#57534E,#292524)', tag: '\u221220%', tagTone: 'red' },
-  { icon: '\u{1F453}', grad: 'linear-gradient(135deg,#B45309,#78350F)', tag: null },
-  { icon: '\u2615', grad: 'linear-gradient(135deg,#F59E0B,#B45309)', tag: null },
-  { icon: '\u{1F9F3}', grad: 'linear-gradient(135deg,#1D4ED8,#1E3A8A)', tag: 'New', tagTone: 'blue' },
+  { tag: null },
+  { tag: 'New', tagTone: 'blue' },
+  { tag: '\u221220%', tagTone: 'red', sale: true },
+  { tag: null },
+  { tag: null },
+  { tag: 'New', tagTone: 'blue' },
 ];
+
+const PRODUCT_IMAGES = ['tote', 'sneakers', 'overshirt', 'belt', 'mugset', 'backpack'];
+
+function ProductArt({ i }) {
+  return (
+    <Box sx={{ width: '100%', height: '100%', overflow: 'hidden', backgroundColor: '#F4F6FA' }}>
+      <img src={`/images/products/${PRODUCT_IMAGES[i % PRODUCT_IMAGES.length]}.jpg`} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+    </Box>
+  );
+}
 
 import { demoUrlFor, brandFor } from './demo-meta';
 
@@ -21,8 +33,13 @@ export default function EcommerceDemo({ t, item }) {
   const [cart, setCart] = useState({});
   const [step, setStep] = useState('shop'); // shop | checkout | done
   const [orderNo] = useState(`OR-${Math.floor(2000 + Math.random() * 8000)}`);
+  const [toast, setToast] = useState(null);
 
-  const add = (i) => setCart((c) => ({ ...c, [i]: (c[i] || 0) + 1 }));
+  const add = (i) => {
+    setCart((c) => ({ ...c, [i]: (c[i] || 0) + 1 }));
+    setToast(i);
+    setTimeout(() => setToast(null), 1800);
+  };
   const setQty = (i, n) => {
     const next = { ...cart, [i]: n };
     if (n <= 0) delete next[i];
@@ -35,7 +52,7 @@ export default function EcommerceDemo({ t, item }) {
 
   return (
     <BrowserFrame url={demoUrlFor(item, 'https://shop.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Mono')}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 486 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 486, position: 'relative' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 4, py: 3, backgroundColor: '#fff', borderBottom: '1px solid', borderColor: S.line, position: 'relative', zIndex: 2 }}>
           <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font, letterSpacing: '1px' }}>
             MONO
@@ -67,11 +84,11 @@ export default function EcommerceDemo({ t, item }) {
                   const numeric = parseInt(p.price.replace(/[^\d]/g, ''), 10);
                   return (
                     <Card key={p.name} sx={{ overflow: 'hidden', cursor: 'pointer', '&:hover': { transform: 'translateY(-3px)', boxShadow: '0 16px 36px rgba(15,33,55,0.14)' }, transition: 'all 0.2s' }} onClick={() => add(i)}>
-                      <Box sx={{ height: 120, background: meta.grad, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Box sx={{ fontSize: 5, filter: 'drop-shadow(0 6px 8px rgba(0,0,0,0.25))' }}>{meta.icon}</Box>
-                        {meta.tag && <Badge tone={meta.tagTone} dot={false} sx={{ position: 'absolute', top: 10, left: 10 }}>{meta.tag}</Badge>}
+                      <Box sx={{ height: 130, position: 'relative', overflow: 'hidden' }}>
+                        <ProductArt i={i} />
+                        {meta.tag && <Badge tone={meta.tagTone} dot={false} sx={{ position: 'absolute', top: 10, left: 10, zIndex: 2 }}>{meta.tag}</Badge>}
                         {inCart > 0 && (
-                          <Badge tone="teal" dot={false} sx={{ position: 'absolute', top: 10, right: 10 }}>&#10003; {inCart}</Badge>
+                          <Badge tone="teal" dot={false} sx={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>&#10003; {inCart}</Badge>
                         )}
                       </Box>
                       <Box sx={{ p: 3 }}>
@@ -83,7 +100,7 @@ export default function EcommerceDemo({ t, item }) {
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <Box>
                             <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{p.price}</Text>
-                            {meta.tag && <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, textDecoration: 'line-through' }}>HK${Math.round(numeric * 1.2)}</Text>}
+                            {meta.sale && <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, textDecoration: 'line-through' }}>HK${Math.round(numeric * 1.2)}</Text>}
                           </Box>
                           {inCart > 0 ? (
                             <Box onClick={(e) => e.stopPropagation()}>
@@ -122,7 +139,9 @@ export default function EcommerceDemo({ t, item }) {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                   {Object.entries(cart).map(([i, n]) => (
                     <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-                      <Box sx={{ width: 48, height: 48, borderRadius: 12, background: PRODUCT_META[i % PRODUCT_META.length].grad, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2 }}>{PRODUCT_META[i % PRODUCT_META.length].icon}</Box>
+                      <Box sx={{ width: 52, height: 52, borderRadius: 12, overflow: 'hidden', flexShrink: 0 }}>
+                        <ProductArt i={i} />
+                      </Box>
                       <Box sx={{ flex: 1 }}>
                         <Text sx={{ fontWeight: 600, fontSize: 1, color: S.ink, fontFamily: font }}>{products[i].name}</Text>
                         <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{products[i].price} &times; {n}</Text>
@@ -169,7 +188,21 @@ export default function EcommerceDemo({ t, item }) {
             </Card>
           </Box>
         )}
+
+        {toast !== null && (
+          <Box sx={{ position: 'absolute', right: 4, bottom: 64, zIndex: 10, display: ['none', null, 'block'] }}>
+            <Toast tone="light">
+              <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(0,139,139,0.12)', color: S.teal, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+              <Box>
+                <Text sx={{ display: 'block', fontWeight: 700 }}>{products[toast].name}</Text>
+                <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{d.addToCart} &#183; {products[toast].price}</Text>
+              </Box>
+            </Toast>
+          </Box>
+        )}
       </Box>
+
+      <FootBar light left="MONO Store &middot; Free shipping over HK$1,000" right="Live inventory" />
     </BrowserFrame>
   );
 }

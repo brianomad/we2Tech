@@ -3,6 +3,7 @@ import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Stepper, SectionLabel } from './shared';
+import { AppBar, FootBar } from './chrome';
 
 const SLOTS = ['09:00', '10:30', '12:00', '14:30', '16:00', '18:30', '20:00'];
 const BOOKED = [1, 4, 6];
@@ -40,31 +41,25 @@ export default function BookingDemo({ t, locale, item }) {
   const meta = SERVICE_META[service];
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://book.demo.we2tech.pro')} height={486} brand={brandFor(item, 'SpaceBase')}>
-      <Box
-        sx={{
-          px: [4, null, 5],
-          py: 4,
-          background: `linear-gradient(150deg, #003366 0%, #004d40 60%, #005f5f 100%)`,
-          color: '#fff',
-        }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 3 }}>
-          <Box>
-            <Text sx={{ display: 'flex', alignItems: 'center', gap: 2, fontSize: 2, fontWeight: 700, fontFamily: font }}>
-              <Box sx={{ width: 30, height: 30, borderRadius: 9, background: 'linear-gradient(135deg,#00E5A0,#008B8B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#127968;</Box>
-              SpaceBase
-            </Text>
-            <Text sx={{ mt: 1, fontSize: 0, color: 'rgba(255,255,255,0.75)', fontFamily: font }}>
-              {d.title}
-            </Text>
+    <BrowserFrame url={demoUrlFor(item, 'https://book.demo.we2tech.pro')} height={540} brand={brandFor(item, 'SpaceBase')}>
+      <AppBar
+        brand={brandFor(item, 'SpaceBase')}
+        sub={d.title}
+        grad="linear-gradient(135deg,#003366,#005f5f)"
+        nav={[d.stepService, d.stepDateTime, d.confirm]}
+        active={done ? 2 : slot ? 1 : day ? 1 : 0}
+        right={
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Badge tone="green" dot>&#9679; {d.booked} 12 today</Badge>
           </Box>
-          <Box sx={{ width: ['100%', 360] }}>
-            <Stepper steps={[d.stepService, d.stepDateTime, d.confirm]} active={done ? 3 : slot ? 2 : day ? 1 : 0} />
-          </Box>
-        </Box>
-      </Box>
+        }
+      />
 
       <Box sx={{ p: [4, null, 5] }}>
+        <Box sx={{ maxWidth: 640, mx: 'auto', mb: 4 }}>
+          <Stepper steps={[d.stepService, d.stepDateTime, d.confirm]} active={done ? 3 : slot ? 2 : day ? 1 : 0} />
+        </Box>
+
         {done ? (
           <Card sx={{ p: 5, textAlign: 'center', maxWidth: 520, mx: 'auto', mt: 2 }}>
             <Box
@@ -245,6 +240,8 @@ export default function BookingDemo({ t, locale, item }) {
           </Box>
         )}
       </Box>
+
+      <FootBar left="SpaceBase Booking" right="Syncs in real time" />
     </BrowserFrame>
   );
 }

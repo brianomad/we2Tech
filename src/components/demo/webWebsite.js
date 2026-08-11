@@ -1,7 +1,9 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
+import { useState } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Btn, Card, SectionLabel } from './shared';
+import { FootBar } from './chrome';
 
 const FEATURE_META = [
   { icon: '\u{1F680}', color: S.teal, bg: 'rgba(0,139,139,0.1)' },
@@ -18,18 +20,22 @@ export default function WebWebsiteDemo({ t, item }) {
   const d = t('caseDemo.website');
   const menu = t('caseDemo.website.menu');
   const features = t('caseDemo.website.features');
+  const [active, setActive] = useState(0);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://www.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Nimbus')}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 486, backgroundColor: '#fff' }}>
+    <BrowserFrame url={demoUrlFor(item, 'https://www.demo.we2tech.pro')} height={540} brand={brandFor(item, 'Nimbus')}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 540, backgroundColor: '#fff' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 4, py: 3, borderBottom: '1px solid', borderColor: S.line, backgroundColor: 'rgba(255,255,255,0.85)' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Box sx={{ width: 30, height: 30, borderRadius: 9, background: 'linear-gradient(135deg,#6366F1,#8B5CF6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontFamily: font, boxShadow: '0 6px 14px rgba(99,102,241,0.4)' }}>N</Box>
             <Text sx={{ fontWeight: 700, fontFamily: font, color: S.ink }}>Nimbus</Text>
           </Box>
           <Box sx={{ display: ['none', null, 'flex'], gap: 4, color: S.slate, fontSize: 1, fontFamily: font }}>
-            {menu.map((m) => (
-              <Box key={m} sx={{ cursor: 'pointer', '&:hover': { color: '#6366F1' }, fontWeight: 600 }}>{m}</Box>
+            {menu.map((m, i) => (
+              <Box key={m} onClick={() => setActive(i)} sx={{ cursor: 'pointer', '&:hover': { color: '#6366F1' }, fontWeight: 600, position: 'relative', color: active === i ? '#4338CA' : S.slate }}>
+                {m}
+                {active === i && <Box sx={{ position: 'absolute', left: 0, right: 0, bottom: -3, height: 2, borderRadius: 99, backgroundColor: '#6366F1' }} />}
+              </Box>
             ))}
           </Box>
           <Btn tone="primary" sx={{ px: 3, py: '8px', fontSize: 0 }}>{d.cta}</Btn>
@@ -115,6 +121,8 @@ export default function WebWebsiteDemo({ t, item }) {
           <Text sx={{ display: 'block', fontSize: 3, fontWeight: 700, color: S.ink, fontFamily: font, mb: 3 }}>{d.contactCta}</Text>
           <Btn tone="primary">{d.cta} &#8594;</Btn>
         </Box>
+
+        <FootBar light left="\u00A9 2026 Nimbus &middot; All rights reserved" right="Fast, secure, global" />
       </Box>
     </BrowserFrame>
   );

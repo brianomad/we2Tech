@@ -3,6 +3,7 @@ import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { PhoneFrame } from './frames';
 import { S, font, Card, Badge, Progress, Avatar, SectionLabel } from './shared';
+import { Toast } from './anim';
 
 const TABS = [
   { key: 'home', icon: '\u2302', label: 'Home' },
@@ -17,6 +18,12 @@ export default function MobileAppDemo({ t, item }) {
   const d = t('caseDemo.mobile');
   const tabs = TABS.map((tb) => ({ ...tb, label: d[tb.key] }));
   const [tab, setTab] = useState(0);
+  const [toast, setToast] = useState(null);
+
+  const notify = (msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(null), 2000);
+  };
 
   return (
     <PhoneFrame title={brandFor(item, 'Pulse Fitness')} tint="#7C3AED">
@@ -52,7 +59,7 @@ export default function MobileAppDemo({ t, item }) {
             </Text>
             <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, mb: 3 }}>
               {[['\u{1F4C5}', 'Book'], ['\u{1F4B3}', 'Pay'], ['\u{1F4CC}', 'QR'], ['\u{1F3CB}', 'Train'], ['\u{1F4C8}', 'Stats'], ['\u{1F4DD}', 'Notes']].map(([icon, label]) => (
-                <Card key={label} sx={{ p: 3, textAlign: 'center', '&:active': { transform: 'scale(0.96)' } }}>
+                <Card key={label} onClick={() => notify(`\u2713 ${label}`)} sx={{ p: 3, textAlign: 'center', cursor: 'pointer', '&:active': { transform: 'scale(0.96)' } }}>
                   <Box sx={{ fontSize: 3, mb: 1 }}>{icon}</Box>
                   <Text sx={{ fontSize: 0, fontWeight: 600, color: S.ink, fontFamily: font }}>{label}</Text>
                 </Card>
@@ -172,6 +179,15 @@ export default function MobileAppDemo({ t, item }) {
           </Card>
         )}
       </Box>
+
+      {toast && (
+        <Box sx={{ position: 'absolute', left: '50%', bottom: 78, transform: 'translateX(-50%)', zIndex: 10, width: 'max-content', maxWidth: '92%' }}>
+          <Toast tone="light">
+            <Box sx={{ width: 22, height: 22, borderRadius: '50%', background: 'rgba(124,58,237,0.14)', color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+            <Text sx={{ fontWeight: 700 }}>{toast}</Text>
+          </Toast>
+        </Box>
+      )}
 
       <Box
         sx={{

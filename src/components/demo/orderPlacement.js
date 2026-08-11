@@ -3,6 +3,8 @@ import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Stepper, SectionLabel } from './shared';
+import { FootBar } from './chrome';
+import { Toast } from './anim';
 
 const ITEM_META = [
   { icon: '\u2615', grad: 'linear-gradient(135deg,#B45309,#92400E)' },
@@ -21,6 +23,7 @@ export default function OrderPlacementDemo({ t, item }) {
   const [placed, setPlaced] = useState(false);
   const [stage, setStage] = useState(0);
   const [orderNo] = useState(`OD-${Math.floor(3000 + Math.random() * 8000)}`);
+  const [toast, setToast] = useState(null);
 
   useEffect(() => {
     if (!placed) return;
@@ -28,7 +31,11 @@ export default function OrderPlacementDemo({ t, item }) {
     return () => timers.forEach(clearTimeout);
   }, [placed]);
 
-  const add = (i) => setCart((c) => ({ ...c, [i]: (c[i] || 0) + 1 }));
+  const add = (i) => {
+    setCart((c) => ({ ...c, [i]: (c[i] || 0) + 1 }));
+    setToast(i);
+    setTimeout(() => setToast(null), 1600);
+  };
   const count = Object.values(cart).reduce((a, b) => a + b, 0);
   const total = Object.entries(cart).reduce((s, [i, n]) => s + n * parseInt(items[i].price.replace(/[^\d]/g, ''), 10), 0);
 
@@ -45,7 +52,7 @@ export default function OrderPlacementDemo({ t, item }) {
         {count > 0 && <Badge tone="amber" dot={false}>&#128722; {count}</Badge>}
       </Box>
 
-      <Box sx={{ p: 4 }}>
+      <Box sx={{ p: 4, position: 'relative', flex: 1 }}>
         {!placed ? (
           <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.5fr 1fr'], gap: 4 }}>
             <Card sx={{ p: 4 }}>
@@ -147,6 +154,20 @@ export default function OrderPlacementDemo({ t, item }) {
           </Card>
         )}
       </Box>
+
+      {toast !== null && (
+        <Box sx={{ position: 'absolute', right: 4, bottom: 14, zIndex: 10, display: ['none', null, 'block'] }}>
+          <Toast tone="light">
+            <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(201,162,39,0.15)', color: '#92400E', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+            <Box>
+              <Text sx={{ display: 'block', fontWeight: 700 }}>{items[toast].name}</Text>
+              <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{items[toast].price} added</Text>
+            </Box>
+          </Toast>
+        </Box>
+      )}
+
+      <FootBar light left="Daily Grind &middot; Online ordering" right="Live kitchen status" />
     </BrowserFrame>
   );
 }

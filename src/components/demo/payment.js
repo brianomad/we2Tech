@@ -3,6 +3,8 @@ import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Field, SectionLabel } from './shared';
+import { FootBar } from './chrome';
+import { Toast } from './anim';
 
 import { demoUrlFor, brandFor } from './demo-meta';
 
@@ -10,26 +12,31 @@ export default function PaymentDemo({ t, item }) {
   const d = t('caseDemo.payment');
   const [method, setMethod] = useState(0);
   const [step, setStep] = useState('pay'); // pay | processing | done
+  const [toast, setToast] = useState(false);
   const [receiptNo] = useState(`RC-${Math.floor(5000 + Math.random() * 5000)}`);
   const amount = 'HK$1,248.00';
 
   useEffect(() => {
     if (step !== 'processing') return;
-    const timer = setTimeout(() => setStep('done'), 1600);
+    const timer = setTimeout(() => { setStep('done'); setToast(true); setTimeout(() => setToast(false), 2600); }, 1600);
     return () => clearTimeout(timer);
   }, [step]);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://pay.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Payflow')}>
-      <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#14532D)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22C55E,#16A34A)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128179;</Box>
-          <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>Payflow</Text>
+    <BrowserFrame url={demoUrlFor(item, 'https://pay.demo.we2tech.pro')} height={540} brand={brandFor(item, 'Payflow')}>
+      <Box sx={{ position: 'relative', flex: 1 }}>
+        <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#14532D)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22C55E,#16A34A)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128179;</Box>
+            <Box>
+              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>Payflow</Text>
+              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>Checkout &middot; Order #9284</Text>
+            </Box>
+          </Box>
+          <Badge sx={{ backgroundColor: 'rgba(34,197,94,0.18)', color: '#86EFAC', border: '1px solid rgba(34,197,94,0.4)' }} dot>Secure payment</Badge>
         </Box>
-        <Badge sx={{ backgroundColor: 'rgba(34,197,94,0.18)', color: '#86EFAC', border: '1px solid rgba(34,197,94,0.4)' }} dot>Secure payment</Badge>
-      </Box>
 
-      <Box sx={{ p: 4 }}>
+        <Box sx={{ p: 4 }}>
         {step === 'pay' && (
           <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1fr 1fr'], gap: 4, maxWidth: 780, mx: 'auto' }}>
             <Card sx={{ p: 4 }}>
@@ -145,7 +152,22 @@ export default function PaymentDemo({ t, item }) {
             )}
           </Card>
         )}
+
+        {toast && (
+          <Box sx={{ position: 'absolute', right: 4, bottom: 14, zIndex: 10, display: ['none', null, 'block'] }}>
+            <Toast tone="light">
+              <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(22,163,74,0.14)', color: '#16A34A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+              <Box>
+                <Text sx={{ display: 'block', fontWeight: 700 }}>{d.receipt}</Text>
+                <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{amount} &middot; {receiptNo}</Text>
+              </Box>
+            </Toast>
+          </Box>
+        )}
       </Box>
+      </Box>
+
+      <FootBar light left="Payflow &middot; Checkout" right="PCI-DSS encrypted" />
     </BrowserFrame>
   );
 }

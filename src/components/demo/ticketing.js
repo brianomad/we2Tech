@@ -3,6 +3,7 @@ import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Quantity, Qr, SectionLabel } from './shared';
+import { FootBar } from './chrome';
 
 const EVENT_META = [
   { icon: '\u{1F33A}', grad: 'linear-gradient(135deg,#F59E0B,#F97316)' },
@@ -23,16 +24,20 @@ export default function TicketingDemo({ t, item }) {
   const total = qty * parseInt(event.price.replace(/[^\d]/g, ''), 10);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://tickets.demo.we2tech.pro')} height={486} brand={brandFor(item, 'EventHub')}>
-      <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#312E81,#6D28D9)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F472B6,#EC4899)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#127916;</Box>
-          <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>EventHub</Text>
+    <BrowserFrame url={demoUrlFor(item, 'https://tickets.demo.we2tech.pro')} height={540} brand={brandFor(item, 'EventHub')}>
+      <Box sx={{ position: 'relative', flex: 1 }}>
+        <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#312E81,#6D28D9)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F472B6,#EC4899)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#127916;</Box>
+            <Box>
+              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>EventHub</Text>
+              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.65)', fontFamily: font }}>Live events &middot; HK</Text>
+            </Box>
+          </Box>
+          <Badge sx={{ backgroundColor: 'rgba(244,114,182,0.2)', color: '#F9A8D4', border: '1px solid rgba(244,114,182,0.4)' }} dot>1,240 events</Badge>
         </Box>
-        <Badge sx={{ backgroundColor: 'rgba(244,114,182,0.2)', color: '#F9A8D4', border: '1px solid rgba(244,114,182,0.4)' }} dot>1,240 events</Badge>
-      </Box>
 
-      <Box sx={{ p: 4 }}>
+        <Box sx={{ p: 4 }}>
         {!ticket ? (
           <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.35fr 1fr'], gap: 4 }}>
             <Box>
@@ -123,6 +128,9 @@ export default function TicketingDemo({ t, item }) {
           </Card>
         )}
       </Box>
+      </Box>
+
+      <FootBar light left="EventHub &middot; Tickets" right="Instant e-ticket delivery" />
     </BrowserFrame>
   );
 }
