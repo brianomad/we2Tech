@@ -2,6 +2,7 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { S, font, Card, Btn, Badge, Quantity } from './shared';
+import { Icon } from './icons';
 import { Toast } from './anim';
 
 const PRODUCT_META = (d) => [
@@ -25,12 +26,14 @@ function ProductArt({ i }) {
 
 import { brandFor } from './demo-meta';
 import { contentFor } from './case-content';
+import { useDemoState } from './use-demo-state';
 
 export default function EcommerceDemo({ t, locale, item }) {
   const d = contentFor(t, locale, item, 'ecommerce');
   const products = d.products;
-  const [cart, setCart] = useState({});
-  const [step, setStep] = useState('shop'); // shop | checkout | done
+  const [cart, setCart] = useDemoState(item, 'ecommerce-cart', {});
+  const [step, setStep] = useDemoState(item, 'ecommerce-step', 'shop');
+  const [query, setQuery] = useState('');
   const [orderNo] = useState(`OR-${Math.floor(2000 + Math.random() * 8000)}`);
   const [toast, setToast] = useState(null);
 
@@ -49,6 +52,8 @@ export default function EcommerceDemo({ t, locale, item }) {
   const total = subtotal + shipping;
   const count = Object.values(cart).reduce((a, b) => a + b, 0);
   const metas = PRODUCT_META(d);
+  const q = query.trim().toLowerCase();
+  const visible = products.map((p, i) => ({ p, i })).filter(({ p }) => !q || String(p.name).toLowerCase().includes(q));
 
   return (
     <>
@@ -58,13 +63,37 @@ export default function EcommerceDemo({ t, locale, item }) {
             {brandFor(item, 'MONO').toUpperCase()}
           </Text>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, px: 3, py: '7px', borderRadius: 10, backgroundColor: '#F4F6FA', color: S.muted, fontSize: 0, fontFamily: font, border: '1px solid', borderColor: S.line }}>
-              &#128269; {d.search}
+            <Box sx={{ position: 'relative', display: ['none', null, 'block'] }}>
+              <Box sx={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: S.muted, pointerEvents: 'none' }}>
+                <Icon name="search" size={15} />
+              </Box>
+              <Box
+                as="input"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={d.search}
+                sx={{
+                  width: 200,
+                  pl: '36px',
+                  pr: 3,
+                  py: '7px',
+                  borderRadius: 10,
+                  border: '1px solid',
+                  borderColor: S.line,
+                  backgroundColor: '#F4F6FA',
+                  color: S.ink,
+                  fontSize: 0,
+                  fontFamily: font,
+                  outline: 'none',
+                  '&:focus': { backgroundColor: '#fff', borderColor: S.teal, boxShadow: `0 0 0 3px rgba(0,139,139,0.15)` },
+                  '::placeholder': { color: S.muted },
+                }}
+              />
             </Box>
             <Box
               onClick={() => step === 'shop' && setStep('checkout')}
               sx={{ position: 'relative', cursor: 'pointer' }}>
-              <Box sx={{ fontSize: 2 }}>&#128722;</Box>
+              <Box sx={{ color: S.ink }}><Icon name="shoppingCart" size={22} /></Box>
               {count > 0 && (
                 <Box sx={{ position: 'absolute', top: -6, right: -8, minWidth: 18, height: 18, borderRadius: 99, backgroundColor: S.teal, color: '#fff', fontSize: 0, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', px: '4px', fontFamily: font }}>
                   {count}
@@ -77,8 +106,8 @@ export default function EcommerceDemo({ t, locale, item }) {
         {step === 'shop' && (
           <>
             <Box sx={{ flex: 1, p: 4, overflow: 'auto' }}>
-              <Box sx={{ display: 'grid', gridTemplateColumns: ['repeat(2, 1fr)', null, 'repeat(3, 1fr)'], gap: 3 }}>
-                {products.map((p, i) => {
+              <Box sx={{ display: 'grid', gridTemplateColumns: ['repeat(2, 1fr)', null, 'repeat(3, 1fr)'], gap: 3, '@container (max-width: 640px)': { gridTemplateColumns: '1fr 1fr' }, '@container (max-width: 380px)': { gridTemplateColumns: '1fr' } }}>
+                {visible.map(({ p, i }) => {
                   const meta = metas[i % metas.length];
                   const inCart = cart[i] || 0;
                   const numeric = parseInt(p.price.replace(/[^\d]/g, ''), 10);
@@ -88,13 +117,15 @@ export default function EcommerceDemo({ t, locale, item }) {
                         <ProductArt i={i} />
                         {meta.tag && <Badge tone={meta.tagTone} dot={false} sx={{ position: 'absolute', top: 10, left: 10, zIndex: 2 }}>{meta.tag}</Badge>}
                         {inCart > 0 && (
-                          <Badge tone="teal" dot={false} sx={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>&#10003; {inCart}</Badge>
+                          <Badge tone="teal" dot={false} sx={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
+                            <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}><Icon name="check" size={11} /> {inCart}</Box>
+                          </Badge>
                         )}
                       </Box>
                       <Box sx={{ p: 3 }}>
                         <Text sx={{ fontWeight: 600, fontSize: 1, color: S.ink, fontFamily: font, display: 'block', mb: '2px' }}>{p.name}</Text>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-                          <Text sx={{ color: S.amber, fontSize: 0 }}>&#9733;</Text>
+                          <Box sx={{ color: S.amber }}><Icon name="star" size={13} /></Box>
                           <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>4.8</Text>
                         </Box>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -119,13 +150,19 @@ export default function EcommerceDemo({ t, locale, item }) {
                   );
                 })}
               </Box>
+              {visible.length === 0 && (
+                <Box sx={{ py: 8, textAlign: 'center', color: S.muted }}>
+                  <Box sx={{ color: S.faint, display: 'flex', justifyContent: 'center', mb: 2 }}><Icon name="search" size={28} /></Box>
+                  <Text sx={{ fontSize: 1, fontWeight: 600, fontFamily: font }}>{d.noResults || 'No results found'}</Text>
+                </Box>
+              )}
             </Box>
             <Box sx={{ px: 4, py: 3, backgroundColor: '#fff', borderTop: '1px solid', borderColor: S.line, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Text sx={{ fontSize: 1, fontFamily: font, color: S.slate }}>
                 {count > 0 ? <><Text as="span" sx={{ fontWeight: 700, color: S.ink }}>{count}</Text> {d.cart.toLowerCase()}</> : d.emptyCart}
               </Text>
               <Btn tone="primary" disabled={count === 0} onClick={() => setStep('checkout')}>
-                {d.checkout} &#8594;
+                {d.checkout} <Icon name="arrowRight" size={15} />
               </Btn>
             </Box>
           </>
@@ -133,7 +170,7 @@ export default function EcommerceDemo({ t, locale, item }) {
 
         {step === 'checkout' && (
           <Box sx={{ flex: 1, p: 4, overflow: 'auto' }}>
-            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.5fr 1fr'], gap: 4 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.5fr 1fr'], gap: 4, '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
               <Card sx={{ p: 4 }}>
                 <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font, mb: 3 }}>{d.checkout}</Text>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
@@ -162,7 +199,7 @@ export default function EcommerceDemo({ t, locale, item }) {
                   <Text sx={{ fontWeight: 700, color: S.ink }}>{d.total}</Text>
                   <Text sx={{ fontWeight: 700, color: S.tealDark, fontSize: 2 }}>HK${total}</Text>
                 </Box>
-                <Btn tone="primary" sx={{ width: '100%' }} disabled={count === 0} onClick={() => setStep('done')}>
+                <Btn tone="primary" sx={{ width: '100%', mt: 1 }} disabled={count === 0} onClick={() => setStep('done')}>
                   {d.pay} &middot; HK${total}
                 </Btn>
               </Card>
@@ -173,8 +210,8 @@ export default function EcommerceDemo({ t, locale, item }) {
         {step === 'done' && (
           <Box sx={{ flex: 1, p: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(180deg,#F6FAFD,#EEF4FA)' }}>
             <Card sx={{ p: 5, textAlign: 'center', maxWidth: 420, width: '100%' }}>
-              <Box sx={{ width: 72, height: 72, mx: 'auto', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(31,169,113,0.18), rgba(31,169,113,0.05))', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 5, boxShadow: 'inset 0 0 0 1px rgba(31,169,113,0.3)' }}>
-                &#10003;
+              <Box sx={{ width: 72, height: 72, mx: 'auto', borderRadius: '50%', background: 'linear-gradient(135deg, rgba(31,169,113,0.18), rgba(31,169,113,0.05))', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'inset 0 0 0 1px rgba(31,169,113,0.3)' }}>
+                <Icon name="check" size={34} />
               </Box>
               <Text sx={{ display: 'block', mt: 3, fontSize: 3, fontWeight: 700, color: S.ink, fontFamily: font }}>{d.orderConfirmed}</Text>
               <Box sx={{ mt: 2, display: 'inline-block', px: 4, py: 2, borderRadius: 10, backgroundColor: '#F0F6F6', border: '1px dashed', borderColor: S.teal }}>
@@ -183,7 +220,7 @@ export default function EcommerceDemo({ t, locale, item }) {
               </Box>
               <Text sx={{ display: 'block', mt: 2, fontSize: 1, color: S.slate, fontFamily: font }}>HK${total} &middot; {count} {d.cart.toLowerCase()}</Text>
               <Btn tone="ghost" sx={{ mt: 4, width: '100%' }} onClick={() => { setCart({}); setStep('shop'); }}>
-                &#8592; {d.title}
+                <Icon name="arrowLeft" size={15} /> {d.title}
               </Btn>
             </Card>
           </Box>
@@ -192,7 +229,9 @@ export default function EcommerceDemo({ t, locale, item }) {
         {toast !== null && (
           <Box sx={{ position: 'absolute', right: 4, bottom: 64, zIndex: 10, display: ['none', null, 'block'] }}>
             <Toast tone="light">
-              <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(0,139,139,0.12)', color: S.teal, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+              <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(0,139,139,0.12)', color: S.teal, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name="check" size={14} />
+              </Box>
               <Box>
                 <Text sx={{ display: 'block', fontWeight: 700 }}>{products[toast].name}</Text>
                 <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{d.addToCart} &#183; {products[toast].price}</Text>

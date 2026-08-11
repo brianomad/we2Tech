@@ -2,9 +2,10 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { S, font, Card, Btn, Badge, Field, Qr, Avatar, SectionLabel } from './shared';
+import { Icon } from './icons';
 import { Toast } from './anim';
 
-const PURPOSE_ICONS = ['\u{1F4AC}', '\u{1F4E6}', '\u{1F3DB}', '\u{1F464}'];
+const PURPOSE_ICONS = ['message', 'box', 'building', 'user'];
 
 import { brandFor } from './demo-meta';
 import { contentFor } from './case-content';
@@ -35,24 +36,26 @@ export default function VisitorManagementDemo({ t, locale, item }) {
       <Box sx={{ position: 'relative', flex: 1 }}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#111827)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22D3EE,#3B82F6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128274;</Box>
+          <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22D3EE,#3B82F6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+            <Icon name="lock" size={17} />
+          </Box>
           <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>{brandFor(item, 'AccessOne')}</Text>
         </Box>
         <Badge sx={{ backgroundColor: 'rgba(34,211,238,0.15)', color: '#67E8F9', border: '1px solid rgba(34,211,238,0.4)' }} dot>{d.frontDesk}</Badge>
       </Box>
 
       <Box sx={{ p: 4 }}>
-        <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.3fr 1fr'], gap: 4 }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.3fr 1fr'], gap: 4, '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
           <Box>
             <Card sx={{ p: 4 }}>
               <SectionLabel>{d.preregister}</SectionLabel>
-              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3, '@container (max-width: 460px)': { gridTemplateColumns: '1fr' } }}>
                 <Field label={d.name} value={name} onChange={(e) => setName(e.target.value)} />
                 <Field label={d.host} value={host} onChange={(e) => setHost(e.target.value)} />
               </Box>
               <Box sx={{ mt: 3, mb: 4 }}>
                 <Text sx={{ fontSize: 0, fontWeight: 700, color: S.slate, fontFamily: font, mb: 2 }}>{d.purpose}</Text>
-                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, '@container (max-width: 460px)': { gridTemplateColumns: '1fr' } }}>
                   {purposes.map((p, i) => (
                     <Box
                       key={p}
@@ -74,15 +77,17 @@ export default function VisitorManagementDemo({ t, locale, item }) {
                         fontFamily: font,
                         transition: 'all 0.15s',
                       }}>
-                      <Box>{PURPOSE_ICONS[i]}</Box>
+                      <Box sx={{ color: purpose === i ? '#0369A1' : S.slate, display: 'flex' }}>
+                        <Icon name={PURPOSE_ICONS[i]} size={18} />
+                      </Box>
                       {p}
-                      {purpose === i && <Box sx={{ ml: 'auto', color: '#0EA5E9' }}>&#10003;</Box>}
+                      {purpose === i && <Box sx={{ ml: 'auto', color: '#0EA5E9', display: 'flex' }}><Icon name="check" size={16} /></Box>}
                     </Box>
                   ))}
                 </Box>
               </Box>
               <Btn tone="primary" sx={{ backgroundColor: '#0EA5E9', backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.18), transparent 55%)', boxShadow: '0 8px 18px rgba(14,165,233,0.4)' }} onClick={generate}>
-                {d.generate} &#8594;
+                {d.generate} <Icon name="arrowRight" size={15} />
               </Btn>
             </Card>
 
@@ -109,7 +114,7 @@ export default function VisitorManagementDemo({ t, locale, item }) {
           <Card sx={{ p: 4, alignSelf: 'start', textAlign: 'center', position: 'sticky', top: 0 }}>
             {pass ? (
               <>
-                <Badge tone="green" sx={{ mb: 3 }}>&#10003; {d.passTitle}</Badge>
+                <Badge tone="green" sx={{ mb: 3 }}><Icon name="check" size={13} /> {d.passTitle}</Badge>
                 <Box sx={{ position: 'relative', mx: 'auto', mb: 3, width: 150, height: 150 }}>
                   <Box sx={{ position: 'absolute', left: -8, top: 64, width: 18, height: 18, borderRadius: '50%', backgroundColor: S.bg }} />
                   <Box sx={{ position: 'absolute', right: -8, top: 64, width: 18, height: 18, borderRadius: '50%', backgroundColor: S.bg }} />
@@ -119,13 +124,13 @@ export default function VisitorManagementDemo({ t, locale, item }) {
                 </Box>
                 <Text sx={{ display: 'block', fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font }}>{name}</Text>
                 <Text sx={{ display: 'block', fontSize: 1, color: S.slate, fontFamily: font, mt: 1 }}>{purposes[purpose]} &middot; {host}</Text>
-                <Text sx={{ display: 'block', fontSize: 0, color: S.green, fontFamily: font, mt: 2 }}>&#10003; {d.validFor}</Text>
-                <Btn tone="ghost" sx={{ mt: 4, width: '100%' }} onClick={() => setPass(false)}>&#8634; New visitor</Btn>
+                <Text sx={{ fontSize: 0, color: S.green, fontFamily: font, mt: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}><Icon name="check" size={12} /> {d.validFor}</Text>
+                <Btn tone="ghost" sx={{ mt: 4, width: '100%' }} onClick={() => setPass(false)}><Icon name="refresh" size={15} /> {d.newVisitor}</Btn>
               </>
             ) : (
               <Box sx={{ py: 8 }}>
-                <Box sx={{ width: 64, height: 64, mx: 'auto', borderRadius: '50%', backgroundColor: '#F0F7FF', color: '#0EA5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 4, mb: 3 }}>
-                  &#128100;
+                <Box sx={{ width: 64, height: 64, mx: 'auto', borderRadius: '50%', backgroundColor: '#F0F7FF', color: '#0EA5E9', display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 3 }}>
+                  <Icon name="user" size={30} />
                 </Box>
                 <Text sx={{ fontSize: 1, fontWeight: 700, color: S.ink, fontFamily: font }}>{d.passTitle}</Text>
                 <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mt: 1 }}>{d.passHint}</Text>
@@ -138,7 +143,9 @@ export default function VisitorManagementDemo({ t, locale, item }) {
       {toast && (
         <Box sx={{ position: 'absolute', right: 4, bottom: 14, zIndex: 10, display: ['none', null, 'block'] }}>
           <Toast tone="light">
-            <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(14,165,233,0.14)', color: '#0369A1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+            <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(14,165,233,0.14)', color: '#0369A1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name="check" size={14} />
+            </Box>
             <Box>
               <Text sx={{ display: 'block', fontWeight: 700 }}>{d.passTitle}</Text>
               <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{d.validFor}</Text>

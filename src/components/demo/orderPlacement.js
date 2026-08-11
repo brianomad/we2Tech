@@ -2,6 +2,7 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
 import { S, font, Card, Btn, Badge, Stepper, SectionLabel } from './shared';
+import { Icon } from './icons';
 import { Toast } from './anim';
 
 const ITEM_IMAGES = ['latte', 'matcha', 'croissant', 'tuna', 'juice'];
@@ -37,18 +38,20 @@ export default function OrderPlacementDemo({ t, locale, item }) {
     <>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#451A03,#7C2D12)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#D97706)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2 }}>&#9749;</Box>
+          <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#D97706)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#451A03' }}>
+            <Icon name="coffee" size={18} />
+          </Box>
           <Box>
             <Text sx={{ fontWeight: 700, fontSize: 2, fontFamily: font, lineHeight: 1.2 }}>{brand}</Text>
             <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.7)', fontFamily: font }}>{d.storeMeta}</Text>
           </Box>
         </Box>
-        {count > 0 && <Badge tone="amber" dot={false}>&#128722; {count}</Badge>}
+        {count > 0 && <Badge tone="amber" dot={false}><Icon name="shoppingCart" size={13} /> {count}</Badge>}
       </Box>
 
       <Box sx={{ p: 4, position: 'relative', flex: 1 }}>
         {!placed ? (
-          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.5fr 1fr'], gap: 4 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.5fr 1fr'], gap: 4, '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
             <Card sx={{ p: 4 }}>
               <SectionLabel>{d.menu}</SectionLabel>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -63,7 +66,11 @@ export default function OrderPlacementDemo({ t, locale, item }) {
                         <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{item.price}</Text>
                       </Box>
                       <Box
+                        role="button"
+                        tabIndex={0}
+                        aria-label={item.name}
                         onClick={() => add(i)}
+                        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); add(i); } }}
                         sx={{
                           width: 34,
                           height: 34,
@@ -79,9 +86,10 @@ export default function OrderPlacementDemo({ t, locale, item }) {
                           fontWeight: 700,
                           cursor: 'pointer',
                           fontFamily: font,
+                          ':focus-visible': { outline: 'none', boxShadow: '0 0 0 2px #C9A22788' },
                           '&:active': { transform: 'scale(0.9)' },
                         }}>
-                        {cart[i] || '+'}
+                        {cart[i] || <Icon name="plus" size={16} />}
                       </Box>
                     </Box>
                   );
@@ -93,7 +101,9 @@ export default function OrderPlacementDemo({ t, locale, item }) {
               <SectionLabel>{d.yourOrder}</SectionLabel>
               {count === 0 ? (
                 <Box sx={{ py: 6, textAlign: 'center', color: S.muted }}>
-                  <Box sx={{ fontSize: 4, mb: 1 }}>&#127869;</Box>
+                  <Box sx={{ mb: 1, display: 'flex', justifyContent: 'center' }}>
+                    <Icon name="utensils" size={30} />
+                  </Box>
                   <Text sx={{ fontSize: 1, fontWeight: 600, fontFamily: font }}>{d.empty}</Text>
                 </Box>
               ) : (
@@ -112,37 +122,37 @@ export default function OrderPlacementDemo({ t, locale, item }) {
                   </Box>
                 </Box>
               )}
-              <Btn tone="primary" sx={{ width: '100%' }} disabled={count === 0} onClick={() => setPlaced(true)}>
-                {d.placeOrder} &#8594;
+              <Btn tone="primary" sx={{ width: '100%', mt: 1 }} disabled={count === 0} onClick={() => setPlaced(true)}>
+                {d.placeOrder} <Icon name="arrowRight" size={15} />
               </Btn>
             </Card>
           </Box>
         ) : (
           <Card sx={{ p: 5, textAlign: 'center', maxWidth: 560, mx: 'auto', mt: 2 }}>
-            <Badge tone="green" sx={{ mb: 3 }}>&#10003; {d.placed}</Badge>
+            <Badge tone="green" sx={{ mb: 3 }}><Icon name="check" size={13} /> {d.placed}</Badge>
             <Text sx={{ display: 'block', fontSize: 3, fontWeight: 700, color: S.ink, fontFamily: font, mb: 1, letterSpacing: '1px' }}>{orderNo}</Text>
             <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 2, mt: 1, mb: 4, px: 4, py: 2, borderRadius: 99, backgroundColor: '#FFF3E0', color: '#92400E', fontFamily: font, fontWeight: 700, fontSize: 1 }}>
-              &#128647; {d.eta} <Text as="span">18&ndash;22 {d.minutes}</Text>
+              <Icon name="truck" size={16} /> {d.eta} <Text as="span">18&ndash;22 {d.minutes}</Text>
             </Box>
             <Box sx={{ maxWidth: 460, mx: 'auto' }}>
               <Stepper steps={d.steps} active={stage} />
             </Box>
             <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center', gap: 2 }}>
-              {['\u{1F35C}', '\u{1F374}', '\u{1F37D}', '\u{1F355}'].map((e, i) => (
+              {['coffee', 'utensils', 'box', 'check'].map((e, i) => (
                 <Box
                   key={i}
                   sx={{
-                    fontSize: 4,
-                    opacity: stage >= i ? 1 : 0.2,
+                    color: stage >= i ? S.tealDark : S.faint,
+                    opacity: stage >= i ? 1 : 0.35,
                     transform: stage >= i ? 'scale(1)' : 'scale(0.9)',
                     transition: 'all 0.3s',
                   }}>
-                  {e}
+                  <Icon name={e} size={30} />
                 </Box>
               ))}
             </Box>
             <Btn tone="ghost" sx={{ mt: 4, width: '100%' }} onClick={() => { setPlaced(false); setCart({}); setStage(0); }}>
-              &#8634; {d.newOrder}
+              <Icon name="refresh" size={15} /> {d.newOrder}
             </Btn>
           </Card>
         )}
@@ -151,7 +161,9 @@ export default function OrderPlacementDemo({ t, locale, item }) {
       {toast !== null && (
         <Box sx={{ position: 'absolute', right: 4, bottom: 14, zIndex: 10, display: ['none', null, 'block'] }}>
           <Toast tone="light">
-            <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(201,162,39,0.15)', color: '#92400E', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+            <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(201,162,39,0.15)', color: '#92400E', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name="check" size={14} />
+            </Box>
             <Box>
               <Text sx={{ display: 'block', fontWeight: 700 }}>{items[toast].name}</Text>
               <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{items[toast].price} {d.added}</Text>

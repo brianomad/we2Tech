@@ -2,6 +2,7 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
 import { S, font, Card, Badge, Btn, Progress, Avatar, SectionLabel } from './shared';
+import { Icon } from './icons';
 import { AppBar, Skeleton, LoadingRows } from './chrome';
 
 import { brandFor } from './demo-meta';
@@ -34,14 +35,14 @@ export default function AttendanceDemo({ t, locale, item }) {
         nav={[d.today, d.expected, d.checkIn]}
         active={0}
         right={
-          <Badge sx={{ backgroundColor: 'rgba(249,115,22,0.2)', color: '#FDBA74', border: '1px solid rgba(249,115,22,0.4)' }} dot>&#9679; {d.live}</Badge>
+          <Badge sx={{ backgroundColor: 'rgba(249,115,22,0.2)', color: '#FDBA74', border: '1px solid rgba(249,115,22,0.4)' }} dot>{d.live}</Badge>
         }
       />
 
       <Box sx={{ p: [3, null, 4], position: 'relative' }}>
         {loading ? (
           <>
-            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4, '@container (max-width: 640px)': { gridTemplateColumns: '1fr 1fr' } }}>
               {[0, 1, 2, 3].map((i) => (
                 <Card key={i} sx={{ p: 3 }}>
                   <Skeleton w="50%" h={9} />
@@ -50,13 +51,13 @@ export default function AttendanceDemo({ t, locale, item }) {
                 </Card>
               ))}
             </Box>
-            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.4fr 1fr'], gap: 4 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.4fr 1fr'], gap: 4, '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
               <LoadingRows rows={4} />
               <Skeleton w="100%" h={200} r={12} />
             </Box>
           </>
         ) : (
-          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.4fr 1fr'], gap: 4 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.4fr 1fr'], gap: 4, '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
             <Box>
               <SectionLabel>{d.today}</SectionLabel>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -87,7 +88,7 @@ export default function AttendanceDemo({ t, locale, item }) {
                           sx={{ px: 3, py: '8px', fontSize: 0, whiteSpace: 'nowrap', backgroundColor: full ? '#fff' : S.orange, boxShadow: full ? 'none' : '0 6px 14px rgba(249,115,22,0.35)' }}
                           disabled={full}
                           onClick={(e) => { e.stopPropagation(); checkIn(i); }}>
-                          {full ? '\u2713' : d.checkIn}
+                          {full ? <Icon name="check" size={14} /> : d.checkIn}
                         </Btn>
                       </Box>
                     </Card>
@@ -112,10 +113,9 @@ export default function AttendanceDemo({ t, locale, item }) {
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: S.orange,
-                    fontSize: 5,
                     mb: 3,
                   }}>
-                  &#128247;
+                  <Icon name="camera" size={52} />
                 </Box>
                 <Text sx={{ fontSize: 0, color: '#9A3412', fontFamily: font, mb: 2 }}>
                   {d.live} &middot; {totalChecked}/{totalExpected}
@@ -124,7 +124,9 @@ export default function AttendanceDemo({ t, locale, item }) {
               </Card>
               <Card sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-                  <Box sx={{ fontSize: 2 }}>&#127944;</Box>
+                  <Box sx={{ width: 40, height: 40, borderRadius: 11, backgroundColor: 'rgba(59,130,246,0.1)', color: S.blue, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Icon name="users" size={22} />
+                  </Box>
                   <Box sx={{ flex: 1 }}>
                     <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{d.scanAndGo}</Text>
                     <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.scanNote}</Text>
@@ -141,7 +143,9 @@ export default function AttendanceDemo({ t, locale, item }) {
             <Card sx={{ p: 4, maxWidth: 400, width: '100%' }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
                 <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font }}>{list[detail].name}</Text>
-                <Box onClick={() => setDetail(null)} sx={{ cursor: 'pointer', color: S.muted, fontSize: 1 }}>&#10005;</Box>
+                <Box onClick={() => setDetail(null)} sx={{ cursor: 'pointer', color: S.muted, '&:hover': { color: S.ink } }}>
+                  <Icon name="x" size={18} />
+                </Box>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mb: 3 }}>
                 <Avatar label={list[detail].name.slice(0, 1)} color={[S.orange, S.blue, S.purple, S.pink][detail % 4]} size={44} />
@@ -152,7 +156,7 @@ export default function AttendanceDemo({ t, locale, item }) {
                   </Text>
                 </Box>
               </Box>
-              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3, '@container (max-width: 460px)': { gridTemplateColumns: '1fr' } }}>
                 {[['10:30', d.start], ['18:00', d.end], [list[detail].checked, d.checkedIn], ['3', d.noShows]].map(([v, l]) => (
                   <Box key={l} sx={{ p: 3, borderRadius: 12, backgroundColor: '#F6F8FB', textAlign: 'center' }}>
                     <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{v}</Text>
@@ -160,7 +164,7 @@ export default function AttendanceDemo({ t, locale, item }) {
                   </Box>
                 ))}
               </Box>
-              <Btn tone="primary" sx={{ width: '100%', backgroundColor: S.orange, boxShadow: '0 8px 18px rgba(249,115,22,0.35)' }} disabled={list[detail].checked >= list[detail].expected} onClick={() => { checkIn(detail); setDetail(null); }}>
+              <Btn tone="primary" sx={{ width: '100%', mt: 1, backgroundColor: S.orange, boxShadow: '0 8px 18px rgba(249,115,22,0.35)' }} disabled={list[detail].checked >= list[detail].expected} onClick={() => { checkIn(detail); setDetail(null); }}>
                 {d.checkIn}
               </Btn>
             </Card>

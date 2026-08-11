@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
-import { S, font, Card, Badge, Btn, StatusDot } from './shared';
+import { S, font, Card, Badge, Btn, StatusDot, SearchField, EmptyState } from './shared';
+import { Icon } from './icons';
 import { Skeleton, LoadingRows, StatCard } from './chrome';
 import { Toast } from './anim';
 
@@ -15,6 +16,7 @@ export default function InventoryDemo({ t, locale, item }) {
   const [loading, setLoading] = useState(true);
   const [detail, setDetail] = useState(null);
   const [toast, setToast] = useState(null);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 800);
@@ -34,28 +36,41 @@ export default function InventoryDemo({ t, locale, item }) {
   const outCount = items.filter((r) => r.status === 'Out of stock').length;
   const totalUnits = items.reduce((a, r) => a + parseInt(r.onHand, 10), 0);
 
-  const openDetail = (i) => setDetail(items[i]);
+  const openDetail = (row) => setDetail(row);
+  const q = query.trim().toLowerCase();
+  const visible = items.filter((r) => !q || String(r.name).toLowerCase().includes(q) || String(r.sku).toLowerCase().includes(q));
+  const ROW_ICONS = ['package', 'coffee', 'plate', 'chick'];
+  const thumbFor = (sku) => {
+    const p = String(sku).slice(0, 2);
+    if (p === 'CF') return '/images/products/latte.jpg';
+    if (p === 'TN') return '/images/products/tuna.jpg';
+    if (p === 'GR') return '/images/demo/granola.svg';
+    if (p === 'AP') return '/images/demo/butter.svg';
+    return null;
+  };
 
   return (
     <>
       <Box sx={{ position: 'relative', flex: 1 }}>
         <Box sx={{ px: [3, 4], py: 3, background: 'linear-gradient(135deg,#0F172A,#1E293B)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 2 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#D97706)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128230;</Box>
+            <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#D97706)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name="package" size={17} />
+            </Box>
             <Box>
               <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>{brandFor(item, 'StockPilot')}</Text>
-              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>Warehouse A &middot; Tsuen Wan</Text>
+              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>{d.warehouse}</Text>
             </Box>
           </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, px: 3, py: '8px', borderRadius: 10, backgroundColor: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.7)', fontSize: 0, fontFamily: font, border: '1px solid rgba(255,255,255,0.15)' }}>
-            &#128269; Search SKU&hellip;
+          <Box sx={{ width: 190 }}>
+            <SearchField value={query} onChange={setQuery} placeholder={d.search} sx={{ backgroundColor: 'rgba(255,255,255,0.08)', borderRadius: 10 }} />
           </Box>
         </Box>
 
         <Box sx={{ p: [3, 4] }}>
           {loading ? (
             <>
-              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4, '@container (max-width: 640px)': { gridTemplateColumns: '1fr 1fr' } }}>
                 {[0, 1, 2, 3].map((i) => (
                   <Card key={i} sx={{ p: 3 }}>
                     <Skeleton w="55%" h={9} />
@@ -73,21 +88,21 @@ export default function InventoryDemo({ t, locale, item }) {
             </>
           ) : (
             <>
-              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4, '@container (max-width: 640px)': { gridTemplateColumns: '1fr 1fr' } }}>
                 {[
-                  { label: d.totalSku, value: String(items.length), color: S.ink, icon: '\u{1F4E6}' },
-                  { label: d.unitsOnHand, value: totalUnits.toLocaleString(), color: S.teal, icon: '\u{1F4CC}' },
-                  { label: d.low, value: String(lowCount), color: '#B45309', icon: '\u26A0' },
-                  { label: d.out, value: String(outCount), color: S.red, icon: '\u2716' },
+                  { label: d.totalSku, value: String(items.length), color: S.ink, icon: <Icon name="package" size={16} /> },
+                  { label: d.unitsOnHand, value: totalUnits.toLocaleString(), color: S.teal, icon: <Icon name="tag" size={16} /> },
+                  { label: d.low, value: String(lowCount), color: '#B45309', icon: <Icon name="bell" size={16} /> },
+                  { label: d.out, value: String(outCount), color: S.red, icon: <Icon name="x" size={16} /> },
                 ].map((s) => (
                   <StatCard key={s.label} label={s.label} value={s.value} icon={s.icon} color={s.color} bg={`${s.color}14`} />
                 ))}
               </Box>
 
-              <Card sx={{ overflow: 'hidden' }}>
+              <Card sx={{ overflowX: 'auto' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 4, py: 3, borderBottom: '1px solid', borderColor: S.line }}>
                   <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{d.title}</Text>
-                  <Badge tone="teal" dot={false}>{items.length} SKU</Badge>
+                  <Badge tone="teal" dot={false}>{visible.length} SKU</Badge>
                 </Box>
                 <Box
                   sx={{
@@ -111,13 +126,18 @@ export default function InventoryDemo({ t, locale, item }) {
                   <Text sx={{ textAlign: 'center' }}>{d.status}</Text>
                   <Text sx={{ textAlign: 'right' }}>{d.stockLevel}</Text>
                 </Box>
-                {items.map((row, i) => {
+                {visible.length === 0 ? (
+                  <Box sx={{ py: 5 }}>
+                    <EmptyState icon="search" title={d.noResults} />
+                  </Box>
+                ) : (
+                  visible.map((row, i) => {
                   const max = Math.max(...items.map((r) => parseInt(r.onHand, 10)), 1);
                   const pct = Math.min(100, (parseInt(row.onHand, 10) / max) * 100);
                   return (
                     <Box
                       key={row.sku}
-                      onClick={() => openDetail(i)}
+                      onClick={() => openDetail(row)}
                       sx={{
                         display: 'grid',
                         gridTemplateColumns: '0.7fr 1.6fr 0.7fr 0.8fr 0.7fr 1.1fr',
@@ -135,7 +155,15 @@ export default function InventoryDemo({ t, locale, item }) {
                       }}>
                       <Text sx={{ fontFamily: 'Menlo, monospace', fontSize: 0, color: S.muted }}>{row.sku}</Text>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, minWidth: 0 }}>
-                        <Box sx={{ width: 30, height: 30, borderRadius: 9, backgroundColor: i % 2 ? '#EEF2F7' : '#E8F0EF', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>{['\u{1F95C}', '\u2615', '\u{1F966}', '\u{1F414}'][i % 4]}</Box>
+                        <Box sx={{ width: 30, height: 30, borderRadius: 9, overflow: 'hidden', flexShrink: 0, backgroundColor: '#EEF2F7' }}>
+                          {thumbFor(row.sku) ? (
+                            <img src={thumbFor(row.sku)} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                          ) : (
+                            <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: S.ink }}>
+                              <Icon name={ROW_ICONS[i % 4]} size={16} />
+                            </Box>
+                          )}
+                        </Box>
                         <Text sx={{ fontWeight: 600, color: S.ink, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{row.name}</Text>
                       </Box>
                       <Text sx={{ textAlign: 'right', fontWeight: 700, color: row.status === 'Out of stock' ? S.red : S.ink }}>{row.onHand}</Text>
@@ -155,7 +183,8 @@ export default function InventoryDemo({ t, locale, item }) {
                       </Box>
                     </Box>
                   );
-                })}
+                })
+                )}
               </Card>
             </>
           )}
@@ -166,15 +195,25 @@ export default function InventoryDemo({ t, locale, item }) {
             <Card sx={{ p: 4, maxWidth: 400, width: '100%' }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Box sx={{ width: 40, height: 40, borderRadius: 11, backgroundColor: '#E8F0EF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2 }}>&#128230;</Box>
+                  <Box sx={{ width: 40, height: 40, borderRadius: 11, overflow: 'hidden', flexShrink: 0, backgroundColor: '#E8F0EF' }}>
+                    {thumbFor(detail.sku) ? (
+                      <img src={thumbFor(detail.sku)} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    ) : (
+                      <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: S.ink }}>
+                        <Icon name="package" size={20} />
+                      </Box>
+                    )}
+                  </Box>
                   <Box>
                     <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{detail.name}</Text>
                     <Text sx={{ fontSize: 0, color: S.muted, fontFamily: 'Menlo, monospace' }}>{detail.sku}</Text>
                   </Box>
                 </Box>
-                <Box onClick={() => setDetail(null)} sx={{ cursor: 'pointer', color: S.muted, fontSize: 1 }}>&#10005;</Box>
+                <Box onClick={() => setDetail(null)} sx={{ cursor: 'pointer', color: S.muted, fontSize: 1, '&:hover': { color: S.ink } }}>
+                  <Icon name="x" size={18} />
+                </Box>
               </Box>
-              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3, '@container (max-width: 460px)': { gridTemplateColumns: '1fr' } }}>
                 {[
                   [d.onHand, detail.onHand],
                   [d.reorderLevel, detail.reorder],
@@ -188,8 +227,8 @@ export default function InventoryDemo({ t, locale, item }) {
                 ))}
               </Box>
               <Badge tone={statusTone(detail.status)} dot sx={{ mb: 3 }}>{statusLabel(detail.status)}</Badge>
-              <Btn tone="primary" sx={{ width: '100%' }} disabled={detail.status === 'In stock'} onClick={() => { reorder(items.findIndex((r) => r.sku === detail.sku)); setDetail(null); }}>
-                {d.reorder} &#8594;
+              <Btn tone="primary" sx={{ width: '100%', mt: 1 }} disabled={detail.status === 'In stock'} onClick={() => { reorder(items.findIndex((r) => r.sku === detail.sku)); setDetail(null); }}>
+                {d.reorder} <Icon name="chevronRight" size={13} />
               </Btn>
             </Card>
           </Box>
@@ -198,7 +237,9 @@ export default function InventoryDemo({ t, locale, item }) {
         {toast !== null && (
           <Box sx={{ position: 'absolute', right: 4, bottom: 14, zIndex: 21, display: ['none', null, 'block'] }}>
             <Toast tone="light">
-              <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(31,169,113,0.14)', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+              <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(31,169,113,0.14)', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name="check" size={14} />
+              </Box>
               <Box>
                 <Text sx={{ display: 'block', fontWeight: 700 }}>{items[toast].name}</Text>
                 <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{d.reorder} &#183; {d.poCreated}</Text>

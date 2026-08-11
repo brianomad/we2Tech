@@ -2,13 +2,14 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { S, font, Card, Badge, Progress, Avatar, SectionLabel } from './shared';
+import { Icon } from './icons';
 import { Toast } from './anim';
 
 const TABS = [
-  { key: 'home', icon: '\u2302', label: 'Home' },
-  { key: 'bookings', icon: '\u2606', label: 'Bookings' },
-  { key: 'wallet', icon: '\u25A4', label: 'Wallet' },
-  { key: 'profile', icon: '\u263A', label: 'Profile' },
+  { key: 'home', icon: 'home', label: 'Home' },
+  { key: 'bookings', icon: 'star', label: 'Bookings' },
+  { key: 'wallet', icon: 'wallet', label: 'Wallet' },
+  { key: 'profile', icon: 'user', label: 'Profile' },
 ];
 
 const UPCOMING_DEFAULT = [
@@ -52,7 +53,9 @@ export default function MobileAppDemo({ t, locale, item }) {
             <Text sx={{ display: 'block', fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font }}>Amanda</Text>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box sx={{ width: 32, height: 32, borderRadius: 10, backgroundColor: '#F3F4F6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128276;</Box>
+            <Box sx={{ width: 32, height: 32, borderRadius: 10, backgroundColor: '#F3F4F6', color: S.slate, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name="bell" size={17} />
+            </Box>
             <Avatar label="A" color="#7C3AED" size={36} />
           </Box>
         </Box>
@@ -75,10 +78,12 @@ export default function MobileAppDemo({ t, locale, item }) {
             <Text sx={{ fontSize: 0, fontWeight: 700, color: S.muted, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font, mb: 2 }}>
               {d.quickActions}
             </Text>
-            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, mb: 3 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, mb: 3, '@container (max-width: 380px)': { gridTemplateColumns: '1fr 1fr' } }}>
               {d.quickActionsList.map((label, i) => (
-                <Card key={label} onClick={() => notify(`\u2713 ${label}`)} sx={{ p: 3, textAlign: 'center', cursor: 'pointer', '&:active': { transform: 'scale(0.96)' } }}>
-                  <Box sx={{ fontSize: 3, mb: 1 }}>{['\u{1F4C5}', '\u{1F4B3}', '\u{1F4CC}', '\u{1F3CB}', '\u{1F4C8}', '\u{1F4DD}'][i % 6]}</Box>
+                <Card key={label} role="button" tabIndex={0} aria-label={label} onClick={() => notify(label)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); notify(label); } }} sx={{ p: 3, textAlign: 'center', cursor: 'pointer', ':focus-visible': { outline: 'none', boxShadow: '0 0 0 2px #7C3AED88' }, '&:active': { transform: 'scale(0.96)' } }}>
+                  <Box sx={{ mb: 1, display: 'flex', justifyContent: 'center', color: S.ink }}>
+                    <Icon name={['calendar', 'creditCard', 'pin', 'dumbbell', 'barChart', 'note'][i % 6]} size={24} />
+                  </Box>
                   <Text sx={{ fontSize: 0, fontWeight: 600, color: S.ink, fontFamily: font }}>{label}</Text>
                 </Card>
               ))}
@@ -145,7 +150,7 @@ export default function MobileAppDemo({ t, locale, item }) {
             <Card sx={{ p: 3, mb: 3 }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
                 <Text sx={{ fontWeight: 700, color: S.ink, fontFamily: font }}>1,280 pts</Text>
-                <Badge tone="amber" dot={false}>&#9733; {d.goldTier}</Badge>
+                <Badge tone="amber" dot={false}><Icon name="star" size={11} /> {d.goldTier}</Badge>
               </Box>
               <Progress pct={68} color="#D97706" />
               <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mt: 1 }}>520 {d.toNextTier}</Text>
@@ -167,7 +172,7 @@ export default function MobileAppDemo({ t, locale, item }) {
             <Avatar label="A" color="#7C3AED" size={68} sx={{ mx: 'auto', mb: 2 }} />
             <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font }}>Amanda Lee</Text>
             <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mb: 3 }}>{d.memberSince}</Text>
-            <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, '@container (max-width: 460px)': { gridTemplateColumns: '1fr' } }}>
               <Box sx={{ p: 3, borderRadius: 12, backgroundColor: '#F5F3FF', border: '1px solid #EDE9FE' }}>
                 <Text sx={{ fontWeight: 700, color: '#6D28D9', fontFamily: font, fontSize: 2 }}>12</Text>
                 <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.bookings}</Text>
@@ -184,7 +189,9 @@ export default function MobileAppDemo({ t, locale, item }) {
       {toast && (
         <Box sx={{ position: 'absolute', right: 3, bottom: 14, zIndex: 10, width: 'max-content', maxWidth: '92%' }}>
           <Toast tone="light">
-            <Box sx={{ width: 22, height: 22, borderRadius: '50%', background: 'rgba(124,58,237,0.14)', color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+            <Box sx={{ width: 22, height: 22, borderRadius: '50%', background: 'rgba(124,58,237,0.14)', color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name="check" size={13} />
+            </Box>
             <Text sx={{ fontWeight: 700 }}>{toast}</Text>
           </Toast>
         </Box>
@@ -194,8 +201,9 @@ export default function MobileAppDemo({ t, locale, item }) {
         sx={{
           display: 'flex',
           justifyContent: 'space-around',
-          px: 4,
-          py: 2,
+          px: 2.5,
+          py: 2.5,
+          gap: 1,
           mt: 2,
           backgroundColor: '#fff',
           borderTop: '1px solid',
@@ -204,19 +212,30 @@ export default function MobileAppDemo({ t, locale, item }) {
         {tabs.map((tb, i) => (
           <Box
             key={tb.key}
+            role="button"
+            tabIndex={0}
+            aria-label={tb.label}
             onClick={() => setTab(i)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setTab(i); } }}
             sx={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: '2px',
+              justifyContent: 'center',
+              gap: '3px',
+              minHeight: 54,
+              px: 1.5,
               fontSize: 0,
               fontWeight: 700,
               color: tab === i ? '#7C3AED' : S.muted,
               fontFamily: font,
               cursor: 'pointer',
+              borderRadius: 10,
+              ':focus-visible': { outline: 'none', boxShadow: '0 0 0 2px #7C3AED88' },
             }}>
-            <Box sx={{ fontSize: 1, opacity: tab === i ? 1 : 0.6 }}>{tb.icon}</Box>
+            <Box sx={{ display: 'flex', justifyContent: 'center', opacity: tab === i ? 1 : 0.6 }}>
+              <Icon name={tb.icon} size={20} />
+            </Box>
             <Text sx={{ fontSize: 0 }}>{tb.label}</Text>
             {tab === i && <Box sx={{ width: 16, height: 3, borderRadius: 99, backgroundColor: '#7C3AED', mt: '2px' }} />}
           </Box>

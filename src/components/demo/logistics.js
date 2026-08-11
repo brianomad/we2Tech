@@ -2,6 +2,7 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
 import { S, font, Card, Badge, Avatar, MockMap, Stepper, StatusDot } from './shared';
+import { Icon } from './icons';
 import { Skeleton } from './chrome';
 
 import { brandFor } from './demo-meta';
@@ -38,13 +39,15 @@ export default function LogisticsDemo({ t, locale, item }) {
       <Box sx={{ position: 'relative', flex: 1 }}>
         <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#12324A)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22D3EE,#0EA5E9)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128663;</Box>
+            <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22D3EE,#0EA5E9)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+              <Icon name="truck" size={18} />
+            </Box>
             <Box>
               <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>{brandFor(item, 'FleetTrack')}</Text>
               <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>{d.region}</Text>
             </Box>
           </Box>
-          <Badge sx={{ backgroundColor: 'rgba(34,211,238,0.15)', color: '#67E8F9', border: '1px solid rgba(34,211,238,0.4)' }} dot>&#9679; {d.live}</Badge>
+          <Badge sx={{ backgroundColor: 'rgba(34,211,238,0.15)', color: '#67E8F9', border: '1px solid rgba(34,211,238,0.4)' }} dot>{d.live}</Badge>
         </Box>
 
         {loading ? (
@@ -64,7 +67,7 @@ export default function LogisticsDemo({ t, locale, item }) {
             </Card>
           </Box>
         ) : (
-          <Box sx={{ display: 'flex', minHeight: 430 }}>
+          <Box sx={{ display: 'flex', minHeight: 430, '@container (max-width: 760px)': { flexDirection: 'column' } }}>
             <Box sx={{ flex: 1, p: 4, display: 'flex', flexDirection: 'column', gap: 3 }}>
               <Card sx={{ overflow: 'hidden' }}>
                 <Box sx={{ px: 3, py: 2, borderBottom: '1px solid', borderColor: S.line, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -96,8 +99,8 @@ export default function LogisticsDemo({ t, locale, item }) {
               </Card>
             </Box>
 
-            <Box sx={{ width: [210, 250], borderLeft: '1px solid', borderColor: S.line, backgroundColor: '#fff', p: 3, overflow: 'auto' }}>
-              <Text sx={{ fontSize: 0, fontWeight: 700, color: S.muted, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font, mb: 2 }}>
+            <Box sx={{ width: [210, 250], borderLeft: '1px solid', borderColor: S.line, backgroundColor: '#fff', p: 3, overflow: 'auto', '@container (max-width: 760px)': { width: '100%', borderLeft: 'none', borderTop: '1px solid', borderColor: S.line, display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(3, 1fr)'], gap: 2 } }}>
+              <Text sx={{ fontSize: 0, fontWeight: 700, color: S.muted, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font, mb: 2, '@container (max-width: 760px)': { gridColumn: '1 / -1' } }}>
                 {d.dispatches}
               </Text>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -143,10 +146,12 @@ export default function LogisticsDemo({ t, locale, item }) {
                     <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{ship.dest}</Text>
                   </Box>
                 </Box>
-                <Box onClick={() => setDetail(null)} sx={{ cursor: 'pointer', color: S.muted, fontSize: 1 }}>&#10005;</Box>
+                <Box onClick={() => setDetail(null)} sx={{ cursor: 'pointer', color: S.muted, display: 'flex' }}>
+                  <Icon name="x" size={18} />
+                </Box>
               </Box>
 
-              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3, '@container (max-width: 460px)': { gridTemplateColumns: '1fr' } }}>
                 {[
                   [d.status, stepLabel(ship.step)],
                   [d.driver, ship.driver],
@@ -167,8 +172,8 @@ export default function LogisticsDemo({ t, locale, item }) {
                 {timelineEvents(ship).map((ev, i) => (
                   <Box key={i} sx={{ display: 'flex', gap: 3 }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      <Box sx={{ width: 18, height: 18, borderRadius: '50%', backgroundColor: ev.done ? S.green : '#E3EAF2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 0, flexShrink: 0 }}>
-                        {ev.done ? '\u2713' : ''}
+                      <Box sx={{ width: 18, height: 18, borderRadius: '50%', backgroundColor: ev.done ? S.green : '#E3EAF2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0 }}>
+                        {ev.done && <Icon name="check" size={10} />}
                       </Box>
                       {i < timelineEvents(ship).length - 1 && <Box sx={{ width: 2, height: 34, backgroundColor: ev.done ? S.green : '#E3EAF2', flex: 1 }} />}
                     </Box>

@@ -205,6 +205,11 @@ const en = {
     liveDemo: 'Live Demo',
     tryNote:
       'This is a live interactive demo of the product type. Tap around to explore how it would work.',
+    frameWidth: 'Frame width',
+    presetPhone: 'Phone',
+    presetTablet: 'Tablet',
+    presetDesktop: 'Desktop',
+    presetFull: 'Full',
     whatWeBuilt: 'What we built',
     techStack: 'Tech stack',
     startProject: 'Start a project like this',
@@ -254,6 +259,8 @@ const en = {
         { name: 'Premium', price: 'HK$228', perks: ['Unlimited locations', 'API access', 'Dedicated manager'] },
       ],
       rewardsReady: 'rewards ready',
+      popular: 'Popular',
+      trialNote: '7-day free trial · cancel anytime',
     },
     cloud: {
       title: 'System overview',
@@ -302,6 +309,7 @@ const en = {
       orderConfirmed: 'Order confirmed',
       orderNo: 'Order number',
       emptyCart: 'Your cart is empty',
+      noResults: 'No results found',
       products: [
         { name: 'Classic Tote', price: 'HK$199' },
         { name: 'Canvas Sneakers', price: 'HK$459' },
@@ -410,6 +418,7 @@ const en = {
       purposes: ['Meeting', 'Delivery', 'Site tour', 'Interview'],
       frontDesk: 'Front desk',
       passHint: 'Fill the form to issue a pass',
+      newVisitor: 'New visitor',
     },
     blockchain: {
       title: 'Wallet & collectibles',
@@ -457,6 +466,7 @@ const en = {
       simulateEarn: 'Simulate a purchase',
       pointsEarned: 'Points earned',
       weeklyGoal: 'This week',
+      earnLabel: 'Purchase \u00B7 Coffee + pastry',
       rewards: [
         { name: 'Free coffee', points: '120' },
         { name: 'HK$50 voucher', points: '300' },
@@ -476,6 +486,7 @@ const en = {
     },
     inventory: {
       title: 'Inventory control',
+      warehouse: 'Warehouse A \u00B7 Tsuen Wan',
       lowStockAlerts: 'Low stock alerts',
       sku: 'SKU',
       product: 'Product',
@@ -497,9 +508,9 @@ const en = {
       stockLevel: 'Stock level',
       location: 'Location',
       supplier: 'Supplier',
-      aisle3: 'Aisle 3',
-      supplierName: 'Luen Hing Co.',
-      poCreated: 'PO created',
+      aisle3: 'Aisle 7C',
+      supplierName: 'GreenFarm Co.',
+      noResults: 'No matching SKUs',
     },
     logistics: {
       title: 'Dispatch & tracking',
@@ -576,6 +587,9 @@ const en = {
       pci: 'Encrypted with PCI-DSS',
       secureMeta: 'Payflow Secure',
       demoTag: 'demo',
+      invalidCard: 'Enter a valid 16-digit card number',
+      invalidExpiry: 'Use MM/YY',
+      invalidCvv: '3\u20134 digits',
     },
     ticketing: {
       title: 'Events & tickets',
@@ -786,6 +800,11 @@ const zh = {
     eyebrow: '示範案例',
     liveDemo: '即時示範',
     tryNote: '這是產品類型的即時互動示範。四處點按，探索產品實際運作方式。',
+    frameWidth: '畫面寬度',
+    presetPhone: '手機',
+    presetTablet: '平板',
+    presetDesktop: '桌面',
+    presetFull: '全寬',
     whatWeBuilt: '我們建構了甚麼',
     techStack: '技術棧',
     startProject: '開始類似項目',
@@ -830,6 +849,8 @@ const zh = {
         { name: '尊尚', price: 'HK$228', perks: ['無限分店', 'API 存取', '專屬經理'] },
       ],
       rewardsReady: '獎賞已就緒',
+      popular: '最受歡迎',
+      trialNote: '7 天免費試用 · 隨時取消',
     },
     cloud: {
       title: '系統概覽',
@@ -878,6 +899,7 @@ const zh = {
       orderConfirmed: '訂單已確認',
       orderNo: '訂單編號',
       emptyCart: '您的購物車是空的',
+      noResults: '沒有符合的結果',
       products: [
         { name: '經典手提袋', price: 'HK$199' },
         { name: '帆布運動鞋', price: 'HK$459' },
@@ -984,6 +1006,7 @@ const zh = {
       purposes: ['會議', '送貨', '參觀', '面試'],
       frontDesk: '前台',
       passHint: '填寫表格以發出通行證',
+      newVisitor: '新訪客',
     },
     blockchain: {
       title: '錢包及收藏品',
@@ -1031,6 +1054,7 @@ const zh = {
       simulateEarn: '模擬一次購物',
       pointsEarned: '賺取積分',
       weeklyGoal: '本週',
+      earnLabel: '購物 · 咖啡及糕點',
       rewards: [
         { name: '免費咖啡', points: '120' },
         { name: 'HK$50 現金券', points: '300' },
@@ -1050,6 +1074,7 @@ const zh = {
     },
     inventory: {
       title: '庫存管理',
+      warehouse: '倉庫A · 荃灣',
       lowStockAlerts: '低庫存提示',
       sku: 'SKU',
       product: '產品',
@@ -1073,6 +1098,7 @@ const zh = {
       supplier: '供應商',
       aisle3: '3 號通道',
       supplierName: '聯興公司',
+      noResults: '未找到相符 SKU',
       poCreated: '已建立採購訂單',
     },
     logistics: {
@@ -1150,6 +1176,9 @@ const zh = {
       pci: '以 PCI-DSS 加密',
       secureMeta: 'Payflow 安全支付',
       demoTag: '示範',
+      invalidCard: '請輸入 16 位有效卡號',
+      invalidExpiry: '請以 MM/YY 格式輸入',
+      invalidCvv: '3 至 4 位數字',
     },
     ticketing: {
       title: '活動與門票',
@@ -1359,6 +1388,11 @@ const zhCn = {
     eyebrow: '示范案例',
     liveDemo: '实时演示',
     tryNote: '这是该产品类型的实时互动演示。点击探索，了解产品的实际运作方式。',
+    frameWidth: '画面宽度',
+    presetPhone: '手机',
+    presetTablet: '平板',
+    presetDesktop: '桌面',
+    presetFull: '全宽',
     whatWeBuilt: '我们构建了什么',
     techStack: '技术栈',
     startProject: '开始类似项目',
@@ -1403,6 +1437,8 @@ const zhCn = {
         { name: '尊尚', price: 'HK$228', perks: ['无限分店', 'API 存取', '专属经理'] },
       ],
       rewardsReady: '奖赏已就绪',
+      popular: '最受欢迎',
+      trialNote: '7 天免费试用 · 随时取消',
     },
     cloud: {
       title: '系统概览',
@@ -1451,6 +1487,7 @@ const zhCn = {
       orderConfirmed: '订单已确认',
       orderNo: '订单编号',
       emptyCart: '您的购物车是空的',
+      noResults: '没有符合的结果',
       products: [
         { name: '经典手提袋', price: 'HK$199' },
         { name: '帆布运动鞋', price: 'HK$459' },
@@ -1557,6 +1594,7 @@ const zhCn = {
       purposes: ['会议', '送货', '参观', '面试'],
       frontDesk: '前台',
       passHint: '填写表格以发出通行证',
+      newVisitor: '新访客',
     },
     blockchain: {
       title: '钱包及收藏品',
@@ -1604,6 +1642,7 @@ const zhCn = {
       simulateEarn: '模拟一次购物',
       pointsEarned: '赚取积分',
       weeklyGoal: '本周',
+      earnLabel: '购物 · 咖啡及糕点',
       rewards: [
         { name: '免费咖啡', points: '120' },
         { name: 'HK$50 现金券', points: '300' },
@@ -1623,6 +1662,7 @@ const zhCn = {
     },
     inventory: {
       title: '库存管理',
+      warehouse: '仓库A · 荃湾',
       lowStockAlerts: '低库存提示',
       sku: 'SKU',
       product: '产品',
@@ -1646,6 +1686,7 @@ const zhCn = {
       supplier: '供应商',
       aisle3: '3 号通道',
       supplierName: '联兴公司',
+      noResults: '未找到相符 SKU',
       poCreated: '已创建采购订单',
     },
     logistics: {
@@ -1723,6 +1764,9 @@ const zhCn = {
       pci: '以 PCI-DSS 加密',
       secureMeta: 'Payflow 安全支付',
       demoTag: '演示',
+      invalidCard: '请输入 16 位有效卡号',
+      invalidExpiry: '请以 MM/YY 格式输入',
+      invalidCvv: '3 至 4 位数字',
     },
     ticketing: {
       title: '活动与门票',

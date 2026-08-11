@@ -2,6 +2,7 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
 import { S, font, Card, Btn, Badge, Avatar, SectionLabel, Field } from './shared';
+import { Icon } from './icons';
 import { AppBar } from './chrome';
 import { Toast, LiveDot } from './anim';
 
@@ -11,7 +12,7 @@ const TIER_STYLE = [
   { grad: 'linear-gradient(135deg,#0F2137,#1B2C45)', tint: S.gold, hot: false },
 ];
 
-const PERKS_ICONS = ['\u{1F3E2}', '\u{1F4C8}', '\u{1F4AC}', '\u{1F6E0}', '\u{1F30D}', '\u{1F4B3}'];
+const PERKS_ICONS = ['building', 'barChart', 'message', 'wrench', 'globe', 'creditCard'];
 
 import { brandFor } from './demo-meta';
 import { contentFor } from './case-content';
@@ -51,7 +52,7 @@ export default function MembershipDemo({ t, locale, item }) {
                 <Box>
                   <Text sx={{ display: 'block', fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font }}>Amanda Lee</Text>
                   <Text sx={{ display: 'flex', alignItems: 'center', gap: 1, fontSize: 0, color: '#9A6B00', fontFamily: font }}>
-                    <Badge tone="amber" dot={false}>&#9733; {plan.name}</Badge>
+                    <Badge tone="amber" dot={false}><Icon name="star" size={11} /> {plan.name}</Badge>
                   </Text>
                 </Box>
               </Box>
@@ -64,7 +65,7 @@ export default function MembershipDemo({ t, locale, item }) {
             </Box>
 
             <SectionLabel>{d.title}</SectionLabel>
-            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, 'repeat(3, 1fr)'], gap: 3 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, 'repeat(3, 1fr)'], gap: 3, '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
               {plans.map((p, i) => {
                 const active = current === i;
                 const style = TIER_STYLE[i];
@@ -100,7 +101,7 @@ export default function MembershipDemo({ t, locale, item }) {
                           fontFamily: font,
                           whiteSpace: 'nowrap',
                         }}>
-                        &#9733; Popular
+                        <Icon name="star" size={13} /> {d.popular}
                       </Box>
                     )}
                     <Text sx={{ fontWeight: 700, fontSize: 2, color: style.hot ? '#7A5700' : style.tint, fontFamily: font }}>
@@ -126,7 +127,7 @@ export default function MembershipDemo({ t, locale, item }) {
                               justifyContent: 'center',
                               flexShrink: 0,
                             }}>
-                            {PERKS_ICONS[pi] || '\u2713'}
+                            {PERKS_ICONS[pi] ? <Icon name={PERKS_ICONS[pi]} size={11} /> : <Icon name="check" size={11} />}
                           </Box>
                           {perk}
                         </Box>
@@ -149,7 +150,7 @@ export default function MembershipDemo({ t, locale, item }) {
         )}
 
         {step === 'checkout' && (
-          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.1fr 1fr'], gap: 4, maxWidth: 820, mx: 'auto' }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.1fr 1fr'], gap: 4, maxWidth: 820, mx: 'auto', '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
             <Card sx={{ p: 4 }}>
               <Badge tone="amber" dot={false} sx={{ mb: 2 }}>{d.planSwitch}</Badge>
               <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font, mb: 1 }}>{plan.name}</Text>
@@ -159,15 +160,15 @@ export default function MembershipDemo({ t, locale, item }) {
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 3 }}>
                 {plan.perks.map((perk, pi) => (
                   <Box key={perk} sx={{ display: 'flex', alignItems: 'center', gap: 2, fontSize: 1, color: S.slate, fontFamily: font }}>
-                    <Box sx={{ width: 20, height: 20, borderRadius: '50%', backgroundColor: 'rgba(31,169,113,0.14)', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 0, flexShrink: 0 }}>
-                      &#10003;
+                    <Box sx={{ width: 20, height: 20, borderRadius: '50%', backgroundColor: 'rgba(31,169,113,0.14)', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <Icon name="check" size={12} />
                     </Box>
                     {perk}
                   </Box>
                 ))}
               </Box>
               <Box sx={{ p: 3, borderRadius: 12, backgroundColor: '#F6F4ED', border: '1px dashed', borderColor: '#E2C97E', display: 'flex', alignItems: 'center', gap: 2, fontSize: 0, color: '#7A5700', fontFamily: font }}>
-                &#128274; 7-day free trial &middot; cancel anytime
+                <Icon name="lock" size={13} /> {d.trialNote}
               </Box>
             </Card>
 
@@ -175,16 +176,16 @@ export default function MembershipDemo({ t, locale, item }) {
               <SectionLabel>{d.checkout}</SectionLabel>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mb: 3 }}>
                 <Field label={d.cardName} value="AMANDA LEE" />
-                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 0.6fr 0.4fr', gap: 2 }}>
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 0.6fr 0.4fr', gap: 2, '@container (max-width: 560px)': { gridTemplateColumns: '1fr' } }}>
                   <Field label={pay.cardNumber} value="4242 4242 4242 4242" mono />
                   <Field label={pay.expiry} value="09/28" mono />
                   <Field label={pay.cvv} value="123" mono />
                 </Box>
               </Box>
-              <Btn tone="amber" sx={{ width: '100%' }} onClick={() => setStep('processing')}>
+              <Btn tone="amber" sx={{ width: '100%', mt: 1 }} onClick={() => setStep('processing')}>
                 {d.confirmChange} &middot; {plan.price}
               </Btn>
-              <Text sx={{ mt: 3, fontSize: 0, color: S.muted, fontFamily: font, textAlign: 'center' }}>&#128274; {pay.amount} encrypted &middot; PCI-DSS</Text>
+              <Text sx={{ mt: 3, fontSize: 0, color: S.muted, fontFamily: font, textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}><Icon name="lock" size={12} /> {pay.pci}</Text>
             </Card>
           </Box>
         )}
@@ -214,7 +215,7 @@ export default function MembershipDemo({ t, locale, item }) {
                   fontSize: 5,
                   boxShadow: 'inset 0 0 0 1px rgba(31,169,113,0.3)',
                 }}>
-                &#10003;
+                <Icon name="check" size={34} />
               </Box>
               <Text sx={{ display: 'block', mt: 3, fontSize: 3, fontWeight: 700, color: S.ink, fontFamily: font }}>{d.activated}</Text>
               <Text sx={{ display: 'block', mt: 1, fontSize: 1, color: S.slate, fontFamily: font }}>
@@ -240,7 +241,7 @@ export default function MembershipDemo({ t, locale, item }) {
                       <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.55)', fontFamily: font }}>{d.memberSince}</Text>
                     </Box>
                   </Box>
-                  <Badge tone="amber" dot={false}>&#9733; {plan.name}</Badge>
+                  <Badge tone="amber" dot={false}><Icon name="star" size={11} /> {plan.name}</Badge>
                 </Box>
                 <Box sx={{ position: 'relative' }}>
                   <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.5)', fontFamily: font }}>{d.memberId}</Text>
@@ -248,7 +249,7 @@ export default function MembershipDemo({ t, locale, item }) {
                 </Box>
               </Box>
               <Btn tone="ghost" sx={{ mt: 4, width: '100%' }} onClick={() => { setStep('plans'); }}>
-                &#8634; {d.title}
+                <Icon name="refresh" size={15} /> {d.title}
               </Btn>
             </Card>
           </Box>

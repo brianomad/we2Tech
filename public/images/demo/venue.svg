@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="360" viewBox="0 0 800 360" role="img" aria-label="Appointment venue">
+  <defs>
+    <linearGradient id="vsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B3B56"/>
+      <stop offset="0.55" stop-color="#0E7490"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+    <linearGradient id="vfloor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F1F5F9"/>
+      <stop offset="1" stop-color="#DDE7F0"/>
+    </linearGradient>
+    <linearGradient id="vwin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FDE68A"/>
+      <stop offset="1" stop-color="#F59E0B"/>
+    </linearGradient>
+    <radialGradient id="vglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFF7ED" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFF7ED" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="360" fill="url(#vsky)"/>
+  <circle cx="640" cy="120" r="70" fill="url(#vglow)"/>
+  <circle cx="640" cy="120" r="34" fill="#FDE68A"/>
+  <path d="M0 360 L0 300 L150 250 L260 292 L420 238 L600 290 L800 232 L800 360 Z" fill="#0B3B56" opacity="0.35"/>
+  <path d="M0 360 L0 330 L180 288 L360 330 L560 300 L800 330 L800 360 Z" fill="#0B3B56" opacity="0.45"/>
+  <rect x="70" y="128" width="300" height="150" rx="16" fill="#FBFDFE"/>
+  <rect x="70" y="128" width="300" height="150" rx="16" fill="#0F2137" opacity="0.04"/>
+  <rect x="96" y="150" width="120" height="86" rx="10" fill="url(#vwin)"/>
+  <rect x="96" y="150" width="120" height="86" rx="10" fill="none" stroke="#0F2137" stroke-width="5" opacity="0.15"/>
+  <path d="M156 150 L156 236 M96 193 L216 193" stroke="#0F2137" stroke-width="5" opacity="0.15"/>
+  <rect x="236" y="170" width="104" height="66" rx="9" fill="#0E7490" opacity="0.12"/>
+  <rect x="236" y="170" width="104" height="66" rx="9" fill="none" stroke="#0E7490" stroke-width="3" opacity="0.35"/>
+  <path d="M246 224 l18 -20 14 14 16 -24 30 30 z" fill="#0E7490" opacity="0.7"/>
+  <rect x="236" y="170" width="52" height="8" rx="4" fill="#14B8A6" opacity="0.8"/>
+  <rect x="296" y="184" width="44" height="8" rx="4" fill="#0E7490" opacity="0.45"/>
+  <rect x="296" y="200" width="36" height="8" rx="4" fill="#0E7490" opacity="0.3"/>
+  <circle cx="398" cy="190" r="20" fill="#14B8A6" opacity="0.16"/>
+  <rect x="378" y="178" width="6" height="24" rx="3" fill="#14B8A6" opacity="0.5"/>
+  <path d="M372 206 h32 v4 a2 2 0 0 1 -2 2 h-28 a2 2 0 0 1 -2 -2 z" fill="#14B8A6" opacity="0.5"/>
+  <circle cx="398" cy="172" r="5" fill="#FDE68A"/>
+  <rect x="460" y="150" width="120" height="86" rx="10" fill="#F8FAFC"/>
+  <rect x="484" y="168" width="72" height="46" rx="8" fill="#E2E8F0"/>
+  <rect x="484" y="168" width="72" height="12" rx="6" fill="#94A3B8" opacity="0.5"/>
+  <rect x="490" y="186" width="26" height="9" rx="4.5" fill="#CBD5E1"/>
+  <rect x="520" y="186" width="26" height="9" rx="4.5" fill="#CBD5E1"/>
+  <rect x="490" y="200" width="56" height="9" rx="4.5" fill="#E2E8F0"/>
+  <path d="M60 316 h220 l-14 -60 h-192 z" fill="#14B8A6" opacity="0.85"/>
+  <path d="M60 316 h220 l-14 -60 h-192 z" fill="#0F2137" opacity="0.15"/>
+  <path d="M40 278 h72 l-6 -26 h-60 z" fill="#0B3B56" opacity="0.7"/>
+  <rect x="150" y="306" width="150" height="10" rx="5" fill="#0B3B56" opacity="0.25"/>
+</svg>

@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { S, font } from './shared';
+import { Icon } from './icons';
 
 export function BrowserFrame({ url = 'https://demo.we2tech.pro', children, height, brand }) {
   return (
@@ -31,8 +32,12 @@ export function BrowserFrame({ url = 'https://demo.we2tech.pro', children, heigh
           <Box sx={{ width: 12, height: 12, borderRadius: '50%', backgroundColor: '#28C840' }} />
         </Box>
         <Box sx={{ display: ['none', null, 'flex'], gap: 1, fontSize: 0, color: S.muted, fontFamily: font, fontWeight: 600 }}>
-          <Text sx={{ px: 2, py: '2px', borderRadius: 6, backgroundColor: '#fff', border: '1px solid #DCE3ED' }}>&#8635;</Text>
-          <Text sx={{ px: 2, py: '2px', borderRadius: 6, backgroundColor: '#fff', border: '1px solid #DCE3ED' }}>&#8594;</Text>
+          <Box sx={{ px: 2, py: '3px', borderRadius: 6, backgroundColor: '#fff', border: '1px solid #DCE3ED', display: 'flex', alignItems: 'center' }}>
+            <Icon name="refresh" size={12} />
+          </Box>
+          <Box sx={{ px: 2, py: '3px', borderRadius: 6, backgroundColor: '#fff', border: '1px solid #DCE3ED', display: 'flex', alignItems: 'center' }}>
+            <Icon name="arrowRight" size={12} />
+          </Box>
         </Box>
         <Box
           sx={{
@@ -53,13 +58,14 @@ export function BrowserFrame({ url = 'https://demo.we2tech.pro', children, heigh
             fontFamily: font,
             boxShadow: 'inset 0 1px 2px rgba(15,33,55,0.04)',
           }}>
-          <Text sx={{ color: S.green, fontSize: 0, display: 'inline-flex' }}>&#128274;</Text>
+          <Text sx={{ color: S.green, display: 'inline-flex', alignItems: 'center' }}><Icon name="lock" size={12} /></Text>
           <Text sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{url}</Text>
         </Box>
       </Box>
       <Box
         sx={{
           backgroundColor: '#F1F4F9',
+          containerType: 'inline-size',
           ...(height ? { height, overflow: 'auto' } : {}),
         }}>
         {children}
@@ -101,9 +107,16 @@ export function PhoneFrame({ children, title, height = 500, tint = S.ink, scene 
           <Box sx={{ width: 60, height: 16, borderRadius: 99, backgroundColor: 'rgba(255,255,255,0.18)', position: 'relative' }}>
             <Box sx={{ position: 'absolute', left: 2, top: 3, width: 34, height: 10, borderRadius: 99, backgroundColor: '#fff' }} />
           </Box>
-          <Box sx={{ display: 'flex', gap: '3px', fontSize: 0 }}>
-            <Text>&#9679;</Text>
-            <Text>&#9741;</Text>
+          <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center', fontSize: 0, color: 'rgba(255,255,255,0.85)' }}>
+            <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: '1.5px' }}>
+              <Box sx={{ width: 2.5, height: 5, borderRadius: 1, backgroundColor: 'currentColor' }} />
+              <Box sx={{ width: 2.5, height: 8, borderRadius: 1, backgroundColor: 'currentColor' }} />
+              <Box sx={{ width: 2.5, height: 11, borderRadius: 1, backgroundColor: 'currentColor' }} />
+            </Box>
+            <Icon name="wifi" size={11} />
+            <Box sx={{ width: 15, height: 8, borderRadius: 2, border: '1.5px solid currentColor', position: 'relative' }}>
+              <Box sx={{ position: 'absolute', right: 1, top: 1, bottom: 1, left: 1, backgroundColor: 'currentColor' }} />
+            </Box>
           </Box>
         </Box>
         <Box
@@ -128,12 +141,12 @@ export function PhoneFrame({ children, title, height = 500, tint = S.ink, scene 
             borderColor: S.line,
           }}>
           <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, color: S.ink }}>{title}</Text>
-          <Box sx={{ display: 'flex', gap: 1, color: S.slate, fontSize: 1 }}>
-            <Box>&#9990;</Box>
-            <Box>&#9788;</Box>
+          <Box sx={{ display: 'flex', gap: '12px', alignItems: 'center', color: S.slate }}>
+            <Box sx={{ display: 'flex' }}><Icon name="phone" size={16} /></Box>
+            <Box sx={{ display: 'flex' }}><Icon name="bell" size={16} /></Box>
           </Box>
         </Box>
-        <Box sx={{ height: `calc(100% - 40px - 24px - 43px)`, overflow: 'auto' }}>{children}</Box>
+        <Box sx={{ height: `calc(100% - 40px - 24px - 43px)`, overflow: 'auto', containerType: 'inline-size' }}>{children}</Box>
       </Box>
     </Box>
   );

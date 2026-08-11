@@ -2,6 +2,7 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { S, font, Card, Btn, Badge, Stepper, SectionLabel } from './shared';
+import { Icon } from './icons';
 import { AppBar } from './chrome';
 import { hashId } from './layouts';
 
@@ -9,10 +10,10 @@ const SLOTS = ['09:00', '10:30', '12:00', '14:30', '16:00', '18:30', '20:00'];
 const BOOKED = [1, 4, 6];
 
 const SERVICE_META = [
-  { icon: '\u{1F6AA}', price: 'HK$480', dur: '45 min' },
-  { icon: '\u{1F4E6}', price: 'HK$780', dur: '1.5 hr' },
-  { icon: '\u{1F3E2}', price: 'HK$1,280', dur: '2 hr' },
-  { icon: '\u{1F698}', price: 'HK$1,680', dur: '3 hr' },
+  { icon: 'door', price: 'HK$480', dur: '45 min' },
+  { icon: 'box', price: 'HK$780', dur: '1.5 hr' },
+  { icon: 'building', price: 'HK$1,280', dur: '2 hr' },
+  { icon: 'car', price: 'HK$1,680', dur: '3 hr' },
 ];
 
 export function days(locale) {
@@ -58,12 +59,15 @@ export default function BookingDemo({ t, locale, item }) {
         active={done ? 2 : slot ? 1 : day ? 1 : 0}
         right={
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Badge tone="green" dot>&#9679; {d.booked} 12 {d.today}</Badge>
+            <Badge tone="green" dot>{d.booked} 12 {d.today}</Badge>
           </Box>
         }
       />
 
       <Box sx={{ p: [4, null, 5] }}>
+        <Box sx={{ maxWidth: 640, mx: 'auto', mb: 4, borderRadius: 14, overflow: 'hidden', boxShadow: '0 10px 24px rgba(15,33,55,0.12)' }}>
+          <img src="/images/demo/venue.svg" alt="" style={{ width: '100%', height: 150, objectFit: 'cover', display: 'block' }} />
+        </Box>
         <Box sx={{ maxWidth: 640, mx: 'auto', mb: 4 }}>
           <Stepper steps={[d.stepService, d.stepDateTime, d.confirm]} active={done ? 3 : slot ? 2 : day ? 1 : 0} />
         </Box>
@@ -84,7 +88,7 @@ export default function BookingDemo({ t, locale, item }) {
                 fontSize: 5,
                 boxShadow: 'inset 0 0 0 1px rgba(31,169,113,0.3)',
               }}>
-              &#10003;
+              <Icon name="check" size={34} />
             </Box>
             <Text sx={{ display: 'block', mt: 3, fontSize: 3, fontWeight: 700, color: S.ink, fontFamily: font }}>
               {d.confirmed}
@@ -97,11 +101,11 @@ export default function BookingDemo({ t, locale, item }) {
               <Text sx={{ fontSize: 2, fontWeight: 700, color: S.tealDark, fontFamily: 'Menlo, monospace', letterSpacing: '1px' }}>{refCode}</Text>
             </Box>
             <Btn tone="ghost" sx={{ mt: 4, width: '100%' }} onClick={() => { setDone(false); setSlot(null); setDay(0); }}>
-              &#8592; {d.stepService}
+              <Icon name="arrowLeft" size={15} /> {d.stepService}
             </Btn>
           </Card>
         ) : (
-          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.25fr 1fr'], gap: 4 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.25fr 1fr'], gap: 4, '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
             <Card sx={{ p: 4 }}>
               <SectionLabel>{d.selectService}</SectionLabel>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -133,10 +137,9 @@ export default function BookingDemo({ t, locale, item }) {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: 2,
                         flexShrink: 0,
                       }}>
-                      {meta[i].icon}
+                      <Icon name={meta[i].icon} size={20} />
                     </Box>
                     <Box sx={{ flex: 1, minWidth: 0 }}>
                       <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{s}</Text>
@@ -146,7 +149,9 @@ export default function BookingDemo({ t, locale, item }) {
                       {meta[i].price}
                     </Text>
                     {service === i && (
-                      <Box sx={{ width: 20, height: 20, borderRadius: '50%', backgroundColor: S.teal, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 0 }}>&#10003;</Box>
+                      <Box sx={{ width: 20, height: 20, borderRadius: '50%', backgroundColor: S.teal, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Icon name="check" size={12} />
+                      </Box>
                     )}
                   </Box>
                 ))}
@@ -186,7 +191,7 @@ export default function BookingDemo({ t, locale, item }) {
 
             <Card sx={{ p: 4, display: 'flex', flexDirection: 'column' }}>
               <SectionLabel>{d.selectTime}</SectionLabel>
-              <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, mb: 4 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, mb: 4, '@container (max-width: 460px)': { gridTemplateColumns: '1fr' } }}>
                 {slots.map((s, i) => {
                   const taken = booked.includes(i);
                   const selected = slot === s;
@@ -213,7 +218,7 @@ export default function BookingDemo({ t, locale, item }) {
                       }}>
                       {s}
                       {taken && (
-                        <Text as="span" sx={{ ml: 1, fontSize: 0, fontWeight: 600 }}>&#9679;</Text>
+                        <Box as="span" sx={{ ml: 1, width: 6, height: 6, borderRadius: '50%', backgroundColor: S.faint, display: 'inline-block' }} />
                       )}
                     </Box>
                   );
@@ -240,7 +245,7 @@ export default function BookingDemo({ t, locale, item }) {
                     <Text sx={{ fontWeight: 700, color: S.tealDark, fontSize: 2 }}>{metaNow.price}</Text>
                   </Box>
                 </Box>
-                <Btn tone="primary" sx={{ width: '100%' }} disabled={!slot} onClick={() => setDone(true)}>
+                <Btn tone="primary" sx={{ width: '100%', mt: 1 }} disabled={!slot} onClick={() => setDone(true)}>
                   {d.confirm} {slot && `\u00B7 ${metaNow.price}`}
                 </Btn>
               </Box>

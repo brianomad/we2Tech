@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Almond butter jar">
+  <defs>
+    <linearGradient id="bglass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FDE7CE"/>
+      <stop offset="0.5" stop-color="#F3B375"/>
+      <stop offset="1" stop-color="#D98A4A"/>
+    </linearGradient>
+    <linearGradient id="blid" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7A4A21"/>
+      <stop offset="1" stop-color="#4E2E12"/>
+    </linearGradient>
+  </defs>
+  <rect x="60" y="46" width="80" height="34" rx="8" fill="url(#blid)"/>
+  <rect x="52" y="72" width="96" height="10" rx="5" fill="#4E2E12"/>
+  <path d="M62 80 L58 170 a18 18 0 0 0 18 18 h48 a18 18 0 0 0 18 -18 L138 80 Z" fill="url(#bglass)"/>
+  <path d="M70 84 L66 170 a14 14 0 0 0 14 14 h4 a18 18 0 0 0 18 -18 l-2 -82 z" fill="#F3B375" opacity="0.5"/>
+  <rect x="64" y="108" width="72" height="52" rx="10" fill="#FDF6EC"/>
+  <rect x="64" y="108" width="72" height="52" rx="10" fill="none" stroke="#C9A26B" stroke-width="2"/>
+  <rect x="80" y="122" width="40" height="10" rx="5" fill="#C9A26B"/>
+  <rect x="80" y="140" width="28" height="8" rx="4" fill="#E4CEB2"/>
+</svg>

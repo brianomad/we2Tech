@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { S, font, Avatar } from './shared';
+import { Icon } from './icons';
 import { LiveDot } from './anim';
 
 export function AppBar({ brand, sub, icon, grad = 'linear-gradient(135deg,#0F2137,#1B2C45)', nav = [], active = -1, onSelect, right, light, height = 'auto' }) {
@@ -72,7 +73,9 @@ export function AppBar({ brand, sub, icon, grad = 'linear-gradient(135deg,#0F213
                 fontFamily: font,
                 color: light ? (active === i ? S.tealDark : S.slate) : active === i ? '#fff' : 'rgba(255,255,255,0.6)',
                 backgroundColor: light ? (active === i ? 'rgba(0,139,139,0.1)' : 'transparent') : active === i ? 'rgba(255,255,255,0.14)' : 'transparent',
+                transition: 'background-color 0.15s, color 0.15s',
                 '&:hover': { color: light ? S.teal : '#fff' },
+                ':focus-visible': { outline: 'none', boxShadow: `0 0 0 2px ${light ? S.teal : '#fff'}66` },
               }}>
               {n}
             </Box>
@@ -167,8 +170,8 @@ export function StatCard({ icon, bg, color, value, label, delta, up }) {
       </Box>
       <Text sx={{ fontSize: 3, fontWeight: 700, color: S.ink, fontFamily: font, display: 'block', mb: '2px' }}>{value}</Text>
       {delta && (
-        <Text sx={{ fontSize: 0, fontWeight: 700, color: up ? S.green : S.red, fontFamily: font }}>
-          {up ? '\u2191' : '\u2193'} {delta}
+        <Text sx={{ fontSize: 0, fontWeight: 700, color: up ? S.green : S.red, fontFamily: font, display: 'inline-flex', alignItems: 'center', gap: '3px' }}>
+          <Icon name={up ? 'arrowUp' : 'arrowDown'} size={13} /> {delta}
         </Text>
       )}
     </Box>
@@ -194,6 +197,7 @@ export function FilterChip({ label, active, onClick, color = S.teal }) {
         whiteSpace: 'nowrap',
         transition: 'all 0.15s',
         '&:hover': { borderColor: active ? color : '#B9CBDD' },
+        ':focus-visible': { outline: 'none', boxShadow: `0 0 0 2px ${color}55` },
       }}>
       {label}
     </Box>

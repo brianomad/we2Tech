@@ -2,6 +2,7 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
 import { S, font, Card, Badge, Bars, LineChart } from './shared';
+import { Icon } from './icons';
 import { Skeleton, FilterChip } from './chrome';
 
 const RANGES = ['7D', '30D', '90D', 'YTD'];
@@ -38,7 +39,7 @@ const TOP_DEFAULT = [
   { p: 'Ceramic Mug Set', s: '812', r: 'HK$104k', share: 64, color: S.purple },
   { p: 'Canvas Sneakers', s: '701', r: 'HK$321k', share: 48, color: S.pink },
 ];
-const TOP_EMOJIS = ['\u{1F45C}', '\u{1F9F3}', '\u2615', '\u{1F45F}'];
+const TOP_ICONS = ['bag', 'package', 'coffee', 'shoppingCart'];
 const TOP_COLORS = [S.teal, S.blue, S.purple, S.pink];
 
 import { brandFor } from './demo-meta';
@@ -60,11 +61,12 @@ export default function DataAnalyticsDemo({ t, locale, item }) {
     return () => clearInterval(iv);
   }, []);
 
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const months = Array.from({ length: 12 }, (_, i) =>
+    new Intl.DateTimeFormat(locale === 'zh' ? 'zh-HK' : locale === 'zh-cn' ? 'zh-CN' : 'en-GB', { month: 'short' }).format(new Date(2026, i, 1))
+  );
   const revenue = [42, 58, 51, 72, 66, 89, 84, 103, 96, 118, 112, 134];
   const orders = [820, 960, 1100, 1240, 1380, 1520];
   const kpis = RANGE_DATA[range];
-  const liveRevenue = RANGE_DATA[range][0].value.replace(/HK\$|k|M/g, '') + (tick % 3 === 0 ? '' : '');
   const topRows = (d.topProductsList || TOP_DEFAULT).map((row, i) => ({ ...row, color: row.color || TOP_COLORS[i % TOP_COLORS.length] }));
 
   return (
@@ -72,7 +74,9 @@ export default function DataAnalyticsDemo({ t, locale, item }) {
       <Box sx={{ position: 'relative', flex: 1 }}>
         <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0F172A,#334155)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 2 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#F97316)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128200;</Box>
+            <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#F97316)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name="barChart" size={17} />
+            </Box>
             <Box>
               <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>{brandFor(item, 'Insightly')}</Text>
               <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>{d.subtitle}</Text>
@@ -96,7 +100,7 @@ export default function DataAnalyticsDemo({ t, locale, item }) {
           </Box>
 
           {loading ? (
-            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4, '@container (max-width: 640px)': { gridTemplateColumns: '1fr 1fr' } }}>
               {[0, 1, 2, 3].map((i) => (
                 <Card key={i} sx={{ p: 3 }}>
                   <Skeleton w="50%" h={9} />
@@ -106,7 +110,7 @@ export default function DataAnalyticsDemo({ t, locale, item }) {
               ))}
             </Box>
           ) : (
-            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4, '@container (max-width: 640px)': { gridTemplateColumns: '1fr 1fr' } }}>
               {kpis.map((s) => (
                 <Card key={s.label} sx={{ p: 3, overflow: 'hidden', '&:hover': { transform: 'translateY(-2px)' }, transition: 'transform 0.15s' }}>
                   <Text sx={{ fontSize: 0, fontWeight: 700, color: S.muted, fontFamily: font }}>{d[s.label.toLowerCase()] || s.label}</Text>
@@ -124,11 +128,11 @@ export default function DataAnalyticsDemo({ t, locale, item }) {
             </Box>
           )}
 
-          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.2fr 1fr'], gap: 4, mb: 4 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.2fr 1fr'], gap: 4, mb: 4, '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
             <Card sx={{ p: 4 }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                 <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{d.monthlyRevenue}</Text>
-                <Badge tone="teal" dot={false}>HK$ 000</Badge>
+                <Badge tone="teal" dot={false}>{months[revenue.length - 1]} · {revenue[revenue.length - 1]}k</Badge>
               </Box>
               <Bars data={revenue} height={140} labels={months} color="#14B8A6" />
             </Card>
@@ -145,7 +149,7 @@ export default function DataAnalyticsDemo({ t, locale, item }) {
             </Card>
           </Box>
 
-          <Card sx={{ overflow: 'hidden' }}>
+          <Card sx={{ overflowX: 'auto' }}>
             <Box sx={{ px: 4, py: 3, borderBottom: '1px solid', borderColor: S.line, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{d.topProducts}</Text>
               <Badge tone="purple" dot={false}>{range} range</Badge>
@@ -158,7 +162,9 @@ export default function DataAnalyticsDemo({ t, locale, item }) {
             </Box>            {topRows.map((row, i) => (
               <Box key={row.p} sx={{ display: 'grid', gridTemplateColumns: '1.8fr 0.6fr 0.8fr 1.2fr', gap: 2, alignItems: 'center', px: 4, py: 2.5, borderTop: '1px solid', borderColor: S.line, fontSize: 1, fontFamily: font, '&:hover': { backgroundColor: '#FAFBFF' } }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Box sx={{ width: 26, height: 26, borderRadius: 8, backgroundColor: `${row.color}1f`, color: row.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>{TOP_EMOJIS[i % TOP_EMOJIS.length]}</Box>
+                  <Box sx={{ width: 26, height: 26, borderRadius: 8, backgroundColor: `${row.color}1f`, color: row.color, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Icon name={TOP_ICONS[i % TOP_ICONS.length]} size={15} />
+                  </Box>
                   <Text sx={{ fontWeight: 600, color: S.ink }}>{row.p}</Text>
                 </Box>
                 <Text sx={{ textAlign: 'right', color: S.slate }}>{row.s}</Text>

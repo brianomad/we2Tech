@@ -2,16 +2,17 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
 import { S, font, Card, Badge, LineChart, StatusDot, Avatar, SectionLabel } from './shared';
+import { Icon } from './icons';
 import { LiveDot, Toast, fadeUp, barGrow } from './anim';
 import { Skeleton, LoadingRows } from './chrome';
 import CountUp from '../count-up';
 
 const NAV = [
-  { icon: '\u{1F4C8}', label: 'Overview' },
-  { icon: '\u{1F465}', label: 'Users' },
-  { icon: '\u2699', label: 'Services' },
-  { icon: '\u{1F4B3}', label: 'Billing' },
-  { icon: '\u{1F6E0}', label: 'Settings' },
+  { icon: 'barChart', label: 'Overview' },
+  { icon: 'users', label: 'Users' },
+  { icon: 'gear', label: 'Services' },
+  { icon: 'card', label: 'Billing' },
+  { icon: 'wrench', label: 'Settings' },
 ];
 
 const BASE_REQ = [12, 19, 15, 24, 22, 30, 28, 36, 33, 41, 46, 44];
@@ -79,7 +80,7 @@ export default function CloudSystemDemo({ t, locale, item }) {
                 boxShadow: '0 6px 14px rgba(59,130,246,0.45)',
                 flexShrink: 0,
               }}>
-              &#9729;
+              <Icon name="cloud" size={18} />
             </Box>
             <Box sx={{ display: ['none', null, 'block'] }}>
               <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>{brandFor(item, 'CloudOS')}</Text>
@@ -114,7 +115,9 @@ export default function CloudSystemDemo({ t, locale, item }) {
                   transition: 'background-color 0.2s, color 0.2s',
                   '&:hover': { backgroundColor: tab === i ? 'rgba(59,130,246,0.22)' : 'rgba(255,255,255,0.07)' },
                 }}>
-                <Box sx={{ fontSize: 1, width: 22, textAlign: 'center', flexShrink: 0 }}>{n.icon}</Box>
+                <Box sx={{ width: 22, textAlign: 'center', flexShrink: 0, display: 'flex', justifyContent: 'center' }}>
+                  <Icon name={n.icon} size={18} />
+                </Box>
                 <Text sx={{ display: ['none', null, 'inline'] }}>{nav[i]}</Text>
                 {tab === i && (
                   <Box
@@ -134,7 +137,9 @@ export default function CloudSystemDemo({ t, locale, item }) {
           </Box>
 
           <Box sx={{ mt: 4, mx: [2, 4], p: 3, borderRadius: 12, background: 'linear-gradient(135deg,rgba(139,92,246,0.25),rgba(59,130,246,0.12))', border: '1px solid rgba(139,92,246,0.35)', display: ['none', null, 'block'] }}>
-            <Text sx={{ fontSize: 1, fontWeight: 700, fontFamily: font }}>&#9889; {d.enterprise}</Text>
+            <Text sx={{ fontSize: 1, fontWeight: 700, fontFamily: font, display: 'inline-flex', alignItems: 'center', gap: 1 }}>
+              <Icon name="bolt" size={16} /> {d.enterprise}
+            </Text>
             <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font, mt: '2px', mb: 2 }}>
               {d.enterpriseNote}
             </Text>
@@ -149,7 +154,9 @@ export default function CloudSystemDemo({ t, locale, item }) {
               <Text sx={{ fontSize: 0, fontWeight: 700, fontFamily: font, lineHeight: 1.3 }}>K. Wong</Text>
               <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.5)', fontFamily: font }}>{d.admin}</Text>
             </Box>
-            <Box sx={{ ml: 'auto', color: 'rgba(255,255,255,0.5)', fontSize: 1 }}>&#8942;</Box>
+            <Box sx={{ ml: 'auto', color: 'rgba(255,255,255,0.5)', display: 'flex' }}>
+              <Icon name="moreVertical" size={18} />
+            </Box>
           </Box>
         </Box>
 
@@ -164,10 +171,10 @@ export default function CloudSystemDemo({ t, locale, item }) {
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Box sx={{ display: ['none', null, 'flex'], alignItems: 'center', gap: 2, px: 3, py: 2, borderRadius: 10, backgroundColor: '#fff', border: '1px solid', borderColor: S.line, color: S.muted, fontSize: 0, fontFamily: font }}>
-                &#128269; {d.search}
+                <Icon name="search" size={15} /> {d.search}
               </Box>
-              <Box sx={{ width: 36, height: 36, borderRadius: 10, backgroundColor: '#fff', border: '1px solid', borderColor: S.line, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1, position: 'relative' }}>
-                &#128276;
+              <Box sx={{ width: 36, height: 36, borderRadius: 10, backgroundColor: '#fff', border: '1px solid', borderColor: S.line, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                <Icon name="bell" size={17} />
                 <LiveDot color={S.red} size={6} ping={false} />
               </Box>
               <Avatar label="K" color={S.blue} size={36} />
@@ -176,7 +183,7 @@ export default function CloudSystemDemo({ t, locale, item }) {
 
           {loading && (
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, '@container (max-width: 640px)': { gridTemplateColumns: '1fr 1fr' } }}>
                 {[0, 1, 2, 3].map((i) => (
                   <Card key={i} sx={{ p: 3 }}>
                     <Skeleton w={34} h={34} r={10} />
@@ -197,15 +204,15 @@ export default function CloudSystemDemo({ t, locale, item }) {
             <>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3, flexWrap: 'wrap', gap: 2 }}>
                 <SectionLabel sx={{ mb: 0 }}>{d.allOperational}</SectionLabel>
-                <Badge tone="green" dot>&#9679; {d.allOperational}</Badge>
+                <Badge tone="green" dot>{d.allOperational}</Badge>
               </Box>
 
-              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4, '@container (max-width: 640px)': { gridTemplateColumns: '1fr 1fr' } }}>
                 {[
-                  { label: d.uptime, end: 99.98, decimals: 2, suffix: '%', delta: '+0.2%', color: S.green, icon: '\u{1F4C8}', bg: 'rgba(31,169,113,0.12)' },
-                  { label: d.activeUsers, end: 12480, decimals: 0, suffix: '', delta: '+8.4%', color: S.blue, icon: '\u{1F465}', bg: 'rgba(59,130,246,0.12)' },
-                  { label: d.requests, end: 86.2, decimals: 1, suffix: 'k', delta: '+3.1%', color: S.purple, icon: '\u2699', bg: 'rgba(139,92,246,0.12)' },
-                  { label: d.incidents, end: 1, decimals: 0, suffix: '', delta: '\u22122', color: S.amber, icon: '\u{1F6A8}', bg: 'rgba(245,166,35,0.16)' },
+                  { label: d.uptime, end: 99.98, decimals: 2, suffix: '%', delta: '+0.2%', color: S.green, icon: 'barChart', bg: 'rgba(31,169,113,0.12)' },
+                  { label: d.activeUsers, end: 12480, decimals: 0, suffix: '', delta: '+8.4%', color: S.blue, icon: 'users', bg: 'rgba(59,130,246,0.12)' },
+                  { label: d.requests, end: 86.2, decimals: 1, suffix: 'k', delta: '+3.1%', color: S.purple, icon: 'activity', bg: 'rgba(139,92,246,0.12)' },
+                  { label: d.incidents, end: 1, decimals: 0, suffix: '', delta: '\u22122', color: S.amber, icon: 'bell', bg: 'rgba(245,166,35,0.16)' },
                 ].map((s, i) => (
                   <Card
                     key={s.label}
@@ -217,7 +224,9 @@ export default function CloudSystemDemo({ t, locale, item }) {
                       transition: 'transform 0.15s',
                     }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-                      <Box sx={{ width: 34, height: 34, borderRadius: 10, backgroundColor: s.bg, color: s.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2 }}>{s.icon}</Box>
+                      <Box sx={{ width: 34, height: 34, borderRadius: 10, backgroundColor: s.bg, color: s.color, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Icon name={s.icon} size={18} />
+                      </Box>
                       <Badge tone={s.delta.startsWith('+') ? 'green' : 'amber'} dot={false}>{s.delta}</Badge>
                     </Box>
                     <Text sx={{ fontSize: [2, null, 3], fontWeight: 700, color: S.ink, fontFamily: font, mb: '2px', display: 'block' }}>
@@ -228,16 +237,16 @@ export default function CloudSystemDemo({ t, locale, item }) {
                 ))}
               </Box>
 
-              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.7fr 1fr'], gap: 4, mb: 4 }}>
+              <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.7fr 1fr'], gap: 4, mb: 4, '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
                 <Card sx={{ p: 4 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                     <Box>
                       <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{d.requests}</Text>
                       <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.last24h}</Text>
                     </Box>
-                    <Box sx={{ display: 'flex', gap: 2 }}>
-                      <Badge tone="blue" dot={false}>&#9679; {d.requestsBadge}</Badge>
-                      <Badge tone="red" dot={false}>&#9679; {d.errorsBadge}</Badge>
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                      <Badge tone="blue" dot={false}><StatusDot color="#3B82F6" /> {d.requestsBadge}</Badge>
+                      <Badge tone="red" dot={false}><StatusDot color={S.red} /> {d.errorsBadge}</Badge>
                     </Box>
                   </Box>
                   <LineChart values={req} height={150} color="#3B82F6" />
@@ -297,10 +306,15 @@ export default function CloudSystemDemo({ t, locale, item }) {
             </>
           )}
           {tab !== 0 && (
-            <Card sx={{ p: 6, textAlign: 'center', color: S.muted }}>
-              <Box sx={{ fontSize: 5, mb: 2, opacity: 0.5 }}>{NAV[tab].icon}</Box>
-              <Text sx={{ fontSize: 1, fontWeight: 600, fontFamily: font }}>{nav[tab]}</Text>
-            </Card>
+            <Box sx={{ py: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, color: S.muted }}>
+              <Box sx={{ width: 64, height: 64, borderRadius: '50%', backgroundColor: '#EDF1F7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name={NAV[tab].icon} size={28} />
+              </Box>
+              <Box sx={{ textAlign: 'center' }}>
+                <Text sx={{ fontSize: 1, fontWeight: 700, color: S.ink, fontFamily: font }}>{nav[tab]}</Text>
+                <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mt: '2px' }}>{d.allOperational}</Text>
+              </Box>
+            </Box>
           )}
         </Box>
         {tab === 0 && (

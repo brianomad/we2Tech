@@ -3,6 +3,7 @@ import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { BrowserFrame, PhoneFrame } from './frames';
 import { S, font } from './shared';
+import { Icon } from './icons';
 import { demoUrlFor, brandFor } from './demo-meta';
 import { demoRegistry } from './registry';
 import { hashId, TAG_ICONS, LAYOUTS, layoutFor } from './layouts';
@@ -20,7 +21,7 @@ export default function CaseApp({ item, locale, t, tagNames = {} }) {
   const isMobile = tags.includes('Mobile App');
   const [active, setActive] = useState(0);
   const Module = demoRegistry[modules[active].tag] || (() => null);
-  const render = () => <Module t={t} locale={locale} item={item} />;
+  const render = () => <Module t={t} locale={locale} item={item} tint={tint} />;
 
   if (isMobile) {
     return (
@@ -28,14 +29,15 @@ export default function CaseApp({ item, locale, t, tagNames = {} }) {
         <PhoneFrame title={brand} tint={tint} height={520}>
           <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
             <Box sx={{ flex: 1, overflow: 'auto', position: 'relative', backgroundColor: S.bg }}>
-              <Module t={t} locale={locale} item={item} />
+              <Module t={t} locale={locale} item={item} tint={tint} />
             </Box>
             <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'space-around',
-                px: 1,
-                py: '8px',
+                px: 2.5,
+                py: '10px',
+                gap: 1,
                 backgroundColor: '#fff',
                 borderTop: '1px solid',
                 borderColor: S.line,
@@ -44,29 +46,37 @@ export default function CaseApp({ item, locale, t, tagNames = {} }) {
               {modules.map((m, i) => (
                 <Box
                   key={m.tag}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={m.label}
                   onClick={() => setActive(i)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(i); } }}
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: '2px',
+                    justifyContent: 'center',
+                    gap: '3px',
+                    minHeight: 54,
                     fontSize: 0,
                     fontWeight: 700,
                     color: active === i ? tint : S.muted,
                     fontFamily: font,
                     cursor: 'pointer',
-                    px: 1,
+                    px: 1.5,
                     minWidth: 0,
                     maxWidth: 76,
                     textAlign: 'center',
+                    borderRadius: 10,
+                    ':focus-visible': { outline: 'none', boxShadow: `0 0 0 2px ${tint}88` },
                   }}>
-                  <Box sx={{ fontSize: 1, opacity: active === i ? 1 : 0.6, lineHeight: 1 }}>
-                    {TAG_ICONS[m.tag] || '\u2022'}
+                  <Box sx={{ lineHeight: 1, opacity: active === i ? 1 : 0.6 }}>
+                    <Icon name={TAG_ICONS[m.tag] || 'box'} size={18} />
                   </Box>
                   <Text sx={{ fontSize: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>
                     {m.label}
                   </Text>
-                  {active === i && <Box sx={{ width: 14, height: 3, borderRadius: 99, backgroundColor: tint, mt: '2px' }} />}
+                  {active === i && <Box sx={{ width: 14, height: 3, borderRadius: 99, backgroundColor: tint, mt: '1px' }} />}
                 </Box>
               ))}
             </Box>

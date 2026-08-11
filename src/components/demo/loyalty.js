@@ -2,13 +2,14 @@
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
 import { S, font, Card, Btn, Badge, Progress, Avatar, SectionLabel } from './shared';
+import { Icon } from './icons';
 import { AppBar } from './chrome';
 import { Toast } from './anim';
 
 const REWARD_META = [
-  { icon: '\u2615', grad: 'linear-gradient(135deg,#B45309,#92400E)' },
-  { icon: '\u{1F381}', grad: 'linear-gradient(135deg,#7C3AED,#6D28D9)' },
-  { icon: '\u{1F382}', grad: 'linear-gradient(135deg,#EC4899,#DB2777)' },
+  { icon: 'coffee', grad: 'linear-gradient(135deg,#B45309,#92400E)', img: 'latte' },
+  { icon: 'gift', grad: 'linear-gradient(135deg,#7C3AED,#6D28D9)', img: 'tote' },
+  { icon: 'cake', grad: 'linear-gradient(135deg,#EC4899,#DB2777)', img: 'mugset' },
 ];
 
 import { brandFor } from './demo-meta';
@@ -37,7 +38,7 @@ export default function LoyaltyDemo({ t, locale, item }) {
   const earn = () => {
     const gain = 25 + Math.round(Math.random() * 30);
     setPoints((p) => p + gain);
-    setHistory((h) => [[`Purchase \u00B7 Coffee + pastry`, `+${gain}`, 'earned', 'Just now'], ...h]);
+    setHistory((h) => [[d.earnLabel, `+${gain}`, 'earned', 'Just now'], ...h]);
     setJustEarned(true);
     setTimeout(() => setJustEarned(false), 2600);
   };
@@ -58,7 +59,7 @@ export default function LoyaltyDemo({ t, locale, item }) {
               </Text>
               <Text sx={{ fontSize: 5, fontWeight: 700, color: '#fff', fontFamily: font, mt: '2px' }}>{points.toLocaleString()}</Text>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 1 }}>
-                <Badge tone="amber" dot={false}>&#9733; {d.goldMember}</Badge>
+                <Badge tone="amber" dot={false}><Icon name="star" size={11} /> {d.goldMember}</Badge>
                 <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.75)', fontFamily: font }}>
                   {d.nextReward}: {Math.max(0, NEXT - points)}
                 </Text>
@@ -74,13 +75,13 @@ export default function LoyaltyDemo({ t, locale, item }) {
                 tone="white"
                 sx={{ mt: 3, width: '100%', py: '8px', fontSize: 0, backgroundColor: '#FDE047', color: '#7C2D12', boxShadow: '0 8px 18px rgba(0,0,0,0.25)' }}
                 onClick={earn}>
-                &#128722; {d.simulateEarn}
+                <Icon name="shoppingCart" size={16} /> {d.simulateEarn}
               </Btn>
             </Box>
           </Box>
         </Card>
 
-        <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.3fr 1fr'], gap: 4 }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr', null, '1.3fr 1fr'], gap: 4, '@container (max-width: 700px)': { gridTemplateColumns: '1fr' } }}>
           <Box>
             <SectionLabel>{d.rewardsTitle}</SectionLabel>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -90,8 +91,8 @@ export default function LoyaltyDemo({ t, locale, item }) {
                 const canAfford = points >= cost;
                 return (
                   <Card key={r.name} sx={{ p: 3, display: 'flex', alignItems: 'center', gap: 3, opacity: redeemed[i] ? 0.75 : 1, '&:hover': { boxShadow: '0 10px 26px rgba(15,33,55,0.1)' }, transition: 'all 0.15s' }}>
-                    <Box sx={{ width: 48, height: 48, borderRadius: 13, background: meta.grad, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2, flexShrink: 0, boxShadow: '0 6px 14px rgba(0,0,0,0.2)' }}>
-                      {meta.icon}
+                    <Box sx={{ width: 48, height: 48, borderRadius: 13, background: meta.grad, overflow: 'hidden', flexShrink: 0, boxShadow: '0 6px 14px rgba(0,0,0,0.2)' }}>
+                      <img src={`/images/products/${meta.img}.jpg`} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                     </Box>
                     <Box sx={{ flex: 1 }}>
                       <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{r.name}</Text>
@@ -106,7 +107,7 @@ export default function LoyaltyDemo({ t, locale, item }) {
                         sx={{ mt: 1, px: 3, py: '6px', fontSize: 0, whiteSpace: 'nowrap' }}
                         disabled={redeemed[i] || !canAfford}
                         onClick={() => redeem(i)}>
-                        {redeemed[i] ? '\u2713' : d.redeem}
+                        {redeemed[i] ? <Icon name="check" size={14} /> : d.redeem}
                       </Btn>
                     </Box>
                   </Card>
@@ -119,8 +120,8 @@ export default function LoyaltyDemo({ t, locale, item }) {
             <Card sx={{ p: 4 }}>
               <SectionLabel>{d.earnMore}</SectionLabel>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-                <Box sx={{ width: 56, height: 56, borderRadius: 14, backgroundColor: '#FFF7E6', border: '1px solid', borderColor: '#FBE3B8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2, flexShrink: 0 }}>
-                  &#128247;
+                <Box sx={{ width: 56, height: 56, borderRadius: 14, backgroundColor: '#FFF7E6', border: '1px solid', borderColor: '#FBE3B8', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <Icon name="camera" size={26} />
                 </Box>
                 <Box sx={{ flex: 1 }}>
                   <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{d.qrCode}</Text>
@@ -147,7 +148,7 @@ export default function LoyaltyDemo({ t, locale, item }) {
               </Box>
             </Card>
             <Box sx={{ p: 3, borderRadius: 12, backgroundColor: '#FFF7E6', border: '1px dashed', borderColor: '#E2B84C', display: 'flex', alignItems: 'center', gap: 2, fontSize: 0, color: '#92400E', fontFamily: font }}>
-              &#128274; {d.weeklyGoal}: {d.weeklyGoalText}
+              <Icon name="lock" size={13} /> {d.weeklyGoal}: {d.weeklyGoalText}
             </Box>
           </Box>
         </Box>
@@ -155,7 +156,9 @@ export default function LoyaltyDemo({ t, locale, item }) {
         {justEarned && (
           <Box sx={{ position: 'absolute', right: 3, bottom: 16, display: ['none', null, 'block'] }}>
             <Toast tone="light">
-              <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(31,169,113,0.15)', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
+              <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(31,169,113,0.15)', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Icon name="check" size={14} />
+              </Box>
               <Box>
                 <Text sx={{ display: 'block', fontWeight: 700 }}>{d.pointsEarned}</Text>
                 <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{d.pointsAdded}</Text>

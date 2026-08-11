@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, Box, Text, Button } from 'theme-ui';
+import { Icon } from './icons';
 
 export const S = {
   ink: '#0F2137',
@@ -103,7 +104,14 @@ export function TopBar({ brand, sub, right, dark }) {
 
 export function Card({ children, sx, onClick }) {
   return (
-    <Box sx={{ ...card, ...sx }} onClick={onClick}>
+    <Box
+      sx={{
+        ...card,
+        transition: 'transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease',
+        '&:hover': onClick ? { transform: 'translateY(-2px)', boxShadow: '0 14px 36px rgba(15,33,55,0.14)' } : {},
+        ...sx,
+      }}
+      onClick={onClick}>
       {children}
     </Box>
   );
@@ -152,7 +160,7 @@ export function Btn({ tone = 'primary', children, sx, ...props }) {
     justifyContent: 'center',
     gap: 2,
     px: 4,
-    py: '10px',
+    py: '11px',
     borderRadius: 10,
     fontWeight: 700,
     fontSize: 1,
@@ -163,6 +171,7 @@ export function Btn({ tone = 'primary', children, sx, ...props }) {
     '&:active': { transform: 'scale(0.97)' },
     '&:hover': { transform: 'translateY(-1px)' },
     ':disabled': { opacity: 0.5, cursor: 'not-allowed', transform: 'none' },
+    ':focus-visible': { outline: 'none', boxShadow: '0 0 0 3px rgba(0,139,139,0.35)' },
   };
   const tones = {
     primary: {
@@ -184,18 +193,20 @@ export function Btn({ tone = 'primary', children, sx, ...props }) {
   );
 }
 
-export function Field({ label, value, placeholder, onChange, sx, mono }) {
+export function Field({ label, value, placeholder, onChange, sx, mono, type = 'text' }) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px', ...sx }}>
       {label && (
-        <Text sx={{ fontSize: 0, fontWeight: 700, color: S.slate, fontFamily: font }}>{label}</Text>
+        <Text as="label" sx={{ fontSize: 0, fontWeight: 700, color: S.slate, fontFamily: font }}>{label}</Text>
       )}
       <Box
         as="input"
+        type={type}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
         readOnly={!onChange}
+        aria-label={label}
         sx={{
           px: 3,
           py: 2,
@@ -207,6 +218,8 @@ export function Field({ label, value, placeholder, onChange, sx, mono }) {
           fontSize: 1,
           fontFamily: mono ? "'SF Mono', Menlo, monospace" : font,
           outline: 'none',
+          transition: 'border-color 0.15s, box-shadow 0.15s',
+          '&:hover': { borderColor: '#C4D6E8' },
           '&:focus': { borderColor: S.teal, boxShadow: `0 0 0 3px rgba(0,139,139,0.15)` },
         }}
       />
@@ -232,13 +245,12 @@ export function Stat({ label, value, delta, up, color }) {
             alignItems: 'center',
             gap: '4px',
           }}>
-          {up ? '\u2191' : '\u2193'} {delta}
+          {up ? <Icon name="arrowUp" size={13} /> : <Icon name="arrowDown" size={13} />} {delta}
         </Text>
       )}
     </Card>
   );
 }
-
 export function Progress({ pct, color = S.teal, height = 8, sx }) {
   return (
     <Box sx={{ width: '100%', height, borderRadius: 99, backgroundColor: '#E8EEF6', overflow: 'hidden', ...sx }}>
@@ -385,7 +397,7 @@ export function Stepper({ steps, active }) {
                 fontFamily: font,
                 zIndex: 1,
               }}>
-              {done ? '\u2713' : i + 1}
+              {done ? <Icon name="check" size={13} /> : i + 1}
             </Box>
             <Text sx={{ fontSize: 0, fontWeight: current ? 700 : 500, color: current || done ? S.ink : S.muted, textAlign: 'center', fontFamily: font }}>
               {s}
@@ -415,13 +427,13 @@ export function Quantity({ value, onChange, min = 0 }) {
       <Box
         onClick={() => onChange(Math.max(min, value - 1))}
         sx={{ px: 3, py: '7px', color: S.teal, fontWeight: 700, cursor: 'pointer', fontFamily: font, '&:active': { backgroundColor: '#F0F6F6' } }}>
-        {'\u2212'}
+        <Icon name="minus" size={16} />
       </Box>
       <Text sx={{ minWidth: 30, textAlign: 'center', fontWeight: 700, fontSize: 1, fontFamily: font, color: S.ink }}>{value}</Text>
       <Box
         onClick={() => onChange(value + 1)}
-        sx={{ px: 3, py: '7px', color: S.teal, fontWeight: 700, cursor: 'pointer', fontFamily: font, '&:active': { backgroundColor: '#F0F6F6' } }}>
-        +
+        sx={{ px: 3, py: '7px', color: S.teal, fontWeight: 700, cursor: 'pointer', fontFamily: font, display: 'flex', alignItems: 'center', '&:active': { backgroundColor: '#F0F6F6' } }}>
+        <Icon name="plus" size={16} />
       </Box>
     </Box>
   );
@@ -582,8 +594,119 @@ export function Empty({ label, icon }) {
         gap: 2,
         color: S.muted,
       }}>
-      <Box sx={{ fontSize: 4, color: S.faint }}>{icon || '\u2B07'}</Box>
+      <Box sx={{ color: S.faint, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Icon name={icon || 'chevronDown'} size={30} />
+      </Box>
       <Text sx={{ fontSize: 1, fontWeight: 600, fontFamily: font }}>{label}</Text>
+    </Box>
+  );
+}
+
+export function EmptyState({ title, note, icon = 'box', action }) {
+  return (
+    <Box
+      sx={{
+        py: 8,
+        px: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 2,
+        textAlign: 'center',
+      }}>
+      <Box
+        sx={{
+          width: 56,
+          height: 56,
+          borderRadius: '50%',
+          backgroundColor: '#EDF1F7',
+          color: S.muted,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          mb: 1,
+        }}>
+        <Icon name={icon} size={26} />
+      </Box>
+      <Text sx={{ fontSize: 1, fontWeight: 700, color: S.ink, fontFamily: font }}>{title}</Text>
+      {note && <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, maxWidth: 260 }}>{note}</Text>}
+      {action}
+    </Box>
+  );
+}
+
+export function StatusBanner({ tone = 'info', children, sx }) {
+  const tones = {
+    info: { bg: 'rgba(59,130,246,0.08)', color: '#2563EB', border: 'rgba(59,130,246,0.25)', icon: 'activity' },
+    success: { bg: 'rgba(31,169,113,0.08)', color: '#0C7A52', border: 'rgba(31,169,113,0.25)', icon: 'checkCircle' },
+    warning: { bg: 'rgba(245,166,35,0.1)', color: '#9A5B00', border: 'rgba(245,166,35,0.3)', icon: 'bell' },
+    danger: { bg: 'rgba(229,72,77,0.08)', color: '#B3353A', border: 'rgba(229,72,77,0.25)', icon: 'x' },
+  };
+  const t = tones[tone] || tones.info;
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 2,
+        px: 3,
+        py: 2.5,
+        borderRadius: 12,
+        border: '1px solid',
+        borderColor: t.border,
+        backgroundColor: t.bg,
+        color: t.color,
+        fontSize: 0,
+        fontWeight: 700,
+        fontFamily: font,
+        ...sx,
+      }}>
+      <Icon name={t.icon} size={16} />
+      <Box sx={{ flex: 1 }}>{children}</Box>
+    </Box>
+  );
+}
+
+export function SearchField({ value, onChange, placeholder, sx, onClear, 'aria-label': ariaLabel }) {
+  return (
+    <Box sx={{ position: 'relative', ...sx }}>
+      <Box sx={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: S.muted, pointerEvents: 'none' }}>
+        <Icon name="search" size={16} />
+      </Box>
+      <Box
+        as="input"
+        type="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        aria-label={ariaLabel || placeholder}
+        sx={{
+          width: '100%',
+          pl: '38px',
+          pr: value ? 32 : 3,
+          py: 2,
+          borderRadius: 10,
+          border: '1px solid',
+          borderColor: S.line,
+          backgroundColor: '#fff',
+          color: S.ink,
+          fontSize: 1,
+          fontFamily: font,
+          outline: 'none',
+          transition: 'border-color 0.15s, box-shadow 0.15s',
+          '&:hover': { borderColor: '#C4D6E8' },
+          '&:focus': { borderColor: S.teal, boxShadow: `0 0 0 3px rgba(0,139,139,0.15)` },
+          '::placeholder': { color: S.muted },
+        }}
+      />
+      {value && (
+        <Box
+          onClick={() => onClear && onClear()}
+          sx={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)', color: S.muted, cursor: 'pointer', '&:hover': { color: S.slate } }}>
+          <Icon name="x" size={14} />
+        </Box>
+      )}
     </Box>
   );
 }
