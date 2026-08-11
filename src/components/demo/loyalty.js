@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Progress, Avatar, SectionLabel } from './shared';
-import { AppBar, FootBar } from './chrome';
+import { AppBar } from './chrome';
 import { Toast } from './anim';
 
 const REWARD_META = [
@@ -12,17 +11,18 @@ const REWARD_META = [
   { icon: '\u{1F382}', grad: 'linear-gradient(135deg,#EC4899,#DB2777)' },
 ];
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function LoyaltyDemo({ t, item }) {
-  const d = t('caseDemo.loyalty');
-  const rewards = t('caseDemo.loyalty.rewards');
+export default function LoyaltyDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'loyalty');
+  const rewards = d.rewards;
   const [points, setPoints] = useState(340);
   const [redeemed, setRedeemed] = useState({});
   const [history, setHistory] = useState([
-    ['Coffee order', '120', 'earned', '09:14'],
-    ['Birthday bonus', '200', 'earned', 'Yesterday'],
-    ['Redeemed voucher', '300', 'spent', 'Mon'],
+    [d.histCoffee, '120', 'earned', '09:14'],
+    [d.histBirthday, '200', 'earned', 'Yesterday'],
+    [d.histVoucher, '300', 'spent', 'Mon'],
   ]);
   const [justEarned, setJustEarned] = useState(false);
 
@@ -31,7 +31,7 @@ export default function LoyaltyDemo({ t, item }) {
     if (points < cost) return;
     setPoints((p) => p - cost);
     setRedeemed((r) => ({ ...r, [i]: true }));
-    setHistory((h) => [[`Redeemed: ${rewards[i].name}`, `\u2212${cost}`, 'spent', 'Just now'], ...h]);
+    setHistory((h) => [[`${d.redeemed} ${rewards[i].name}`, `\u2212${cost}`, 'spent', 'Just now'], ...h]);
   };
 
   const earn = () => {
@@ -45,7 +45,7 @@ export default function LoyaltyDemo({ t, item }) {
   const NEXT = 500;
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://rewards.demo.we2tech.pro')} height={540} brand={brandFor(item, 'Perks Club')}>
+    <>
       <AppBar brand={brandFor(item, 'Perks Club')} sub={d.title} light nav={[d.title, d.rewardsTitle, d.historyTitle]} active={0} />
 
       <Box sx={{ p: [3, null, 4], position: 'relative', pb: 6 }}>
@@ -58,7 +58,7 @@ export default function LoyaltyDemo({ t, item }) {
               </Text>
               <Text sx={{ fontSize: 5, fontWeight: 700, color: '#fff', fontFamily: font, mt: '2px' }}>{points.toLocaleString()}</Text>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mt: 1 }}>
-                <Badge tone="amber" dot={false}>&#9733; Gold member</Badge>
+                <Badge tone="amber" dot={false}>&#9733; {d.goldMember}</Badge>
                 <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.75)', fontFamily: font }}>
                   {d.nextReward}: {Math.max(0, NEXT - points)}
                 </Text>
@@ -96,7 +96,7 @@ export default function LoyaltyDemo({ t, item }) {
                     <Box sx={{ flex: 1 }}>
                       <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{r.name}</Text>
                       <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>
-                        {redeemed[i] ? 'Redeemed \u2713' : canAfford ? 'Ready to redeem' : `${cost - points} more to go`}
+                        {redeemed[i] ? d.redeemed : canAfford ? d.readyToRedeem : `${cost - points} ${d.moreToGo}`}
                       </Text>
                     </Box>
                     <Box sx={{ textAlign: 'right' }}>
@@ -123,10 +123,10 @@ export default function LoyaltyDemo({ t, item }) {
                   &#128247;
                 </Box>
                 <Box sx={{ flex: 1 }}>
-                  <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>QR code</Text>
+                  <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{d.qrCode}</Text>
                   <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mt: '2px' }}>{d.scanNote}</Text>
                 </Box>
-                <Badge tone="amber" dot={false}>{d.pointsEarned} +1/&#36;10</Badge>
+                <Badge tone="amber" dot={false}>{d.pointsEarned} {d.pointsRate}</Badge>
               </Box>
             </Card>
             <Card sx={{ p: 4 }}>
@@ -147,7 +147,7 @@ export default function LoyaltyDemo({ t, item }) {
               </Box>
             </Card>
             <Box sx={{ p: 3, borderRadius: 12, backgroundColor: '#FFF7E6', border: '1px dashed', borderColor: '#E2B84C', display: 'flex', alignItems: 'center', gap: 2, fontSize: 0, color: '#92400E', fontFamily: font }}>
-              &#128274; {d.weeklyGoal}: 3 purchases to unlock +100 bonus
+              &#128274; {d.weeklyGoal}: {d.weeklyGoalText}
             </Box>
           </Box>
         </Box>
@@ -158,14 +158,12 @@ export default function LoyaltyDemo({ t, item }) {
               <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(31,169,113,0.15)', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
               <Box>
                 <Text sx={{ display: 'block', fontWeight: 700 }}>{d.pointsEarned}</Text>
-                <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>+pts added to balance</Text>
+                <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{d.pointsAdded}</Text>
               </Box>
             </Toast>
           </Box>
         )}
       </Box>
-
-      <FootBar light left={`${d.yourPoints} ${points.toLocaleString()}`} right="Synced just now" />
-    </BrowserFrame>
+    </>
   );
 }

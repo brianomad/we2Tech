@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Badge, Avatar, MockMap, Stepper, StatusDot } from './shared';
-import { FootBar, Skeleton } from './chrome';
+import { Skeleton } from './chrome';
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function LogisticsDemo({ t, item }) {
-  const d = t('caseDemo.logistics');
-  const shipments = t('caseDemo.logistics.shipments');
+export default function LogisticsDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'logistics');
+  const shipments = d.shipments;
   const steps = [d.pickedUp, d.inTransit, d.outForDelivery, d.delivered];
   const [active, setActive] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -34,17 +34,17 @@ export default function LogisticsDemo({ t, item }) {
   ];
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://dispatch.demo.we2tech.pro')} height={540} brand={brandFor(item, 'FleetTrack')}>
+    <>
       <Box sx={{ position: 'relative', flex: 1 }}>
         <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#12324A)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22D3EE,#0EA5E9)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128663;</Box>
             <Box>
-              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>FleetTrack</Text>
-              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>Hong Kong &middot; 14 vans active</Text>
+              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>{brandFor(item, 'FleetTrack')}</Text>
+              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>{d.region}</Text>
             </Box>
           </Box>
-          <Badge sx={{ backgroundColor: 'rgba(34,211,238,0.15)', color: '#67E8F9', border: '1px solid rgba(34,211,238,0.4)' }} dot>&#9679; Live</Badge>
+          <Badge sx={{ backgroundColor: 'rgba(34,211,238,0.15)', color: '#67E8F9', border: '1px solid rgba(34,211,238,0.4)' }} dot>&#9679; {d.live}</Badge>
         </Box>
 
         {loading ? (
@@ -69,7 +69,7 @@ export default function LogisticsDemo({ t, item }) {
               <Card sx={{ overflow: 'hidden' }}>
                 <Box sx={{ px: 3, py: 2, borderBottom: '1px solid', borderColor: S.line, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <Text sx={{ fontWeight: 700, fontSize: 0, color: S.muted, textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font }}>{d.liveMap}</Text>
-                  <Badge tone="blue" dot={false}>3 updates / min</Badge>
+                  <Badge tone="blue" dot={false}>{d.updatesPerMin}</Badge>
                 </Box>
                 <Box sx={{ height: 190 }}>
                   <MockMap />
@@ -150,7 +150,7 @@ export default function LogisticsDemo({ t, item }) {
                 {[
                   [d.status, stepLabel(ship.step)],
                   [d.driver, ship.driver],
-                  [d.origin, 'Tuen Mun DC'],
+                  [d.origin, d.originName],
                   [d.cargo, `${d.weight}: 6.2 kg`],
                 ].map(([l, v]) => (
                   <Box key={l} sx={{ p: 3, borderRadius: 12, backgroundColor: '#F6F8FB' }}>
@@ -179,13 +179,11 @@ export default function LogisticsDemo({ t, item }) {
                   </Box>
                 ))}
               </Box>
-              <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.lastUpdated}: 10:32 &middot; 2 min ago</Text>
+              <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.lastUpdated}: {d.updatedAt}</Text>
             </Card>
           </Box>
         )}
       </Box>
-
-      <FootBar light left="FleetTrack &middot; Dispatch" right={`${deliveryOpen} of ${shipments.length} en route`} />
-    </BrowserFrame>
+    </>
   );
 }

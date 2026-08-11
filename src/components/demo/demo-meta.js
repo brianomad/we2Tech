@@ -40,5 +40,8 @@ export function demoUrlFor(item, fallback) {
 export function brandFor(item, fallback) {
   if (!item || !item.title) return fallback;
   const brand = String(item.title);
-  return brand.length > 28 ? `${brand.slice(0, 27)}\u2026` : brand;
+  if (brand.length <= 28) return brand;
+  const cut = brand.slice(0, 27);
+  const space = cut.lastIndexOf(' ');
+  return `${space > 6 ? cut.slice(0, space) : cut}\u2026`;
 }

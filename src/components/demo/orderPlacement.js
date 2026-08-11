@@ -1,24 +1,18 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Stepper, SectionLabel } from './shared';
-import { FootBar } from './chrome';
 import { Toast } from './anim';
 
-const ITEM_META = [
-  { icon: '\u2615', grad: 'linear-gradient(135deg,#B45309,#92400E)' },
-  { icon: '\u{1F9C8}', grad: 'linear-gradient(135deg,#16A34A,#15803D)' },
-  { icon: '\u{1F950}', grad: 'linear-gradient(135deg,#F59E0B,#D97706)' },
-  { icon: '\u{1F356}', grad: 'linear-gradient(135deg,#DC2626,#B91C1C)' },
-  { icon: '\u{1F9C9}', grad: 'linear-gradient(135deg,#F97316,#EA580C)' },
-];
+const ITEM_IMAGES = ['latte', 'matcha', 'croissant', 'tuna', 'juice'];
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function OrderPlacementDemo({ t, item }) {
-  const d = t('caseDemo.order');
-  const items = t('caseDemo.order.items');
+export default function OrderPlacementDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'order');
+  const brand = brandFor(item, 'Daily Grind');
+  const items = d.items;
   const [cart, setCart] = useState({});
   const [placed, setPlaced] = useState(false);
   const [stage, setStage] = useState(0);
@@ -40,13 +34,13 @@ export default function OrderPlacementDemo({ t, item }) {
   const total = Object.entries(cart).reduce((s, [i, n]) => s + n * parseInt(items[i].price.replace(/[^\d]/g, ''), 10), 0);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://order.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Daily Grind')}>
+    <>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#451A03,#7C2D12)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#D97706)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2 }}>&#9749;</Box>
           <Box>
-            <Text sx={{ fontWeight: 700, fontSize: 2, fontFamily: font, lineHeight: 1.2 }}>Daily Grind</Text>
-            <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.7)', fontFamily: font }}>Central &middot; Open 07:00</Text>
+            <Text sx={{ fontWeight: 700, fontSize: 2, fontFamily: font, lineHeight: 1.2 }}>{brand}</Text>
+            <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.7)', fontFamily: font }}>{d.storeMeta}</Text>
           </Box>
         </Box>
         {count > 0 && <Badge tone="amber" dot={false}>&#128722; {count}</Badge>}
@@ -59,11 +53,10 @@ export default function OrderPlacementDemo({ t, item }) {
               <SectionLabel>{d.menu}</SectionLabel>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 {items.map((item, i) => {
-                  const meta = ITEM_META[i % ITEM_META.length];
                   return (
-                    <Box key={item.name} sx={{ display: 'flex', alignItems: 'center', gap: 3, px: 3, py: '10px', borderRadius: 12, border: '1px solid', borderColor: S.line, '&:hover': { borderColor: '#E2B48A', backgroundColor: '#FFFBFA' }, transition: 'all 0.15s' }}>
-                      <Box sx={{ width: 46, height: 46, borderRadius: 12, background: meta.grad, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2, flexShrink: 0, boxShadow: '0 4px 10px rgba(0,0,0,0.18)' }}>
-                        {meta.icon}
+                    <Box key={item.name} sx={{ display: 'flex', alignItems: 'center', gap: 3, px: 2, py: 2, borderRadius: 12, border: '1px solid', borderColor: S.line, '&:hover': { borderColor: '#E2B48A', backgroundColor: '#FFFBFA' }, transition: 'all 0.15s' }}>
+                      <Box sx={{ width: 52, height: 52, borderRadius: 12, overflow: 'hidden', flexShrink: 0, boxShadow: '0 4px 10px rgba(0,0,0,0.14)' }}>
+                        <img src={`/images/products/${ITEM_IMAGES[i % ITEM_IMAGES.length]}.jpg`} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                       </Box>
                       <Box sx={{ flex: 1 }}>
                         <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{item.name}</Text>
@@ -149,7 +142,7 @@ export default function OrderPlacementDemo({ t, item }) {
               ))}
             </Box>
             <Btn tone="ghost" sx={{ mt: 4, width: '100%' }} onClick={() => { setPlaced(false); setCart({}); setStage(0); }}>
-              &#8634; New order
+              &#8634; {d.newOrder}
             </Btn>
           </Card>
         )}
@@ -161,13 +154,11 @@ export default function OrderPlacementDemo({ t, item }) {
             <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(201,162,39,0.15)', color: '#92400E', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
             <Box>
               <Text sx={{ display: 'block', fontWeight: 700 }}>{items[toast].name}</Text>
-              <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{items[toast].price} added</Text>
+              <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{items[toast].price} {d.added}</Text>
             </Box>
           </Toast>
         </Box>
       )}
-
-      <FootBar light left="Daily Grind &middot; Online ordering" right="Live kitchen status" />
-    </BrowserFrame>
+    </>
   );
 }

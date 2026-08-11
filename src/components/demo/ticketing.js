@@ -1,9 +1,7 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Quantity, Qr, SectionLabel } from './shared';
-import { FootBar } from './chrome';
 
 const EVENT_META = [
   { icon: '\u{1F33A}', grad: 'linear-gradient(135deg,#F59E0B,#F97316)' },
@@ -11,11 +9,12 @@ const EVENT_META = [
   { icon: '\u{1F3B8}', grad: 'linear-gradient(135deg,#DB2777,#BE185D)' },
 ];
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function TicketingDemo({ t, item }) {
-  const d = t('caseDemo.ticketing');
-  const events = t('caseDemo.ticketing.events');
+export default function TicketingDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'ticketing');
+  const events = d.events;
   const [selected, setSelected] = useState(0);
   const [qty, setQty] = useState(2);
   const [ticket, setTicket] = useState(null);
@@ -24,17 +23,17 @@ export default function TicketingDemo({ t, item }) {
   const total = qty * parseInt(event.price.replace(/[^\d]/g, ''), 10);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://tickets.demo.we2tech.pro')} height={540} brand={brandFor(item, 'EventHub')}>
+    <>
       <Box sx={{ position: 'relative', flex: 1 }}>
         <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#312E81,#6D28D9)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F472B6,#EC4899)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#127916;</Box>
             <Box>
-              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>EventHub</Text>
-              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.65)', fontFamily: font }}>Live events &middot; HK</Text>
+              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>{brandFor(item, 'EventHub')}</Text>
+              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.65)', fontFamily: font }}>{d.subtitle}</Text>
             </Box>
           </Box>
-          <Badge sx={{ backgroundColor: 'rgba(244,114,182,0.2)', color: '#F9A8D4', border: '1px solid rgba(244,114,182,0.4)' }} dot>1,240 events</Badge>
+          <Badge sx={{ backgroundColor: 'rgba(244,114,182,0.2)', color: '#F9A8D4', border: '1px solid rgba(244,114,182,0.4)' }} dot>{d.eventsCount}</Badge>
         </Box>
 
         <Box sx={{ p: 4 }}>
@@ -68,12 +67,12 @@ export default function TicketingDemo({ t, item }) {
                       </Box>
                       <Box sx={{ flex: 1 }}>
                         <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{e.name}</Text>
-                        <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mt: '2px' }}>{e.date} &middot; 7:30 PM &middot; Central</Text>
+                        <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mt: '2px' }}>{e.date} &middot; {d.venueMeta}</Text>
                       </Box>
                       <Box sx={{ textAlign: 'right' }}>
                         <Text sx={{ fontWeight: 700, color: '#7C3AED', fontFamily: font }}>{e.price}</Text>
                         <Badge tone={i === 0 ? 'amber' : i === 1 ? 'purple' : 'pink'} dot={false} sx={{ mt: '4px' }}>
-                          {i === 0 ? 'Few left' : i === 1 ? 'Almost full' : 'On sale'}
+                          {i === 0 ? d.fewLeft : i === 1 ? d.almostFull : d.onSale}
                         </Badge>
                       </Box>
                       {selected === i && (
@@ -90,7 +89,7 @@ export default function TicketingDemo({ t, item }) {
                 {EVENT_META[selected % EVENT_META.length].icon}
               </Box>
               <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font, mb: 1 }}>{event.name}</Text>
-              <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mb: 3 }}>{event.date} &middot; 7:30 PM &middot; Central</Text>
+              <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mb: 3 }}>{event.date} &middot; {d.venueMeta}</Text>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 3, mb: 3 }}>
                 <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{d.quantity}</Text>
                 <Quantity value={qty} onChange={setQty} min={1} />
@@ -116,7 +115,7 @@ export default function TicketingDemo({ t, item }) {
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 1, py: 2, borderTop: '1px dashed', borderColor: '#E2D9F7', fontFamily: font }}>
               <Box sx={{ textAlign: 'left' }}>
-                <Text sx={{ fontSize: 0, color: S.muted }}>Row A &middot; Seats 12&ndash;13</Text>
+                <Text sx={{ fontSize: 0, color: S.muted }}>{d.seats}</Text>
                 <Text sx={{ fontSize: 1, fontWeight: 700, color: S.ink }}>{qty} {d.quantity} &middot; HK${total.toLocaleString()}</Text>
               </Box>
               <Text sx={{ fontSize: 1, fontWeight: 700, color: '#7C3AED' }}>EVT-20418</Text>
@@ -129,8 +128,6 @@ export default function TicketingDemo({ t, item }) {
         )}
       </Box>
       </Box>
-
-      <FootBar light left="EventHub &middot; Tickets" right="Instant e-ticket delivery" />
-    </BrowserFrame>
+    </>
   );
 }

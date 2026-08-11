@@ -1,10 +1,9 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Badge, LineChart, StatusDot, Avatar, SectionLabel } from './shared';
 import { LiveDot, Toast, fadeUp, barGrow } from './anim';
-import { AppBar, FootBar, Skeleton, LoadingRows } from './chrome';
+import { Skeleton, LoadingRows } from './chrome';
 import CountUp from '../count-up';
 
 const NAV = [
@@ -17,12 +16,13 @@ const NAV = [
 
 const BASE_REQ = [12, 19, 15, 24, 22, 30, 28, 36, 33, 41, 46, 44];
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function CloudSystemDemo({ t, item }) {
-  const d = t('caseDemo.cloud');
+export default function CloudSystemDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'cloud');
   const nav = [d.overview, d.users, d.services, d.billing, d.settings];
-  const servicesList = t('caseDemo.cloud.serviceList');
+  const servicesList = d.serviceList;
   const [tab, setTab] = useState(0);
   const [req, setReq] = useState(BASE_REQ);
   const [toast, setToast] = useState(0);
@@ -53,7 +53,7 @@ export default function CloudSystemDemo({ t, item }) {
   const toastOk = toastMsg.status === 'Operational';
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://console.demo.we2tech.pro')} brand={brandFor(item, 'CloudOS')}>
+    <>
       <Box sx={{ display: 'flex', minHeight: 0, position: 'relative' }}>
         <Box
           sx={{
@@ -82,17 +82,16 @@ export default function CloudSystemDemo({ t, item }) {
               &#9729;
             </Box>
             <Box sx={{ display: ['none', null, 'block'] }}>
-              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>CloudOS</Text>
+              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>{brandFor(item, 'CloudOS')}</Text>
               <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.5)', fontFamily: font }}>we2Tech Ltd.</Text>
             </Box>
           </Box>
 
           <Box sx={{ px: [2, 4], pb: 3, display: ['none', null, 'block'] }}>
             <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '1px', fontFamily: font, mb: 1 }}>
-              Menu
+              {d.menu}
             </Text>
-          </Box>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px', px: [2, 3] }}>
+          </Box>          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px', px: [2, 3] }}>
             {NAV.map((n, i) => (
               <Box
                 key={n.label}
@@ -135,12 +134,12 @@ export default function CloudSystemDemo({ t, item }) {
           </Box>
 
           <Box sx={{ mt: 4, mx: [2, 4], p: 3, borderRadius: 12, background: 'linear-gradient(135deg,rgba(139,92,246,0.25),rgba(59,130,246,0.12))', border: '1px solid rgba(139,92,246,0.35)', display: ['none', null, 'block'] }}>
-            <Text sx={{ fontSize: 1, fontWeight: 700, fontFamily: font }}>&#9889; Enterprise</Text>
+            <Text sx={{ fontSize: 1, fontWeight: 700, fontFamily: font }}>&#9889; {d.enterprise}</Text>
             <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font, mt: '2px', mb: 2 }}>
-              Unlimited seats, SSO &amp; 24/7 support
+              {d.enterpriseNote}
             </Text>
             <Box sx={{ px: 3, py: 1.5, borderRadius: 8, backgroundColor: '#fff', color: '#4338CA', fontSize: 0, fontWeight: 700, fontFamily: font, textAlign: 'center', cursor: 'pointer', transition: 'transform 0.15s', '&:hover': { transform: 'translateY(-1px)' } }}>
-              Upgrade
+              {d.upgrade}
             </Box>
           </Box>
 
@@ -148,7 +147,7 @@ export default function CloudSystemDemo({ t, item }) {
             <Avatar label="K" color={S.blue} size={32} />
             <Box>
               <Text sx={{ fontSize: 0, fontWeight: 700, fontFamily: font, lineHeight: 1.3 }}>K. Wong</Text>
-              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.5)', fontFamily: font }}>Admin</Text>
+              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.5)', fontFamily: font }}>{d.admin}</Text>
             </Box>
             <Box sx={{ ml: 'auto', color: 'rgba(255,255,255,0.5)', fontSize: 1 }}>&#8942;</Box>
           </Box>
@@ -165,7 +164,7 @@ export default function CloudSystemDemo({ t, item }) {
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Box sx={{ display: ['none', null, 'flex'], alignItems: 'center', gap: 2, px: 3, py: 2, borderRadius: 10, backgroundColor: '#fff', border: '1px solid', borderColor: S.line, color: S.muted, fontSize: 0, fontFamily: font }}>
-                &#128269; Search&hellip;
+                &#128269; {d.search}
               </Box>
               <Box sx={{ width: 36, height: 36, borderRadius: 10, backgroundColor: '#fff', border: '1px solid', borderColor: S.line, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1, position: 'relative' }}>
                 &#128276;
@@ -237,8 +236,8 @@ export default function CloudSystemDemo({ t, item }) {
                       <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.last24h}</Text>
                     </Box>
                     <Box sx={{ display: 'flex', gap: 2 }}>
-                      <Badge tone="blue" dot={false}>&#9679; Requests</Badge>
-                      <Badge tone="red" dot={false}>&#9679; Errors</Badge>
+                      <Badge tone="blue" dot={false}>&#9679; {d.requestsBadge}</Badge>
+                      <Badge tone="red" dot={false}>&#9679; {d.errorsBadge}</Badge>
                     </Box>
                   </Box>
                   <LineChart values={req} height={150} color="#3B82F6" />
@@ -251,7 +250,7 @@ export default function CloudSystemDemo({ t, item }) {
                   </Box>
                 </Card>
                 <Card sx={{ p: 4 }}>
-                  <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font, mb: 3 }}>Error rate</Text>
+                  <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font, mb: 3 }}>{d.errorRate}</Text>
                   <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: '6px', height: 100, mb: 2 }}>
                     {errors.map((e, i) => (
                       <Box
@@ -268,7 +267,7 @@ export default function CloudSystemDemo({ t, item }) {
                       />
                     ))}
                   </Box>
-                  <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>0.08% avg &middot; within SLA</Text>
+                  <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.errorNote}</Text>
                 </Card>
               </Box>
 
@@ -287,7 +286,7 @@ export default function CloudSystemDemo({ t, item }) {
                         </Box>
                         <Box sx={{ flex: 1 }}>
                           <Text sx={{ fontSize: 1, color: S.ink, fontWeight: 700, fontFamily: font }}>{s.name}</Text>
-                          <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{['99.99% uptime', '99.98% uptime', '100% uptime', '99.5% uptime'][i]}</Text>
+                          <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{['99.99%', '99.98%', '100%', '99.5%'][i]} {d.uptimeNote}</Text>
                         </Box>
                         <Badge tone={ok ? 'green' : 'amber'}>{ok ? d.operational : d.degraded}</Badge>
                       </Box>
@@ -324,8 +323,6 @@ export default function CloudSystemDemo({ t, item }) {
           </Box>
         )}
       </Box>
-
-      <FootBar light left="CloudOS Console" right="Region: ap-east-1 &middot; v4.2.0" />
-    </BrowserFrame>
+    </>
   );
 }

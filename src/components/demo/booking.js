@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Stepper, SectionLabel } from './shared';
-import { AppBar, FootBar } from './chrome';
+import { AppBar } from './chrome';
+import { hashId } from './layouts';
 
 const SLOTS = ['09:00', '10:30', '12:00', '14:30', '16:00', '18:30', '20:00'];
 const BOOKED = [1, 4, 6];
@@ -27,21 +27,29 @@ export function days(locale) {
   });
 }
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
 export default function BookingDemo({ t, locale, item }) {
   const [service, setService] = useState(0);
   const [day, setDay] = useState(0);
   const [slot, setSlot] = useState(null);
   const [done, setDone] = useState(false);
-  const d = t('caseDemo.booking');
-  const services = t('caseDemo.booking.services');
+  const d = contentFor(t, locale, item, 'booking');
+  const services = d.services || [];
+  const seed = hashId(item.id || 0);
+  const mrot = seed % Math.max(1, services.length);
+  const svc = [...services.slice(mrot), ...services.slice(0, mrot)];
+  const meta = [...SERVICE_META.slice(mrot), ...SERVICE_META.slice(0, mrot)];
+  const srot = seed % SLOTS.length;
+  const slots = [...SLOTS.slice(srot), ...SLOTS.slice(0, srot)];
+  const booked = BOOKED.map((i) => (i + srot) % SLOTS.length);
   const daysList = days(locale);
   const refCode = `BK-${4810 + service * 37 + day * 3}`;
-  const meta = SERVICE_META[service];
+  const metaNow = meta[service];
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://book.demo.we2tech.pro')} height={540} brand={brandFor(item, 'SpaceBase')}>
+    <>
       <AppBar
         brand={brandFor(item, 'SpaceBase')}
         sub={d.title}
@@ -50,7 +58,7 @@ export default function BookingDemo({ t, locale, item }) {
         active={done ? 2 : slot ? 1 : day ? 1 : 0}
         right={
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Badge tone="green" dot>&#9679; {d.booked} 12 today</Badge>
+            <Badge tone="green" dot>&#9679; {d.booked} 12 {d.today}</Badge>
           </Box>
         }
       />
@@ -82,7 +90,7 @@ export default function BookingDemo({ t, locale, item }) {
               {d.confirmed}
             </Text>
             <Text sx={{ display: 'block', mt: 2, fontSize: 1, color: S.slate, fontFamily: font, lineHeight: 1.7 }}>
-              {services[service]} &middot; {daysList[day].label} &middot; {slot}
+              {svc[service]} &middot; {daysList[day].label} &middot; {slot}
             </Text>
             <Box sx={{ mt: 3, display: 'inline-block', px: 5, py: 3, borderRadius: 12, backgroundColor: '#F0F6F6', border: '1px dashed', borderColor: S.teal }}>
               <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.code}</Text>
@@ -97,7 +105,7 @@ export default function BookingDemo({ t, locale, item }) {
             <Card sx={{ p: 4 }}>
               <SectionLabel>{d.selectService}</SectionLabel>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {services.map((s, i) => (
+                {svc.map((s, i) => (
                   <Box
                     key={s}
                     onClick={() => setService(i)}
@@ -128,14 +136,14 @@ export default function BookingDemo({ t, locale, item }) {
                         fontSize: 2,
                         flexShrink: 0,
                       }}>
-                      {SERVICE_META[i].icon}
+                      {meta[i].icon}
                     </Box>
                     <Box sx={{ flex: 1, minWidth: 0 }}>
                       <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{s}</Text>
-                      <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{SERVICE_META[i].dur}</Text>
+                      <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{meta[i].dur}</Text>
                     </Box>
                     <Text sx={{ fontWeight: 700, fontSize: 1, color: service === i ? S.tealDark : S.slate, fontFamily: font }}>
-                      {SERVICE_META[i].price}
+                      {meta[i].price}
                     </Text>
                     {service === i && (
                       <Box sx={{ width: 20, height: 20, borderRadius: '50%', backgroundColor: S.teal, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 0 }}>&#10003;</Box>
@@ -179,8 +187,8 @@ export default function BookingDemo({ t, locale, item }) {
             <Card sx={{ p: 4, display: 'flex', flexDirection: 'column' }}>
               <SectionLabel>{d.selectTime}</SectionLabel>
               <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, mb: 4 }}>
-                {SLOTS.map((s, i) => {
-                  const taken = BOOKED.includes(i);
+                {slots.map((s, i) => {
+                  const taken = booked.includes(i);
                   const selected = slot === s;
                   return (
                     <Box
@@ -217,7 +225,7 @@ export default function BookingDemo({ t, locale, item }) {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px', mb: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', fontSize: 1, fontFamily: font }}>
                     <Text sx={{ color: S.slate }}>{d.service}</Text>
-                    <Text sx={{ fontWeight: 700, color: S.ink }}>{services[service]}</Text>
+                    <Text sx={{ fontWeight: 700, color: S.ink }}>{svc[service]}</Text>
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', fontSize: 1, fontFamily: font }}>
                     <Text sx={{ color: S.slate }}>{d.date}</Text>
@@ -229,19 +237,17 @@ export default function BookingDemo({ t, locale, item }) {
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', fontSize: 1, fontFamily: font, borderTop: '1px dashed', borderColor: '#D3E1EE', pt: 2 }}>
                     <Text sx={{ color: S.slate, fontWeight: 700 }}>{d.service}</Text>
-                    <Text sx={{ fontWeight: 700, color: S.tealDark, fontSize: 2 }}>{SERVICE_META[service].price}</Text>
+                    <Text sx={{ fontWeight: 700, color: S.tealDark, fontSize: 2 }}>{metaNow.price}</Text>
                   </Box>
                 </Box>
                 <Btn tone="primary" sx={{ width: '100%' }} disabled={!slot} onClick={() => setDone(true)}>
-                  {d.confirm} {slot && `\u00B7 ${SERVICE_META[service].price}`}
+                  {d.confirm} {slot && `\u00B7 ${metaNow.price}`}
                 </Btn>
               </Box>
             </Card>
           </Box>
         )}
       </Box>
-
-      <FootBar left="SpaceBase Booking" right="Syncs in real time" />
-    </BrowserFrame>
+    </>
   );
 }

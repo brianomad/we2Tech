@@ -1,18 +1,17 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Field, Qr, Avatar, SectionLabel } from './shared';
-import { FootBar } from './chrome';
 import { Toast } from './anim';
 
 const PURPOSE_ICONS = ['\u{1F4AC}', '\u{1F4E6}', '\u{1F3DB}', '\u{1F464}'];
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function VisitorManagementDemo({ t, item }) {
-  const d = t('caseDemo.visitor');
-  const purposes = t('caseDemo.visitor.purposes');
+export default function VisitorManagementDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'visitor');
+  const purposes = d.purposes;
   const [name, setName] = useState('Wong Ka Ho');
   const [host, setHost] = useState('M. Leung');
   const [purpose, setPurpose] = useState(0);
@@ -32,14 +31,14 @@ export default function VisitorManagementDemo({ t, item }) {
   };
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://visitor.demo.we2tech.pro')} height={540} brand={brandFor(item, 'AccessOne')}>
+    <>
       <Box sx={{ position: 'relative', flex: 1 }}>
       <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#111827)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22D3EE,#3B82F6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128274;</Box>
-          <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>AccessOne</Text>
+          <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>{brandFor(item, 'AccessOne')}</Text>
         </Box>
-        <Badge sx={{ backgroundColor: 'rgba(34,211,238,0.15)', color: '#67E8F9', border: '1px solid rgba(34,211,238,0.4)' }} dot>Front desk</Badge>
+        <Badge sx={{ backgroundColor: 'rgba(34,211,238,0.15)', color: '#67E8F9', border: '1px solid rgba(34,211,238,0.4)' }} dot>{d.frontDesk}</Badge>
       </Box>
 
       <Box sx={{ p: 4 }}>
@@ -129,7 +128,7 @@ export default function VisitorManagementDemo({ t, item }) {
                   &#128100;
                 </Box>
                 <Text sx={{ fontSize: 1, fontWeight: 700, color: S.ink, fontFamily: font }}>{d.passTitle}</Text>
-                <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mt: 1 }}>Fill the form to issue a pass</Text>
+                <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font, mt: 1 }}>{d.passHint}</Text>
               </Box>
             )}
           </Card>
@@ -148,8 +147,6 @@ export default function VisitorManagementDemo({ t, item }) {
         </Box>
       )}
       </Box>
-
-      <FootBar light left="AccessOne &middot; Front desk" right={`${log.length} visitors today`} />
-    </BrowserFrame>
+    </>
   );
 }

@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Avatar, SectionLabel, Field } from './shared';
-import { AppBar, FootBar } from './chrome';
+import { AppBar } from './chrome';
 import { Toast, LiveDot } from './anim';
 
 const TIER_STYLE = [
@@ -14,12 +13,13 @@ const TIER_STYLE = [
 
 const PERKS_ICONS = ['\u{1F3E2}', '\u{1F4C8}', '\u{1F4AC}', '\u{1F6E0}', '\u{1F30D}', '\u{1F4B3}'];
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function MembershipDemo({ t, item }) {
-  const d = t('caseDemo.membership');
+export default function MembershipDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'membership');
   const pay = t('caseDemo.payment');
-  const plans = t('caseDemo.membership.plans');
+  const plans = d.plans;
   const [current, setCurrent] = useState(1);
   const [points] = useState('2,180');
   const [step, setStep] = useState('plans'); // plans | checkout | processing | done
@@ -39,7 +39,7 @@ export default function MembershipDemo({ t, item }) {
   const plan = plans[step === 'plans' ? current : selected];
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://members.demo.we2tech.pro')} height={540} brand={brandFor(item, 'The Ascot Club')}>
+    <>
       <AppBar brand={brandFor(item, 'Ascot')} sub={d.title} grad="linear-gradient(135deg,#0B1B33,#1B2C45)" nav={[d.title, d.checkout, d.pointsBalance]} active={step === 'plans' ? 0 : step === 'checkout' || step === 'processing' ? 1 : 2} />
 
       <Box sx={{ p: [3, null, 4], pb: 6, position: 'relative' }}>
@@ -260,14 +260,12 @@ export default function MembershipDemo({ t, item }) {
               <LiveDot color={S.green} size={8} />
               <Box>
                 <Text sx={{ display: 'block', fontWeight: 700 }}>Amanda Lee</Text>
-                <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{points} pts &middot; rewards ready</Text>
+                <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{points} pts &middot; {d.rewardsReady}</Text>
               </Box>
             </Toast>
           </Box>
         )}
       </Box>
-
-      <FootBar light left={`${d.title} \u00B7 3 plans`} right={`${points} pts`} />
-    </BrowserFrame>
+    </>
   );
 }

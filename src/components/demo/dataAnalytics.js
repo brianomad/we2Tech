@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Badge, Bars, LineChart } from './shared';
-import { FootBar, Skeleton, FilterChip } from './chrome';
+import { Skeleton, FilterChip } from './chrome';
 
 const RANGES = ['7D', '30D', '90D', 'YTD'];
 const RANGE_DATA = {
@@ -33,10 +32,20 @@ const RANGE_DATA = {
   ],
 };
 
-import { demoUrlFor, brandFor } from './demo-meta';
+const TOP_DEFAULT = [
+  { p: 'Classic Tote', s: '1,204', r: 'HK$239k', share: 100, color: S.teal },
+  { p: 'Trail Backpack', s: '988', r: 'HK$542k', share: 82, color: S.blue },
+  { p: 'Ceramic Mug Set', s: '812', r: 'HK$104k', share: 64, color: S.purple },
+  { p: 'Canvas Sneakers', s: '701', r: 'HK$321k', share: 48, color: S.pink },
+];
+const TOP_EMOJIS = ['\u{1F45C}', '\u{1F9F3}', '\u2615', '\u{1F45F}'];
+const TOP_COLORS = [S.teal, S.blue, S.purple, S.pink];
 
-export default function DataAnalyticsDemo({ t, item }) {
-  const d = t('caseDemo.analytics');
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
+
+export default function DataAnalyticsDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'analytics');
   const [range, setRange] = useState('30D');
   const [tick, setTick] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -56,21 +65,22 @@ export default function DataAnalyticsDemo({ t, item }) {
   const orders = [820, 960, 1100, 1240, 1380, 1520];
   const kpis = RANGE_DATA[range];
   const liveRevenue = RANGE_DATA[range][0].value.replace(/HK\$|k|M/g, '') + (tick % 3 === 0 ? '' : '');
+  const topRows = (d.topProductsList || TOP_DEFAULT).map((row, i) => ({ ...row, color: row.color || TOP_COLORS[i % TOP_COLORS.length] }));
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://insights.demo.we2tech.pro')} height={540} brand={brandFor(item, 'Insightly')}>
+    <>
       <Box sx={{ position: 'relative', flex: 1 }}>
         <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0F172A,#334155)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 2 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#F97316)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128200;</Box>
             <Box>
-              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>Insightly</Text>
-              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>Sales analytics</Text>
+              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>{brandFor(item, 'Insightly')}</Text>
+              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>{d.subtitle}</Text>
             </Box>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, px: 3, py: '7px', borderRadius: 10, backgroundColor: 'rgba(249,115,22,0.15)', color: '#FDBA74', border: '1px solid rgba(249,115,22,0.4)' }}>
             <Box sx={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: '#F97316', animation: 'livePulse 1.6s ease-in-out infinite' }} />
-            <Text sx={{ fontSize: 0, fontWeight: 700, fontFamily: font }}>Live &middot; auto-refresh</Text>
+            <Text sx={{ fontSize: 0, fontWeight: 700, fontFamily: font }}>{d.liveRefresh}</Text>
           </Box>
         </Box>
 
@@ -81,7 +91,7 @@ export default function DataAnalyticsDemo({ t, item }) {
               <FilterChip key={r} label={r} active={range === r} onClick={() => setRange(r)} color={S.orange} />
             ))}
             <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Badge tone="orange" dot={false}>{tick % 2 === 0 ? 'Synced' : 'Syncing\u2026'}</Badge>
+              <Badge tone="orange" dot={false}>{tick % 2 === 0 ? d.synced : d.syncing}</Badge>
             </Box>
           </Box>
 
@@ -129,8 +139,8 @@ export default function DataAnalyticsDemo({ t, item }) {
               </Box>
               <LineChart values={orders} height={140} color="#3B82F6" />
               <Box sx={{ mt: 2, display: 'flex', gap: 4, fontSize: 0, color: S.muted, fontFamily: font }}>
-                <Text><Box as="span" sx={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', backgroundColor: '#3B82F6', mr: 1 }} />This month: 1,520</Text>
-                <Text><Box as="span" sx={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', backgroundColor: '#BFDBFE', mr: 1 }} />Last month: 1,380</Text>
+                <Text><Box as="span" sx={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', backgroundColor: '#3B82F6', mr: 1 }} />{d.thisMonth}: 1,520</Text>
+                <Text><Box as="span" sx={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', backgroundColor: '#BFDBFE', mr: 1 }} />{d.lastMonth}: 1,380</Text>
               </Box>
             </Card>
           </Box>
@@ -144,17 +154,11 @@ export default function DataAnalyticsDemo({ t, item }) {
               <Text>{d.product}</Text>
               <Text sx={{ textAlign: 'right' }}>{d.sold}</Text>
               <Text sx={{ textAlign: 'right' }}>{d.revenueLabel}</Text>
-              <Text>Share</Text>
-            </Box>
-            {[
-              { p: 'Classic Tote', s: '1,204', r: 'HK$239k', share: 100, color: S.teal },
-              { p: 'Trail Backpack', s: '988', r: 'HK$542k', share: 82, color: S.blue },
-              { p: 'Ceramic Mug Set', s: '812', r: 'HK$104k', share: 64, color: S.purple },
-              { p: 'Canvas Sneakers', s: '701', r: 'HK$321k', share: 48, color: S.pink },
-            ].map((row, i) => (
+              <Text>{d.share}</Text>
+            </Box>            {topRows.map((row, i) => (
               <Box key={row.p} sx={{ display: 'grid', gridTemplateColumns: '1.8fr 0.6fr 0.8fr 1.2fr', gap: 2, alignItems: 'center', px: 4, py: 2.5, borderTop: '1px solid', borderColor: S.line, fontSize: 1, fontFamily: font, '&:hover': { backgroundColor: '#FAFBFF' } }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Box sx={{ width: 26, height: 26, borderRadius: 8, backgroundColor: `${row.color}1f`, color: row.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>{['\u{1F45C}', '\u{1F9F3}', '\u2615', '\u{1F45F}'][i]}</Box>
+                  <Box sx={{ width: 26, height: 26, borderRadius: 8, backgroundColor: `${row.color}1f`, color: row.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>{TOP_EMOJIS[i % TOP_EMOJIS.length]}</Box>
                   <Text sx={{ fontWeight: 600, color: S.ink }}>{row.p}</Text>
                 </Box>
                 <Text sx={{ textAlign: 'right', color: S.slate }}>{row.s}</Text>
@@ -170,8 +174,6 @@ export default function DataAnalyticsDemo({ t, item }) {
           </Card>
         </Box>
       </Box>
-
-      <FootBar light left="Insightly &middot; Analytics" right="Last sync 4s ago" />
-    </BrowserFrame>
+    </>
   );
 }

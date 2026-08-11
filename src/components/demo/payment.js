@@ -1,12 +1,10 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Field, SectionLabel } from './shared';
-import { FootBar } from './chrome';
 import { Toast } from './anim';
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
 
 export default function PaymentDemo({ t, item }) {
   const d = t('caseDemo.payment');
@@ -23,17 +21,17 @@ export default function PaymentDemo({ t, item }) {
   }, [step]);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://pay.demo.we2tech.pro')} height={540} brand={brandFor(item, 'Payflow')}>
+    <>
       <Box sx={{ position: 'relative', flex: 1 }}>
         <Box sx={{ px: 4, py: 3, background: 'linear-gradient(135deg,#0B1B33,#14532D)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#22C55E,#16A34A)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128179;</Box>
             <Box>
-              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>Payflow</Text>
-              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>Checkout &middot; Order #9284</Text>
+              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font }}>{brandFor(item, 'Payflow')}</Text>
+              <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>{d.checkoutMeta}</Text>
             </Box>
           </Box>
-          <Badge sx={{ backgroundColor: 'rgba(34,197,94,0.18)', color: '#86EFAC', border: '1px solid rgba(34,197,94,0.4)' }} dot>Secure payment</Badge>
+          <Badge sx={{ backgroundColor: 'rgba(34,197,94,0.18)', color: '#86EFAC', border: '1px solid rgba(34,197,94,0.4)' }} dot>{d.secure}</Badge>
         </Box>
 
         <Box sx={{ p: 4 }}>
@@ -100,7 +98,7 @@ export default function PaymentDemo({ t, item }) {
                   <Box sx={{ width: 44, height: 44, borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 2 }}>&#128178;</Box>
                   <Box>
                     <Text sx={{ fontWeight: 700, color: '#fff', fontFamily: font }}>Amanda Lee</Text>
-                    <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.75)', fontFamily: font }}>Balance: HK$12,480.00</Text>
+                    <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.75)', fontFamily: font }}>{d.balance}: HK$12,480.00</Text>
                   </Box>
                 </Card>
               )}
@@ -121,7 +119,7 @@ export default function PaymentDemo({ t, item }) {
               <Btn tone="primary" sx={{ width: '100%', backgroundColor: '#16A34A', boxShadow: '0 10px 20px rgba(22,163,74,0.35)' }} onClick={() => setStep('processing')}>
                 {d.payNow} &middot; {amount}
               </Btn>
-              <Text sx={{ mt: 3, fontSize: 0, color: S.muted, fontFamily: font, textAlign: 'center' }}>&#128274; Encrypted with PCI-DSS</Text>
+              <Text sx={{ mt: 3, fontSize: 0, color: S.muted, fontFamily: font, textAlign: 'center' }}>&#128274; {d.pci}</Text>
             </Card>
           </Box>
         )}
@@ -132,7 +130,7 @@ export default function PaymentDemo({ t, item }) {
               <>
                 <Box sx={{ width: 60, height: 60, mx: 'auto', borderRadius: '50%', border: '4px solid', borderColor: S.line, borderTopColor: '#16A34A', animation: 'spin 0.9s linear infinite' }} />
                 <Text sx={{ display: 'block', mt: 4, fontSize: 1, color: S.slate, fontFamily: font }}>{d.processing}</Text>
-                <Text sx={{ display: 'block', mt: 1, fontSize: 0, color: S.muted, fontFamily: font }}>{amount} &middot; Payflow Secure</Text>
+                <Text sx={{ display: 'block', mt: 1, fontSize: 0, color: S.muted, fontFamily: font }}>{amount} &middot; {d.secureMeta}</Text>
               </>
             ) : (
               <>
@@ -146,7 +144,7 @@ export default function PaymentDemo({ t, item }) {
                 </Box>
                 <Badge tone="green" sx={{ mt: 3 }}>&#10003; {amount}</Badge>
                 <Btn tone="ghost" sx={{ mt: 4, width: '100%' }} onClick={() => setStep('pay')}>
-                  {d.payNow} &middot; demo
+                  {d.payNow} &middot; {d.demoTag}
                 </Btn>
               </>
             )}
@@ -166,8 +164,6 @@ export default function PaymentDemo({ t, item }) {
         )}
       </Box>
       </Box>
-
-      <FootBar light left="Payflow &middot; Checkout" right="PCI-DSS encrypted" />
-    </BrowserFrame>
+    </>
   );
 }

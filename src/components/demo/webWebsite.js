@@ -1,9 +1,7 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Btn, Card, SectionLabel } from './shared';
-import { FootBar } from './chrome';
 
 const FEATURE_META = [
   { icon: '\u{1F680}', color: S.teal, bg: 'rgba(0,139,139,0.1)' },
@@ -14,21 +12,21 @@ const FEATURE_META = [
   { icon: '\u{1F4E6}', color: S.green, bg: 'rgba(31,169,113,0.12)' },
 ];
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function WebWebsiteDemo({ t, item }) {
-  const d = t('caseDemo.website');
-  const menu = t('caseDemo.website.menu');
-  const features = t('caseDemo.website.features');
+export default function WebWebsiteDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'website');
+  const menu = d.menu;
+  const features = d.features;
   const [active, setActive] = useState(0);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://www.demo.we2tech.pro')} height={540} brand={brandFor(item, 'Nimbus')}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 540, backgroundColor: '#fff' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 540, backgroundColor: '#fff' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 4, py: 3, borderBottom: '1px solid', borderColor: S.line, backgroundColor: 'rgba(255,255,255,0.85)' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box sx={{ width: 30, height: 30, borderRadius: 9, background: 'linear-gradient(135deg,#6366F1,#8B5CF6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontFamily: font, boxShadow: '0 6px 14px rgba(99,102,241,0.4)' }}>N</Box>
-            <Text sx={{ fontWeight: 700, fontFamily: font, color: S.ink }}>Nimbus</Text>
+            <Box sx={{ width: 30, height: 30, borderRadius: 9, background: 'linear-gradient(135deg,#6366F1,#8B5CF6)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontFamily: font, boxShadow: '0 6px 14px rgba(99,102,241,0.4)' }}>{brandFor(item, 'Nimbus').slice(0, 1)}</Box>
+            <Text sx={{ fontWeight: 700, fontFamily: font, color: S.ink }}>{brandFor(item, 'Nimbus')}</Text>
           </Box>
           <Box sx={{ display: ['none', null, 'flex'], gap: 4, color: S.slate, fontSize: 1, fontFamily: font }}>
             {menu.map((m, i) => (
@@ -100,7 +98,7 @@ export default function WebWebsiteDemo({ t, item }) {
         <Box sx={{ px: 4, py: 5, background: 'linear-gradient(135deg,#111827,#1F2937)', textAlign: 'center', color: '#fff' }}>
           <Text sx={{ display: 'block', fontSize: 0, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', fontFamily: font, mb: 4 }}>{d.statsTitle}</Text>
           <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', maxWidth: 480, mx: 'auto', gap: 3 }}>
-            {[['120+', 'Projects'], ['98%', 'Satisfaction'], ['4.9', 'Rating']].map(([v, l]) => (
+            {[['120+', d.statProjects], ['98%', d.statSatisfaction], ['4.9', d.statRating]].map(([v, l]) => (
               <Box key={l}>
                 <Text sx={{ display: 'block', fontSize: 4, fontWeight: 700, color: '#818CF8', fontFamily: font }}>{v}</Text>
                 <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.7)', fontFamily: font }}>{l}</Text>
@@ -121,9 +119,6 @@ export default function WebWebsiteDemo({ t, item }) {
           <Text sx={{ display: 'block', fontSize: 3, fontWeight: 700, color: S.ink, fontFamily: font, mb: 3 }}>{d.contactCta}</Text>
           <Btn tone="primary">{d.cta} &#8594;</Btn>
         </Box>
-
-        <FootBar light left="\u00A9 2026 Nimbus &middot; All rights reserved" right="Fast, secure, global" />
-      </Box>
-    </BrowserFrame>
+    </Box>
   );
 }

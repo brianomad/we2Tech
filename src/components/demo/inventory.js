@@ -1,16 +1,16 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Badge, Btn, StatusDot } from './shared';
-import { FootBar, Skeleton, LoadingRows, StatCard } from './chrome';
+import { Skeleton, LoadingRows, StatCard } from './chrome';
 import { Toast } from './anim';
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function InventoryDemo({ t, item }) {
-  const d = t('caseDemo.inventory');
-  const rows = t('caseDemo.inventory.items');
+export default function InventoryDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'inventory');
+  const rows = d.items;
   const [items, setItems] = useState(rows);
   const [loading, setLoading] = useState(true);
   const [detail, setDetail] = useState(null);
@@ -37,13 +37,13 @@ export default function InventoryDemo({ t, item }) {
   const openDetail = (i) => setDetail(items[i]);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://stock.demo.we2tech.pro')} height={540} brand={brandFor(item, 'StockPilot')}>
+    <>
       <Box sx={{ position: 'relative', flex: 1 }}>
         <Box sx={{ px: [3, 4], py: 3, background: 'linear-gradient(135deg,#0F172A,#1E293B)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 2 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <Box sx={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg,#F59E0B,#D97706)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 1 }}>&#128230;</Box>
             <Box>
-              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>StockPilot</Text>
+              <Text sx={{ fontWeight: 700, fontSize: 1, fontFamily: font, lineHeight: 1.2 }}>{brandFor(item, 'StockPilot')}</Text>
               <Text sx={{ fontSize: 0, color: 'rgba(255,255,255,0.6)', fontFamily: font }}>Warehouse A &middot; Tsuen Wan</Text>
             </Box>
           </Box>
@@ -75,8 +75,8 @@ export default function InventoryDemo({ t, item }) {
             <>
               <Box sx={{ display: 'grid', gridTemplateColumns: ['1fr 1fr', null, 'repeat(4, 1fr)'], gap: 3, mb: 4 }}>
                 {[
-                  { label: 'Total SKU', value: String(items.length), color: S.ink, icon: '\u{1F4E6}' },
-                  { label: 'Units on hand', value: totalUnits.toLocaleString(), color: S.teal, icon: '\u{1F4CC}' },
+                  { label: d.totalSku, value: String(items.length), color: S.ink, icon: '\u{1F4E6}' },
+                  { label: d.unitsOnHand, value: totalUnits.toLocaleString(), color: S.teal, icon: '\u{1F4CC}' },
                   { label: d.low, value: String(lowCount), color: '#B45309', icon: '\u26A0' },
                   { label: d.out, value: String(outCount), color: S.red, icon: '\u2716' },
                 ].map((s) => (
@@ -109,7 +109,7 @@ export default function InventoryDemo({ t, item }) {
                   <Text sx={{ textAlign: 'right' }}>{d.onHand}</Text>
                   <Text sx={{ textAlign: 'right' }}>{d.reorderLevel}</Text>
                   <Text sx={{ textAlign: 'center' }}>{d.status}</Text>
-                  <Text sx={{ textAlign: 'right' }}>Stock level</Text>
+                  <Text sx={{ textAlign: 'right' }}>{d.stockLevel}</Text>
                 </Box>
                 {items.map((row, i) => {
                   const max = Math.max(...items.map((r) => parseInt(r.onHand, 10)), 1);
@@ -176,10 +176,10 @@ export default function InventoryDemo({ t, item }) {
               </Box>
               <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3 }}>
                 {[
-                  ['On hand', detail.onHand],
-                  ['Reorder level', detail.reorder],
-                  ['Location', 'Aisle 3'],
-                  ['Supplier', 'Luen Hing Co.'],
+                  [d.onHand, detail.onHand],
+                  [d.reorderLevel, detail.reorder],
+                  [d.location, d.aisle3],
+                  [d.supplier, d.supplierName],
                 ].map(([l, v]) => (
                   <Box key={l} sx={{ p: 3, borderRadius: 12, backgroundColor: '#F6F8FB' }}>
                     <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{l}</Text>
@@ -201,14 +201,12 @@ export default function InventoryDemo({ t, item }) {
               <Box sx={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(31,169,113,0.14)', color: S.green, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10003;</Box>
               <Box>
                 <Text sx={{ display: 'block', fontWeight: 700 }}>{items[toast].name}</Text>
-                <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{d.reorder} &#183; PO created</Text>
+                <Text sx={{ display: 'block', color: S.muted, fontWeight: 600 }}>{d.reorder} &#183; {d.poCreated}</Text>
               </Box>
             </Toast>
           </Box>
         )}
       </Box>
-
-      <FootBar light left={`${d.title} &middot; ${items.length} SKUs`} right="Synced 2s ago" />
-    </BrowserFrame>
+    </>
   );
 }

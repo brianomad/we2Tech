@@ -1,0 +1,89 @@
+/** @jsx jsx */
+import { jsx, Box, Text } from 'theme-ui';
+import { useState } from 'react';
+import { BrowserFrame, PhoneFrame } from './frames';
+import { S, font } from './shared';
+import { demoUrlFor, brandFor } from './demo-meta';
+import { demoRegistry } from './registry';
+import { hashId, TAG_ICONS, LAYOUTS, layoutFor } from './layouts';
+
+const TINTS = [S.teal, '#7C3AED', '#2563EB', '#DB2777', '#F97316', '#0EA5E9', '#16A34A', '#B45309'];
+
+export default function CaseApp({ item, locale, t, tagNames = {} }) {
+  const tags = item.tags || [];
+  const seed = hashId(item.id || 0);
+  const tint = TINTS[seed % TINTS.length];
+  const brand = brandFor(item, 'Demo App');
+  const mods = tags.map((tag) => ({ tag, label: tagNames[tag] || tag }));
+  const rot = seed % mods.length;
+  const modules = [...mods.slice(rot), ...mods.slice(0, rot)];
+  const isMobile = tags.includes('Mobile App');
+  const [active, setActive] = useState(0);
+  const Module = demoRegistry[modules[active].tag] || (() => null);
+  const render = () => <Module t={t} locale={locale} item={item} />;
+
+  if (isMobile) {
+    return (
+      <Box sx={{ position: 'relative' }}>
+        <PhoneFrame title={brand} tint={tint} height={520}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+            <Box sx={{ flex: 1, overflow: 'auto', position: 'relative', backgroundColor: S.bg }}>
+              <Module t={t} locale={locale} item={item} />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                px: 1,
+                py: '8px',
+                backgroundColor: '#fff',
+                borderTop: '1px solid',
+                borderColor: S.line,
+                flexShrink: 0,
+              }}>
+              {modules.map((m, i) => (
+                <Box
+                  key={m.tag}
+                  onClick={() => setActive(i)}
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '2px',
+                    fontSize: 0,
+                    fontWeight: 700,
+                    color: active === i ? tint : S.muted,
+                    fontFamily: font,
+                    cursor: 'pointer',
+                    px: 1,
+                    minWidth: 0,
+                    maxWidth: 76,
+                    textAlign: 'center',
+                  }}>
+                  <Box sx={{ fontSize: 1, opacity: active === i ? 1 : 0.6, lineHeight: 1 }}>
+                    {TAG_ICONS[m.tag] || '\u2022'}
+                  </Box>
+                  <Text sx={{ fontSize: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>
+                    {m.label}
+                  </Text>
+                  {active === i && <Box sx={{ width: 14, height: 3, borderRadius: 99, backgroundColor: tint, mt: '2px' }} />}
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        </PhoneFrame>
+      </Box>
+    );
+  }
+
+  const Shell = LAYOUTS[layoutFor(item.id || 0)];
+  return (
+    <Box sx={{ position: 'relative' }}>
+      <BrowserFrame url={demoUrlFor(item, 'https://app.demo.we2tech.pro')} height={560} brand={brand}>
+        <Shell modules={modules} active={active} onSelect={setActive} brand={brand} tint={tint} seed={seed}>
+          {render}
+        </Shell>
+      </BrowserFrame>
+    </Box>
+  );
+}

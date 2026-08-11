@@ -1,20 +1,17 @@
 /** @jsx jsx */
 import { jsx, Container, Box, Text, Button } from 'theme-ui';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowLeft, FaArrowRight, FaWhatsapp, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Reveal from '../components/reveal';
 import { localizedPath } from '../locales';
-import { DemoForTag } from '../components/demo/registry';
 import { DemoGlobalStyles } from '../components/demo/anim';
 import { S } from '../components/demo/shared';
+import CaseApp from '../components/demo/case-app';
 import cases from './case-data';
 import { caseSlug } from '../data/case-url';
 
 const TOTAL = 200;
 
 export default function CaseDemo({ item, locale, t, tagNames = {} }) {
-  const [activeTab, setActiveTab] = useState(0);
   const tags = item.tags || [];
   const prevId = item.id - 1 <= 0 ? TOTAL : item.id - 1;
   const nextId = item.id + 1 > TOTAL ? 1 : item.id + 1;
@@ -62,32 +59,8 @@ export default function CaseDemo({ item, locale, t, tagNames = {} }) {
               <Text as="p" sx={styles.tryNote}>{t('caseDemo.tryNote')}</Text>
             </Box>
           </Box>
-          <Box sx={styles.tabs}>
-            {tags.map((tag, i) => (
-              <Box
-                key={tag}
-                onClick={() => setActiveTab(i)}
-                sx={{
-                  ...styles.tab,
-                  ...(activeTab === i ? styles.tabActive : {}),
-                }}>
-                {label(tag)}
-              </Box>
-            ))}
-          </Box>
           <Box sx={styles.demoBody}>
-            <AnimatePresence>
-              {tags[activeTab] && (
-                <motion.div
-                  key={tags[activeTab]}
-                  initial={{ opacity: 0, y: 16, scale: 0.995 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}>
-                  <DemoForTag tag={tags[activeTab]} t={t} locale={locale} item={item} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <CaseApp item={item} locale={locale} t={t} tagNames={tagNames} />
           </Box>
         </Box>
 
@@ -270,32 +243,6 @@ const styles = {
     color: 'text_secondary',
     mt: 1,
     fontFamily: 'Ubuntu',
-  },
-  tabs: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '8px',
-    px: [4, null, 5],
-    py: 3,
-    backgroundColor: 'background_secondary',
-    borderBottom: '1px solid',
-    borderColor: 'border_color',
-  },
-  tab: {
-    padding: '8px 18px',
-    borderRadius: 20,
-    border: '1px solid',
-    borderColor: 'teal',
-    color: 'teal',
-    fontSize: 0,
-    fontWeight: 700,
-    cursor: 'pointer',
-    fontFamily: 'Ubuntu',
-    transition: 'all 0.2s',
-  },
-  tabActive: {
-    backgroundColor: 'teal',
-    color: 'white',
   },
   demoBody: {
     p: [3, null, 5],

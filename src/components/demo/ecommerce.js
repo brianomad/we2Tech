@@ -1,18 +1,16 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, Quantity } from './shared';
-import { FootBar } from './chrome';
 import { Toast } from './anim';
 
-const PRODUCT_META = [
+const PRODUCT_META = (d) => [
   { tag: null },
-  { tag: 'New', tagTone: 'blue' },
+  { tag: d.newTag, tagTone: 'blue' },
   { tag: '\u221220%', tagTone: 'red', sale: true },
   { tag: null },
   { tag: null },
-  { tag: 'New', tagTone: 'blue' },
+  { tag: d.newTag, tagTone: 'blue' },
 ];
 
 const PRODUCT_IMAGES = ['tote', 'sneakers', 'overshirt', 'belt', 'mugset', 'backpack'];
@@ -25,11 +23,12 @@ function ProductArt({ i }) {
   );
 }
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function EcommerceDemo({ t, item }) {
-  const d = t('caseDemo.ecommerce');
-  const products = t('caseDemo.ecommerce.products');
+export default function EcommerceDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'ecommerce');
+  const products = d.products;
   const [cart, setCart] = useState({});
   const [step, setStep] = useState('shop'); // shop | checkout | done
   const [orderNo] = useState(`OR-${Math.floor(2000 + Math.random() * 8000)}`);
@@ -49,13 +48,14 @@ export default function EcommerceDemo({ t, item }) {
   const shipping = subtotal === 0 || subtotal > 1000 ? 0 : 30;
   const total = subtotal + shipping;
   const count = Object.values(cart).reduce((a, b) => a + b, 0);
+  const metas = PRODUCT_META(d);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://shop.demo.we2tech.pro')} height={486} brand={brandFor(item, 'Mono')}>
+    <>
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: 486, position: 'relative' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 4, py: 3, backgroundColor: '#fff', borderBottom: '1px solid', borderColor: S.line, position: 'relative', zIndex: 2 }}>
           <Text sx={{ fontWeight: 700, fontSize: 2, color: S.ink, fontFamily: font, letterSpacing: '1px' }}>
-            MONO
+            {brandFor(item, 'MONO').toUpperCase()}
           </Text>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, px: 3, py: '7px', borderRadius: 10, backgroundColor: '#F4F6FA', color: S.muted, fontSize: 0, fontFamily: font, border: '1px solid', borderColor: S.line }}>
@@ -79,7 +79,7 @@ export default function EcommerceDemo({ t, item }) {
             <Box sx={{ flex: 1, p: 4, overflow: 'auto' }}>
               <Box sx={{ display: 'grid', gridTemplateColumns: ['repeat(2, 1fr)', null, 'repeat(3, 1fr)'], gap: 3 }}>
                 {products.map((p, i) => {
-                  const meta = PRODUCT_META[i % PRODUCT_META.length];
+                  const meta = metas[i % metas.length];
                   const inCart = cart[i] || 0;
                   const numeric = parseInt(p.price.replace(/[^\d]/g, ''), 10);
                   return (
@@ -157,7 +157,7 @@ export default function EcommerceDemo({ t, item }) {
                   <Text>{d.subtotal}</Text>
                   <Text sx={{ fontWeight: 700, color: S.ink }}>HK${subtotal}</Text>
                   <Text>{d.shipping}</Text>
-                  <Text sx={{ fontWeight: 700, color: S.ink }}>{shipping === 0 ? 'Free' : `HK$${shipping}`}</Text>
+                  <Text sx={{ fontWeight: 700, color: S.ink }}>{shipping === 0 ? d.free : `HK$${shipping}`}</Text>
                   <Box sx={{ borderTop: '1px dashed', borderColor: '#D3E1EE', gridColumn: '1 / -1', my: 1 }} />
                   <Text sx={{ fontWeight: 700, color: S.ink }}>{d.total}</Text>
                   <Text sx={{ fontWeight: 700, color: S.tealDark, fontSize: 2 }}>HK${total}</Text>
@@ -201,8 +201,6 @@ export default function EcommerceDemo({ t, item }) {
           </Box>
         )}
       </Box>
-
-      <FootBar light left="MONO Store &middot; Free shipping over HK$1,000" right="Live inventory" />
-    </BrowserFrame>
+    </>
   );
 }

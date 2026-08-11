@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Badge, Btn, Progress, Avatar, SectionLabel } from './shared';
-import { AppBar, FootBar, Skeleton, LoadingRows } from './chrome';
+import { AppBar, Skeleton, LoadingRows } from './chrome';
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
+import { contentFor } from './case-content';
 
-export default function AttendanceDemo({ t, item }) {
-  const d = t('caseDemo.attendance');
-  const sessions = t('caseDemo.attendance.sessions').map((s) => ({ ...s, checked: parseInt(s.checked, 10), expected: parseInt(s.expected, 10) }));
+export default function AttendanceDemo({ t, locale, item }) {
+  const d = contentFor(t, locale, item, 'attendance');
+  const sessions = d.sessions.map((s) => ({ ...s, checked: parseInt(s.checked, 10), expected: parseInt(s.expected, 10) }));
   const [list, setList] = useState(sessions);
   const [loading, setLoading] = useState(true);
   const [detail, setDetail] = useState(null);
@@ -26,7 +26,7 @@ export default function AttendanceDemo({ t, item }) {
   const totalExpected = list.reduce((a, s) => a + s.expected, 0);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://attendance.demo.we2tech.pro')} height={540} brand={brandFor(item, 'SweatLab')}>
+    <>
       <AppBar
         brand={brandFor(item, 'SweatLab')}
         sub={d.title}
@@ -126,8 +126,8 @@ export default function AttendanceDemo({ t, item }) {
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
                   <Box sx={{ fontSize: 2 }}>&#127944;</Box>
                   <Box sx={{ flex: 1 }}>
-                    <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>Scan &amp; go</Text>
-                    <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>Members tap the kiosk to check in</Text>
+                    <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{d.scanAndGo}</Text>
+                    <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{d.scanNote}</Text>
                   </Box>
                   <Badge tone="orange" dot={false}>300ms</Badge>
                 </Box>
@@ -153,7 +153,7 @@ export default function AttendanceDemo({ t, item }) {
                 </Box>
               </Box>
               <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3 }}>
-                {[['10:30', 'Start'], ['18:00', 'End'], [list[detail].checked, d.checkedIn], ['3', 'No-shows']].map(([v, l]) => (
+                {[['10:30', d.start], ['18:00', d.end], [list[detail].checked, d.checkedIn], ['3', d.noShows]].map(([v, l]) => (
                   <Box key={l} sx={{ p: 3, borderRadius: 12, backgroundColor: '#F6F8FB', textAlign: 'center' }}>
                     <Text sx={{ fontWeight: 700, fontSize: 1, color: S.ink, fontFamily: font }}>{v}</Text>
                     <Text sx={{ fontSize: 0, color: S.muted, fontFamily: font }}>{l}</Text>
@@ -167,8 +167,6 @@ export default function AttendanceDemo({ t, item }) {
           </Box>
         )}
       </Box>
-
-      <FootBar light left={`${d.today}: ${totalChecked}/${totalExpected}`} right="Live sync &middot; just now" />
-    </BrowserFrame>
+    </>
   );
 }

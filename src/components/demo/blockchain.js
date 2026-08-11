@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import { jsx, Box, Text } from 'theme-ui';
 import { useState, useEffect } from 'react';
-import { BrowserFrame } from './frames';
 import { S, font, Card, Btn, Badge, SectionLabel, Field } from './shared';
-import { AppBar, FootBar, Skeleton } from './chrome';
+import { AppBar, Skeleton } from './chrome';
 import { Toast } from './anim';
 
 const NFTS = [
@@ -22,9 +21,11 @@ const TXS = [
   { type: 'out', who: '0x91c2\u2026bb0e', amt: '\u22120.08 ETH', time: '1 hr ago', color: S.red, icon: '\u2197' },
   { type: 'swap', who: 'Uniswap V3', amt: '250 wTKN', time: 'Yesterday', color: S.purple, icon: '\u21C4' },
   { type: 'mint', who: 'NovaChain', amt: '+0.05 ETH', time: '2 days ago', color: S.cyan, icon: '\u2728' },
+  { type: 'in', who: '0x7a11\u2026e09f', amt: '+0.15 ETH', time: '3 days ago', color: S.green, icon: '\u2B07' },
+  { type: 'in', who: '0x5d90\u2026c332', amt: '+0.06 ETH', time: '4 days ago', color: S.green, icon: '\u2B07' },
 ];
 
-import { demoUrlFor, brandFor } from './demo-meta';
+import { brandFor } from './demo-meta';
 
 export default function BlockchainDemo({ t, item }) {
   const d = t('caseDemo.blockchain');
@@ -66,10 +67,10 @@ export default function BlockchainDemo({ t, item }) {
   }, [confirming]);
 
   return (
-    <BrowserFrame url={demoUrlFor(item, 'https://chain.demo.we2tech.pro')} height={540} brand={brandFor(item, 'NovaChain')}>
+    <>
       <AppBar
-        brand="NovaChain"
-        icon="\u9732"
+        brand={brandFor(item, 'NovaChain')}
+        icon={'\u9732'}
         grad="linear-gradient(135deg,#0B1220,#1E1B4B)"
         nav={views}
         active={view}
@@ -84,9 +85,9 @@ export default function BlockchainDemo({ t, item }) {
         }
       />
 
-      <Box sx={{ background: 'radial-gradient(circle at 70% 0%, #1E1B4B 0%, #0B1220 60%)', p: [3, null, 4], minHeight: 420, pb: 5, position: 'relative' }}>
+      <Box sx={{ background: 'radial-gradient(circle at 70% 0%, #1E1B4B 0%, #0B1220 60%)', p: [3, null, 4], minHeight: 470, display: 'flex', flexDirection: 'column', position: 'relative' }}>
         {!connected ? (
-          <Card sx={{ p: 6, textAlign: 'center', background: 'rgba(255,255,255,0.04)', border: '1px dashed rgba(255,255,255,0.18)', maxWidth: 420, mx: 'auto', mt: 6 }}>
+          <Card sx={{ p: 6, textAlign: 'center', background: 'rgba(255,255,255,0.04)', border: '1px dashed rgba(255,255,255,0.18)', maxWidth: 420, mx: 'auto', my: 'auto' }}>
             <Box sx={{ width: 72, height: 72, mx: 'auto', borderRadius: '50%', background: 'linear-gradient(135deg,#8B5CF6,#EC4899)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 4, mb: 3, boxShadow: '0 18px 40px rgba(139,92,246,0.45)' }}>&#128179;</Box>
             <Text sx={{ display: 'block', fontWeight: 700, fontSize: 2, color: '#fff', fontFamily: font, mb: 1 }}>{d.title}</Text>
             <Text sx={{ display: 'block', fontSize: 0, color: 'rgba(255,255,255,0.55)', fontFamily: font, mb: 4, lineHeight: 1.7 }}>
@@ -261,9 +262,30 @@ export default function BlockchainDemo({ t, item }) {
             </Toast>
           </Box>
         )}
-      </Box>
 
-      <FootBar left="NovaChain Mainnet" right="Block height 24,981,204" />
-    </BrowserFrame>
+        <Box
+          sx={{
+            mt: 'auto',
+            pt: 3,
+            pb: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 2,
+            flexWrap: 'wrap',
+            borderTop: '1px solid rgba(255,255,255,0.14)',
+            color: 'rgba(255,255,255,0.65)',
+            fontFamily: 'Menlo, monospace',
+            fontSize: 0,
+            fontWeight: 600,
+          }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: '#22C55E', boxShadow: '0 0 0 3px rgba(34,197,94,0.22)', flexShrink: 0 }} />
+            <Text>NovaChain {d.mainnet}</Text>
+          </Box>
+          <Text>{d.blockHeight} 24,981,204</Text>
+        </Box>
+      </Box>
+    </>
   );
 }
