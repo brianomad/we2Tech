@@ -6,7 +6,9 @@ import { S, font } from './shared';
 import { Icon } from './icons';
 import { demoUrlFor, brandFor } from './demo-meta';
 import { demoRegistry } from './registry';
-import { hashId, TAG_ICONS, LAYOUTS, layoutFor } from './layouts';
+import { hashId, TAG_ICONS } from './layouts';
+import AppEngine from './engine/AppEngine';
+import { CASE_DEMO_OVERRIDES } from './engine/showcase';
 
 const TINTS = [S.teal, '#7C3AED', '#2563EB', '#DB2777', '#F97316', '#0EA5E9', '#16A34A', '#B45309'];
 
@@ -21,7 +23,6 @@ export default function CaseApp({ item, locale, t, tagNames = {} }) {
   const isMobile = tags.includes('Mobile App');
   const [active, setActive] = useState(0);
   const Module = demoRegistry[modules[active].tag] || (() => null);
-  const render = () => <Module t={t} locale={locale} item={item} tint={tint} />;
 
   if (isMobile) {
     return (
@@ -86,13 +87,15 @@ export default function CaseApp({ item, locale, t, tagNames = {} }) {
     );
   }
 
-  const Shell = LAYOUTS[layoutFor(item.id || 0)];
+  const Showcase = CASE_DEMO_OVERRIDES[item.id];
   return (
     <Box sx={{ position: 'relative' }}>
-      <BrowserFrame url={demoUrlFor(item, 'https://app.demo.we2tech.pro')} height={560} brand={brand}>
-        <Shell modules={modules} active={active} onSelect={setActive} brand={brand} tint={tint} seed={seed}>
-          {render}
-        </Shell>
+      <BrowserFrame url={demoUrlFor(item, 'https://app.demo.we2tech.pro')} height={720} brand={brand}>
+        {Showcase ? (
+          <Showcase t={t} locale={locale} item={item} brand={brand} modules={modules} active={active} onSelect={setActive} />
+        ) : (
+          <AppEngine item={item} locale={locale} t={t} brand={brand} modules={modules} active={active} onSelect={setActive} />
+        )}
       </BrowserFrame>
     </Box>
   );

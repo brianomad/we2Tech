@@ -62,4 +62,5 @@ export default function SEO({
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
+  title: `we2Tech`,
 };

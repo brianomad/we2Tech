@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const { execSync, execFileSync } = require('child_process');
 
 const REPO = path.resolve(__dirname, '..', '..');
 const DATA_FILE = path.join(REPO, 'src', 'data', 'blog-data.json');
@@ -118,7 +118,7 @@ function parsePost(chunk, file) {
 }
 
 function git(args) {
-  execSync(`git ${args}`, { cwd: REPO, stdio: 'inherit' });
+  execFileSync('git', args, { cwd: REPO, stdio: 'inherit' });
 }
 
 function main() {
@@ -151,9 +151,12 @@ function main() {
     validate(post);
   }
 
+  if (DRY_RUN) {
+    console.log('[blog-bot] DRY RUN — not writing or committing.');
+    return;
+  }
+
   const existing = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-  const updated = [...picks.map(({ date, readingTime, ...rest }) => rest), ...existing].map((p) => p);
-  // simpler: keep order picks newest-first
   const clean = (p) => {
     const { date, readingTime, ...rest } = p;
     return { ...rest, date, readingTime };
@@ -162,27 +165,22 @@ function main() {
   fs.writeFileSync(DATA_FILE, JSON.stringify(final, null, 2) + '\n');
   console.log(`[blog-bot] Wrote ${picks.length} post(s): ${picks.map((p) => p.title).join(' | ')}`);
 
-  if (DRY_RUN) {
-    console.log('[blog-bot] DRY RUN — not committing.');
-    return;
-  }
-
-  git('config user.name "we2Tech Blog Bot"');
-  git('config user.email "blog-bot@we2tech.pro"');
+  git(['config', 'user.name', 'we2Tech Blog Bot']);
+  git(['config', 'user.email', 'blog-bot@we2tech.pro']);
   const summary = picks.map((p) => `"${p.title}"`).join(', ');
 
   if (MODE === 'pr') {
     const branch = `blog-bot/${picks[0].slug}`;
-    git(`checkout -b ${branch}`);
-    git('add -A');
-    git(`commit -m "blog-bot: publish ${summary}"`);
-    git(`push -u origin ${branch}`);
-    execSync(`gh pr create --title "Publish blog post(s)" --body "Auto-generated from blog-posts queue. Review then merge." --base master`, { cwd: REPO, stdio: 'inherit' });
+    git(['checkout', '-b', branch]);
+    git(['add', '-A']);
+    git(['commit', '-m', `blog-bot: publish ${summary}`]);
+    git(['push', '-u', 'origin', branch]);
+    execFileSync('gh', ['pr', 'create', '--title', 'Publish blog post(s)', '--body', 'Auto-generated from blog-posts queue. Review then merge.', '--base', 'master'], { cwd: REPO, stdio: 'inherit' });
     console.log('[blog-bot] Opened PR — review then merge to publish.');
   } else {
-    git('add -A');
-    git(`commit -m "blog-bot: publish ${summary}"`);
-    git('push origin master');
+    git(['add', '-A']);
+    git(['commit', '-m', `blog-bot: publish ${summary}`]);
+    git(['push', 'origin', 'master']);
     console.log('[blog-bot] Pushed to master — Vercel will auto-deploy.');
   }
 }

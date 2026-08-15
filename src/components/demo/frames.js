@@ -79,7 +79,7 @@ export function PhoneFrame({ children, title, height = 500, tint = S.ink, scene 
     <Box sx={{ display: 'flex', justifyContent: 'center', py: 3 }}>
       <Box
         sx={{
-          width: 320,
+          width: 'min(390px, 94%)',
           maxWidth: '100%',
           height,
           borderRadius: 34,

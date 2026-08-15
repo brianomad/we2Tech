@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, Container, Box, Text, Button } from 'theme-ui';
-import { useState } from 'react';
 import { FaArrowLeft, FaArrowRight, FaWhatsapp, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Reveal from '../components/reveal';
 import { localizedPath } from '../locales';
@@ -12,12 +11,6 @@ import { caseSlug } from '../data/case-url';
 
 const TOTAL = 200;
 
-const FRAME_PRESETS = [
-  { w: 375, key: 'presetPhone' },
-  { w: 768, key: 'presetTablet' },
-  { w: 1200, key: 'presetDesktop' },
-];
-
 export default function CaseDemo({ item, locale, t, tagNames = {} }) {
   const tags = item.tags || [];
   const prevId = item.id - 1 <= 0 ? TOTAL : item.id - 1;
@@ -25,7 +18,6 @@ export default function CaseDemo({ item, locale, t, tagNames = {} }) {
   const prevItem = cases.find((c) => c.id === prevId);
   const nextItem = cases.find((c) => c.id === nextId);
   const label = (tag) => tagNames[tag] || tag;
-  const [frameW, setFrameW] = useState(null);
 
   return (
     <section sx={styles.section}>
@@ -68,39 +60,7 @@ export default function CaseDemo({ item, locale, t, tagNames = {} }) {
             </Box>
           </Box>
           <Box sx={styles.demoBody}>
-            <Box sx={styles.frameBar}>
-              <Box sx={styles.frameBarLeft}>
-                <Text as="span" sx={styles.frameBarLabel}>{t('caseDemo.frameWidth')}</Text>
-                <Box sx={styles.framePresets}>
-                  {FRAME_PRESETS.map((p) => {
-                    const on = frameW === p.w;
-                    return (
-                      <Button key={p.w} variant="textButton" onClick={() => setFrameW(p.w)} sx={on ? styles.presetOn : styles.preset}>
-                        {t(`caseDemo.${p.key}`)}
-                      </Button>
-                    );
-                  })}
-                  <Button variant="textButton" onClick={() => setFrameW(null)} sx={frameW === null ? styles.presetOn : styles.preset}>
-                    {t('caseDemo.presetFull')}
-                  </Button>
-                </Box>
-              </Box>
-              <Box sx={styles.frameSlider}>
-                <input
-                  type="range"
-                  min={320}
-                  max={1280}
-                  step={10}
-                  value={frameW === null ? 1280 : frameW}
-                  onChange={(e) => setFrameW(Number(e.target.value))}
-                  aria-label={t('caseDemo.frameWidth')}
-                />
-                <Text as="span" sx={styles.frameReadout}>{frameW === null ? '100%' : `${frameW}px`}</Text>
-              </Box>
-            </Box>
-            <Box sx={{ width: frameW === null ? '100%' : frameW, maxWidth: '100%', mx: 'auto', transition: 'width 0.18s ease' }}>
-              <CaseApp item={item} locale={locale} t={t} tagNames={tagNames} />
-            </Box>
+            <CaseApp item={item} locale={locale} t={t} tagNames={tagNames} />
           </Box>
         </Box>
 
@@ -287,81 +247,6 @@ const styles = {
   demoBody: {
     p: [3, null, 5],
     backgroundColor: S.bg,
-  },
-  frameBar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    gap: 3,
-    mb: [3, null, 4],
-    p: 2,
-    borderRadius: 12,
-    backgroundColor: '#fff',
-    border: '1px solid',
-    borderColor: 'border_color',
-  },
-  frameBarLeft: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 3,
-    flexWrap: 'wrap',
-  },
-  frameBarLabel: {
-    fontSize: 0,
-    fontWeight: 700,
-    color: 'text_secondary',
-    fontFamily: 'Ubuntu',
-  },
-  framePresets: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '6px',
-    flexWrap: 'wrap',
-  },
-  preset: {
-    px: 2,
-    py: '5px',
-    borderRadius: 8,
-    fontSize: 0,
-    fontWeight: 700,
-    color: 'teal',
-    backgroundColor: 'transparent',
-    fontFamily: 'Ubuntu',
-    cursor: 'pointer',
-    '&:hover': { backgroundColor: 'rgba(0,139,139,0.08)' },
-  },
-  presetOn: {
-    px: 2,
-    py: '5px',
-    borderRadius: 8,
-    fontSize: 0,
-    fontWeight: 700,
-    color: '#fff',
-    backgroundColor: 'teal',
-    fontFamily: 'Ubuntu',
-    cursor: 'pointer',
-  },
-  frameSlider: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: 2,
-    minWidth: 220,
-    flex: '1 1 220px',
-    maxWidth: 340,
-    input: {
-      flex: 1,
-      accentColor: 'teal',
-      cursor: 'pointer',
-    },
-  },
-  frameReadout: {
-    fontSize: 0,
-    fontWeight: 700,
-    color: 'text_secondary',
-    fontFamily: 'Menlo, monospace',
-    minWidth: 52,
-    textAlign: 'right',
   },
   detailsGrid: {
     display: 'grid',
