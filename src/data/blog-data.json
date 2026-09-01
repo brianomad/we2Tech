@@ -1,5 +1,121 @@
 [
   {
+    "slug": "how-much-does-ecommerce-website-cost-hong-kong",
+    "title": "How Much Does an eCommerce Website Cost in Hong Kong?",
+    "description": "What an online shop really costs to build in Hong Kong in 2026 — platforms, custom builds, payment gateways and the hidden costs most quotes leave out.",
+    "category": "Web",
+    "tags": [
+      "eCommerce",
+      "cost",
+      "Hong Kong"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "What an online shop really costs"
+      },
+      {
+        "type": "p",
+        "text": "An online shop in Hong Kong can cost anywhere from a few thousand to several hundred thousand Hong Kong dollars. The difference comes down to what you need to sell, take payments and manage stock, not the size of the shopfront."
+      },
+      {
+        "type": "h2",
+        "text": "Three common ways to build"
+      },
+      {
+        "type": "p",
+        "text": "Most Hong Kong businesses start with one of three approaches, and each has a very different price band."
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Template setup on Shopify or WooCommerce: roughly HKD 15,000 to 60,000, including theme, payments and shipping setup",
+          "Custom storefront: roughly HKD 80,000 to 250,000 for a build tailored to your brand and checkout flow",
+          "Complex builds with ERP or inventory integrations: HKD 250,000 and up, depending on how many systems must talk to each other"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "What actually drives the price"
+      },
+      {
+        "type": "p",
+        "text": "The number of products, the payment methods you accept, shipping rules and languages all change the workload. Supporting PayMe, AlipayHK and Octopus alongside cards adds real integration work, and a bilingual English and Traditional Chinese storefront roughly doubles the content and testing effort."
+      },
+      {
+        "type": "h2",
+        "text": "The hidden costs"
+      },
+      {
+        "type": "p",
+        "text": "Domain names, SSL certificates, payment gateway fees, hosting and monthly maintenance are rarely included in the initial build price. Cheap one-off builds often look affordable until these recurring costs and change requests arrive later."
+      },
+      {
+        "type": "h2",
+        "text": "Budget with the outcome in mind"
+      },
+      {
+        "type": "p",
+        "text": "Start from what you want the shop to achieve, not from a feature list. An itemised quote with milestones and clear deliverables protects you from scope creep and keeps the budget predictable. If you would like a clear, itemised quote for an online shop in Hong Kong, talk to the we2Tech team for a free consultation."
+      }
+    ],
+    "date": "2026-09-01",
+    "readingTime": "1 min read"
+  },
+  {
+    "slug": "what-to-look-for-in-a-web-development-proposal",
+    "title": "What to Look for in a Web Development Proposal",
+    "description": "How to read a web development proposal so you can compare quotes fairly, spot missing scope and pick a partner who will actually deliver.",
+    "category": "Web",
+    "tags": [
+      "proposal",
+      "web development",
+      "how to choose"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "Proposals are not all the same"
+      },
+      {
+        "type": "p",
+        "text": "Two proposals for the same website can look nothing alike, and price alone tells you very little. The value is in the detail of what is included, what is excluded and how the work is phased."
+      },
+      {
+        "type": "h2",
+        "text": "What a good proposal must contain"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "A clear scope with pages and features listed, not vague phrases like \"modern design\"",
+          "Milestones with dates and a payment schedule tied to completion, not just a start and end date",
+          "What happens on change requests, because scope changes are when cost overruns happen",
+          "Hosting, domain, SSL and maintenance made explicit so there are no surprises later",
+          "Who does the work, including whether design and development are in-house or subcontracted"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Red flags to watch for"
+      },
+      {
+        "type": "p",
+        "text": "Be wary of proposals with no milestones, fixed prices with no mention of changes, or quotes that are dramatically lower than everything else. A price that looks too good usually means scope that will expand later."
+      },
+      {
+        "type": "h2",
+        "text": "Compare on process, not just price"
+      },
+      {
+        "type": "p",
+        "text": "The best way to compare is to ask each vendor the same questions and lay the proposals side by side. Look for the one that understands your business problem, not just the one that lists the most features. The we2Tech team will happily walk you through a detailed proposal so you know exactly what you are paying for."
+      }
+    ],
+    "date": "2026-09-01",
+    "readingTime": "1 min read"
+  },
+  {
     "slug": "how-much-does-mobile-app-cost-hong-kong",
     "title": "How Much Does a Mobile App Cost in Hong Kong in 2026?",
     "description": "A realistic guide to mobile app development costs in Hong Kong in 2026. See what drives the price and what a typical MVP, mid-range and enterprise app really costs.",
