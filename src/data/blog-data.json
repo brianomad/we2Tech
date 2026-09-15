@@ -1,5 +1,112 @@
 [
   {
+    "slug": "how-long-does-it-take-to-build-a-website-in-hong-kong",
+    "title": "How Long Does It Take to Build a Website in Hong Kong?",
+    "description": "Realistic timelines for building a website in Hong Kong — from a two-week landing page to a three-month custom build — and what actually slows a project down.",
+    "category": "Web",
+    "tags": [
+      "timeline",
+      "website",
+      "Hong Kong"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "Timelines depend on the type of site"
+      },
+      {
+        "type": "p",
+        "text": "A website project in Hong Kong can take anywhere from two weeks to three months or more. The fastest projects are simple landing pages; the longest are custom builds with back-end systems and integrations."
+      },
+      {
+        "type": "h2",
+        "text": "Typical timeframes"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Landing page or brochure site: 2 to 4 weeks",
+          "Standard business website with a content management system: 4 to 8 weeks",
+          "eCommerce site with payments and shipping: 6 to 12 weeks",
+          "Custom web application or portal: 3 months and up"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "What slows projects down"
+      },
+      {
+        "type": "p",
+        "text": "Most delays are not caused by the developers. Content that arrives late, decisions that wait on a committee, feedback cycles that run for days, and scope added mid-build are the usual culprits. The more prepared your content and decisions are, the faster the build goes."
+      },
+      {
+        "type": "h2",
+        "text": "How to keep the timeline honest"
+      },
+      {
+        "type": "p",
+        "text": "Agree on a milestone plan up front and treat the dates seriously. Ask what the developer does when a milestone slips, and be clear about what you are responsible for providing. A realistic schedule with a responsible partner beats a fast promise that quietly slips for months. For a realistic timeline on your project, talk to we2Tech for a free consultation."
+      }
+    ],
+    "date": "2026-09-15",
+    "readingTime": "1 min read"
+  },
+  {
+    "slug": "signs-your-business-website-needs-a-redesign",
+    "title": "7 Signs Your Business Website Needs a Redesign",
+    "description": "Is your website costing you customers? These seven warning signs show when it is time to redesign your Hong Kong business website.",
+    "category": "Web",
+    "tags": [
+      "redesign",
+      "website",
+      "conversion"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "Your website is working against you"
+      },
+      {
+        "type": "p",
+        "text": "A website does not need to be broken to be a problem. It can quietly lose you customers every day, and the warning signs are usually easy to spot once you know what to look for."
+      },
+      {
+        "type": "h2",
+        "text": "Seven warning signs"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Your bounce rate is high and visitors leave within seconds",
+          "The site looks dated or does not reflect your current branding",
+          "It does not work well on phones, which is where most Hong Kong traffic comes from",
+          "Pages take several seconds to load",
+          "You cannot update content yourself and every change costs money",
+          "Google shows competitors above you and your traffic has stalled",
+          "The site does not capture leads or sales the way it used to"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Why waiting is expensive"
+      },
+      {
+        "type": "p",
+        "text": "Every month you keep an underperforming site is a month of missed enquiries. A modern site that loads fast and works on mobile is no longer a luxury, it is the minimum standard customers expect."
+      },
+      {
+        "type": "h2",
+        "text": "What a redesign should fix"
+      },
+      {
+        "type": "p",
+        "text": "A good redesign starts with your business goals, not just a new look. It should improve speed, mobile experience, clarity of message and how visitors turn into enquiries. If several of the signs above apply to you, it is worth a conversation about a redesign with the we2Tech team."
+      }
+    ],
+    "date": "2026-09-15",
+    "readingTime": "1 min read"
+  },
+  {
     "slug": "how-much-does-ecommerce-website-cost-hong-kong",
     "title": "How Much Does an eCommerce Website Cost in Hong Kong?",
     "description": "What an online shop really costs to build in Hong Kong in 2026 — platforms, custom builds, payment gateways and the hidden costs most quotes leave out.",
