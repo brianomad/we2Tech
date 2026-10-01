@@ -1,5 +1,111 @@
 [
   {
+    "slug": "how-to-choose-a-web-development-company-in-hong-kong",
+    "title": "How to Choose a Web Development Company in Hong Kong",
+    "description": "A practical guide to picking a web development partner in Hong Kong — where to look, what to check, and the questions that reveal who is worth hiring.",
+    "category": "Web",
+    "tags": [
+      "web development",
+      "how to choose",
+      "Hong Kong"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "Choosing a partner, not a vendor"
+      },
+      {
+        "type": "p",
+        "text": "The company you choose to build your website will shape your business for years after launch. Choosing on price alone is a common mistake, because the cheapest option is rarely the cheapest in the end."
+      },
+      {
+        "type": "h2",
+        "text": "Where to look and what to check"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Look at their portfolio and ask what each project cost and how long it took",
+          "Check that they can speak about your industry, not just about technology",
+          "Ask who does the design and development, and whether work is outsourced",
+          "Read their client reviews and ask for references you can contact",
+          "Verify they can support the site after launch, not just build it"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "The questions that reveal the truth"
+      },
+      {
+        "type": "p",
+        "text": "Ask how they handle scope changes, what happens if a milestone slips, and who owns the code and content. A confident, honest agency will answer directly; a hesitant one is hiding something."
+      },
+      {
+        "type": "h2",
+        "text": "Match them to your needs"
+      },
+      {
+        "type": "p",
+        "text": "The right partner understands your business goals, communicates clearly and has a process you trust. Take your time comparing two or three companies before deciding. The we2Tech team is happy to show you how we work before you make a decision."
+      }
+    ],
+    "date": "2026-10-01",
+    "readingTime": "1 min read"
+  },
+  {
+    "slug": "things-to-check-before-you-launch-your-website",
+    "title": "5 Things to Check Before You Launch Your Website",
+    "description": "A pre-launch checklist for your new website — speed, mobile, forms, SEO and backups — so launch day does not become repair week.",
+    "category": "Web",
+    "tags": [
+      "launch",
+      "checklist",
+      "website"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "Launch day is not the finish line"
+      },
+      {
+        "type": "p",
+        "text": "Most websites get launched the moment they \"look done\", which is exactly when small problems turn into public ones. A short pre-launch check catches the issues that cost you trust and money."
+      },
+      {
+        "type": "h2",
+        "text": "Five things worth checking"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Test on a phone and slow connection, because that is how your Hong Kong customers will actually arrive",
+          "Submit every form and confirm the enquiries reach your email, not a spam folder",
+          "Check page speed on real pages, not just the homepage",
+          "Make sure titles, descriptions and structured data are in place for Google",
+          "Confirm backups are running and you can actually restore from them"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Check the details that get skipped"
+      },
+      {
+        "type": "p",
+        "text": "Look for broken links, missing images, outdated phone numbers and pages that still say \"coming soon\". Verify that your analytics and search console are set up before launch, not after, so you do not lose early data."
+      },
+      {
+        "type": "h2",
+        "text": "Make it a routine"
+      },
+      {
+        "type": "p",
+        "text": "Build the same checks into every future change. A five-minute review before each release is cheap insurance. If you are preparing to launch and want a second pair of eyes, the we2Tech team can run through your checklist with you."
+      }
+    ],
+    "date": "2026-10-01",
+    "readingTime": "1 min read"
+  },
+  {
     "slug": "how-long-does-it-take-to-build-a-website-in-hong-kong",
     "title": "How Long Does It Take to Build a Website in Hong Kong?",
     "description": "Realistic timelines for building a website in Hong Kong — from a two-week landing page to a three-month custom build — and what actually slows a project down.",
