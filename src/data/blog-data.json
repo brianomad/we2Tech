@@ -1,5 +1,112 @@
 [
   {
+    "slug": "website-design-vs-website-development",
+    "title": "Website Design vs Website Development: What's the Difference?",
+    "description": "Design and development are two different jobs that people treat as one. Here is what each does, why both matter, and how to brief them properly.",
+    "category": "Web",
+    "tags": [
+      "web design",
+      "web development",
+      "process"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "Two different jobs"
+      },
+      {
+        "type": "p",
+        "text": "When people say \"build me a website\", they usually mean two separate jobs: design and development. Confusing the two is one of the most common sources of misunderstanding between businesses and agencies."
+      },
+      {
+        "type": "h2",
+        "text": "What design covers"
+      },
+      {
+        "type": "p",
+        "text": "Design is about how the site looks and feels. It covers layout, typography, colours, imagery and how a visitor moves through the pages. A designer works from your brand and your audience to create the visual experience and the sitemap of where things live."
+      },
+      {
+        "type": "h2",
+        "text": "What development covers"
+      },
+      {
+        "type": "p",
+        "text": "Development is the engineering that makes the design real. It covers the code, content management system, forms, payments, databases, integrations, security and performance. A developer makes the site actually work on every device and keeps it fast and reliable."
+      },
+      {
+        "type": "h2",
+        "text": "Why both matter"
+      },
+      {
+        "type": "p",
+        "text": "A beautiful site that is slow or broken is a failed project, and a technically perfect site that looks dated or confusing is also a failed project. Good agencies treat design and development as one process, with the designer and developer talking to each other throughout."
+      },
+      {
+        "type": "h2",
+        "text": "How to brief each role"
+      },
+      {
+        "type": "p",
+        "text": "Give the designer the story, audience and brand. Give the developer the features, systems and business rules. If you are unsure how to split your brief, the we2Tech team can help you write one that covers both sides properly."
+      }
+    ],
+    "date": "2026-10-15",
+    "readingTime": "1 min read"
+  },
+  {
+    "slug": "how-to-make-your-website-load-faster-in-hong-kong",
+    "title": "How to Make Your Website Load Faster in Hong Kong",
+    "description": "Slow websites lose customers in Hong Kong, where a second of delay matters. Practical steps to cut page load time and keep visitors on your site.",
+    "category": "Web",
+    "tags": [
+      "performance",
+      "speed",
+      "website"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "Speed is a business problem"
+      },
+      {
+        "type": "p",
+        "text": "In Hong Kong, where internet connections are fast and attention is short, a slow website is a real business cost. Every extra second of load time pushes visitors to competitors and drags down your Google rankings."
+      },
+      {
+        "type": "h2",
+        "text": "The quick wins"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Compress your images; most photos on business sites can be shrunk dramatically without looking worse",
+          "Remove heavy plugins or scripts that load on every page but are only used once",
+          "Use a content delivery network so files are served from a server close to your visitors",
+          "Enable browser caching so repeat visitors do not download everything again"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "The technical fixes"
+      },
+      {
+        "type": "p",
+        "text": "Modern sites should render fast on mobile, which means lazy-loading images below the fold, minimising the code sent to the browser and avoiding render-blocking resources. If your site is built on an old platform, some of these fixes are hard to apply, which is often a reason to consider a rebuild."
+      },
+      {
+        "type": "h2",
+        "text": "Measure before you change"
+      },
+      {
+        "type": "p",
+        "text": "Run a speed test today and note the score, then make your changes and test again. Focus on improvements you can feel, not just the score. If speed is holding your site back, the we2Tech team can audit your site and fix the real bottlenecks."
+      }
+    ],
+    "date": "2026-10-15",
+    "readingTime": "1 min read"
+  },
+  {
     "slug": "how-to-choose-a-web-development-company-in-hong-kong",
     "title": "How to Choose a Web Development Company in Hong Kong",
     "description": "A practical guide to picking a web development partner in Hong Kong — where to look, what to check, and the questions that reveal who is worth hiring.",
