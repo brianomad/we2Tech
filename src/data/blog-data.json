@@ -1,5 +1,118 @@
 [
   {
+    "slug": "does-your-business-still-need-a-website-in-2026",
+    "title": "Does Your Business Still Need a Website in 2026?",
+    "description": "With social media and WhatsApp doing so much, does a small Hong Kong business still need its own website? The short answer is yes, and here is why.",
+    "category": "Web",
+    "tags": [
+      "website",
+      "small business",
+      "Hong Kong"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "The case against"
+      },
+      {
+        "type": "p",
+        "text": "It is a fair question. Many Hong Kong businesses run perfectly well on Instagram, Facebook and WhatsApp, and those channels reach customers without any development cost or maintenance."
+      },
+      {
+        "type": "h2",
+        "text": "Why you still need your own site"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "You do not own your social media presence, and platforms change their rules whenever they like",
+          "A website is your only place to explain your offer without algorithm limits",
+          "Serious customers and corporate clients expect to find a professional site before they trust you",
+          "Your site can collect enquiries and data that social platforms keep for themselves",
+          "A website is the one asset that keeps building value for your brand over time"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "The middle path"
+      },
+      {
+        "type": "p",
+        "text": "You do not need a big expensive site. Many Hong Kong businesses do well with a single-page site that explains the business, shows credibility and captures enquiries, while social media keeps doing the daily engagement."
+      },
+      {
+        "type": "h2",
+        "text": "Think of it as an asset"
+      },
+      {
+        "type": "p",
+        "text": "Treat your website as the home base and social media as the foot traffic that points people to it. If you do not have a site yet, a focused single-page build can be live in weeks with the we2Tech team."
+      }
+    ],
+    "date": "2026-11-01",
+    "readingTime": "1 min read"
+  },
+  {
+    "slug": "how-to-write-website-content-that-converts",
+    "title": "How to Write Website Content That Converts",
+    "description": "Visitors do not read your website, they scan it. Here is how to write homepage and service content that turns scrollers into enquiries.",
+    "category": "Web",
+    "tags": [
+      "copywriting",
+      "conversion",
+      "website"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "People scan, they do not read"
+      },
+      {
+        "type": "p",
+        "text": "The average visitor spends seconds on a page and scans for what they need. Writing for scanners means being clear, structured and relevant, not clever or lengthy."
+      },
+      {
+        "type": "h2",
+        "text": "Write for your reader's problem"
+      },
+      {
+        "type": "p",
+        "text": "Start from the customer's situation, not your company's history. Lead with what you solve, for whom, and why you are a credible choice. Answer the questions they actually ask, which are almost never \"how long have you been in business\"."
+      },
+      {
+        "type": "h2",
+        "text": "Structure that helps scanners"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Put the most important message in the first sentence and first heading",
+          "Use short paragraphs and descriptive headings so someone can skim the whole page in seconds",
+          "Spell out next steps, like \"call us\", \"request a quote\" or \"book a demo\"",
+          "Back up claims with specifics, like industries served, not empty superlatives"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "Edit ruthlessly"
+      },
+      {
+        "type": "p",
+        "text": "Cut every sentence that does not move a visitor toward understanding or action. Remove jargon and fluffy phrases like \"world-class solutions\". If a sentence can be removed without losing meaning, remove it."
+      },
+      {
+        "type": "h2",
+        "text": "Test and improve"
+      },
+      {
+        "type": "p",
+        "text": "Content improves with feedback. Show your pages to someone outside your business and ask what they understood and what they would do next. The we2Tech team can review your pages and suggest concrete copy changes."
+      }
+    ],
+    "date": "2026-11-01",
+    "readingTime": "1 min read"
+  },
+  {
     "slug": "website-design-vs-website-development",
     "title": "Website Design vs Website Development: What's the Difference?",
     "description": "Design and development are two different jobs that people treat as one. Here is what each does, why both matter, and how to brief them properly.",
