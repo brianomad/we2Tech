@@ -1,5 +1,116 @@
 [
   {
+    "slug": "what-is-a-headless-cms-and-does-my-business-need-one",
+    "title": "What Is a Headless CMS and Does My Business Need One?",
+    "description": "Headless CMS is a common buzzword in web development. A plain-language explanation of what it is, when it helps, and when a normal CMS is fine.",
+    "category": "Web",
+    "tags": [
+      "CMS",
+      "architecture",
+      "web development"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "Plain language first"
+      },
+      {
+        "type": "p",
+        "text": "A CMS is the system you use to edit your website content. A headless CMS is one where the editing system is separated from the part visitors see, with the two connected through a service that feeds content to any device."
+      },
+      {
+        "type": "h2",
+        "text": "The difference"
+      },
+      {
+        "type": "p",
+        "text": "With a traditional CMS like WordPress, editing and displaying are tightly tied together. With a headless setup, you can edit once and publish your content to a website, a mobile app and even a kiosk screen, because the content is delivered as data rather than as finished pages."
+      },
+      {
+        "type": "h2",
+        "text": "When it genuinely helps"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "You run multiple channels, like a website plus an app, that share the same content",
+          "Your developers want to build a fast, custom front end that a traditional CMS would slow down",
+          "You need editors in different teams to publish to several places from one place"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "When it is overkill"
+      },
+      {
+        "type": "p",
+        "text": "For a straightforward business website or shop, a headless setup often adds complexity for no benefit. You would pay more to build it and the editors get a harder experience for nothing."
+      },
+      {
+        "type": "h2",
+        "text": "Get advice before choosing"
+      },
+      {
+        "type": "p",
+        "text": "The right CMS depends on your content volume, channels and team. A quick conversation can save you from paying for complexity you will never use. The we2Tech team will recommend the simplest option that fits."
+      }
+    ],
+    "date": "2026-11-15",
+    "readingTime": "1 min read"
+  },
+  {
+    "slug": "nextjs-vs-react-for-hong-kong-startups",
+    "title": "Next.js vs React: Choosing a Framework for Your Hong Kong Startup",
+    "description": "React builds your interface; Next.js adds structure, speed and SEO. What the difference means for a startup building its first web product.",
+    "category": "Web",
+    "tags": [
+      "Next.js",
+      "React",
+      "startups"
+    ],
+    "content": [
+      {
+        "type": "h2",
+        "text": "The relationship, explained"
+      },
+      {
+        "type": "p",
+        "text": "React is a library for building user interfaces. Next.js is a framework built on top of React that adds routing, server-side rendering, performance tooling and conventions. Think of React as the engine and Next.js as the whole car."
+      },
+      {
+        "type": "h2",
+        "text": "Why startups choose Next.js"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "Pages load faster because content can be rendered on the server",
+          "Better SEO, because search engines see the finished page instead of an empty shell",
+          "Built-in routing, image optimisation and deployment tooling that save setup time",
+          "A single codebase for both web and parts of your mobile experience"
+        ]
+      },
+      {
+        "type": "h2",
+        "text": "When plain React is fine"
+      },
+      {
+        "type": "p",
+        "text": "If you are building a complex single-page application where most of the value is in interactive features and SEO matters less, React on its own is a reasonable choice. Many internal tools and dashboards never need server rendering."
+      },
+      {
+        "type": "h2",
+        "text": "Let the requirements decide"
+      },
+      {
+        "type": "p",
+        "text": "Do not pick a framework because it is fashionable. Pick the one that matches how your users find you and how your product behaves. If you are starting a new web product in Hong Kong and want help choosing a stack, the we2Tech team can guide you."
+      }
+    ],
+    "date": "2026-11-15",
+    "readingTime": "1 min read"
+  },
+  {
     "slug": "does-your-business-still-need-a-website-in-2026",
     "title": "Does Your Business Still Need a Website in 2026?",
     "description": "With social media and WhatsApp doing so much, does a small Hong Kong business still need its own website? The short answer is yes, and here is why.",
